@@ -2,396 +2,317 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Market Briefing — Friday, March 6, 2026</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0f1a;--surface:#111827;--surface2:#1a2332;
-  --text:#e5e7eb;--muted:#9ca3af;--dim:#6b7280;
-  --green:#10B981;--red:#EF4444;--blue:#3B82F6;--gold:#F59E0B;
-  --border:#1f2937;--glow:rgba(59,130,246,0.08);
-  --radius:10px;--radius-sm:6px;
+--bg:#0a0f1a;--surface:#111827;--surface2:#1a2235;--text:#e5e7eb;
+--muted:#9ca3af;--green:#10B981;--red:#EF4444;--blue:#3B82F6;
+--gold:#F59E0B;--border:#1f2937;--accent:#3B82F6;
 }
-html{font-size:14px;-webkit-font-smoothing:antialiased}
 body{
-  font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
-  background:var(--bg);color:var(--text);line-height:1.6;
-  min-height:100vh;
+font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
+background:var(--bg);color:var(--text);line-height:1.6;
+min-height:100vh;padding:0;
 }
-.mono{font-family:'SF Mono',ui-monospace,'Cascadia Code','Fira Code',monospace}
+.mono{font-family:'SF Mono',ui-monospace,'Cascadia Code',monospace}
 .container{max-width:960px;margin:0 auto;padding:16px}
-
-/* Hero */
-.hero{
-  text-align:center;padding:32px 16px 24px;
-  border-bottom:1px solid var(--border);margin-bottom:24px;
-}
-.hero-date{font-size:1rem;color:var(--muted);margin-bottom:4px}
-.hero-title{font-size:1.8rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.5px}
-.hero-mood{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:6px 16px;border-radius:20px;font-size:0.85rem;font-weight:600;
-}
-.mood-bearish{background:rgba(239,68,68,0.12);color:var(--red);border:1px solid rgba(239,68,68,0.25)}
-.hero-timestamp{font-size:0.75rem;color:var(--dim);margin-top:10px}
-
+/* Header */
+.header{text-align:center;padding:32px 16px 24px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.header h1{font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:4px;color:#fff}
+.header .date{font-size:1rem;color:var(--muted);margin-bottom:8px}
+.header .generated{font-size:0.75rem;color:var(--muted)}
+.mood{display:inline-block;padding:6px 16px;border-radius:6px;font-weight:700;font-size:0.85rem;letter-spacing:0.05em;margin-top:12px}
+.mood.bearish{background:rgba(239,68,68,0.15);color:var(--red);border:1px solid rgba(239,68,68,0.3)}
 /* Section */
-.section{margin-bottom:28px}
-.section-head{
-  display:flex;align-items:center;gap:8px;
-  font-size:1.1rem;font-weight:600;margin-bottom:14px;
-  padding-bottom:8px;border-bottom:1px solid var(--border);
-}
-.section-head .icon{font-size:1.2rem}
-.section-sub{font-size:0.85rem;color:var(--muted);margin-bottom:10px;font-weight:500}
-.section-note{
-  font-size:0.82rem;color:var(--muted);line-height:1.5;
-  padding:10px 14px;background:var(--surface);border-radius:var(--radius-sm);
-  border-left:3px solid var(--blue);margin-top:10px;
-}
-
-/* Index cards */
-.idx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.idx-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-  padding:14px 16px;transition:border-color .15s ease;
-}
-.idx-card:hover{border-color:var(--blue)}
-.idx-name{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
-.idx-val{font-size:1.35rem;font-weight:700;margin-bottom:2px}
-.idx-chg{font-size:0.82rem;font-weight:600;display:flex;align-items:center;gap:4px}
-.up{color:var(--green)}.down{color:var(--red)}
-
-/* Global mini cards */
-.global-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:6px}
-.g-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
-  padding:10px 12px;
-}
-.g-name{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.3px}
-.g-val{font-size:1.05rem;font-weight:700;margin:2px 0}
-.g-chg{font-size:0.78rem;font-weight:600}
-
+.section{margin-bottom:24px}
+.section-title{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.section-title .icon{font-size:1.2rem}
+/* Cards grid */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;transition:border-color 0.15s ease}
+.card:hover{border-color:var(--accent)}
+.card .label{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px}
+.card .value{font-size:1.35rem;font-weight:700;margin-bottom:4px}
+.card .change{font-size:0.85rem;font-weight:600}
+.card .pct{font-size:0.75rem;margin-left:4px}
+.card .note{font-size:0.72rem;color:var(--muted);margin-top:8px;line-height:1.4}
 /* Commodity cards */
-.cmd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-.cmd-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-  padding:14px 16px;
-}
-.cmd-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
-.cmd-name{font-size:0.82rem;font-weight:600}
-.cmd-val{font-size:1.1rem;font-weight:700}
-.cmd-note{font-size:0.75rem;color:var(--muted);line-height:1.45;margin-top:6px}
-
-/* Bonds/FX */
-.bf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-.bf-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-  padding:14px 16px;
-}
-.bf-name{font-size:0.78rem;color:var(--muted);margin-bottom:4px}
-.bf-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
-.bf-val{font-size:1.05rem;font-weight:700}
-.bf-chg{font-size:0.82rem;font-weight:600}
-.bf-note{font-size:0.73rem;color:var(--dim);line-height:1.4}
-
+.commodity-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px}
+.commodity-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.commodity-name{font-weight:700;font-size:0.95rem}
+.commodity-val{font-weight:700;font-size:1.1rem}
+.commodity-note{font-size:0.8rem;color:var(--muted);line-height:1.5}
+/* Bond/Currency table */
+.bc-row{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:8px}
+.bc-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.bc-name{font-weight:700;font-size:0.9rem}
+.bc-vals{display:flex;gap:12px;align-items:center}
+.bc-note{font-size:0.78rem;color:var(--muted);line-height:1.4}
 /* Crypto */
-.crypto-bar{
-  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
-  padding:12px 16px;background:var(--surface);border-radius:var(--radius);
-  border:1px solid var(--border);
-}
-.crypto-item{display:flex;align-items:baseline;gap:8px}
-.crypto-label{font-size:0.78rem;color:var(--muted);font-weight:600}
-.crypto-val{font-size:1rem;font-weight:700}
-.crypto-chg{font-size:0.82rem;font-weight:600}
-.crypto-note{font-size:0.75rem;color:var(--dim);margin-left:auto}
-
+.crypto-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.crypto-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.crypto-card .sym{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em}
+.crypto-card .price{font-size:1.4rem;font-weight:700;margin:4px 0}
+.crypto-card .chg{font-size:0.85rem;font-weight:600}
 /* Geopolitical */
-.geo-list{list-style:none;padding:0}
-.geo-list li{
-  position:relative;padding:8px 0 8px 24px;
-  font-size:0.85rem;line-height:1.5;color:var(--text);
-  border-left:2px solid var(--red);margin-left:8px;
-}
-.geo-list li::before{
-  content:'';position:absolute;left:-5px;top:12px;
-  width:8px;height:8px;border-radius:50%;background:var(--red);
-}
-
-/* Explainer */
-.explainer{
-  background:var(--surface2);border:1px solid var(--border);
-  border-radius:var(--radius);padding:24px;margin-top:4px;
-}
-.explainer h3{font-size:1.25rem;font-weight:700;margin-bottom:16px;color:#f9fafb}
-.explainer p{
-  font-size:0.9rem;line-height:1.75;color:var(--text);
-  margin-bottom:14px;
-}
-.explainer p:last-child{margin-bottom:0}
-.explainer strong,.explainer b{color:#f9fafb}
-
+.geo-headline{font-size:1rem;font-weight:700;color:var(--red);margin-bottom:12px}
+.geo-events{list-style:none;padding:0}
+.geo-events li{padding:8px 0 8px 20px;border-bottom:1px solid var(--border);font-size:0.85rem;position:relative;line-height:1.5}
+.geo-events li::before{content:"⚠";position:absolute;left:0;top:8px;font-size:0.75rem}
+.geo-events li:last-child{border-bottom:none}
+/* Analysis */
+.analysis p{font-size:0.88rem;line-height:1.7;margin-bottom:14px;color:var(--text)}
+.analysis p:last-child{margin-bottom:0}
 /* Watch list */
-.watch-grid{display:grid;gap:10px}
-.watch-item{
-  display:grid;grid-template-columns:auto 1fr;gap:12px;
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);padding:12px 16px;
-  align-items:start;
-}
-.watch-tag{
-  font-size:0.78rem;font-weight:700;color:var(--gold);
-  white-space:nowrap;padding-top:2px;
-}
+.watch-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:8px}
+.watch-label{font-weight:700;font-size:0.9rem;color:var(--gold);margin-bottom:4px}
 .watch-why{font-size:0.82rem;color:var(--muted);line-height:1.5}
-
+/* Notable callout */
+.callout{background:var(--surface2);border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.83rem;color:var(--muted);line-height:1.5;margin-top:12px}
+/* Summary text */
+.summary{font-size:0.85rem;color:var(--muted);line-height:1.5;margin-bottom:12px}
 /* Footer */
-.footer{
-  text-align:center;padding:24px 0 16px;
-  font-size:0.72rem;color:var(--dim);
-  border-top:1px solid var(--border);margin-top:24px;
-}
-
+.footer{text-align:center;padding:24px 16px;color:var(--muted);font-size:0.72rem;border-top:1px solid var(--border);margin-top:24px}
+/* Sub-sections */
+.sub-title{font-size:0.85rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin:16px 0 8px}
+/* Responsive */
 @media(max-width:640px){
-  .hero-title{font-size:1.3rem}
-  .idx-grid,.cmd-grid,.bf-grid{grid-template-columns:1fr 1fr}
-  .global-grid{grid-template-columns:1fr 1fr}
-  .crypto-bar{flex-direction:column;align-items:flex-start;gap:10px}
-  .crypto-note{margin-left:0}
-  .container{padding:12px}
-  .explainer{padding:16px}
+.cards{grid-template-columns:1fr 1fr}
+.card .value{font-size:1.1rem}
+.container{padding:12px}
+.header h1{font-size:1.25rem}
+.crypto-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:380px){
-  .idx-grid,.cmd-grid,.bf-grid{grid-template-columns:1fr}
+.cards{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 <div class="container">
 
-<!-- Hero -->
-<div class="hero">
-  <div class="hero-date">Friday, March 6, 2026</div>
-  <div class="hero-title">Market Briefing</div>
-  <div class="hero-mood mood-bearish">🔴 BEARISH — Risk-Off Day</div>
-  <div class="hero-timestamp">Generated 4:30 PM PST</div>
+<div class="header">
+<h1>📊 Market Briefing</h1>
+<div class="date">Friday, March 6, 2026</div>
+<div class="mood bearish">BEARISH — Fear-driven selloff on massive oil shock</div>
+<div class="generated">5:30 PM PST (Corrected with live data)</div>
 </div>
 
-<!-- US Markets -->
 <div class="section">
-  <div class="section-head"><span class="icon">🇺🇸</span> US Markets</div>
-  <div class="section-sub">Ugly Day — Worst week since April</div>
-  <div class="idx-grid"><div class="idx-card">
-  <div class="idx-name">Dow Jones</div>
-  <div class="idx-val mono">42,580</div>
-  <div class="idx-chg down mono">▼ -750 (-1.73%)</div>
-</div>
-<div class="idx-card">
-  <div class="idx-name">S&amp;P 500</div>
-  <div class="idx-val mono">5,690</div>
-  <div class="idx-chg down mono">▼ -85 (-1.47%)</div>
-</div>
-<div class="idx-card">
-  <div class="idx-name">Nasdaq</div>
-  <div class="idx-val mono">17,850</div>
-  <div class="idx-chg down mono">▼ -210 (-1.16%)</div>
-</div>
-<div class="idx-card">
-  <div class="idx-name">VIX</div>
-  <div class="idx-val mono">23.4</div>
-  <div class="idx-chg down mono">▲ +4.2 (+21.9%)</div>
-</div>
-</div>
-  <div class="section-note">Broadcom (AVGO) +6% on strong Q1 earnings was the lone bright spot. Dow erased all 2026 gains.</div>
-</div>
+<div class="section-title"><span class="icon">🇺🇸</span> US Markets</div>
 
-<!-- Global Markets -->
+<div class="summary">Red across the board. VIX spike to 29.5 signals serious fear.</div>
+<div class="cards">
+<div class="card">
+<div class="label">S&amp;P 500</div>
+<div class="value mono" style="color:#EF4444">6,740.02</div>
+<div class="change mono" style="color:#EF4444">▼ -90.69 <span class="pct">(-1.33%)</span></div>
+</div>
+<div class="card">
+<div class="label">Nasdaq</div>
+<div class="value mono" style="color:#EF4444">22,387.68</div>
+<div class="change mono" style="color:#EF4444">▼ -361.31 <span class="pct">(-1.59%)</span></div>
+</div>
+<div class="card">
+<div class="label">Dow Jones</div>
+<div class="value mono" style="color:#EF4444">47,501.55</div>
+<div class="change mono" style="color:#EF4444">▼ -453.19 <span class="pct">(-0.95%)</span></div>
+</div>
+<div class="card">
+<div class="label">VIX (Fear Index)</div>
+<div class="value mono" style="color:#EF4444">29.49</div>
+<div class="change mono" style="color:#EF4444">▲ +5.75 <span class="pct">(+24.17%)</span></div>
+</div>
+</div>
+<div class="callout">VIX at 29.5 is near panic territory (30+). Options market pricing in serious turbulence ahead. Broadcom (AVGO) +6% on Q1 earnings was the lone bright spot.</div>
+</div>
 <div class="section">
-  <div class="section-head"><span class="icon">🌍</span> Global Markets</div>
-  <div class="section-sub">Asia-Pacific</div>
-  <div class="global-grid"><div class="g-card">
-  <div class="g-name">Nikkei 225</div>
-  <div class="g-val mono">37,120</div>
-  <div class="g-chg down mono">▼ -1.8%</div>
-</div>
-<div class="g-card">
-  <div class="g-name">Shanghai</div>
-  <div class="g-val mono">3,280</div>
-  <div class="g-chg down mono">▼ -0.6%</div>
-</div>
-<div class="g-card">
-  <div class="g-name">Hang Seng</div>
-  <div class="g-val mono">22,450</div>
-  <div class="g-chg down mono">▼ -1.2%</div>
-</div>
-</div>
-  <div class="section-sub" style="margin-top:12px">Europe</div>
-  <div class="global-grid"><div class="g-card">
-  <div class="g-name">FTSE 100</div>
-  <div class="g-val mono">8,520</div>
-  <div class="g-chg down mono">▼ -0.9%</div>
-</div>
-<div class="g-card">
-  <div class="g-name">Euro Stoxx 50</div>
-  <div class="g-val mono">5,180</div>
-  <div class="g-chg down mono">▼ -1.1%</div>
-</div>
-</div>
-  <div class="section-note">Global risk-off across the board. Iran tensions + weak US jobs data rippled through every major exchange.</div>
-</div>
+<div class="section-title"><span class="icon">🌍</span> Global Markets</div>
 
-<!-- Commodities -->
+<div class="sub-title">Asia-Pacific</div>
+<div class="cards">
+<div class="card">
+<div class="label">Nikkei 225</div>
+<div class="value mono" style="color:#10B981">55,620.84</div>
+<div class="change mono" style="color:#10B981">▲ +0.62%</div>
+</div>
+<div class="card">
+<div class="label">Shanghai</div>
+<div class="value mono" style="color:#10B981">4,124.19</div>
+<div class="change mono" style="color:#10B981">▲ +1.02%</div>
+</div>
+<div class="card">
+<div class="label">Hang Seng</div>
+<div class="value mono" style="color:#10B981">25,757.29</div>
+<div class="change mono" style="color:#10B981">▲ +1.72%</div>
+</div>
+</div>
+<div class="sub-title">Europe</div>
+<div class="cards">
+<div class="card">
+<div class="label">FTSE 100</div>
+<div class="value mono" style="color:#EF4444">10,284.75</div>
+<div class="change mono" style="color:#EF4444">▼ -1.24%</div>
+</div>
+<div class="card">
+<div class="label">Euro Stoxx 50</div>
+<div class="value mono" style="color:#EF4444">5,719.90</div>
+<div class="change mono" style="color:#EF4444">▼ -1.09%</div>
+</div>
+</div>
+<div class="callout">Asia closed green BEFORE the oil spike hit. Europe and US bore the full brunt. Monday&#39;s Asian open will be the first test of whether this goes truly global.</div>
+</div>
 <div class="section">
-  <div class="section-head"><span class="icon">🛢️</span> Commodities</div>
-  <div class="cmd-grid"><div class="cmd-card">
-  <div class="cmd-head">
-    <span class="cmd-name">Oil (WTI)</span>
-    <span class="cmd-val mono" style="color:var(--gold)">$89.70</span>
-  </div>
-  <div class="idx-chg up mono" style="font-size:0.8rem">▲ +4.2%</div>
-  <div class="cmd-note">Highest since 2024. Strait of Hormuz disruption + Iran escalation driving supply fears.</div>
-</div>
-<div class="cmd-card">
-  <div class="cmd-head">
-    <span class="cmd-name">Gold</span>
-    <span class="cmd-val mono" style="color:var(--gold)">$2,945</span>
-  </div>
-  <div class="idx-chg up mono" style="font-size:0.8rem">▲ +1.8%</div>
-  <div class="cmd-note">Safe haven demand surging. Investors fleeing to safety.</div>
-</div>
-<div class="cmd-card">
-  <div class="cmd-head">
-    <span class="cmd-name">Copper</span>
-    <span class="cmd-val mono" style="color:var(--red)">$4.12/lb</span>
-  </div>
-  <div class="idx-chg down mono" style="font-size:0.8rem">▼ -1.3%</div>
-  <div class="cmd-note">Dr. Copper signaling growth concerns. Industrial demand outlook weakening.</div>
-</div>
-<div class="cmd-card">
-  <div class="cmd-head">
-    <span class="cmd-name">Natural Gas</span>
-    <span class="cmd-val mono" style="color:var(--gold)">$3.85</span>
-  </div>
-  <div class="idx-chg up mono" style="font-size:0.8rem">▲ +0.5%</div>
-  <div class="cmd-note">Mild uptick on energy sector sympathy.</div>
-</div>
-</div>
-</div>
+<div class="section-title"><span class="icon">🛢️</span> Commodities</div>
 
-<!-- Bonds & Currencies -->
+<div class="commodity-card">
+<div class="commodity-header">
+<span class="commodity-name" style="color:var(--gold)">Oil (WTI)</span>
+<span class="commodity-val mono" style="color:#10B981">$91.27 <span style="font-size:0.8rem">▲ +12.67%</span></span>
+</div>
+<div class="commodity-note">THE story of the day. A 12%+ single-day oil move is rare and extreme. Market just priced in a prolonged Iran disruption, not a quick resolution. $91 oil ripples through everything: gas prices, shipping, airlines, consumer spending, and inflation expectations.</div>
+</div>
+<div class="commodity-card">
+<div class="commodity-header">
+<span class="commodity-name" style="color:var(--gold)">Gold</span>
+<span class="commodity-val mono" style="color:#10B981">$5,181.30 <span style="font-size:0.8rem">▲ +2.02%</span></span>
+</div>
+<div class="commodity-note">Above $5,100 is pure fear premium. Institutional money is in &#39;protect capital&#39; mode, not &#39;grow capital&#39; mode.</div>
+</div>
+<div class="commodity-card">
+<div class="commodity-header">
+<span class="commodity-name" style="color:var(--gold)">Copper</span>
+<span class="commodity-val mono" style="color:#10B981">$5.84/lb <span style="font-size:0.8rem">▲ +0.57%</span></span>
+</div>
+<div class="commodity-note">Slight uptick despite risk-off. Industrial demand holding for now.</div>
+</div>
+<div class="commodity-card">
+<div class="commodity-header">
+<span class="commodity-name" style="color:var(--gold)">Natural Gas</span>
+<span class="commodity-val mono" style="color:#10B981">$3.18 <span style="font-size:0.8rem">▲ +5.96%</span></span>
+</div>
+<div class="commodity-note">Sympathy move with oil. Energy complex broadly bid on supply fears.</div>
+</div>
+</div>
 <div class="section">
-  <div class="section-head"><span class="icon">💵</span> Bonds &amp; Currencies</div>
-  <div class="bf-grid"><div class="bf-card">
-  <div class="bf-name">US 10-Year Yield</div>
-  <div class="bf-row">
-    <span class="bf-val mono">4.18%</span>
-    <span class="bf-chg mono" style="color:var(--blue)">-8bp</span>
-  </div>
-  <div class="bf-note">Yields falling as investors flee to Treasury safety. Lower yield = more fear.</div>
-</div>
-<div class="bf-card">
-  <div class="bf-name">DXY (Dollar Index)</div>
-  <div class="bf-row">
-    <span class="bf-val mono">104.2</span>
-    <span class="bf-chg mono" style="color:var(--blue)">+0.3%</span>
-  </div>
-  <div class="bf-note">Dollar strengthening as global safe haven. Strong dollar hurts US exporters.</div>
-</div>
-<div class="bf-card">
-  <div class="bf-name">EUR/USD</div>
-  <div class="bf-row">
-    <span class="bf-val mono">1.0785</span>
-    <span class="bf-chg mono" style="color:var(--blue)">-0.2%</span>
-  </div>
-  <div class="bf-note">Euro weakening on European energy exposure to Iran crisis.</div>
-</div>
-<div class="bf-card">
-  <div class="bf-name">USD/JPY</div>
-  <div class="bf-row">
-    <span class="bf-val mono">148.30</span>
-    <span class="bf-chg mono" style="color:var(--blue)">-0.8%</span>
-  </div>
-  <div class="bf-note">Yen strengthening (another safe haven signal).</div>
-</div>
-</div>
-</div>
+<div class="section-title"><span class="icon">💵</span> Bonds &amp; Currencies</div>
 
-<!-- Crypto -->
+<div class="bc-row">
+<div class="bc-top">
+<span class="bc-name">US 10-Year Yield</span>
+<div class="bc-vals">
+<span class="mono" style="font-weight:700">4.13%</span>
+<span class="mono" style="font-size:0.85rem;color:var(--muted)">-0.31%</span>
+</div>
+</div>
+<div class="bc-note">Yields dropping as money floods into Treasury safety. Lower yield = more fear. Bond market saying &#39;risk off.&#39;</div>
+</div>
+<div class="bc-row">
+<div class="bc-top">
+<span class="bc-name">DXY (Dollar Index)</span>
+<div class="bc-vals">
+<span class="mono" style="font-weight:700">98.86</span>
+<span class="mono" style="font-size:0.85rem;color:var(--muted)">-0.47%</span>
+</div>
+</div>
+<div class="bc-note">Dollar weakening slightly — unusual during fear. Suggests global uncertainty, not just US-centric. Could signal market expects Iran disruption to hurt US economy too.</div>
+</div>
+<div class="bc-row">
+<div class="bc-top">
+<span class="bc-name">EUR/USD</span>
+<div class="bc-vals">
+<span class="mono" style="font-weight:700">1.16</span>
+<span class="mono" style="font-size:0.85rem;color:var(--muted)">flat</span>
+</div>
+</div>
+<div class="bc-note">Euro holding steady despite European energy exposure to Iran crisis.</div>
+</div>
+<div class="bc-row">
+<div class="bc-top">
+<span class="bc-name">USD/JPY</span>
+<div class="bc-vals">
+<span class="mono" style="font-weight:700">157.76</span>
+<span class="mono" style="font-size:0.85rem;color:var(--muted)">+0.14%</span>
+</div>
+</div>
+<div class="bc-note">Yen not strengthening — unusual for risk-off. Not a typical flight-to-safety pattern.</div>
+</div>
+</div>
 <div class="section">
-  <div class="section-head"><span class="icon">₿</span> Crypto</div>
-  <div class="crypto-bar">
-  <div class="crypto-item">
-    <span class="crypto-label">BTC</span>
-    <span class="crypto-val mono">$68,217</span>
-    <span class="crypto-chg down mono">-3.8%</span>
-  </div>
-  <div class="crypto-item">
-    <span class="crypto-label">ETH</span>
-    <span class="crypto-val mono">$1,979</span>
-    <span class="crypto-chg down mono">-4.6%</span>
-  </div>
-  <span class="crypto-note">Risk-off selloff. Crypto dumping with everything else.</span>
-</div>
-</div>
+<div class="section-title"><span class="icon">₿</span> Crypto</div>
 
-<!-- Geopolitical -->
-<div class="section">
-  <div class="section-head"><span class="icon">⚠️</span> Geopolitical Context</div>
-  <div class="section-sub" style="color:var(--red);font-weight:700">Iran Conflict Dominates Everything</div>
-  <ul class="geo-list">
-  <li>Khamenei assassination ~Feb 28 triggered regional escalation</li>
-  <li>Iran retaliating: missiles at Cyprus, UAE, Bahrain; struck synagogue in Israel (9 killed); fired at USS Abraham Lincoln (3 US service members killed)</li>
-  <li>Strait of Hormuz effectively shut down — Maersk suspended transits</li>
-  <li>Oil spiking on supply disruption fears</li>
-  <li>Iran-Trump contact reported but unclear if real de-escalation</li>
-  <li>Pakistan bombing Afghanistan separately — warplanes over Kabul</li>
-  </ul>
+<div class="crypto-grid">
+<div class="crypto-card">
+<div class="sym">Bitcoin</div>
+<div class="price mono" style="color:var(--gold)">$68,206</div>
+<div class="chg mono" style="color:var(--muted)">+0.1%</div>
 </div>
-
-<!-- What This Means -->
-<div class="section">
-  <div class="section-head"><span class="icon">🧠</span> What This All Means</div>
-  <div class="explainer">
-  <p>This is a fear-driven selloff, not a structural one (yet). The market is pricing in a world where oil stays high because Iran isn’t resolving quickly, which means inflation stays sticky.</p>
-  <p>Friday’s weak jobs report created the worst possible combo: slowing growth + rising prices. That’s textbook stagflation — the macro environment that killed markets in the 1970s. The Fed is boxed in: can’t cut rates to help growth (because inflation is hot), can’t raise rates to fight inflation (because growth is weak).</p>
-  <p>The 10-Year yield dropping while oil surges is the market screaming ‘we’re scared.’ Money is flowing into Treasuries (safety) while commodities spike (fear of supply disruption). Gold at nearly $2,950 confirms the panic bid.</p>
-  <p>The Dow erasing all 2026 gains in a single week tells you how fragile sentiment is. One good Iran headline reverses everything. One bad one accelerates the selloff. We’re in headline-driven territory now.</p>
-  </div>
+<div class="crypto-card">
+<div class="sym">Ethereum</div>
+<div class="price mono" style="color:var(--blue)">$1,979</div>
+<div class="chg mono" style="color:var(--muted)">flat</div>
 </div>
+</div>
+<div class="callout">Surprisingly flat while equities dumped. Interesting divergence — either crypto sees this as temporary, or weekend thin liquidity masking real sentiment. Watch Sunday night.</div>
 
-<!-- Watch Next Week -->
+</div>
 <div class="section">
-  <div class="section-head"><span class="icon">👀</span> Watch Next Week</div>
-  <div class="watch-grid"><div class="watch-item">
-  <div class="watch-tag">◆ Iran diplomacy</div>
-  <div class="watch-why">Any real de-escalation drops oil instantly and rallies stocks. This is the #1 variable.</div>
+<div class="section-title"><span class="icon">🌐</span> Geopolitical Context</div>
+
+<div class="geo-headline">Oil Shock from Iran Escalation Dominates Everything</div>
+<ul class="geo-events">
+<li>Oil surged 12.67% in a single session — pricing in prolonged Iran disruption</li>
+<li>Strait of Hormuz effectively shut down — Maersk suspended all transits</li>
+<li>Iran retaliating across region: missiles at Cyprus, UAE, Bahrain</li>
+<li>Struck synagogue in Israel (9 killed), fired at USS Abraham Lincoln (3 US service members killed)</li>
+<li>Iran-Trump contact reported but unclear if real de-escalation or posturing</li>
+<li>Pakistan bombing Afghanistan separately — warplanes over Kabul</li>
+<li>Weak US jobs report added to the pain — stagflation fears rising</li>
+</ul>
+</div>
+<div class="section">
+<div class="section-title"><span class="icon">🧠</span> What This All Means</div>
+<div class="analysis">
+
+<p>The oil spike IS the whole story. +12.67% in one day means the market just priced in a prolonged Iran disruption — not a quick resolution. When oil moves that fast, it triggers a chain reaction.</p>
+<p>Oil spikes → inflation expectations rise → Fed can&#39;t cut rates. Higher energy costs → companies&#39; margins compress → earnings estimates drop. VIX at 29.5 → options traders hedging aggressively → more volatility ahead. Gold at $5,181 → institutional money in &#39;protect capital&#39; mode.</p>
+<p>The fact that Asia was green while the US cratered tells you this was an intraday shock — the oil move accelerated during US hours. Monday&#39;s Asian session will be the first real test of whether this selloff goes global.</p>
+<p>The combination of rising commodity prices + weak employment is textbook stagflation — the macro environment that killed markets in the 1970s. The Fed is boxed in: can&#39;t cut rates to help growth (inflation too hot), can&#39;t raise to fight inflation (growth too weak). March 18 FOMC is now the most important date on the calendar.</p>
+<p>The crypto divergence is interesting — BTC holding flat while equities dump could mean crypto traders see this as temporary, or it could just be weekend-thin liquidity. Watch Sunday night for the real signal.</p>
+</div></div>
+<div class="section">
+<div class="section-title"><span class="icon">👀</span> Watch Next Week</div>
+
+<div class="watch-item">
+<div class="watch-label">Iran diplomacy</div>
+<div class="watch-why">Any real de-escalation drops oil instantly and rallies stocks. This is the #1 variable right now.</div>
 </div>
 <div class="watch-item">
-  <div class="watch-tag">◆ CPI data</div>
-  <div class="watch-why">If inflation prints hot, the stagflation narrative gets much louder.</div>
+<div class="watch-label">Monday Asian open</div>
+<div class="watch-why">First test of whether Friday&#39;s US selloff goes truly global. Watch Nikkei futures Sunday night.</div>
 </div>
 <div class="watch-item">
-  <div class="watch-tag">◆ Fed speak</div>
-  <div class="watch-why">Any hints about the March 18 rate decision. Markets pricing in a hold.</div>
+<div class="watch-label">CPI data</div>
+<div class="watch-why">If inflation prints hot after this oil spike, the stagflation narrative gets much louder.</div>
 </div>
 <div class="watch-item">
-  <div class="watch-tag">◆ Oil at $90</div>
-  <div class="watch-why">If it breaks above $95, expect significantly more equity pain.</div>
+<div class="watch-label">Oil above $95?</div>
+<div class="watch-why">If WTI breaks $95, expect significantly more equity pain and recession fears.</div>
 </div>
 <div class="watch-item">
-  <div class="watch-tag">◆ March 18 FOMC</div>
-  <div class="watch-why">The Fed’s next rate decision. Most important scheduled event this month.</div>
+<div class="watch-label">March 18 FOMC</div>
+<div class="watch-why">The Fed&#39;s rate decision. Most important scheduled event this month. Market pricing in a hold.</div>
+</div>
+<div class="watch-item">
+<div class="watch-label">Crypto Sunday night</div>
+<div class="watch-why">Thin weekend liquidity can mask real sentiment. Sunday night BTC action will reveal if the divergence holds.</div>
 </div>
 </div>
-</div>
-
-<!-- Footer -->
 <div class="footer">
-  Generated by Chip 🪨 · Friday, March 6, 2026 at 4:30 PM PST
+Market Briefing · Friday, March 6, 2026 · 5:30 PM PST (Corrected with live data)
 </div>
-
 </div>
 </body>
 </html>

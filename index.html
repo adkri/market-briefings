@@ -3,474 +3,691 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Market Briefing — March 7, 2026</title>
+<title>Market Intelligence Dashboard — March 8, 2026</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        bg: '#0a0a0f',
+        card: '#111118',
+        cardAlt: '#16161f',
+        border: '#1e1e2e',
+        positive: '#00e676',
+        negative: '#ff1744',
+        warn: '#ffab00',
+        accent: '#448aff',
+        muted: '#6b7280',
+        textPrimary: '#e8e8f0',
+        textSecondary: '#9ca3af',
+      },
+      fontFamily: {
+        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
 <style>
-  * { font-family: 'JetBrains Mono', monospace; }
-  body { background: #0a0a0a; color: #e0e0e0; }
+  * { box-sizing: border-box; }
+  body { background: #0a0a0f; color: #e8e8f0; font-family: 'Inter', sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-  /* Scanline overlay */
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-    z-index: 9999;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.08) 2px,
-      rgba(0, 0, 0, 0.08) 4px
-    );
-    animation: scanmove 8s linear infinite;
+  /* War banner */
+  @keyframes pulse-red {
+    0%, 100% { background-color: #b71c1c; }
+    50% { background-color: #d32f2f; }
   }
-  @keyframes scanmove {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 1000px; }
+  @keyframes scroll-text {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
   }
-
-  /* War alert pulse */
-  @keyframes warpulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 20px rgba(239,68,68,0.5); }
-    50% { opacity: 0.85; box-shadow: 0 0 40px rgba(239,68,68,0.8); }
-  }
-  .war-banner { animation: warpulse 1.5s ease-in-out infinite; }
-
-  /* Glow text */
-  .glow-red { text-shadow: 0 0 8px rgba(239,68,68,0.6); }
-  .glow-green { text-shadow: 0 0 8px rgba(34,197,94,0.5); }
-  .glow-amber { text-shadow: 0 0 8px rgba(251,191,36,0.5); }
-  .glow-cyan { text-shadow: 0 0 6px rgba(34,211,238,0.4); }
-
-  /* Section card */
-  .card {
-    background: #111111;
-    border: 1px solid #1f1f1f;
-    border-radius: 6px;
-    transition: border-color 0.2s;
-  }
-  .card:hover { border-color: #333; }
-
-  /* Ticker row */
-  .ticker-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 0;
-    border-bottom: 1px solid #1a1a1a;
-  }
-  .ticker-row:last-child { border-bottom: none; }
-
-  /* Blinking dot */
-  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-  .blink { animation: blink 1.2s ease-in-out infinite; }
-
-  /* Key level bars */
-  .level-bar {
-    height: 6px;
-    border-radius: 3px;
-    background: #1f1f1f;
+  .war-banner {
+    animation: pulse-red 1.5s ease-in-out infinite;
     overflow: hidden;
     position: relative;
   }
-  .level-fill {
-    height: 100%;
-    border-radius: 3px;
-    transition: width 0.6s ease;
+  .war-banner-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-text 30s linear infinite;
   }
+
+  /* Pulsing dot */
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  .pulse-dot {
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+
+  /* Glow effects */
+  .glow-red { box-shadow: 0 0 20px rgba(255, 23, 68, 0.15), inset 0 0 20px rgba(255, 23, 68, 0.05); }
+  .glow-amber { box-shadow: 0 0 20px rgba(255, 171, 0, 0.12), inset 0 0 20px rgba(255, 171, 0, 0.04); }
+  .glow-green { box-shadow: 0 0 15px rgba(0, 230, 118, 0.08); }
+
+  /* Sparkline pseudo-effect */
+  .sparkline {
+    background: linear-gradient(90deg, transparent 0%, transparent 10%, currentColor 10%, currentColor 12%, transparent 12%, transparent 20%, currentColor 20%, currentColor 23%, transparent 23%, transparent 30%, currentColor 30%, currentColor 34%, transparent 34%, transparent 42%, currentColor 42%, currentColor 46%, transparent 46%, transparent 52%, currentColor 52%, currentColor 57%, transparent 57%, transparent 64%, currentColor 64%, currentColor 70%, transparent 70%, transparent 76%, currentColor 76%, currentColor 82%, transparent 82%, transparent 88%, currentColor 88%, currentColor 95%, transparent 95%);
+    height: 2px;
+    width: 100%;
+    opacity: 0.5;
+  }
+  .sparkline-down {
+    background: linear-gradient(90deg, transparent 0%, #ff1744 5%, transparent 8%, transparent 15%, #ff1744 18%, transparent 22%, transparent 28%, #ff1744 30%, transparent 35%, transparent 40%, #ff1744 44%, transparent 50%, transparent 55%, #ff1744 58%, transparent 63%, transparent 68%, #ff1744 72%, transparent 78%, transparent 82%, #ff1744 85%, transparent 90%, transparent 94%, #ff1744 96%, transparent 100%);
+    height: 24px; opacity: 0.25; border-radius: 2px;
+  }
+  .sparkline-up {
+    background: linear-gradient(90deg, transparent 0%, #00e676 5%, transparent 8%, transparent 15%, #00e676 18%, transparent 22%, transparent 28%, #00e676 30%, transparent 35%, transparent 40%, #00e676 44%, transparent 50%, transparent 55%, #00e676 58%, transparent 63%, transparent 68%, #00e676 72%, transparent 78%, transparent 82%, #00e676 85%, transparent 90%, transparent 94%, #00e676 96%, transparent 100%);
+    height: 24px; opacity: 0.25; border-radius: 2px;
+  }
+
+  /* SVG sparklines */
+  .spark-svg { overflow: visible; }
+
+  /* Card hover */
+  .data-card {
+    transition: border-color 0.2s, box-shadow 0.2s;
+    border: 1px solid #1e1e2e;
+  }
+  .data-card:hover {
+    border-color: #2a2a3e;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+
+  /* Timeline */
+  .timeline-item { position: relative; padding-left: 1.5rem; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff1744;
+  }
+  .timeline-item::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 1.2rem;
+    width: 2px;
+    height: calc(100% - 0.4rem);
+    background: #1e1e2e;
+  }
+  .timeline-item:last-child::after { display: none; }
 
   /* Scrollbar */
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #0a0a0a; }
-  ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+  ::-webkit-scrollbar-track { background: #0a0a0f; }
+  ::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #2a2a3e; }
+
+  /* Badge animations */
+  @keyframes blink-warn {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .blink-warn { animation: blink-warn 2s ease-in-out infinite; }
 </style>
 </head>
 <body class="min-h-screen">
 
-<!-- WAR ALERT BANNER -->
-<div class="war-banner bg-red-950 border-b-2 border-red-600 px-4 py-3 text-center sticky top-0 z-50">
-  <div class="flex items-center justify-center gap-3 flex-wrap">
-    <span class="inline-block w-3 h-3 rounded-full bg-red-500 blink"></span>
-    <span class="text-red-400 font-bold text-sm md:text-base tracking-widest uppercase glow-red">
-      ⚠ ACTIVE WAR ZONE — IRAN CONFLICT DAY 8-9 — STRAIT OF HORMUZ SHUT DOWN ⚠
-    </span>
-    <span class="inline-block w-3 h-3 rounded-full bg-red-500 blink"></span>
+<!-- ===== WAR ALERT BANNER ===== -->
+<div class="war-banner w-full py-2 px-4 z-50 sticky top-0">
+  <div class="flex items-center justify-center gap-3">
+    <span class="pulse-dot inline-block w-3 h-3 rounded-full bg-white flex-shrink-0"></span>
+    <div class="overflow-hidden flex-1">
+      <span class="war-banner-text font-mono text-sm md:text-base font-bold tracking-wider text-white">
+        ⚠️ ACTIVE CONFLICT: US-IRAN WAR — DAY 9 — OIL INFRASTRUCTURE STRIKES — STRAIT OF HORMUZ SHUT — GLOBAL ENERGY CRISIS — REFINERIES HIT IN 6 COUNTRIES — LNG FORCE MAJEURE — 56% AMERICANS OPPOSE ACTION ⚠️
+      </span>
+    </div>
+    <span class="pulse-dot inline-block w-3 h-3 rounded-full bg-white flex-shrink-0"></span>
   </div>
-  <div class="text-red-500/70 text-xs mt-1 tracking-wide">OIL +35% THIS WEEK • BIGGEST WEEKLY GAIN IN CRUDE FUTURES HISTORY (SINCE 1983)</div>
 </div>
 
-<div class="max-w-7xl mx-auto px-3 md:px-6 py-4 md:py-6 space-y-4">
-
-  <!-- HEADER -->
-  <header class="flex flex-col md:flex-row md:items-end md:justify-between gap-2 mb-2">
+<!-- ===== HEADER ===== -->
+<div class="max-w-[1400px] mx-auto px-3 md:px-6 pt-4 pb-2">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-2 mb-1">
     <div>
-      <h1 class="text-2xl md:text-3xl font-bold text-white tracking-tight">MARKET BRIEFING</h1>
-      <div class="text-xs text-zinc-500 mt-1 tracking-wide">Saturday, March 7, 2026 · Weekend Analysis</div>
+      <div class="flex items-center gap-3 mb-1">
+        <h1 class="text-xl md:text-2xl font-bold tracking-tight">MARKET INTELLIGENCE</h1>
+        <span class="px-2 py-0.5 bg-negative/20 text-negative text-xs font-mono font-bold rounded uppercase tracking-wider blink-warn">CRISIS MODE</span>
+      </div>
+      <p class="text-textSecondary text-sm font-mono">Sunday, March 8, 2026 · Weekend Edition · Futures open 3:00 PM PDT</p>
     </div>
-    <div class="text-right space-y-1">
-      <div class="inline-flex items-center gap-2 bg-amber-950/50 border border-amber-800/40 rounded px-3 py-1">
-        <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-        <span class="text-amber-400 text-xs font-semibold tracking-wide">MARKETS CLOSED — Weekend Analysis</span>
-      </div>
-      <div class="text-zinc-600 text-[10px] tracking-wide">Last Updated: Saturday, March 7, 2026 5:45 PM PST</div>
+    <div class="flex items-center gap-4 text-xs font-mono text-muted">
+      <span class="flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-negative pulse-dot"></span>
+        MARKETS CLOSED
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-positive pulse-dot"></span>
+        CRYPTO 24/7
+      </span>
+      <span>08:45 PDT</span>
     </div>
-  </header>
-
-  <!-- WAR STATUS -->
-  <section class="card border-red-900/50 p-4">
-    <div class="flex items-center gap-2 mb-3">
-      <span class="text-red-500 text-lg">🔴</span>
-      <h2 class="text-red-400 font-bold text-sm uppercase tracking-widest">War Status — Iran-Israel Conflict</h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-      <div class="space-y-2">
-        <div class="flex items-start gap-2">
-          <span class="text-red-500 mt-0.5">▸</span>
-          <span><span class="text-red-400 font-semibold">80 Israeli jets</span> struck Tehran — Mehrabad Airport ablaze</span>
-        </div>
-        <div class="flex items-start gap-2">
-          <span class="text-red-500 mt-0.5">▸</span>
-          <span>Iran fired <span class="text-red-400 font-semibold">dozens of ballistic missiles</span> at Israel</span>
-        </div>
-        <div class="flex items-start gap-2">
-          <span class="text-red-500 mt-0.5">▸</span>
-          <span><span class="text-amber-400 font-semibold">Saudi Arabia</span> now actively in the fight</span>
-        </div>
-      </div>
-      <div class="space-y-2">
-        <div class="flex items-start gap-2">
-          <span class="text-red-500 mt-0.5">▸</span>
-          <span><span class="text-red-400 font-semibold">Strait of Hormuz</span> effectively shut down</span>
-        </div>
-        <div class="flex items-start gap-2">
-          <span class="text-red-500 mt-0.5">▸</span>
-          <span><span class="text-zinc-400">No ceasefire</span> — Trump demands unconditional surrender, Iran rejected</span>
-        </div>
-        <div class="flex items-start gap-2">
-          <span class="text-amber-500 mt-0.5">▸</span>
-          <span>Qatar warned <span class="text-amber-400 font-semibold">$150/bbl oil</span> if full Gulf shutdown</span>
-        </div>
-      </div>
-    </div>
-    <div class="mt-3 p-2 bg-red-950/30 rounded border border-red-900/30 text-[11px] text-red-400/80 text-center">
-      No diplomatic off-ramp visible · 1973 Oil Embargo is the historical parallel traders are watching
-    </div>
-  </section>
-
-  <!-- US MARKETS + COMMODITIES (two-column) -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-
-    <!-- US EQUITIES -->
-    <section class="card p-4">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="text-lg">🇺🇸</span>
-        <h2 class="text-zinc-300 font-bold text-sm uppercase tracking-widest">US Equities</h2>
-        <span class="ml-auto text-[10px] text-zinc-600">Friday Close</span>
-      </div>
-      <div class="space-y-0">
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">S&P 500</span>
-          <span class="text-white text-sm font-semibold">6,740.02</span>
-          <span class="text-red-400 text-xs font-medium glow-red">▼ -1.54%</span>
-        </div>
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">Nasdaq</span>
-          <span class="text-white text-sm font-semibold">22,387.68</span>
-          <span class="text-red-400 text-xs font-medium glow-red">▼ -3.68%</span>
-        </div>
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">Dow Jones</span>
-          <span class="text-white text-sm font-semibold">47,501.55</span>
-          <span class="text-red-400 text-xs font-medium glow-red">▼ -1.17%</span>
-        </div>
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">S&P MidCap 400</span>
-          <span class="text-white text-sm font-semibold">3,410.32</span>
-          <span class="text-red-400 text-xs font-medium glow-red">▼ -4.61%</span>
-        </div>
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">Russell 2000</span>
-          <span class="text-white text-sm font-semibold">2,525.30</span>
-          <span class="text-red-400 text-xs font-medium glow-red">▼ -4.07%</span>
-        </div>
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">VIX</span>
-          <span class="text-amber-400 text-sm font-bold glow-amber">29.49</span>
-          <span class="text-red-400 text-xs font-medium glow-red">▲ +24.2%</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMMODITIES -->
-    <section class="card p-4">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="text-lg">🛢️</span>
-        <h2 class="text-zinc-300 font-bold text-sm uppercase tracking-widest">Commodities</h2>
-        <span class="ml-auto text-[10px] text-zinc-600">Weekly</span>
-      </div>
-      <div class="space-y-0">
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">WTI Crude</span>
-          <span class="text-white text-sm font-semibold">$91.27</span>
-          <span class="text-green-400 text-xs font-bold glow-green">▲ +35.0% 🔥</span>
-        </div>
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">Brent Crude</span>
-          <span class="text-white text-sm font-semibold">~$94.50</span>
-          <span class="text-green-400 text-xs font-medium glow-green">▲</span>
-        </div>
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">Gold</span>
-          <span class="text-amber-300 text-sm font-semibold">$5,181</span>
-          <span class="text-green-400 text-xs font-medium glow-green">▲ +4.8% (near ATH)</span>
-        </div>
-      </div>
-      <div class="mt-3 p-2 bg-red-950/30 rounded border border-red-900/30">
-        <div class="text-[11px] text-red-400 font-semibold text-center">⚡ HISTORIC: Biggest weekly gain in crude futures since 1983</div>
-      </div>
-    </section>
   </div>
+  <div class="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-5"></div>
 
-  <!-- GLOBAL MARKETS -->
-  <section class="card p-4">
+  <!-- ===== MARKET OVERVIEW GRID — 2x4 ===== -->
+  <section class="mb-5">
     <div class="flex items-center gap-2 mb-3">
-      <span class="text-lg">🌍</span>
-      <h2 class="text-zinc-300 font-bold text-sm uppercase tracking-widest">Global Markets</h2>
-      <span class="ml-auto text-[10px] text-zinc-600">Weekly Change</span>
+      <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-textSecondary">Market Overview</h2>
+      <span class="text-[10px] font-mono text-muted">FRI CLOSE</span>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-0">
-      <div class="ticker-row">
-        <span class="text-zinc-400 text-xs">STOXX 600</span>
-        <span class="text-red-400 text-xs font-medium glow-red">▼ -5.55%</span>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+
+      <!-- S&P 500 -->
+      <div class="data-card bg-card rounded-lg p-3 md:p-4">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10px] font-mono text-muted uppercase tracking-wider">S&P 500</span>
+          <span class="text-[10px] font-mono text-negative font-bold">▼ -1.5% W</span>
+        </div>
+        <div class="font-mono text-lg md:text-xl font-bold text-textPrimary mb-1">6,740.02</div>
+        <svg class="spark-svg w-full" height="24" viewBox="0 0 120 24" preserveAspectRatio="none">
+          <polyline fill="none" stroke="#ff1744" stroke-width="1.5" opacity="0.6"
+            points="0,4 10,5 20,3 30,6 40,8 50,7 60,10 70,12 80,11 90,14 100,16 110,18 120,20"/>
+          <linearGradient id="spxG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff1744" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#ff1744" stop-opacity="0"/>
+          </linearGradient>
+          <polygon fill="url(#spxG)" points="0,4 10,5 20,3 30,6 40,8 50,7 60,10 70,12 80,11 90,14 100,16 110,18 120,20 120,24 0,24"/>
+        </svg>
       </div>
-      <div class="ticker-row">
-        <span class="text-zinc-400 text-xs">DAX 🇩🇪</span>
-        <span class="text-red-400 text-xs font-medium glow-red">▼ -6.70%</span>
+
+      <!-- Nasdaq -->
+      <div class="data-card bg-card rounded-lg p-3 md:p-4">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10px] font-mono text-muted uppercase tracking-wider">NASDAQ</span>
+          <span class="text-[10px] font-mono text-negative font-bold">▼ -3.7% W</span>
+        </div>
+        <div class="font-mono text-lg md:text-xl font-bold text-textPrimary mb-1">22,390</div>
+        <svg class="spark-svg w-full" height="24" viewBox="0 0 120 24" preserveAspectRatio="none">
+          <polyline fill="none" stroke="#ff1744" stroke-width="1.5" opacity="0.6"
+            points="0,2 10,4 20,3 30,5 40,9 50,8 60,12 70,14 80,15 90,17 100,19 110,21 120,22"/>
+          <linearGradient id="ndxG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff1744" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#ff1744" stop-opacity="0"/>
+          </linearGradient>
+          <polygon fill="url(#ndxG)" points="0,2 10,4 20,3 30,5 40,9 50,8 60,12 70,14 80,15 90,17 100,19 110,21 120,22 120,24 0,24"/>
+        </svg>
       </div>
-      <div class="ticker-row">
-        <span class="text-zinc-400 text-xs">CAC 40 🇫🇷</span>
-        <span class="text-red-400 text-xs font-medium glow-red">▼ -6.84%</span>
+
+      <!-- Dow -->
+      <div class="data-card bg-card rounded-lg p-3 md:p-4">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10px] font-mono text-muted uppercase tracking-wider">DOW JONES</span>
+          <span class="text-[10px] font-mono text-negative font-bold">▼ -1.3% W</span>
+        </div>
+        <div class="font-mono text-lg md:text-xl font-bold text-textPrimary mb-1">41,600</div>
+        <svg class="spark-svg w-full" height="24" viewBox="0 0 120 24" preserveAspectRatio="none">
+          <polyline fill="none" stroke="#ff1744" stroke-width="1.5" opacity="0.6"
+            points="0,5 15,4 30,6 45,7 60,9 75,10 90,13 105,15 120,17"/>
+          <linearGradient id="djiG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff1744" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#ff1744" stop-opacity="0"/>
+          </linearGradient>
+          <polygon fill="url(#djiG)" points="0,5 15,4 30,6 45,7 60,9 75,10 90,13 105,15 120,17 120,24 0,24"/>
+        </svg>
       </div>
-      <div class="ticker-row">
-        <span class="text-zinc-400 text-xs">FTSE MIB 🇮🇹</span>
-        <span class="text-red-400 text-xs font-medium glow-red">▼ -6.48%</span>
+
+      <!-- VIX -->
+      <div class="data-card bg-card rounded-lg p-3 md:p-4 glow-red">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10px] font-mono text-muted uppercase tracking-wider">VIX</span>
+          <span class="text-[10px] font-mono text-negative font-bold blink-warn">⚠ NEAR 30</span>
+        </div>
+        <div class="font-mono text-lg md:text-xl font-bold text-negative mb-1">29.49</div>
+        <svg class="spark-svg w-full" height="24" viewBox="0 0 120 24" preserveAspectRatio="none">
+          <polyline fill="none" stroke="#ff1744" stroke-width="1.5" opacity="0.7"
+            points="0,20 10,18 20,19 30,16 40,14 50,15 60,12 70,10 80,8 90,6 100,4 110,3 120,2"/>
+          <linearGradient id="vixG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff1744" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="#ff1744" stop-opacity="0"/>
+          </linearGradient>
+          <polygon fill="url(#vixG)" points="0,20 10,18 20,19 30,16 40,14 50,15 60,12 70,10 80,8 90,6 100,4 110,3 120,2 120,24 0,24"/>
+        </svg>
+        <div class="text-[9px] font-mono text-negative/60 mt-1">PANIC THRESHOLD: 30</div>
       </div>
-      <div class="ticker-row">
-        <span class="text-zinc-400 text-xs">FTSE 100 🇬🇧</span>
-        <span class="text-red-400 text-xs font-medium glow-red">▼ -5.74%</span>
+
+      <!-- Oil WTI -->
+      <div class="data-card bg-card rounded-lg p-3 md:p-4 glow-amber" style="border-color: rgba(255,171,0,0.3);">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10px] font-mono text-muted uppercase tracking-wider">OIL · WTI</span>
+          <span class="text-[10px] font-mono text-warn font-bold blink-warn">▲ +35% W 🔥</span>
+        </div>
+        <div class="font-mono text-lg md:text-xl font-bold text-warn mb-1">$91.27</div>
+        <svg class="spark-svg w-full" height="24" viewBox="0 0 120 24" preserveAspectRatio="none">
+          <polyline fill="none" stroke="#ffab00" stroke-width="1.5" opacity="0.7"
+            points="0,22 10,21 20,20 30,18 40,15 50,14 60,10 70,8 80,7 90,5 100,4 110,3 120,2"/>
+          <linearGradient id="oilG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffab00" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="#ffab00" stop-opacity="0"/>
+          </linearGradient>
+          <polygon fill="url(#oilG)" points="0,22 10,21 20,20 30,18 40,15 50,14 60,10 70,8 80,7 90,5 100,4 110,3 120,2 120,24 0,24"/>
+        </svg>
+        <div class="text-[9px] font-mono text-warn/60 mt-1">LARGEST WEEKLY GAIN IN HISTORY</div>
       </div>
-      <div class="ticker-row">
-        <span class="text-zinc-400 text-xs">Nikkei 225 🇯🇵</span>
-        <span class="text-red-400 text-xs font-medium glow-red">▼ -5.49%</span>
+
+      <!-- Gold -->
+      <div class="data-card bg-card rounded-lg p-3 md:p-4">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10px] font-mono text-muted uppercase tracking-wider">GOLD</span>
+          <span class="text-[10px] font-mono text-positive font-bold">▲ ATH</span>
+        </div>
+        <div class="font-mono text-lg md:text-xl font-bold text-positive mb-1">$5,181</div>
+        <svg class="spark-svg w-full" height="24" viewBox="0 0 120 24" preserveAspectRatio="none">
+          <polyline fill="none" stroke="#00e676" stroke-width="1.5" opacity="0.6"
+            points="0,20 15,18 30,16 45,14 60,11 75,9 90,6 105,4 120,2"/>
+          <linearGradient id="gldG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00e676" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#00e676" stop-opacity="0"/>
+          </linearGradient>
+          <polygon fill="url(#gldG)" points="0,20 15,18 30,16 45,14 60,11 75,9 90,6 105,4 120,2 120,24 0,24"/>
+        </svg>
+        <div class="text-[9px] font-mono text-positive/50 mt-1">SAFE HAVEN BID</div>
       </div>
-      <div class="ticker-row">
-        <span class="text-zinc-400 text-xs">TOPIX 🇯🇵</span>
-        <span class="text-red-400 text-xs font-medium glow-red">▼ -5.63%</span>
+
+      <!-- BTC -->
+      <div class="data-card bg-card rounded-lg p-3 md:p-4">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10px] font-mono text-muted uppercase tracking-wider">BITCOIN</span>
+          <span class="text-[10px] font-mono text-negative font-bold">▼ -0.9% 24H</span>
+        </div>
+        <div class="font-mono text-lg md:text-xl font-bold text-textPrimary mb-1">$67,222</div>
+        <svg class="spark-svg w-full" height="24" viewBox="0 0 120 24" preserveAspectRatio="none">
+          <polyline fill="none" stroke="#ff1744" stroke-width="1.5" opacity="0.5"
+            points="0,10 15,9 30,11 45,10 60,12 75,13 90,11 105,13 120,14"/>
+          <linearGradient id="btcG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff1744" stop-opacity="0.1"/>
+            <stop offset="100%" stop-color="#ff1744" stop-opacity="0"/>
+          </linearGradient>
+          <polygon fill="url(#btcG)" points="0,10 15,9 30,11 45,10 60,12 75,13 90,11 105,13 120,14 120,24 0,24"/>
+        </svg>
       </div>
-      <div class="ticker-row">
-        <span class="text-zinc-400 text-xs">CSI 300 🇨🇳</span>
-        <span class="text-red-400 text-xs font-medium glow-red">▼ -3.71%</span>
+
+      <!-- 10Y -->
+      <div class="data-card bg-card rounded-lg p-3 md:p-4">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10px] font-mono text-muted uppercase tracking-wider">10Y YIELD</span>
+          <span class="text-[10px] font-mono text-positive font-bold">▼ SAFETY BID</span>
+        </div>
+        <div class="font-mono text-lg md:text-xl font-bold text-textPrimary mb-1">4.13%</div>
+        <svg class="spark-svg w-full" height="24" viewBox="0 0 120 24" preserveAspectRatio="none">
+          <polyline fill="none" stroke="#448aff" stroke-width="1.5" opacity="0.6"
+            points="0,6 15,7 30,8 45,9 60,11 75,13 90,15 105,16 120,18"/>
+          <linearGradient id="yldG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#448aff" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#448aff" stop-opacity="0"/>
+          </linearGradient>
+          <polygon fill="url(#yldG)" points="0,6 15,7 30,8 45,9 60,11 75,13 90,15 105,16 120,18 120,24 0,24"/>
+        </svg>
+        <div class="text-[9px] font-mono text-accent/50 mt-1">DXY: 103.8</div>
       </div>
+
     </div>
-    <div class="mt-2 text-center text-[10px] text-red-500/60">Broad global sell-off — every major index down 3.7%–6.8% weekly</div>
   </section>
 
-  <!-- BONDS/FX + CRYPTO (two-column) -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+  <!-- ===== ENERGY CRISIS + CRYPTO ROW ===== -->
+  <section class="mb-5 grid grid-cols-1 lg:grid-cols-3 gap-3">
 
-    <!-- BONDS & FX -->
-    <section class="card p-4">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="text-lg">📊</span>
-        <h2 class="text-zinc-300 font-bold text-sm uppercase tracking-widest">Bonds & FX</h2>
+    <!-- ENERGY CRISIS — takes 2 cols -->
+    <div class="lg:col-span-2 data-card bg-card rounded-lg p-4 md:p-5 glow-amber" style="border-color: rgba(255,171,0,0.25); background: linear-gradient(135deg, #111118 0%, #1a1510 100%);">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="text-warn text-lg">🔥</span>
+        <h2 class="text-sm font-bold uppercase tracking-[0.15em] text-warn">Global Energy Crisis</h2>
+        <span class="ml-auto px-2 py-0.5 bg-negative/20 text-negative text-[10px] font-mono font-bold rounded blink-warn">CRITICAL</span>
       </div>
-      <div class="space-y-0">
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">10Y Treasury</span>
-          <span class="text-cyan-300 text-sm font-semibold glow-cyan">4.13%</span>
-          <span class="text-green-400 text-xs font-medium">▼ dropping (safety bid)</span>
-        </div>
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">DXY (Dollar)</span>
-          <span class="text-white text-sm font-semibold">98.86</span>
-          <span class="text-red-400 text-xs font-medium">▼ -0.8%</span>
-        </div>
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">EUR/USD</span>
-          <span class="text-white text-sm font-semibold">~1.085</span>
-          <span class="text-zinc-500 text-xs">—</span>
-        </div>
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">USD/JPY</span>
-          <span class="text-white text-sm font-semibold">~147.5</span>
-          <span class="text-zinc-500 text-xs">—</span>
-        </div>
-      </div>
-    </section>
 
-    <!-- CRYPTO -->
-    <section class="card p-4">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="text-lg">₿</span>
-        <h2 class="text-zinc-300 font-bold text-sm uppercase tracking-widest">Crypto</h2>
-        <span class="ml-auto text-[10px] text-zinc-600">24h Change</span>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+        <!-- Oil -->
+        <div class="bg-black/30 rounded-lg p-3 border border-warn/20">
+          <div class="text-[10px] font-mono text-warn/70 uppercase mb-1">Crude Oil (WTI)</div>
+          <div class="font-mono text-2xl font-bold text-warn">$91.27</div>
+          <div class="text-[10px] font-mono text-warn/80 mt-1">+35% WEEKLY</div>
+          <div class="text-[9px] text-warn/50 mt-0.5">Largest weekly gain in futures history</div>
+        </div>
+        <!-- LNG -->
+        <div class="bg-black/30 rounded-lg p-3 border border-negative/20">
+          <div class="text-[10px] font-mono text-negative/70 uppercase mb-1">LNG Crisis</div>
+          <div class="font-mono text-lg font-bold text-negative">RAS LAFFAN</div>
+          <div class="text-[10px] font-mono text-negative/80 mt-1">FORCE MAJEURE</div>
+          <div class="text-[9px] text-negative/50 mt-0.5">EU Gas +60% · Asia Gas +40%</div>
+        </div>
+        <!-- Hormuz -->
+        <div class="bg-black/30 rounded-lg p-3 border border-negative/20">
+          <div class="text-[10px] font-mono text-negative/70 uppercase mb-1">Strait of Hormuz</div>
+          <div class="font-mono text-lg font-bold text-negative blink-warn">SHUT</div>
+          <div class="text-[10px] font-mono text-negative/80 mt-1">SHIPPING SUSPENDED</div>
+          <div class="text-[9px] text-negative/50 mt-0.5">~21% of global oil transit</div>
+        </div>
       </div>
-      <div class="space-y-0">
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">BTC</span>
-          <span class="text-orange-300 text-sm font-semibold">~$67,200</span>
-          <span class="text-red-400 text-xs font-medium">▼ -1.5%</span>
-        </div>
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">ETH</span>
-          <span class="text-blue-300 text-sm font-semibold">~$1,960</span>
-          <span class="text-red-400 text-xs font-medium">▼ -1.3%</span>
-        </div>
-        <div class="ticker-row">
-          <span class="text-zinc-400 text-xs">SOL</span>
-          <span class="text-purple-300 text-sm font-semibold">~$82.50</span>
-          <span class="text-red-400 text-xs font-medium">▼ -3.2%</span>
-        </div>
-      </div>
-      <div class="mt-2 text-[10px] text-zinc-600 text-center">Risk-off sentiment dragging crypto lower alongside equities</div>
-    </section>
-  </div>
 
-  <!-- KEY LEVELS TO WATCH -->
-  <section class="card p-4 border-amber-900/30">
-    <div class="flex items-center gap-2 mb-3">
-      <span class="text-lg">🎯</span>
-      <h2 class="text-amber-400 font-bold text-sm uppercase tracking-widest">Key Levels to Watch</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[10px] font-mono">
+        <div class="bg-black/20 rounded px-2 py-1.5">
+          <span class="text-negative">⬤</span> Iran refineries: <span class="text-negative font-bold">HIT</span>
+        </div>
+        <div class="bg-black/20 rounded px-2 py-1.5">
+          <span class="text-negative">⬤</span> Bahrain refinery: <span class="text-negative font-bold">HIT</span>
+        </div>
+        <div class="bg-black/20 rounded px-2 py-1.5">
+          <span class="text-negative">⬤</span> Kuwait refinery: <span class="text-negative font-bold">HIT</span>
+        </div>
+        <div class="bg-black/20 rounded px-2 py-1.5">
+          <span class="text-negative">⬤</span> Qatar (Ras Laffan): <span class="text-negative font-bold">OFFLINE</span>
+        </div>
+        <div class="bg-black/20 rounded px-2 py-1.5">
+          <span class="text-warn">⬤</span> Saudi Arabia: <span class="text-warn font-bold">DAMAGED</span>
+        </div>
+        <div class="bg-black/20 rounded px-2 py-1.5">
+          <span class="text-warn">⬤</span> UAE: <span class="text-warn font-bold">DAMAGED</span>
+        </div>
+      </div>
+
+      <div class="mt-3 px-3 py-2 bg-negative/10 rounded border border-negative/20 text-[11px] text-negative/90">
+        <strong>⚠ KEY INSIGHT:</strong> LNG crisis may be <em>worse</em> than oil — no spare global LNG capacity. European and Asian gas prices surging. Winter supply contracts at risk.
+      </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+    <!-- CRYPTO SECTION -->
+    <div class="data-card bg-card rounded-lg p-4 md:p-5">
+      <div class="flex items-center gap-2 mb-4">
+        <h2 class="text-sm font-bold uppercase tracking-[0.15em] text-textSecondary">Crypto</h2>
+        <span class="flex items-center gap-1 text-[10px] font-mono text-positive">
+          <span class="w-1.5 h-1.5 rounded-full bg-positive pulse-dot"></span> LIVE 24/7
+        </span>
+      </div>
+
+      <!-- BTC -->
+      <div class="mb-4 pb-4 border-b border-border">
+        <div class="flex items-center justify-between mb-1">
+          <div class="flex items-center gap-2">
+            <span class="text-base">₿</span>
+            <span class="text-xs font-mono text-muted">BTC/USD</span>
+          </div>
+          <span class="text-[10px] font-mono text-negative">-0.9%</span>
+        </div>
+        <div class="font-mono text-xl font-bold">$67,222</div>
+        <svg class="spark-svg w-full mt-1" height="20" viewBox="0 0 120 20" preserveAspectRatio="none">
+          <polyline fill="none" stroke="#ff1744" stroke-width="1.2" opacity="0.5"
+            points="0,8 12,7 24,9 36,8 48,10 60,11 72,9 84,11 96,12 108,11 120,12"/>
+        </svg>
+      </div>
+
+      <!-- ETH -->
+      <div class="mb-4 pb-4 border-b border-border">
+        <div class="flex items-center justify-between mb-1">
+          <div class="flex items-center gap-2">
+            <span class="text-base">Ξ</span>
+            <span class="text-xs font-mono text-muted">ETH/USD</span>
+          </div>
+          <span class="text-[10px] font-mono text-negative">-1.8%</span>
+        </div>
+        <div class="font-mono text-xl font-bold">$1,942</div>
+        <svg class="spark-svg w-full mt-1" height="20" viewBox="0 0 120 20" preserveAspectRatio="none">
+          <polyline fill="none" stroke="#ff1744" stroke-width="1.2" opacity="0.5"
+            points="0,7 12,8 24,7 36,9 48,10 60,11 72,12 84,11 96,13 108,14 120,14"/>
+        </svg>
+      </div>
+
+      <!-- SOL -->
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <div class="flex items-center gap-2">
+            <span class="text-base">◎</span>
+            <span class="text-xs font-mono text-muted">SOL/USD</span>
+          </div>
+          <span class="text-[10px] font-mono text-negative">-2.0%</span>
+        </div>
+        <div class="font-mono text-xl font-bold">$81.98</div>
+        <svg class="spark-svg w-full mt-1" height="20" viewBox="0 0 120 20" preserveAspectRatio="none">
+          <polyline fill="none" stroke="#ff1744" stroke-width="1.2" opacity="0.5"
+            points="0,6 12,7 24,8 36,7 48,9 60,11 72,12 84,13 96,12 108,14 120,15"/>
+        </svg>
+      </div>
+
+      <div class="mt-4 px-3 py-2 bg-black/30 rounded text-[10px] font-mono text-muted">
+        Crypto holding relatively steady despite chaos. BTC not acting as safe haven — gold preferred. Risk-off sentiment dominant.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== WAR TIMELINE + WEEK AHEAD ROW ===== -->
+  <section class="mb-5 grid grid-cols-1 lg:grid-cols-2 gap-3">
+
+    <!-- WAR TIMELINE -->
+    <div class="data-card bg-card rounded-lg p-4 md:p-5 glow-red" style="border-color: rgba(255,23,68,0.2);">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="text-negative text-base">⚔</span>
+        <h2 class="text-sm font-bold uppercase tracking-[0.15em] text-negative">War Developments — Overnight</h2>
+        <span class="text-[10px] font-mono text-muted ml-auto">SAT–SUN MAR 7–8</span>
+      </div>
+
+      <div class="space-y-3 text-sm">
+        <div class="timeline-item">
+          <div class="text-[10px] font-mono text-negative/60 mb-0.5">OIL INFRASTRUCTURE</div>
+          <div class="text-textPrimary text-[13px] leading-snug"><strong class="text-negative">Israel struck Iranian oil storage & refining</strong> — Tehran and Alborz province. 4+ tanker drivers killed. Massive fires. First strikes on civilian energy infrastructure.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="text-[10px] font-mono text-negative/60 mb-0.5">WATER INFRASTRUCTURE</div>
+          <div class="text-textPrimary text-[13px] leading-snug"><strong class="text-negative">Iran hit Bahrain desalination plant</strong> with drones. Gulf states depend on desalination for drinking water. Existential threat to civilian populations.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="text-[10px] font-mono text-negative/60 mb-0.5">BEIRUT</div>
+          <div class="text-textPrimary text-[13px] leading-snug"><strong class="text-negative">Ramada Plaza hotel bombed</strong> — Israel claims 5 IRGC commanders killed. At least 4 dead. ~300 total killed in Lebanon.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="text-[10px] font-mono text-negative/60 mb-0.5">LEADERSHIP</div>
+          <div class="text-textPrimary text-[13px] leading-snug"><strong class="text-warn">New Supreme Leader chosen</strong> — Assembly of Experts reached consensus on Khamenei successor. Israel threatened to "pursue every successor" and target Assembly in Qom.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="text-[10px] font-mono text-negative/60 mb-0.5">IRAQ FRONT</div>
+          <div class="text-textPrimary text-[13px] leading-snug"><strong class="text-negative">War expanding into Iraq</strong> — Missile strikes on US base at Erbil airport. Rockets hit US Embassy Baghdad helipad. UN hotel in Suleimaniyah struck.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="text-[10px] font-mono text-negative/60 mb-0.5">GLOBAL BLOWBACK</div>
+          <div class="text-textPrimary text-[13px] leading-snug"><strong class="text-warn">Oslo US Embassy bombed</strong> — Incendiary device hit US Embassy in Norway. War generating unprecedented global blowback against American targets.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="text-[10px] font-mono text-negative/60 mb-0.5">PUBLIC OPINION</div>
+          <div class="text-textPrimary text-[13px] leading-snug"><strong>56% of Americans oppose</strong> military action (NPR/PBS/Marist). 84% R support vs 86% D oppose. Deeply partisan divide.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK AHEAD -->
+    <div class="data-card bg-card rounded-lg p-4 md:p-5">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="text-accent text-base">📅</span>
+        <h2 class="text-sm font-bold uppercase tracking-[0.15em] text-textSecondary">Week Ahead</h2>
+      </div>
+
       <div class="space-y-2">
-        <div class="flex justify-between text-xs">
-          <span class="text-zinc-400">S&P 500 Support</span>
-          <span class="text-amber-400 font-semibold">6,600</span>
+        <!-- Today -->
+        <div class="bg-accent/10 rounded-lg p-3 border border-accent/20">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[10px] font-mono text-accent font-bold">TODAY · SUN MAR 8</span>
+            <span class="pulse-dot w-2 h-2 rounded-full bg-accent ml-auto"></span>
+          </div>
+          <div class="text-[13px] text-textPrimary"><strong>3:00 PM PDT</strong> — US equity futures open</div>
+          <div class="text-[11px] text-textSecondary mt-0.5">First market reaction to weekend escalation. Expect significant gap.</div>
         </div>
-        <div class="level-bar">
-          <div class="level-fill bg-gradient-to-r from-red-600 to-amber-500" style="width: 85%"></div>
+
+        <!-- Monday -->
+        <div class="bg-negative/5 rounded-lg p-3 border border-negative/10">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[10px] font-mono text-negative font-bold">MON MAR 9</span>
+            <span class="px-1.5 py-0.5 bg-negative/20 text-negative text-[9px] font-mono rounded ml-auto">HIGH IMPACT</span>
+          </div>
+          <div class="text-[13px] text-textPrimary"><strong>Cash markets reopen</strong></div>
+          <div class="text-[11px] text-textSecondary mt-0.5">Gap down likely. Watch oil at open. Circuit breakers possible on extreme moves.</div>
         </div>
-        <div class="text-[10px] text-zinc-500">Current: 6,740 · <span class="text-amber-400">140 pts above support</span></div>
+
+        <!-- Wednesday -->
+        <div class="bg-warn/10 rounded-lg p-3 border border-warn/20">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[10px] font-mono text-warn font-bold">WED MAR 11</span>
+            <span class="px-1.5 py-0.5 bg-warn/20 text-warn text-[9px] font-mono rounded ml-auto blink-warn">⭐ KEY EVENT</span>
+          </div>
+          <div class="text-[13px] text-textPrimary"><strong>CPI — February Inflation Report</strong></div>
+          <div class="text-[11px] text-textSecondary mt-0.5">THE most important data point this week. Determines Fed policy path. Hot CPI = stagflation confirmed. Cool CPI = cut hopes alive.</div>
+        </div>
+
+        <!-- Thursday -->
+        <div class="bg-black/20 rounded-lg p-3 border border-border">
+          <div class="text-[10px] font-mono text-muted font-bold mb-1">THU MAR 12</div>
+          <div class="text-[13px] text-textPrimary"><strong>PPI + Jobless Claims</strong></div>
+          <div class="text-[11px] text-textSecondary mt-0.5">Producer prices will show pipeline inflation from oil. Claims data for labor market health.</div>
+        </div>
+
+        <!-- Friday -->
+        <div class="bg-black/20 rounded-lg p-3 border border-border">
+          <div class="text-[10px] font-mono text-muted font-bold mb-1">FRI MAR 13</div>
+          <div class="text-[13px] text-textPrimary"><strong>UMich Consumer Sentiment</strong></div>
+          <div class="text-[11px] text-textSecondary mt-0.5">Inflation expectations component critical for Fed.</div>
+        </div>
+
+        <!-- FOMC -->
+        <div class="bg-accent/5 rounded-lg p-3 border border-accent/15">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[10px] font-mono text-accent font-bold">MAR 17–18</span>
+            <span class="px-1.5 py-0.5 bg-accent/20 text-accent text-[9px] font-mono rounded ml-auto">FED MEETING</span>
+          </div>
+          <div class="text-[13px] text-textPrimary"><strong>FOMC Rate Decision</strong></div>
+          <div class="text-[11px] text-textSecondary mt-0.5">Fed trapped between inflation and recession. Statement & dot plot will be market-moving.</div>
+        </div>
       </div>
-      <div class="space-y-2">
-        <div class="flex justify-between text-xs">
-          <span class="text-zinc-400">Oil (WTI) Resistance</span>
-          <span class="text-amber-400 font-semibold">$95</span>
-        </div>
-        <div class="level-bar">
-          <div class="level-fill bg-gradient-to-r from-green-600 to-amber-500" style="width: 96%"></div>
-        </div>
-        <div class="text-[10px] text-zinc-500">Current: $91.27 · <span class="text-red-400">$3.73 from breakout</span></div>
+    </div>
+
+  </section>
+
+  <!-- ===== ANALYSIS SECTION ===== -->
+  <section class="mb-5">
+    <div class="data-card bg-card rounded-lg p-4 md:p-6" style="border-color: rgba(68,138,255,0.15);">
+      <div class="flex items-center gap-2 mb-5">
+        <span class="text-accent text-base">🧠</span>
+        <h2 class="text-sm font-bold uppercase tracking-[0.15em] text-accent">Analysis — What This Means</h2>
       </div>
-      <div class="space-y-2">
-        <div class="flex justify-between text-xs">
-          <span class="text-zinc-400">VIX Panic Threshold</span>
-          <span class="text-red-400 font-semibold">30</span>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <!-- Stagflation -->
+        <div class="bg-black/30 rounded-lg p-4 border border-negative/15">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-8 h-8 rounded-full bg-negative/10 flex items-center justify-center text-negative text-sm">📉</div>
+            <h3 class="text-sm font-bold text-negative">Stagflation Setup</h3>
+          </div>
+          <p class="text-[12px] text-textSecondary leading-relaxed">
+            The macro picture is grim. Oil up 35% drives consumer prices higher while the economy loses jobs (−92k in February). 
+            Tariffs add a second inflation impulse. This is textbook stagflation: <strong class="text-textPrimary">rising prices + falling employment simultaneously.</strong>
+          </p>
+          <div class="mt-3 grid grid-cols-2 gap-2 text-[10px] font-mono">
+            <div class="bg-negative/10 rounded px-2 py-1">OIL: <span class="text-negative">+35% W</span></div>
+            <div class="bg-negative/10 rounded px-2 py-1">JOBS: <span class="text-negative">−92K FEB</span></div>
+            <div class="bg-negative/10 rounded px-2 py-1">TARIFFS: <span class="text-warn">ACTIVE</span></div>
+            <div class="bg-negative/10 rounded px-2 py-1">VIX: <span class="text-negative">29.49</span></div>
+          </div>
         </div>
-        <div class="level-bar">
-          <div class="level-fill bg-gradient-to-r from-amber-500 to-red-600" style="width: 98%"></div>
+
+        <!-- Fed Trapped -->
+        <div class="bg-black/30 rounded-lg p-4 border border-warn/15">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-8 h-8 rounded-full bg-warn/10 flex items-center justify-center text-warn text-sm">🏛️</div>
+            <h3 class="text-sm font-bold text-warn">Fed Is Trapped</h3>
+          </div>
+          <p class="text-[12px] text-textSecondary leading-relaxed">
+            The Federal Reserve faces an impossible dilemma. <strong class="text-textPrimary">Can't cut rates</strong> — inflation reigniting via energy prices and tariffs. 
+            <strong class="text-textPrimary">Can't hike rates</strong> — economy already shedding jobs and war creating uncertainty. They'll likely freeze and buy time. 
+            Markets hate uncertainty more than bad news.
+          </p>
+          <div class="mt-3 bg-warn/10 rounded px-3 py-2 text-[10px] font-mono text-warn">
+            FOMC MAR 17–18 → EXPECTED: HOLD AT CURRENT RATE
+          </div>
         </div>
-        <div class="text-[10px] text-zinc-500">Current: 29.49 · <span class="text-red-400 font-semibold blink">0.51 from panic territory</span></div>
+
+        <!-- CPI Hinge -->
+        <div class="bg-black/30 rounded-lg p-4 border border-accent/15">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent text-sm">📊</div>
+            <h3 class="text-sm font-bold text-accent">CPI Is the Hinge Point</h3>
+          </div>
+          <p class="text-[12px] text-textSecondary leading-relaxed">
+            Wednesday's CPI report (February data) is the single most important number this week. 
+            A <strong class="text-negative">hot print</strong> confirms stagflation fears and kills rate cut hopes — equities dump. 
+            A <strong class="text-positive">cool print</strong> gives the Fed room to cut if recession deepens — relief rally possible. 
+            Note: February CPI won't yet capture the full oil spike, but core readings will set the baseline.
+          </p>
+        </div>
+
+        <!-- Supply Damage -->
+        <div class="bg-black/30 rounded-lg p-4 border border-warn/15">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-8 h-8 rounded-full bg-warn/10 flex items-center justify-center text-warn text-sm">🛢️</div>
+            <h3 class="text-sm font-bold text-warn">Supply Damage Persists</h3>
+          </div>
+          <p class="text-[12px] text-textSecondary leading-relaxed">
+            Even if a ceasefire materializes tomorrow, the damage is done. <strong class="text-textPrimary">Destroyed refineries take months to years to rebuild.</strong> 
+            Ras Laffan (world's largest LNG facility) under force majeure. Strait of Hormuz shut. 
+            The LNG crisis may prove <strong class="text-negative">worse than oil</strong> — there is zero spare LNG capacity globally. 
+            Europe and Asia face energy supply crunches regardless of war outcome.
+          </p>
+          <div class="mt-3 text-[10px] font-mono text-warn/80">
+            6 COUNTRIES' REFINERIES HIT · HORMUZ CLOSED · NO SPARE LNG CAPACITY
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom summary bar -->
+      <div class="mt-5 bg-gradient-to-r from-negative/10 via-warn/10 to-negative/10 rounded-lg p-4 border border-negative/15">
+        <div class="text-[11px] font-mono text-textSecondary text-center leading-relaxed">
+          <strong class="text-textPrimary text-xs">BOTTOM LINE:</strong> This is the most dangerous macro environment since 2008. 
+          War-driven supply destruction + tariff inflation + weakening labor market = stagflationary crisis. 
+          <span class="text-warn font-bold">CPI Wednesday is the pivot.</span> 
+          <span class="text-negative font-bold">Futures tonight at 3 PM PDT will be violent.</span> 
+          Cash reserves and hedges matter more than timing the bottom.
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- KEY EVENTS -->
-  <section class="card p-4">
-    <div class="flex items-center gap-2 mb-3">
-      <span class="text-lg">⚡</span>
-      <h2 class="text-zinc-300 font-bold text-sm uppercase tracking-widest">Key Events This Week</h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
-      <div class="flex items-start gap-2 p-2 bg-red-950/20 rounded border border-red-900/20">
-        <span class="text-red-500 font-bold shrink-0">WAR</span>
-        <span>80 Israeli jets struck Tehran; Mehrabad Airport ablaze; Iran launched ballistic missiles at Israel</span>
+  <!-- ===== FOOTER ===== -->
+  <footer class="pb-6">
+    <div class="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-4"></div>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-2 text-[11px] font-mono text-muted">
+      <div class="flex items-center gap-2">
+        <span>Last Updated: March 8, 2026 8:45 AM PDT</span>
+        <span class="text-border">|</span>
+        <span>Weekend Edition</span>
       </div>
-      <div class="flex items-start gap-2 p-2 bg-red-950/20 rounded border border-red-900/20">
-        <span class="text-red-500 font-bold shrink-0">WAR</span>
-        <span>Saudi Arabia entered the conflict; Strait of Hormuz effectively shut down</span>
-      </div>
-      <div class="flex items-start gap-2 p-2 bg-amber-950/20 rounded border border-amber-900/20">
-        <span class="text-amber-500 font-bold shrink-0">JOBS</span>
-        <span>US: <span class="text-red-400 font-semibold">-92,000</span> February payrolls — first negative since COVID</span>
-      </div>
-      <div class="flex items-start gap-2 p-2 bg-amber-950/20 rounded border border-amber-900/20">
-        <span class="text-amber-500 font-bold shrink-0">OIL</span>
-        <span>+35% weekly = <span class="text-red-400 font-semibold">biggest weekly gain in crude futures history</span> since 1983</span>
+      <div class="flex items-center gap-2">
+        <span>Markets closed, futures open 3 PM PDT</span>
+        <span class="text-border">|</span>
+        <span>🪨 Chip</span>
       </div>
     </div>
-  </section>
-
-  <!-- WEEK AHEAD -->
-  <section class="card p-4">
-    <div class="flex items-center gap-2 mb-3">
-      <span class="text-lg">📅</span>
-      <h2 class="text-zinc-300 font-bold text-sm uppercase tracking-widest">Week Ahead</h2>
+    <div class="text-center mt-2 text-[9px] text-muted/50 font-mono">
+      Data sourced from market feeds. Crypto prices live. Equities reflect Friday close. For informational purposes only.
     </div>
-    <div class="space-y-2 text-xs">
-      <div class="flex items-center gap-3 p-2 rounded bg-red-950/20 border border-red-900/20">
-        <span class="text-zinc-500 font-semibold shrink-0 w-20">Mon Mar 9</span>
-        <span class="text-red-400 font-bold">Markets reopen</span>
-        <span class="text-zinc-500">— First reaction to weekend escalation</span>
-      </div>
-      <div class="flex items-center gap-3 p-2 rounded bg-amber-950/30 border border-amber-700/30">
-        <span class="text-zinc-500 font-semibold shrink-0 w-20">Wed Mar 11</span>
-        <span class="text-amber-400 font-bold">CPI (February)</span>
-        <span class="text-amber-300 text-[11px] blink">★ THE HINGE POINT</span>
-      </div>
-      <div class="flex items-center gap-3 p-2 rounded bg-zinc-900/50 border border-zinc-800/50">
-        <span class="text-zinc-500 font-semibold shrink-0 w-20">Thu Mar 12</span>
-        <span class="text-zinc-300">PPI + Jobless Claims</span>
-      </div>
-      <div class="flex items-center gap-3 p-2 rounded bg-zinc-900/50 border border-zinc-800/50">
-        <span class="text-zinc-500 font-semibold shrink-0 w-20">Fri Mar 13</span>
-        <span class="text-zinc-300">UMich Consumer Sentiment</span>
-      </div>
-      <div class="flex items-center gap-3 p-2 rounded bg-red-950/20 border border-red-900/20">
-        <span class="text-zinc-500 font-semibold shrink-0 w-20">Mar 17-18</span>
-        <span class="text-red-400 font-bold">FOMC Rate Decision</span>
-        <span class="text-zinc-500">— Fed paralyzed between inflation & recession</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ANALYSIS -->
-  <section class="card p-4 border-cyan-900/30">
-    <div class="flex items-center gap-2 mb-3">
-      <span class="text-lg">🧠</span>
-      <h2 class="text-cyan-400 font-bold text-sm uppercase tracking-widest">Analysis</h2>
-    </div>
-    <div class="space-y-3 text-xs leading-relaxed text-zinc-300">
-      <div class="p-3 rounded bg-gradient-to-r from-red-950/30 to-amber-950/20 border border-red-900/20">
-        <div class="text-amber-400 font-bold text-sm mb-1">⚠ STAGFLATION SETUP</div>
-        <p>Rising oil (+35% this week) collides with negative employment (-92K jobs) and a paralyzed Fed. This is the textbook stagflation scenario — inflation rising while the economy contracts.</p>
-      </div>
-      <div class="p-3 rounded bg-zinc-900/50 border border-zinc-800/30">
-        <div class="text-cyan-400 font-semibold mb-1">Wednesday CPI is the most important data point</div>
-        <p>If February CPI comes in hot, it confirms the stagflation thesis <em>before</em> the oil shock even hits the data pipeline. A cold CPI buys the Fed time — but won't fix the oil problem.</p>
-      </div>
-      <div class="p-3 rounded bg-zinc-900/50 border border-zinc-800/30">
-        <div class="text-red-400 font-semibold mb-1">No diplomatic off-ramp</div>
-        <p>Trump demands unconditional surrender from Iran. Iran has rejected any ceasefire. Saudi Arabia entering the fight escalates regional risk. Qatar's warning of $150/bbl oil looms if the full Gulf shuts down.</p>
-      </div>
-      <div class="p-3 rounded bg-zinc-900/50 border border-zinc-800/30">
-        <div class="text-zinc-400 font-semibold mb-1">Historical parallel: 1973 Oil Embargo</div>
-        <p>Traders are watching the 1973 playbook — a supply shock that triggered stagflation, a 48% stock market decline, and reshaped monetary policy for a decade. We're in the early chapters.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="text-center py-4 space-y-1 border-t border-zinc-900">
-    <div class="text-zinc-600 text-[10px] tracking-wider">Auto-updated by Chip 🪨 | Data delayed during market close</div>
-    <div class="text-zinc-700 text-[10px]">adkri.github.io/market-briefings</div>
   </footer>
 
-</div>
+</div><!-- end max-w container -->
 
 </body>
 </html>

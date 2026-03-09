@@ -109,7 +109,7 @@ body {
 .war-headline-scroll {
   display: inline-block;
   white-space: nowrap;
-  animation: scrollHeadline 40s linear infinite;
+  animation: scrollHeadline 55s linear infinite;
 }
 @keyframes scrollHeadline {
   0% { transform: translateX(0); }
@@ -142,7 +142,7 @@ body {
 .ticker-track {
   display: flex;
   gap: 32px;
-  animation: tickerScroll 30s linear infinite;
+  animation: tickerScroll 35s linear infinite;
   width: max-content;
 }
 @keyframes tickerScroll {
@@ -264,6 +264,11 @@ body {
   color: #fff;
   animation: badgePulse 2s ease-in-out infinite;
 }
+.section-badge.war-badge-sm {
+  background: var(--war-red);
+  color: #fff;
+  animation: badgePulse 2s ease-in-out infinite;
+}
 
 /* ===== MARKET CARDS GRID ===== */
 .market-grid {
@@ -352,6 +357,10 @@ body {
   background: var(--gold);
   color: #000;
 }
+.card-badge.crypto-badge {
+  background: var(--purple);
+  color: #fff;
+}
 .card-price {
   font-family: var(--font-data);
   font-size: 28px;
@@ -377,11 +386,57 @@ body {
 .card-change.down { color: var(--red); }
 .card-change.up { color: var(--green); }
 .card-change.orange-change { color: var(--orange); }
+.card-range {
+  font-family: var(--font-data);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+.card-range span { color: var(--text-secondary); }
 .card-note {
   font-size: 11px;
   color: var(--text-muted);
   margin-top: 8px;
   font-style: italic;
+}
+
+/* ===== OIL INTRADAY RANGE BAR ===== */
+.oil-range-bar {
+  margin-top: 12px;
+  position: relative;
+  height: 6px;
+  background: rgba(255,145,0,0.15);
+  border-radius: 3px;
+  overflow: visible;
+}
+.oil-range-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--green), var(--orange), var(--red));
+}
+.oil-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-data);
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.oil-range-labels .oil-high { color: var(--red); font-weight: 600; }
+.oil-range-labels .oil-low { color: var(--green); }
+.oil-range-labels .oil-current { color: var(--orange); font-weight: 600; }
+.oil-range-marker {
+  position: absolute;
+  top: -3px;
+  width: 12px; height: 12px;
+  background: var(--orange);
+  border: 2px solid var(--bg-card);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px var(--orange);
 }
 
 /* ===== ENERGY CRISIS SECTION ===== */
@@ -444,6 +499,7 @@ body {
   background: var(--red);
   border-radius: 50%;
   animation: livePulse 1.5s ease-in-out infinite;
+  flex-shrink: 0;
 }
 .hormuz-text {
   font-family: var(--font-data);
@@ -499,83 +555,29 @@ body {
   border: 2px solid var(--bg-card);
   box-shadow: 0 0 8px var(--red-glow);
 }
-.war-event.critical-event::before {
-  animation: eventPulse 2s ease-in-out infinite;
+.war-event.escalation::before {
+  animation: livePulse 1.5s ease-in-out infinite;
 }
-@keyframes eventPulse {
-  0%, 100% { box-shadow: 0 0 6px var(--red-glow); }
-  50% { box-shadow: 0 0 14px var(--war-red), 0 0 28px var(--red-glow); }
-}
-.war-event-tag {
+.war-event-time {
   font-family: var(--font-data);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: var(--red);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+.war-event-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
-.war-event-text {
-  font-size: 13px;
-  color: var(--text-primary);
-  font-weight: 500;
-  line-height: 1.5;
-}
-.war-event-detail {
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-
-/* ===== WEEK AHEAD ===== */
-.week-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 12px;
-}
-.week-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px;
-  position: relative;
-}
-.week-card.critical-week {
-  border-color: var(--red);
-  background: linear-gradient(135deg, var(--bg-card), rgba(255,23,68,0.08));
-  box-shadow: 0 0 20px var(--red-glow);
-}
-.week-card.critical-week::before {
-  content: '🔥';
-  position: absolute;
-  top: -8px;
-  right: 12px;
-  font-size: 18px;
-  animation: fireFloat 2s ease-in-out infinite;
-}
-@keyframes fireFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-}
-.week-date {
-  font-family: var(--font-data);
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
-}
-.week-event-name {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.week-impact {
-  font-size: 11px;
+.war-event-desc {
+  font-size: 12px;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.6;
 }
-.week-impact-tag {
+.war-event-tag {
+  display: inline-block;
   font-family: var(--font-data);
   font-size: 9px;
   font-weight: 700;
@@ -583,129 +585,264 @@ body {
   text-transform: uppercase;
   padding: 2px 8px;
   border-radius: 3px;
-  display: inline-block;
-  margin-top: 8px;
+  margin-top: 6px;
 }
-.week-impact-tag.extreme {
-  background: var(--red);
-  color: #fff;
-}
-.week-impact-tag.high {
-  background: var(--orange);
-  color: #000;
-}
-.week-impact-tag.medium {
-  background: var(--blue-dim);
-  color: var(--blue);
-  border: 1px solid var(--blue);
-}
+.war-event-tag.military { background: var(--war-red); color: #fff; }
+.war-event-tag.political { background: var(--blue); color: #fff; }
+.war-event-tag.economic { background: var(--orange); color: #000; }
+.war-event-tag.infrastructure { background: var(--purple); color: #fff; }
 
-/* ===== HEADLINES ===== */
-.headlines-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.headline-item {
-  display: flex;
-  align-items: flex-start;
+/* ===== WEEK AHEAD CALENDAR ===== */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 12px;
-  padding: 12px 16px;
+}
+.cal-day {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  transition: all 0.15s ease;
+  border-radius: 10px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
 }
-.headline-item:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-bright);
+.cal-day::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 10px 10px 0 0;
+  background: var(--border-bright);
 }
-.headline-bullet {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--red);
-  margin-top: 6px;
-  flex-shrink: 0;
+.cal-day.critical-day {
+  border-color: var(--red-dim);
+  background: linear-gradient(135deg, var(--bg-card), rgba(255,23,68,0.08));
 }
-.headline-text {
+.cal-day.critical-day::before { background: var(--red); animation: badgePulse 2s ease-in-out infinite; }
+.cal-day.fomc-day {
+  border-color: var(--blue-dim);
+  background: linear-gradient(135deg, var(--bg-card), rgba(68,138,255,0.05));
+}
+.cal-day.fomc-day::before { background: var(--blue); }
+.cal-day-label {
+  font-family: var(--font-data);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.cal-event {
   font-size: 13px;
-  font-weight: 500;
-  line-height: 1.5;
+  font-weight: 600;
   color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.cal-event-note {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+.cal-critical-badge {
+  display: inline-block;
+  font-family: var(--font-data);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--red);
+  color: #fff;
+  animation: badgePulse 2s ease-in-out infinite;
+  margin-bottom: 6px;
+}
+.cal-fomc-badge {
+  display: inline-block;
+  font-family: var(--font-data);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--blue);
+  color: #fff;
+  margin-bottom: 6px;
 }
 
-/* ===== EXPLAINER ===== */
-.explainer {
-  background: linear-gradient(135deg, var(--bg-card), rgba(68,138,255,0.05));
+/* ===== GLOBAL MARKETS ===== */
+.global-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.global-card {
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 24px;
-  margin-top: 16px;
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
 }
-.explainer h3 {
+.global-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 10px 10px 0 0;
+  background: var(--red);
+}
+.global-card-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+}
+.global-card-price {
+  font-family: var(--font-data);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.global-card-change {
+  font-family: var(--font-data);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--red);
+  margin-top: 4px;
+}
+.global-card-flag {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+/* ===== WHAT THIS MEANS ===== */
+.explainer-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.explainer-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 10px 10px 0 0;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+}
+.explainer-title {
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 16px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
-.explainer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 16px;
-}
-.explainer-item {
-  padding: 14px;
-  background: rgba(10,14,23,0.5);
-  border-radius: 8px;
-  border: 1px solid var(--border);
-}
-.explainer-item h4 {
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--text-primary);
-}
-.explainer-item p {
-  font-size: 12px;
+.explainer-body p {
+  font-size: 14px;
   color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+.explainer-body p:last-child { margin-bottom: 0; }
+.explainer-body strong { color: var(--text-primary); }
+.explainer-body .highlight-red { color: var(--red); font-weight: 600; }
+.explainer-body .highlight-orange { color: var(--orange); font-weight: 600; }
+.explainer-body .highlight-green { color: var(--green); font-weight: 600; }
+.explainer-body .highlight-blue { color: var(--blue); font-weight: 600; }
+.explainer-body .highlight-gold { color: var(--gold); font-weight: 600; }
+.explainer-callout {
+  background: rgba(255,23,68,0.08);
+  border: 1px solid var(--red-dim);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-top: 16px;
+  font-family: var(--font-data);
+  font-size: 12px;
+  color: var(--red);
+  font-weight: 600;
+  line-height: 1.6;
+}
+.explainer-callout-blue {
+  background: rgba(68,138,255,0.08);
+  border: 1px solid var(--blue-dim);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-top: 16px;
+  font-family: var(--font-data);
+  font-size: 12px;
+  color: var(--blue);
+  font-weight: 600;
   line-height: 1.6;
 }
 
-/* ===== FOOTER ===== */
-.footer {
-  margin-top: 48px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-  text-align: center;
+/* ===== BONDS & FX MINI GRID ===== */
+.mini-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
 }
-.footer-text {
+.mini-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+}
+.mini-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+.mini-card-value {
+  font-family: var(--font-data);
+  font-size: 18px;
+  font-weight: 700;
+}
+.mini-card-change {
   font-family: var(--font-data);
   font-size: 11px;
-  color: var(--text-muted);
-  letter-spacing: 0.3px;
-}
-.footer-brand {
   font-weight: 600;
-  color: var(--text-secondary);
+  margin-top: 2px;
 }
+
+/* ===== FOOTER ===== */
+.dashboard-footer {
+  text-align: center;
+  padding: 32px 20px 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-data);
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+.dashboard-footer .chip { font-size: 14px; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .container { padding: 16px 12px 32px; }
   .page-title { font-size: 22px; }
-  .market-grid { grid-template-columns: 1fr 1fr; }
+  .market-grid { grid-template-columns: 1fr; }
   .energy-grid { grid-template-columns: 1fr; }
-  .week-grid { grid-template-columns: 1fr; }
-  .explainer-grid { grid-template-columns: 1fr; }
-  .card-price { font-size: 22px; }
-  .war-banner-inner { flex-wrap: wrap; }
-  .page-header { flex-direction: column; align-items: flex-start; }
+  .calendar-grid { grid-template-columns: 1fr 1fr; }
+  .global-grid { grid-template-columns: 1fr; }
+  .mini-grid { grid-template-columns: 1fr 1fr; }
+  .war-banner-inner { gap: 10px; }
+  .war-badge { font-size: 9px; padding: 3px 8px; }
+  .card-price { font-size: 24px; }
+  .container { padding: 16px 12px 32px; }
 }
 @media (max-width: 480px) {
-  .market-grid { grid-template-columns: 1fr; }
-  .page-title { font-size: 18px; }
+  .calendar-grid { grid-template-columns: 1fr; }
+  .mini-grid { grid-template-columns: 1fr; }
+  .market-status { flex-wrap: wrap; }
 }
 </style>
 </head>
@@ -714,819 +851,513 @@ body {
 <!-- ===== WAR ALERT BANNER ===== -->
 <div class="war-banner">
   <div class="war-banner-inner">
-    <div class="war-badge">⚠ WAR ALERT</div>
+    <div class="war-badge">⚠ ACTIVE CONFLICT</div>
     <div class="war-headline">
-      <div class="war-headline-scroll" id="headlineScroll">
-        <span>Dow futures tumble 500 points as oil tops $100 a barrel, raising stagflation fear<span class="sep">◆</span></span>
-        <span>Oil surges above $100 — WTI nearly touched $120 a barrel<span class="sep">◆</span></span>
-        <span>Mojtaba Khamenei named new Supreme Leader — Israel immediately threatened to target him<span class="sep">◆</span></span>
-        <span>US/Israel special forces reportedly inside Iran — ground escalation<span class="sep">◆</span></span>
-        <span>Strait of Hormuz effectively blocked — shipping suspended<span class="sep">◆</span></span>
-        <span>Goldman warning: oil at $100+ feeds directly into Wednesday's CPI<span class="sep">◆</span></span>
-        <span>Ras Laffan (Qatar) LNG facility offline — world's largest, force majeure declared<span class="sep">◆</span></span>
-        <!-- Duplicate for seamless loop -->
-        <span>Dow futures tumble 500 points as oil tops $100 a barrel, raising stagflation fear<span class="sep">◆</span></span>
-        <span>Oil surges above $100 — WTI nearly touched $120 a barrel<span class="sep">◆</span></span>
-        <span>Mojtaba Khamenei named new Supreme Leader — Israel immediately threatened to target him<span class="sep">◆</span></span>
-        <span>US/Israel special forces reportedly inside Iran — ground escalation<span class="sep">◆</span></span>
-        <span>Strait of Hormuz effectively blocked — shipping suspended<span class="sep">◆</span></span>
-        <span>Goldman warning: oil at $100+ feeds directly into Wednesday's CPI<span class="sep">◆</span></span>
-        <span>Ras Laffan (Qatar) LNG facility offline — world's largest, force majeure declared<span class="sep">◆</span></span>
+      <div class="war-headline-scroll">
+        <span>Oil prices soar past $100 a barrel as war escalates in Iran<span class="sep">◆</span></span>
+        <span>Iran names Mojtaba Khamenei to succeed his father as supreme leader<span class="sep">◆</span></span>
+        <span>G7 nations to hold emergency meeting on oil as stock markets sink<span class="sep">◆</span></span>
+        <span>Dow futures tumble 500 points as oil tops $100, raising stagflation fear<span class="sep">◆</span></span>
+        <span>Strait of Hormuz effectively shut — shipping suspended<span class="sep">◆</span></span>
+        <span>World shares tumble as Iran war pushes crude prices over $110 a barrel<span class="sep">◆</span></span>
+        <span>US Embassy in Oslo bombed with incendiary device<span class="sep">◆</span></span>
+        <span>Asia markets moderate losses after reported Saudi oil release<span class="sep">◆</span></span>
+        <!-- duplicate for seamless scroll -->
+        <span>Oil prices soar past $100 a barrel as war escalates in Iran<span class="sep">◆</span></span>
+        <span>Iran names Mojtaba Khamenei to succeed his father as supreme leader<span class="sep">◆</span></span>
+        <span>G7 nations to hold emergency meeting on oil as stock markets sink<span class="sep">◆</span></span>
+        <span>Dow futures tumble 500 points as oil tops $100, raising stagflation fear<span class="sep">◆</span></span>
+        <span>Strait of Hormuz effectively shut — shipping suspended<span class="sep">◆</span></span>
+        <span>World shares tumble as Iran war pushes crude prices over $110 a barrel<span class="sep">◆</span></span>
+        <span>US Embassy in Oslo bombed with incendiary device<span class="sep">◆</span></span>
+        <span>Asia markets moderate losses after reported Saudi oil release<span class="sep">◆</span></span>
       </div>
     </div>
-    <div class="war-day">DAY 10</div>
+    <div class="war-day">US-IRAN CONFLICT — DAY 10</div>
   </div>
 </div>
 
 <!-- ===== TICKER BAR ===== -->
 <div class="ticker-bar">
-  <div class="ticker-track" id="tickerTrack">
-    <div class="ticker-item">
-      <span class="ticker-label">ES</span>
-      <span class="ticker-price">5,681</span>
-      <span class="ticker-change down">▼ 0.93%</span>
-    </div>
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-label">ES</span><span class="ticker-price">6,678.75</span><span class="ticker-change down">▼ 0.96%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">NQ</span>
-      <span class="ticker-price">24,430</span>
-      <span class="ticker-change down">▼ 0.98%</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">NQ</span><span class="ticker-price">24,397.25</span><span class="ticker-change down">▼ 1.08%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">YM</span>
-      <span class="ticker-price">47,017</span>
-      <span class="ticker-change down">▼ 1.05%</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">YM</span><span class="ticker-price">47,006</span><span class="ticker-change down">▼ 1.05%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">RTY</span>
-      <span class="ticker-price">2,486</span>
-      <span class="ticker-change down">▼ small caps</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">RTY</span><span class="ticker-price">2,483.7</span><span class="ticker-change down">▼ 1.66%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">WTI</span>
-      <span class="ticker-price" style="color: var(--orange);">$100.79</span>
-      <span class="ticker-change" style="color: var(--orange);">▲ 10.9%</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">WTI</span><span class="ticker-price">$100.85</span><span class="ticker-change up">▲ 10.77%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">GOLD</span>
-      <span class="ticker-price" style="color: var(--gold);">$5,103</span>
-      <span class="ticker-change up">▲ ATH</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">GOLD</span><span class="ticker-price">$5,117.50</span><span class="ticker-change down">▼ 0.82%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">VIX</span>
-      <span class="ticker-price" style="color: var(--red);">31.78</span>
-      <span class="ticker-change down">⚠ FEAR</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">VIX</span><span class="ticker-price">27.45</span><span class="ticker-change up">▲ 1.80%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">10Y</span>
-      <span class="ticker-price">4.133%</span>
-      <span class="ticker-change down">▼ flight to safety</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">BTC</span><span class="ticker-price">$68,162</span><span class="ticker-change up">▲ 1.14%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">DXY</span>
-      <span class="ticker-price">99.25</span>
-      <span class="ticker-change down">▼ below 100</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">DXY</span><span class="ticker-price">99.26</span><span class="ticker-change up">▲ 0.28%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">BTC</span>
-      <span class="ticker-price">$67,835</span>
-      <span class="ticker-change up">▲ 0.7%</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">10Y</span><span class="ticker-price">112.19</span><span class="ticker-change down">▼ 0.21%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">ETH</span>
-      <span class="ticker-price">$1,996</span>
-      <span class="ticker-change up">▲ 2.5%</span>
-    </div>
+    <!-- duplicate set for seamless scroll -->
+    <div class="ticker-item"><span class="ticker-label">ES</span><span class="ticker-price">6,678.75</span><span class="ticker-change down">▼ 0.96%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">SOL</span>
-      <span class="ticker-price">$83.64</span>
-      <span class="ticker-change up">▲ 1.5%</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">NQ</span><span class="ticker-price">24,397.25</span><span class="ticker-change down">▼ 1.08%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">NATGAS</span>
-      <span class="ticker-price" style="color: var(--orange);">$3.34</span>
-      <span class="ticker-change" style="color: var(--orange);">▲ elevated</span>
-    </div>
-    <!-- Duplicate for seamless scroll -->
+    <div class="ticker-item"><span class="ticker-label">YM</span><span class="ticker-price">47,006</span><span class="ticker-change down">▼ 1.05%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">ES</span>
-      <span class="ticker-price">5,681</span>
-      <span class="ticker-change down">▼ 0.93%</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">RTY</span><span class="ticker-price">2,483.7</span><span class="ticker-change down">▼ 1.66%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">NQ</span>
-      <span class="ticker-price">24,430</span>
-      <span class="ticker-change down">▼ 0.98%</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">WTI</span><span class="ticker-price">$100.85</span><span class="ticker-change up">▲ 10.77%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">YM</span>
-      <span class="ticker-price">47,017</span>
-      <span class="ticker-change down">▼ 1.05%</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">GOLD</span><span class="ticker-price">$5,117.50</span><span class="ticker-change down">▼ 0.82%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">RTY</span>
-      <span class="ticker-price">2,486</span>
-      <span class="ticker-change down">▼ small caps</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">VIX</span><span class="ticker-price">27.45</span><span class="ticker-change up">▲ 1.80%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">WTI</span>
-      <span class="ticker-price" style="color: var(--orange);">$100.79</span>
-      <span class="ticker-change" style="color: var(--orange);">▲ 10.9%</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">BTC</span><span class="ticker-price">$68,162</span><span class="ticker-change up">▲ 1.14%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">GOLD</span>
-      <span class="ticker-price" style="color: var(--gold);">$5,103</span>
-      <span class="ticker-change up">▲ ATH</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">DXY</span><span class="ticker-price">99.26</span><span class="ticker-change up">▲ 0.28%</span></div>
     <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">VIX</span>
-      <span class="ticker-price" style="color: var(--red);">31.78</span>
-      <span class="ticker-change down">⚠ FEAR</span>
-    </div>
-    <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">10Y</span>
-      <span class="ticker-price">4.133%</span>
-      <span class="ticker-change down">▼ flight to safety</span>
-    </div>
-    <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">DXY</span>
-      <span class="ticker-price">99.25</span>
-      <span class="ticker-change down">▼ below 100</span>
-    </div>
-    <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">BTC</span>
-      <span class="ticker-price">$67,835</span>
-      <span class="ticker-change up">▲ 0.7%</span>
-    </div>
-    <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">ETH</span>
-      <span class="ticker-price">$1,996</span>
-      <span class="ticker-change up">▲ 2.5%</span>
-    </div>
-    <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">SOL</span>
-      <span class="ticker-price">$83.64</span>
-      <span class="ticker-change up">▲ 1.5%</span>
-    </div>
-    <span class="ticker-divider">│</span>
-    <div class="ticker-item">
-      <span class="ticker-label">NATGAS</span>
-      <span class="ticker-price" style="color: var(--orange);">$3.34</span>
-      <span class="ticker-change" style="color: var(--orange);">▲ elevated</span>
-    </div>
+    <div class="ticker-item"><span class="ticker-label">10Y</span><span class="ticker-price">112.19</span><span class="ticker-change down">▼ 0.21%</span></div>
   </div>
 </div>
 
 <!-- ===== MAIN CONTAINER ===== -->
 <div class="container">
 
-  <!-- Page Header -->
+  <!-- ===== PAGE HEADER ===== -->
   <div class="page-header">
     <div>
-      <h1 class="page-title">Market Briefing</h1>
+      <div class="page-title">Market Briefing</div>
       <div class="page-subtitle">
         <span class="live-dot"></span>
-        Monday, March 9, 2026 — Pre-Market Session
+        Mon Mar 9, 2026 · Pre-Market
       </div>
     </div>
     <div class="market-status">
       <div class="status-tag premarket">Pre-Market</div>
-      <div class="status-tag fear">VIX 31.78 — Fear</div>
+      <div class="status-tag fear">VIX 27.45 · FEAR</div>
     </div>
   </div>
 
-  <!-- ===== MARKET OVERVIEW ===== -->
+  <!-- ===== SECTION: MARKET OVERVIEW ===== -->
   <div class="section-header">
     <span class="icon">📊</span>
     <h2>Market Overview</h2>
     <div class="section-line"></div>
+    <span class="section-badge critical">Sell-Off</span>
   </div>
 
   <div class="market-grid">
     <!-- S&P 500 -->
     <div class="market-card down">
       <div class="card-top">
-        <span class="card-label">S&P 500 Futures</span>
+        <div class="card-label">S&P 500 (ES)</div>
       </div>
-      <div class="card-price" style="color: var(--red);">
-        6,681
-      </div>
-      <div class="card-change down">
-        ▼ −0.93% <span style="color: var(--text-muted); font-weight: 400;">from 6,744</span>
-      </div>
-      <div class="card-note">Pre-market — gap down expected on reopen</div>
+      <div class="card-price">6,678.75</div>
+      <div class="card-change down">▼ −0.96%</div>
+      <div class="card-range">H: <span>6,701.5</span> · L: <span>6,584.5</span></div>
+      <div class="card-note">Opened gap-down, held above 6,580 support</div>
     </div>
 
-    <!-- Nasdaq -->
+    <!-- Nasdaq 100 -->
     <div class="market-card down">
       <div class="card-top">
-        <span class="card-label">Nasdaq 100 Futures</span>
+        <div class="card-label">Nasdaq 100 (NQ)</div>
       </div>
-      <div class="card-price" style="color: var(--red);">
-        24,430
-      </div>
-      <div class="card-change down">
-        ▼ −0.98% <span style="color: var(--text-muted); font-weight: 400;">from 24,670</span>
-      </div>
-      <div class="card-note">Tech under pressure from energy costs</div>
+      <div class="card-price">24,397.25</div>
+      <div class="card-change down">▼ −1.08%</div>
+      <div class="card-range">H: <span>24,495.75</span> · L: <span>24,000</span></div>
+      <div class="card-note">Tech underperforming — energy cost drag</div>
     </div>
 
-    <!-- Dow -->
+    <!-- DJIA -->
     <div class="market-card down">
       <div class="card-top">
-        <span class="card-label">Dow Jones Futures</span>
+        <div class="card-label">Dow Jones (YM)</div>
       </div>
-      <div class="card-price" style="color: var(--red);">
-        47,017
-      </div>
-      <div class="card-change down">
-        ▼ −500 pts / −1.05% <span style="color: var(--text-muted); font-weight: 400;">from 47,517</span>
-      </div>
-      <div class="card-note">Heavy industrials dragging index</div>
+      <div class="card-price">47,006</div>
+      <div class="card-change down">▼ −1.05%</div>
+      <div class="card-range">H: <span>47,177</span> · L: <span>46,333</span></div>
+      <div class="card-note">Intraday low ~-500 pts before partial recovery</div>
     </div>
 
-    <!-- WTI CRUDE — OIL CRISIS CARD -->
-    <div class="market-card oil-crisis up">
+    <!-- Russell 2000 -->
+    <div class="market-card down">
       <div class="card-top">
-        <span class="card-label">WTI Crude Oil</span>
-        <span class="card-badge crisis">🛢️ OIL CRISIS</span>
+        <div class="card-label">Russell 2000 (ER2)</div>
       </div>
-      <div class="card-price" style="color: var(--orange);">
-        <span class="currency">$</span>100.79
+      <div class="card-price">2,483.70</div>
+      <div class="card-change down">▼ −1.66%</div>
+      <div class="card-range">H: <span>2,499.3</span> · L: <span>2,416.9</span></div>
+      <div class="card-note">Small caps hit hardest — domestic exposure</div>
+    </div>
+
+    <!-- Oil WTI — CRISIS CARD -->
+    <div class="market-card oil-crisis">
+      <div class="card-top">
+        <div class="card-label">Crude Oil WTI (CL)</div>
+        <span class="card-badge crisis">🔥 CRISIS</span>
       </div>
-      <div class="card-change orange-change">
-        ▲ +10.9% <span style="color: var(--text-muted); font-weight: 400;">from $90.90</span>
+      <div class="card-price"><span class="currency">$</span>100.85</div>
+      <div class="card-change orange-change">▲ +10.77%</div>
+      <div class="oil-range-bar">
+        <div class="oil-range-fill" style="width:100%;"></div>
+        <div class="oil-range-marker" style="left:19.8%;"></div>
       </div>
-      <div class="card-note">⚠ Touched $119.48 Sunday intraday — Hormuz blocked</div>
+      <div class="oil-range-labels">
+        <span class="oil-low">L: $96.25</span>
+        <span class="oil-current">$100.85</span>
+        <span class="oil-high">H: $119.48</span>
+      </div>
+      <div class="card-note">Session high $119.48 before Saudi release reports pulled it back</div>
     </div>
 
     <!-- Gold -->
-    <div class="market-card up">
+    <div class="market-card down">
       <div class="card-top">
-        <span class="card-label">Gold Spot</span>
+        <div class="card-label">Gold (GC)</div>
         <span class="card-badge safe-haven">SAFE HAVEN</span>
       </div>
-      <div class="card-price" style="color: var(--gold);">
-        <span class="currency">$</span>5,103.50
-      </div>
-      <div class="card-change up">
-        ▲ Near All-Time High
-      </div>
-      <div class="card-note">Flight-to-safety bid accelerating</div>
+      <div class="card-price"><span class="currency">$</span>5,117.50</div>
+      <div class="card-change down">▼ −0.82%</div>
+      <div class="card-range">H: <span>$5,210.4</span> · L: <span>$5,021.2</span></div>
+      <div class="card-note">Profit-taking after $5.2K test — still near ATH</div>
     </div>
 
     <!-- VIX -->
-    <div class="market-card down">
+    <div class="market-card up">
       <div class="card-top">
-        <span class="card-label">VIX — Fear Index</span>
-        <span class="card-badge fear-badge">⚠ FEAR</span>
+        <div class="card-label">VIX (Fear Index)</div>
+        <span class="card-badge fear-badge">ELEVATED</span>
       </div>
-      <div class="card-price" style="color: var(--red);">
-        31.78
-      </div>
-      <div class="card-change down">
-        ▲ Elevated — Near Panic Zone
-      </div>
-      <div class="card-note">Above 30 signals extreme uncertainty</div>
-    </div>
-
-    <!-- 10Y Treasury -->
-    <div class="market-card down">
-      <div class="card-top">
-        <span class="card-label">10-Year Treasury Yield</span>
-      </div>
-      <div class="card-price">
-        4.133<span class="currency">%</span>
-      </div>
-      <div class="card-change down">
-        ▼ Slightly lower — flight to safety
-      </div>
-      <div class="card-note">Bond rally as investors flee risk assets</div>
-    </div>
-
-    <!-- DXY -->
-    <div class="market-card down">
-      <div class="card-top">
-        <span class="card-label">DXY — Dollar Index</span>
-      </div>
-      <div class="card-price" style="color: var(--red);">
-        99.25
-      </div>
-      <div class="card-change down">
-        ▼ Below 100 — Dollar weakening
-      </div>
-      <div class="card-note">Unusual decline amid global uncertainty</div>
+      <div class="card-price">27.45</div>
+      <div class="card-change up">▲ +1.80%</div>
+      <div class="card-range">H: <span>30.15</span> · L: <span>26.65</span></div>
+      <div class="card-note">Touched 30 intraday — fear persists</div>
     </div>
 
     <!-- Bitcoin -->
     <div class="market-card up">
       <div class="card-top">
-        <span class="card-label">Bitcoin</span>
+        <div class="card-label">Bitcoin (BTC)</div>
+        <span class="card-badge crypto-badge">CRYPTO</span>
       </div>
-      <div class="card-price" style="color: var(--green);">
-        <span class="currency">$</span>67,835
-      </div>
-      <div class="card-change up">
-        ▲ +0.7% <span style="color: var(--text-muted); font-weight: 400;">24h</span>
-      </div>
-      <div class="card-note">Holding steady — digital gold narrative</div>
+      <div class="card-price"><span class="currency">$</span>68,162</div>
+      <div class="card-change up">▲ +1.14%</div>
+      <div class="card-note">Digital gold bid holding — decoupled from equities</div>
     </div>
   </div>
 
-  <!-- ===== BREAKING HEADLINES ===== -->
+  <!-- ===== SECTION: ENERGY CRISIS TRACKER ===== -->
   <div class="section-header">
-    <span class="icon">🔴</span>
-    <h2>Breaking Headlines</h2>
-    <div class="section-line"></div>
-    <span class="section-badge critical">LIVE</span>
-  </div>
-
-  <div class="headlines-list">
-    <div class="headline-item">
-      <div class="headline-bullet"></div>
-      <div class="headline-text">Dow futures tumble 500 points as oil tops $100 a barrel, raising stagflation fear</div>
-    </div>
-    <div class="headline-item">
-      <div class="headline-bullet"></div>
-      <div class="headline-text">Oil surges above $100 as Gulf states cut back production; WTI nearly touched $120 a barrel</div>
-    </div>
-    <div class="headline-item">
-      <div class="headline-bullet"></div>
-      <div class="headline-text">Congressional Democrats demand reversal of Russian oil sales into India as energy prices soar</div>
-    </div>
-    <div class="headline-item">
-      <div class="headline-bullet"></div>
-      <div class="headline-text">Oil shock prompts South Korea to impose fuel price cap for the first time in 30 years</div>
-    </div>
-    <div class="headline-item">
-      <div class="headline-bullet"></div>
-      <div class="headline-text">"Sky is the limit": Analysts warn oil prices could surge further amid Hormuz blockade</div>
-    </div>
-    <div class="headline-item">
-      <div class="headline-bullet"></div>
-      <div class="headline-text">Goldman warning: oil at $100+ feeds directly into Wednesday's CPI — stagflation risk rising</div>
-    </div>
-    <div class="headline-item">
-      <div class="headline-bullet"></div>
-      <div class="headline-text">56% of Americans oppose the military action — NPR/PBS/Marist poll</div>
-    </div>
-  </div>
-
-  <!-- ===== ENERGY CRISIS TRACKER ===== -->
-  <div class="section-header">
-    <span class="icon">⛽</span>
+    <span class="icon">🛢️</span>
     <h2>Energy Crisis Tracker</h2>
     <div class="section-line"></div>
-    <span class="section-badge critical">CRITICAL</span>
+    <span class="section-badge critical">EMERGENCY</span>
   </div>
 
   <div class="energy-grid">
-    <!-- Oil Market -->
+    <!-- Oil & Gas Prices -->
     <div class="energy-card critical-card">
-      <div class="energy-title">
-        🛢️ Oil Market Status
+      <div class="energy-title">🔥 Oil & Gas Complex</div>
+      <div class="energy-stat">
+        <span class="energy-stat-label">WTI Crude (CL)</span>
+        <span class="energy-stat-value warning">$100.85 <small style="color:var(--orange);">+10.77%</small></span>
       </div>
       <div class="energy-stat">
-        <span class="energy-stat-label">WTI Crude</span>
-        <span class="energy-stat-value warning">$100.79 ▲ 10.9%</span>
+        <span class="energy-stat-label">Brent Crude (QA)</span>
+        <span class="energy-stat-value warning">$102.56 <small style="color:var(--orange);">+10.52%</small></span>
       </div>
       <div class="energy-stat">
-        <span class="energy-stat-label">Intraday High (Sun)</span>
-        <span class="energy-stat-value danger">$119.48</span>
+        <span class="energy-stat-label">Natural Gas (NG)</span>
+        <span class="energy-stat-value warning">$3.326 <small style="color:var(--orange);">+4.36%</small></span>
       </div>
       <div class="energy-stat">
-        <span class="energy-stat-label">Previous Close</span>
-        <span class="energy-stat-value">$90.90</span>
+        <span class="energy-stat-label">Heating Oil</span>
+        <span class="energy-stat-value danger">$3.9316 <small style="color:var(--red);">+8.44%</small></span>
       </div>
       <div class="energy-stat">
-        <span class="energy-stat-label">Iraq Output</span>
-        <span class="energy-stat-value danger">▼ 70% offline</span>
-      </div>
-      <div class="energy-stat">
-        <span class="energy-stat-label">Kuwait</span>
-        <span class="energy-stat-value danger">Cutting production</span>
-      </div>
-      <div class="energy-stat">
-        <span class="energy-stat-label">Iran Oil Depots</span>
-        <span class="energy-stat-value danger">Struck — fires burning</span>
-      </div>
-    </div>
-
-    <!-- Hormuz & Shipping -->
-    <div class="energy-card critical-card">
-      <div class="energy-title">
-        🚢 Strait of Hormuz & Shipping
-      </div>
-      <div class="energy-stat">
-        <span class="energy-stat-label">Hormuz Status</span>
-        <span class="energy-stat-value danger">BLOCKED</span>
-      </div>
-      <div class="energy-stat">
-        <span class="energy-stat-label">Shipping</span>
-        <span class="energy-stat-value danger">Suspended</span>
-      </div>
-      <div class="energy-stat">
-        <span class="energy-stat-label">Global Oil Transit</span>
-        <span class="energy-stat-value danger">~21% of world supply at risk</span>
-      </div>
-      <div class="energy-stat">
-        <span class="energy-stat-label">Insurance Rates</span>
-        <span class="energy-stat-value danger">Surging — war risk</span>
+        <span class="energy-stat-label">Gasoline RBOB</span>
+        <span class="energy-stat-value danger">$2.9504 <small style="color:var(--red);">+7.76%</small></span>
       </div>
       <div class="hormuz-status">
         <div class="hormuz-dot"></div>
-        <div class="hormuz-text">STRAIT OF HORMUZ — EFFECTIVELY BLOCKED — SHIPPING SUSPENDED</div>
+        <div class="hormuz-text">STRAIT OF HORMUZ — SHIPPING SUSPENDED</div>
       </div>
     </div>
 
-    <!-- LNG / Natural Gas -->
+    <!-- Supply Disruption Intel -->
     <div class="energy-card critical-card">
-      <div class="energy-title">
-        🔥 LNG & Natural Gas Crisis
+      <div class="energy-title">⚡ Supply Disruption Intel</div>
+      <div class="energy-stat">
+        <span class="energy-stat-label">Session High (WTI)</span>
+        <span class="energy-stat-value danger">$119.48 — 18.5% above current</span>
       </div>
       <div class="energy-stat">
-        <span class="energy-stat-label">Natural Gas</span>
-        <span class="energy-stat-value warning">$3.34 — Elevated</span>
+        <span class="energy-stat-label">Iranian Refineries</span>
+        <span class="energy-stat-value danger">Under active strikes — ablaze</span>
       </div>
       <div class="energy-stat">
-        <span class="energy-stat-label">Ras Laffan (Qatar)</span>
-        <span class="energy-stat-value danger">OFFLINE — Force Majeure</span>
+        <span class="energy-stat-label">Iraq Crude Output</span>
+        <span class="energy-stat-value danger">Down 70%</span>
       </div>
       <div class="energy-stat">
-        <span class="energy-stat-label">Facility Status</span>
-        <span class="energy-stat-value danger">World's largest LNG — shutdown</span>
+        <span class="energy-stat-label">Kuwait Production</span>
+        <span class="energy-stat-value warning">Cutting output</span>
       </div>
       <div class="energy-stat">
-        <span class="energy-stat-label">EU Natural Gas</span>
-        <span class="energy-stat-value danger">▲ +60% since war began</span>
+        <span class="energy-stat-label">Saudi Oil Release</span>
+        <span class="energy-stat-value ok">Partial release — prices eased from $119</span>
       </div>
       <div class="energy-stat">
-        <span class="energy-stat-label">Gulf Infrastructure</span>
-        <span class="energy-stat-value danger">Hit in 6 countries</span>
+        <span class="energy-stat-label">G7 Response</span>
+        <span class="energy-stat-value" style="color:var(--blue);">Emergency meeting called</span>
       </div>
     </div>
   </div>
 
-  <!-- ===== WAR SITUATION ROOM ===== -->
+  <!-- ===== SECTION: WAR SITUATION ROOM ===== -->
   <div class="section-header">
     <span class="icon">🎯</span>
-    <h2>War Situation Room — Iran Day 10</h2>
+    <h2>War Situation Room</h2>
     <div class="section-line"></div>
-    <span class="section-badge critical">ACTIVE</span>
+    <span class="section-badge war-badge-sm">DAY 10</span>
   </div>
 
   <div class="war-room">
     <div class="war-timeline">
-      <div class="war-event critical-event">
-        <div class="war-event-tag">New Supreme Leader</div>
-        <div class="war-event-text">Mojtaba Khamenei (son of killed Ayatollah) named successor as Iran's new Supreme Leader</div>
-        <div class="war-event-detail">Israel has immediately threatened to target the new leader and the Assembly of Experts in Qom</div>
+      <div class="war-event escalation">
+        <div class="war-event-time">Day 10 — Mon Mar 9</div>
+        <div class="war-event-title">Mojtaba Khamenei Named New Supreme Leader</div>
+        <div class="war-event-desc">Iran's succession crisis resolved — Khamenei's son Mojtaba named new Supreme Leader. Israel reportedly threatening to target him directly, raising questions about decapitation strategy continuity.</div>
+        <div class="war-event-tag political">Political</div>
       </div>
-
-      <div class="war-event critical-event">
-        <div class="war-event-tag">Ground Escalation</div>
-        <div class="war-event-text">US/Israel special forces reportedly on the ground inside Iran</div>
-        <div class="war-event-detail">Major escalation from air-only campaign — first confirmed ground presence</div>
+      <div class="war-event escalation">
+        <div class="war-event-time">Day 10 — Mon Mar 9</div>
+        <div class="war-event-title">Oil Infrastructure Under Direct Attack</div>
+        <div class="war-event-desc">Refineries and storage depots across Iran ablaze after targeted strikes. Oil prices spiked to $119.48 intraday before Saudi release reports provided temporary relief.</div>
+        <div class="war-event-tag military">Military</div>
+        <div class="war-event-tag economic">Economic</div>
       </div>
-
-      <div class="war-event critical-event">
-        <div class="war-event-tag">Oil Infrastructure</div>
-        <div class="war-event-text">Israel struck Iranian oil depots in Tehran and Alborz provinces — massive fires burning</div>
-        <div class="war-event-detail">Combined with Hormuz blockade, removes significant global supply from market</div>
+      <div class="war-event escalation">
+        <div class="war-event-time">Day 10 — Mon Mar 9</div>
+        <div class="war-event-title">Bahrain Desalination Plant Attacked</div>
+        <div class="war-event-desc">Water infrastructure targeted — desalination plant in Bahrain hit, signaling expansion of conflict beyond military targets to civilian infrastructure across the Gulf region.</div>
+        <div class="war-event-tag infrastructure">Infrastructure</div>
       </div>
-
       <div class="war-event">
-        <div class="war-event-tag">Water Infrastructure</div>
-        <div class="war-event-text">Iran hit Bahrain desalination plant — first water infrastructure attack in the conflict</div>
-        <div class="war-event-detail">Dangerous escalation to civilian infrastructure targeting</div>
+        <div class="war-event-time">Day 10 — Mon Mar 9</div>
+        <div class="war-event-title">US Embassy in Oslo Bombed</div>
+        <div class="war-event-desc">Incendiary device detonated at US Embassy in Oslo, Norway. Raises concerns about proxy retaliation attacks on US diplomatic facilities worldwide.</div>
+        <div class="war-event-tag military">Military</div>
       </div>
-
       <div class="war-event">
-        <div class="war-event-tag">Iraq Theater</div>
-        <div class="war-event-text">Missiles struck US base at Erbil; rockets hit Baghdad embassy compound</div>
-        <div class="war-event-detail">Proxy forces expanding attacks on US positions across the region</div>
+        <div class="war-event-time">Day 8–10</div>
+        <div class="war-event-title">Full-Scale Air Campaign — 26+ Provinces</div>
+        <div class="war-event-desc">US air campaign now covers 26+ Iranian provinces. Strait of Hormuz effectively shut with shipping suspended. Iraq crude output down 70%, Kuwait cutting production.</div>
+        <div class="war-event-tag military">Military</div>
       </div>
-
       <div class="war-event">
-        <div class="war-event-tag">Europe — Oslo Attack</div>
-        <div class="war-event-text">US Embassy in Oslo bombed with incendiary device — investigating Iran connection</div>
-        <div class="war-event-detail">If confirmed as Iranian-linked, would represent conflict's first attack on European soil</div>
-      </div>
-
-      <div class="war-event">
-        <div class="war-event-tag">Air Campaign</div>
-        <div class="war-event-text">Full air campaign continues across Iran — Day 10 of sustained operations</div>
-        <div class="war-event-detail">Multiple strike packages hitting military and dual-use infrastructure daily</div>
-      </div>
-
-      <div class="war-event">
-        <div class="war-event-tag">Public Opinion</div>
-        <div class="war-event-text">56% of Americans oppose the military action — NPR/PBS/Marist poll</div>
-        <div class="war-event-detail">Political pressure mounting as oil prices hit consumers directly at the pump</div>
+        <div class="war-event-time">Day 10 — Mon Mar 9</div>
+        <div class="war-event-title">G7 Emergency Meeting Called on Oil</div>
+        <div class="war-event-desc">G7 nations announce emergency meeting to coordinate response to oil crisis. Saudi Arabia reportedly releasing partial strategic reserves — pulled WTI back from $119 to ~$101.</div>
+        <div class="war-event-tag economic">Economic</div>
+        <div class="war-event-tag political">Political</div>
       </div>
     </div>
   </div>
 
-  <!-- ===== WEEK AHEAD ===== -->
+  <!-- ===== SECTION: BONDS & CURRENCIES ===== -->
   <div class="section-header">
-    <span class="icon">📅</span>
-    <h2>Week Ahead — Critical Events</h2>
+    <span class="icon">💵</span>
+    <h2>Bonds & Currencies</h2>
     <div class="section-line"></div>
   </div>
 
-  <div class="week-grid">
-    <!-- Monday -->
-    <div class="week-card">
-      <div class="week-date">MON MAR 9</div>
-      <div class="week-event-name">Markets Reopen</div>
-      <div class="week-impact">Gap down expected — pricing in weekend escalation, oil shock, and ground troop reports. Futures already showing major declines across all indices.</div>
-      <span class="week-impact-tag high">HIGH IMPACT</span>
+  <div class="mini-grid">
+    <div class="mini-card">
+      <div class="mini-card-label">10Y Note (ZN)</div>
+      <div class="mini-card-value" style="color:var(--red);">112.1875</div>
+      <div class="mini-card-change" style="color:var(--red);">▼ −0.21% · Yields rising</div>
     </div>
-
-    <!-- Wednesday CPI — CRITICAL -->
-    <div class="week-card critical-week">
-      <div class="week-date">WED MAR 11</div>
-      <div class="week-event-name" style="color: var(--red);">February CPI 🔥🔥🔥</div>
-      <div class="week-impact">THE hinge point of the week. If inflation was already rising before the oil shock, stagflation is confirmed. Goldman flagged: oil at $100+ feeds directly into this number. Markets will be on a knife edge.</div>
-      <span class="week-impact-tag extreme">EXTREME IMPACT</span>
+    <div class="mini-card">
+      <div class="mini-card-label">30Y Bond (ZB)</div>
+      <div class="mini-card-value" style="color:var(--red);">115.6563</div>
+      <div class="mini-card-change" style="color:var(--red);">▼ −0.46%</div>
     </div>
-
-    <!-- Thursday -->
-    <div class="week-card">
-      <div class="week-date">THU MAR 12</div>
-      <div class="week-event-name">PPI + Jobless Claims</div>
-      <div class="week-impact">Upstream inflation data (PPI) plus labor market health check. If PPI hot + claims rising = worst-case stagflation confirmation.</div>
-      <span class="week-impact-tag high">HIGH IMPACT</span>
+    <div class="mini-card">
+      <div class="mini-card-label">5Y Note (ZF)</div>
+      <div class="mini-card-value" style="color:var(--red);">109.0156</div>
+      <div class="mini-card-change" style="color:var(--red);">▼ −0.16%</div>
     </div>
-
-    <!-- Friday -->
-    <div class="week-card">
-      <div class="week-date">FRI MAR 13</div>
-      <div class="week-event-name">UMich Consumer Sentiment</div>
-      <div class="week-impact">Consumer panic gauge — measures real-world fear about inflation and economic direction. Expect sharp deterioration from energy shock.</div>
-      <span class="week-impact-tag medium">MEDIUM IMPACT</span>
+    <div class="mini-card">
+      <div class="mini-card-label">USD Index (DXY)</div>
+      <div class="mini-card-value" style="color:var(--green);">99.26</div>
+      <div class="mini-card-change" style="color:var(--green);">▲ +0.28%</div>
     </div>
-
-    <!-- FOMC -->
-    <div class="week-card">
-      <div class="week-date">MAR 17–18</div>
-      <div class="week-event-name">FOMC Rate Decision</div>
-      <div class="week-impact">The Fed is trapped. Cut rates → fuel inflation. Hold → risk recession. The CPI data Wednesday will likely determine their path. Markets pricing in maximum uncertainty.</div>
-      <span class="week-impact-tag extreme">EXTREME IMPACT</span>
+    <div class="mini-card">
+      <div class="mini-card-label">Ethereum (ETH)</div>
+      <div class="mini-card-value" style="color:var(--green);">$2,003.78</div>
+      <div class="mini-card-change" style="color:var(--green);">▲ +2.90%</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-label">Solana (SOL)</div>
+      <div class="mini-card-value" style="color:var(--green);">$83.98</div>
+      <div class="mini-card-change" style="color:var(--green);">▲ +1.82%</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-label">Silver (SI)</div>
+      <div class="mini-card-value" style="color:var(--red);">$84.15</div>
+      <div class="mini-card-change" style="color:var(--red);">▼ −0.19%</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-label">Copper (HG)</div>
+      <div class="mini-card-value" style="color:var(--red);">$5.774</div>
+      <div class="mini-card-change" style="color:var(--red);">▼ −0.61%</div>
     </div>
   </div>
 
-  <!-- ===== WHAT THIS MEANS ===== -->
+  <!-- ===== SECTION: WEEK AHEAD ===== -->
+  <div class="section-header">
+    <span class="icon">📅</span>
+    <h2>Week Ahead</h2>
+    <div class="section-line"></div>
+    <span class="section-badge critical">CPI WEDNESDAY</span>
+  </div>
+
+  <div class="calendar-grid">
+    <div class="cal-day">
+      <div class="cal-day-label">Mon Mar 9</div>
+      <div class="cal-event">Markets Reopen</div>
+      <div class="cal-event-note">Pre-market showing broad sell-off. Oil above $100. G7 emergency meeting expected.</div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-day-label">Tue Mar 10</div>
+      <div class="cal-event">JOLTS Job Openings</div>
+      <div class="cal-event-note">Labor market health check. Secondary to CPI but still watched.</div>
+    </div>
+    <div class="cal-day critical-day">
+      <div class="cal-day-label">Wed Mar 11</div>
+      <div class="cal-critical-badge">⚠ CRITICAL</div>
+      <div class="cal-event">CPI — Consumer Price Index</div>
+      <div class="cal-event-note">"Most important print of the year." If inflation was already rising before the oil shock, stagflation narrative is confirmed. Markets hinge on this number.</div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-day-label">Thu Mar 12</div>
+      <div class="cal-event">PPI + Jobless Claims</div>
+      <div class="cal-event-note">Producer prices will show pipeline inflation. Initial claims for labor weakness signals.</div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-day-label">Fri Mar 13</div>
+      <div class="cal-event">UMich Consumer Sentiment</div>
+      <div class="cal-event-note">Inflation expectations component critical — consumer confidence amid war premium.</div>
+    </div>
+    <div class="cal-day fomc-day">
+      <div class="cal-day-label">Mar 17–18</div>
+      <div class="cal-fomc-badge">FOMC</div>
+      <div class="cal-event">Federal Reserve Meeting</div>
+      <div class="cal-event-note">Rate decision + dot plot + press conference. War-era monetary policy — cut into inflation or hold firm?</div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION: GLOBAL MARKETS ===== -->
+  <div class="section-header">
+    <span class="icon">🌍</span>
+    <h2>Global Markets</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="global-grid">
+    <div class="global-card">
+      <div class="global-card-label"><span class="global-card-flag">🇯🇵</span> Nikkei 225</div>
+      <div class="global-card-price">53,150</div>
+      <div class="global-card-change">▼ −1.50%</div>
+    </div>
+    <div class="global-card">
+      <div class="global-card-label"><span class="global-card-flag">🇩🇪</span> DAX</div>
+      <div class="global-card-price">23,307</div>
+      <div class="global-card-change">▼ −1.01%</div>
+    </div>
+    <div class="global-card">
+      <div class="global-card-label"><span class="global-card-flag">🇪🇺</span> Euro Stoxx 50</div>
+      <div class="global-card-price">5,639</div>
+      <div class="global-card-change">▼ −1.28%</div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION: WHAT THIS MEANS ===== -->
   <div class="section-header">
     <span class="icon">🧠</span>
     <h2>What This Means</h2>
     <div class="section-line"></div>
   </div>
 
-  <div class="explainer">
-    <h3>💡 Key Takeaways for Investors</h3>
-    <div class="explainer-grid">
-      <div class="explainer-item">
-        <h4>🛢️ Oil Is the Entire Story</h4>
-        <p>With WTI above $100, Hormuz blocked, Iraq output down 70%, and the world's largest LNG facility offline, energy markets are in full crisis mode. The Sunday spike to $119 signals traders believe further escalation is likely. Every asset is repricing around oil right now.</p>
-      </div>
-      <div class="explainer-item">
-        <h4>📊 Stagflation Risk Is Real</h4>
-        <p>Wednesday's CPI is the moment of truth. If inflation was already accelerating before $100 oil, the Fed has no good options. You can't cut into inflation and you can't hold through recession. The "S-word" (stagflation) is back on every desk.</p>
-      </div>
-      <div class="explainer-item">
-        <h4>🏦 The Fed Is Trapped</h4>
-        <p>March 17–18 FOMC is now one of the most important meetings in years. Oil-driven inflation removes the rate-cut toolkit. A hold signals recession acceptance. Markets will gyrate on every Fedspeak hint between now and then.</p>
-      </div>
-      <div class="explainer-item">
-        <h4>💰 Safe Haven Rotation</h4>
-        <p>Gold near all-time highs ($5,103), Treasury yields falling (flight to bonds), dollar weakening (unusual — suggests loss of confidence, not just risk-off). Bitcoin holding steady as "digital gold" narrative gains adherents. Classic crisis playbook.</p>
-      </div>
-      <div class="explainer-item">
-        <h4>⚔️ War Escalation Accelerating</h4>
-        <p>Ground troops in Iran, new Supreme Leader immediately threatened, water infrastructure targeted, Oslo embassy attack — every day brings a new escalation vector. The conflict is expanding, not stabilizing. No off-ramp visible.</p>
-      </div>
-      <div class="explainer-item">
-        <h4>📉 Expect Extreme Volatility</h4>
-        <p>VIX at 31.78 near panic zone. Monday's open will be ugly with weekend pricing-in. CPI Wednesday is a binary event. Any escalation headline will trigger moves. Position sizing and risk management are paramount — this is not a normal market.</p>
-      </div>
+  <div class="explainer-card">
+    <div class="explainer-title">📖 The Big Picture — War, Oil, and the Inflation Bomb</div>
+    <div class="explainer-body">
+      <p>
+        <strong>Oil pulled back hard</strong> — from a <span class="highlight-red">$119.48 session high</span> down to <span class="highlight-orange">$100.85</span> after reports that Saudi Arabia is releasing partial strategic reserves. That's still <strong>+49% from pre-war levels</strong>. The Strait of Hormuz remains effectively shut, Iranian refineries are ablaze, and Iraq's crude output is down 70%. This isn't over — it's a <span class="highlight-red">temporary reprieve</span>.
+      </p>
+      <p>
+        <strong>The G7 emergency meeting</strong> signals this has moved from a regional military conflict to a <span class="highlight-blue">global economic crisis</span>. When G7 leaders convene specifically about oil prices, that's the system acknowledging the damage is structural, not transient. Expect coordinated strategic reserve releases and possible emergency measures.
+      </p>
+      <p>
+        <strong>Wednesday's CPI is THE number.</strong> If inflation was <em>already rising</em> before oil went parabolic, we're looking at a <span class="highlight-red">stagflation scenario</span> — rising prices + slowing growth + a central bank that can't cut rates to stimulate because inflation is raging. This is the worst macro setup since the 1970s oil shock.
+      </p>
+      <p>
+        <strong>Equities are selling off broadly</strong> but not panicking — yet. The S&P is down ~1%, the Russell (small caps) is the worst performer at −1.66% reflecting domestic economic vulnerability. <span class="highlight-green">Crypto is bid</span> — BTC +1.14%, ETH +2.90% — playing the "digital gold" role as a hedge against monetary policy uncertainty.
+      </p>
+      <p>
+        <strong>Bond prices are falling</strong> (yields rising), which means the market is pricing in <span class="highlight-orange">higher inflation ahead</span> rather than fleeing to safety. That's the stagflation signal — bonds aren't acting as a safe haven because the inflation threat is real. The FOMC meeting Mar 17-18 becomes a defining moment for Fed credibility.
+      </p>
+    </div>
+    <div class="explainer-callout">
+      ⚠ KEY RISK: CPI Wednesday (Mar 11) + FOMC (Mar 17-18) — if CPI comes in hot AND the Fed can't cut, the stagflation trade accelerates. Oil above $100 for sustained periods historically precedes recessions.
+    </div>
+    <div class="explainer-callout-blue">
+      💡 WATCH: Saudi oil release details, G7 emergency meeting outcomes, Hormuz shipping status. Any of these could swing oil ±$15 in a session. The $96-$120 WTI range is the new battlefield.
     </div>
   </div>
 
-  <!-- ===== CRYPTO SIDEBAR ===== -->
-  <div class="section-header">
-    <span class="icon">₿</span>
-    <h2>Crypto Snapshot</h2>
-    <div class="section-line"></div>
-  </div>
+</div><!-- end container -->
 
-  <div class="market-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
-    <div class="market-card up">
-      <div class="card-top">
-        <span class="card-label">Bitcoin</span>
-      </div>
-      <div class="card-price" style="color: var(--green); font-size: 22px;">
-        <span class="currency">$</span>67,835
-      </div>
-      <div class="card-change up" style="font-size: 12px;">▲ +0.7% 24h</div>
-      <div class="card-note">Holding steady — digital gold bid</div>
-    </div>
-    <div class="market-card up">
-      <div class="card-top">
-        <span class="card-label">Ethereum</span>
-      </div>
-      <div class="card-price" style="color: var(--green); font-size: 22px;">
-        <span class="currency">$</span>1,995.58
-      </div>
-      <div class="card-change up" style="font-size: 12px;">▲ +2.5% 24h</div>
-      <div class="card-note">Reclaimed $2K level</div>
-    </div>
-    <div class="market-card up">
-      <div class="card-top">
-        <span class="card-label">Solana</span>
-      </div>
-      <div class="card-price" style="color: var(--green); font-size: 22px;">
-        <span class="currency">$</span>83.64
-      </div>
-      <div class="card-change up" style="font-size: 12px;">▲ +1.5% 24h</div>
-      <div class="card-note">Crypto relatively calm vs TradFi</div>
-    </div>
-  </div>
-
-  <!-- ===== FOOTER ===== -->
-  <div class="footer">
-    <p class="footer-text">
-      Last updated: Mon Mar 9, 2026 5:15 AM PDT | 12:15 UTC &nbsp;|&nbsp; <span class="footer-brand">🪨 Chip Market Intelligence</span>
-    </p>
-    <p class="footer-text" style="margin-top: 6px; font-size: 10px; color: var(--text-muted);">
-      Data sourced from futures markets, news wires, and real-time feeds. Pre-market prices are indicative. Not financial advice.
-    </p>
-  </div>
-
+<!-- ===== FOOTER ===== -->
+<div class="dashboard-footer">
+  Last updated: Mon Mar 9, 2026 5:45 AM PDT &nbsp;|&nbsp; Data from finviz, coingecko &nbsp;|&nbsp; Chip <span class="chip">🪨</span>
 </div>
 
-<!-- ===== JAVASCRIPT ===== -->
 <script>
-(function() {
-  'use strict';
-
-  // ===== Duplicate ticker content for seamless scroll =====
-  // Already handled in HTML with duplicate items
-
-  // ===== Animate numbers on scroll (intersection observer) =====
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const fadeInObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+// Smooth entry animations
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.market-card, .energy-card, .war-room, .cal-day, .global-card, .mini-card, .explainer-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
+        entry.target.style.transition = `opacity 0.5s ease ${i * 0.04}s, transform 0.5s ease ${i * 0.04}s`;
         entry.target.style.opacity = '1';
         entry.target.style.transform = 'translateY(0)';
-        fadeInObserver.unobserve(entry.target);
+        observer.unobserve(entry.target);
       }
     });
-  }, observerOptions);
+  }, { threshold: 0.1 });
 
-  // Apply fade-in to sections
-  document.querySelectorAll('.market-card, .energy-card, .war-event, .week-card, .headline-item, .explainer-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(16px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    fadeInObserver.observe(el);
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(12px)';
+    observer.observe(card);
   });
 
-  // ===== Stagger animation delays =====
-  document.querySelectorAll('.market-grid').forEach(grid => {
-    grid.querySelectorAll('.market-card').forEach((card, i) => {
-      card.style.transitionDelay = `${i * 60}ms`;
-    });
-  });
-
-  document.querySelectorAll('.energy-grid').forEach(grid => {
-    grid.querySelectorAll('.energy-card').forEach((card, i) => {
-      card.style.transitionDelay = `${i * 80}ms`;
-    });
-  });
-
-  document.querySelectorAll('.week-grid').forEach(grid => {
-    grid.querySelectorAll('.week-card').forEach((card, i) => {
-      card.style.transitionDelay = `${i * 70}ms`;
-    });
-  });
-
-  document.querySelectorAll('.headlines-list').forEach(list => {
-    list.querySelectorAll('.headline-item').forEach((item, i) => {
-      item.style.transitionDelay = `${i * 50}ms`;
-    });
-  });
-
-  document.querySelectorAll('.war-timeline').forEach(timeline => {
-    timeline.querySelectorAll('.war-event').forEach((event, i) => {
-      event.style.transitionDelay = `${i * 80}ms`;
-    });
-  });
-
-  document.querySelectorAll('.explainer-grid').forEach(grid => {
-    grid.querySelectorAll('.explainer-item').forEach((item, i) => {
-      item.style.transitionDelay = `${i * 70}ms`;
-    });
-  });
-
-  // ===== Pulsing border effect on oil crisis card =====
-  const oilCard = document.querySelector('.market-card.oil-crisis');
-  if (oilCard) {
-    let hue = 30; // Orange hue
-    let direction = 1;
-    setInterval(() => {
-      hue += direction * 0.3;
-      if (hue > 40 || hue < 20) direction *= -1;
-      oilCard.style.boxShadow = `0 0 ${25 + Math.sin(Date.now() / 1000) * 10}px hsla(${hue}, 100%, 50%, 0.15)`;
-    }, 50);
-  }
-
-  // ===== Clock update — show live time in subtitle =====
-  function updateClock() {
+  // Update clock every second
+  const updateTime = () => {
     const now = new Date();
-    const options = {
-      timeZone: 'America/Los_Angeles',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: true
-    };
-    // Only update if we add a clock element
-  }
-
-  // ===== War day counter pulse =====
-  const warDay = document.querySelector('.war-day');
-  if (warDay) {
-    setInterval(() => {
-      warDay.style.textShadow = `0 0 ${8 + Math.sin(Date.now() / 800) * 4}px rgba(255,23,68,0.6)`;
-    }, 50);
-  }
-
-  // ===== Keyboard shortcut: press 'T' to toggle ticker pause =====
-  let tickerPaused = false;
-  const tickerTrack = document.getElementById('tickerTrack');
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 't' || e.key === 'T') {
-      tickerPaused = !tickerPaused;
-      if (tickerTrack) {
-        tickerTrack.style.animationPlayState = tickerPaused ? 'paused' : 'running';
-      }
-    }
-  });
-
-  // ===== Smooth scroll for any internal links =====
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-
-  // ===== Add subtle parallax to war banner =====
-  window.addEventListener('scroll', () => {
-    const banner = document.querySelector('.war-banner');
-    if (banner) {
-      const scrolled = window.pageYOffset;
-      banner.style.backgroundPositionY = `${scrolled * 0.3}px`;
-    }
-  });
-
-  // ===== Console branding =====
-  console.log('%c🪨 Chip Market Intelligence', 'font-size: 16px; font-weight: bold; color: #448aff;');
-  console.log('%cMarket Briefing — Mon Mar 9, 2026', 'font-size: 12px; color: #8896b0;');
-  console.log('%c⚠ WAR ALERT — Iran Day 10 — Oil $100+', 'font-size: 12px; color: #ff3b5c; font-weight: bold;');
-
-})();
+    const timeStr = now.toLocaleTimeString('en-US', { hour12: false });
+    const el = document.getElementById('live-clock');
+    if (el) el.textContent = timeStr;
+  };
+  setInterval(updateTime, 1000);
+});
 </script>
-
 </body>
 </html>

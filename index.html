@@ -3,1038 +3,1107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Market Intelligence Dashboard — Crisis Mode</title>
+<title>Chip 🪨 | Market Intelligence</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
 
   :root {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #111111;
-    --bg-tertiary: #1a1a1a;
-    --bg-card: #141414;
-    --border: #2a2a2a;
-    --text-primary: #e0e0e0;
-    --text-secondary: #888;
-    --text-dim: #555;
+    --bg: #0a0a0a;
+    --card-bg: #111111;
+    --card-border: #1a1a1a;
     --green: #00ff41;
     --red: #ff073a;
     --amber: #ffa500;
     --cyan: #00d4ff;
-    --red-glow: rgba(255, 7, 58, 0.3);
-    --green-glow: rgba(0, 255, 65, 0.15);
-    --cyan-glow: rgba(0, 212, 255, 0.15);
+    --text: #e0e0e0;
+    --dim: #666;
+    --white: #ffffff;
   }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 13px;
-    line-height: 1.5;
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
-  /* === WAR ALERT BANNER === */
+  /* ── WAR ALERT BANNER ── */
   .war-banner {
     background: linear-gradient(90deg, #1a0000, #330000, #1a0000);
     border-bottom: 2px solid var(--red);
     padding: 12px 20px;
     text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    position: relative;
+    overflow: hidden;
     animation: bannerPulse 2s ease-in-out infinite;
   }
 
   @keyframes bannerPulse {
-    0%, 100% { background: linear-gradient(90deg, #1a0000, #330000, #1a0000); box-shadow: 0 0 20px var(--red-glow); }
-    50% { background: linear-gradient(90deg, #2a0000, #550000, #2a0000); box-shadow: 0 0 40px var(--red-glow); }
+    0%, 100% { background: linear-gradient(90deg, #1a0000, #330000, #1a0000); }
+    50% { background: linear-gradient(90deg, #1a0000, #4a0000, #1a0000); }
   }
 
-  .war-banner .alert-text {
-    color: var(--red);
+  .war-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,7,58,0.08), transparent);
+    animation: bannerSweep 3s linear infinite;
+  }
+
+  @keyframes bannerSweep {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  .war-banner .main-alert {
+    font-size: 14px;
     font-weight: 700;
-    font-size: 16px;
-    letter-spacing: 2px;
+    color: var(--red);
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    text-shadow: 0 0 10px var(--red-glow);
-    animation: textFlicker 3s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
   }
 
-  @keyframes textFlicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.85; }
+  .war-banner .main-alert .pulse-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: dotPulse 1s ease-in-out infinite;
+    vertical-align: middle;
   }
 
-  .war-banner .alert-sub {
-    color: var(--amber);
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--red); }
+    50% { opacity: 0.3; box-shadow: 0 0 12px var(--red); }
+  }
+
+  .war-banner .sub-alert {
     font-size: 11px;
+    color: #cc6666;
     margin-top: 4px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 1;
   }
 
-  /* === MAIN LAYOUT === */
-  .dashboard {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-
-  .dashboard-header {
+  /* ── HEADER ── */
+  .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 20px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--card-border);
   }
 
-  .dashboard-header h1 {
-    font-size: 20px;
+  .header-left h1 {
+    font-size: 18px;
     font-weight: 700;
-    color: var(--cyan);
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px var(--cyan-glow);
+    color: var(--green);
+    letter-spacing: 2px;
   }
 
-  .dashboard-header .timestamp {
-    color: var(--text-dim);
+  .header-left .subtitle {
     font-size: 11px;
+    color: var(--dim);
+    margin-top: 2px;
   }
 
-  /* === GRID === */
-  .grid {
+  .header-right {
+    text-align: right;
+  }
+
+  .header-right .timestamp {
+    font-size: 11px;
+    color: var(--dim);
+  }
+
+  .header-right .status {
+    font-size: 10px;
+    color: var(--red);
+    margin-top: 2px;
+    letter-spacing: 1px;
+  }
+
+  /* ── OIL HERO ── */
+  .oil-hero {
+    margin: 20px 24px;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, #1a0500 0%, #0d0000 40%, #110800 100%);
+    border: 1px solid #ff073a55;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .oil-hero::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 8px;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--red), transparent 40%, var(--amber) 80%, transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .oil-hero::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(255,7,58,0.05) 0%, transparent 50%);
+    animation: heroGlow 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroGlow {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+
+  .oil-price-block {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .oil-price-block .label {
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .oil-price-block .breaking-tag {
+    display: inline-block;
+    background: var(--red);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 1.5px;
+    margin-left: 8px;
+    animation: breakFlash 1.5s ease-in-out infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes breakFlash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  .oil-price-block .price {
+    font-size: 72px;
+    font-weight: 800;
+    color: var(--red);
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(255,7,58,0.4), 0 0 60px rgba(255,7,58,0.15);
+    animation: priceGlow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes priceGlow {
+    0% { text-shadow: 0 0 30px rgba(255,7,58,0.4), 0 0 60px rgba(255,7,58,0.15); }
+    100% { text-shadow: 0 0 40px rgba(255,7,58,0.6), 0 0 80px rgba(255,7,58,0.25); }
+  }
+
+  .oil-price-block .price sup {
+    font-size: 28px;
+    font-weight: 600;
+    vertical-align: super;
+    color: #ff5555;
+  }
+
+  .oil-price-block .barrel {
+    font-size: 13px;
+    color: var(--dim);
+    margin-top: 4px;
+  }
+
+  .oil-context {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .oil-context h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .oil-context .stat-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+
+  .oil-context .stat-row .icon {
+    width: 16px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .oil-context .stat-row .stat-label {
+    color: var(--dim);
+    min-width: 140px;
+  }
+
+  .oil-context .stat-row .stat-value {
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  .oil-context .stat-row .stat-value.red { color: var(--red); }
+
+  /* ── GRID ── */
+  .dashboard {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: 16px;
-    margin-bottom: 16px;
+    padding: 0 24px 24px;
   }
 
-  .grid-2 { grid-template-columns: 1fr 1fr; }
-  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
-  .grid-full { grid-template-columns: 1fr; }
-
-  @media (max-width: 900px) {
-    .grid-2, .grid-3 { grid-template-columns: 1fr; }
-  }
-
-  /* === CARDS === */
   .card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    padding: 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    overflow: hidden;
   }
 
   .card-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--card-border);
   }
 
   .card-header h2 {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     color: var(--cyan);
+    letter-spacing: 1.5px;
     text-transform: uppercase;
+  }
+
+  .card-header .badge {
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 3px;
     letter-spacing: 1px;
+    font-weight: 600;
   }
 
-  .card-header .indicator {
-    width: 8px;
-    height: 8px;
-    background: var(--red);
-    animation: indicatorPulse 1.5s ease-in-out infinite;
+  .badge-live { background: #1a0000; color: var(--red); border: 1px solid #ff073a44; }
+  .badge-crisis { background: #331a00; color: var(--amber); border: 1px solid #ffa50044; }
+  .badge-info { background: #001a1a; color: var(--cyan); border: 1px solid #00d4ff44; }
+
+  .card-body {
+    padding: 16px;
   }
 
-  @keyframes indicatorPulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--red); }
-    50% { opacity: 0.4; box-shadow: 0 0 8px var(--red); }
-  }
-
-  .card-header .indicator.green { background: var(--green); }
-  .card-header .indicator.amber { background: var(--amber); }
-
-  /* === MARKET GRID === */
+  /* ── MARKET TABLE ── */
   .market-table {
     width: 100%;
     border-collapse: collapse;
   }
 
   .market-table th {
-    text-align: left;
     font-size: 10px;
-    color: var(--text-dim);
-    text-transform: uppercase;
+    color: var(--dim);
+    text-align: left;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--card-border);
     letter-spacing: 1px;
-    padding: 4px 8px;
-    border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
   }
 
   .market-table td {
+    font-size: 12px;
     padding: 8px;
-    border-bottom: 1px solid #1e1e1e;
-    font-size: 12px;
+    border-bottom: 1px solid #0f0f0f;
+    vertical-align: middle;
   }
 
-  .market-table tr:hover {
-    background: rgba(255,255,255,0.02);
-  }
+  .market-table tr:last-child td { border-bottom: none; }
 
-  .asset-name {
-    color: var(--text-secondary);
-    font-size: 11px;
-  }
+  .market-table .asset { color: var(--white); font-weight: 500; }
+  .market-table .price-col { text-align: right; font-weight: 600; color: var(--white); }
+  .market-table .change-col { text-align: right; font-weight: 600; }
+  .market-table .signal-col { text-align: center; font-size: 10px; }
 
-  .asset-ticker {
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 12px;
-  }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+  .flat { color: var(--dim); }
 
-  .price {
-    font-weight: 600;
-    font-size: 13px;
-  }
-
-  .change-up { color: var(--green); }
-  .change-down { color: var(--red); }
-  .change-neutral { color: var(--text-dim); }
-
-  .change-badge {
+  .signal-pill {
     display: inline-block;
     padding: 2px 6px;
-    font-size: 11px;
-    font-weight: 600;
-  }
-
-  .change-badge.up { background: rgba(0,255,65,0.1); color: var(--green); border: 1px solid rgba(0,255,65,0.2); }
-  .change-badge.down { background: rgba(255,7,58,0.1); color: var(--red); border: 1px solid rgba(255,7,58,0.2); }
-  .change-badge.critical { background: rgba(255,7,58,0.2); color: var(--red); border: 1px solid var(--red); animation: criticalPulse 2s ease-in-out infinite; }
-  .change-badge.mega-up { background: rgba(255,165,0,0.15); color: var(--amber); border: 1px solid var(--amber); animation: criticalPulse 2s ease-in-out infinite; }
-
-  @keyframes criticalPulse {
-    0%, 100% { box-shadow: 0 0 4px transparent; }
-    50% { box-shadow: 0 0 8px var(--red-glow); }
-  }
-
-  /* === OIL SPOTLIGHT === */
-  .oil-spotlight {
-    background: linear-gradient(135deg, #1a1000 0%, #0a0a0a 50%, #1a0500 100%);
-    border: 1px solid var(--amber);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .oil-spotlight::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at 30% 50%, rgba(255,165,0,0.05) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .oil-price-hero {
-    text-align: center;
-    padding: 20px 0;
-  }
-
-  .oil-price-hero .label {
-    color: var(--amber);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 4px;
-  }
-
-  .oil-price-hero .price-big {
-    font-size: 48px;
+    border-radius: 3px;
+    font-size: 9px;
     font-weight: 700;
-    color: var(--amber);
-    text-shadow: 0 0 20px rgba(255,165,0,0.3);
-    line-height: 1.1;
+    letter-spacing: 0.5px;
   }
 
-  .oil-price-hero .change-big {
-    font-size: 18px;
-    color: var(--red);
-    font-weight: 600;
-    margin-top: 4px;
-  }
+  .signal-risk { background: #1a0000; color: var(--red); }
+  .signal-safe { background: #001a0a; color: var(--green); }
+  .signal-watch { background: #1a1400; color: var(--amber); }
 
-  .oil-journey {
+  /* ── ENERGY CRISIS ── */
+  .energy-item {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin: 16px 0;
-    font-size: 14px;
-  }
-
-  .oil-journey .waypoint {
-    text-align: center;
-  }
-
-  .oil-journey .waypoint .wp-price {
-    font-weight: 700;
-    font-size: 16px;
-  }
-
-  .oil-journey .waypoint .wp-label {
-    font-size: 10px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-  }
-
-  .oil-journey .arrow {
-    color: var(--red);
-    font-size: 18px;
-  }
-
-  .oil-risk-bar {
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border);
-    padding: 10px 14px;
-    margin-top: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .oil-risk-bar .risk-label {
-    color: var(--red);
-    font-weight: 700;
-    font-size: 11px;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
-  .oil-risk-bar .risk-meter {
-    flex: 1;
-    height: 6px;
-    background: var(--bg-secondary);
-    position: relative;
-    border: 1px solid var(--border);
-  }
-
-  .oil-risk-bar .risk-fill {
-    position: absolute;
-    top: 0; left: 0; bottom: 0;
-    width: 54%;
-    background: linear-gradient(90deg, var(--green), var(--amber), var(--red));
-  }
-
-  .oil-risk-bar .risk-marker {
-    position: absolute;
-    top: -4px;
-    width: 2px;
-    height: 14px;
-    background: white;
-  }
-
-  .oil-risk-bar .risk-text {
-    color: var(--amber);
-    font-size: 11px;
-    white-space: nowrap;
-  }
-
-  /* === SITUATION ROOM === */
-  .situation-item {
-    padding: 8px 0;
-    border-bottom: 1px solid #1a1a1a;
-    display: flex;
-    gap: 10px;
     align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #0f0f0f;
   }
 
-  .situation-item:last-child { border-bottom: none; }
+  .energy-item:last-child { border-bottom: none; }
 
-  .sit-icon {
-    font-size: 14px;
+  .energy-icon {
+    font-size: 18px;
     flex-shrink: 0;
-    margin-top: 2px;
+    width: 28px;
+    text-align: center;
+    line-height: 1.4;
   }
 
-  .sit-text {
+  .energy-text .energy-title {
     font-size: 12px;
-    color: var(--text-primary);
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .energy-text .energy-desc {
+    font-size: 11px;
+    color: var(--dim);
     line-height: 1.5;
   }
 
-  .sit-text strong {
-    color: var(--red);
-  }
-
-  .sit-text em {
-    color: var(--amber);
-    font-style: normal;
-  }
-
-  /* === ENERGY TRACKER === */
-  .energy-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  /* ── WAR SITUATION ── */
+  .sitrep-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #0f0f0f;
+    display: flex;
     gap: 10px;
   }
 
-  @media (max-width: 600px) {
-    .energy-grid { grid-template-columns: 1fr; }
+  .sitrep-item:last-child { border-bottom: none; }
+
+  .sitrep-bullet {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+    margin-top: 5px;
   }
 
-  .energy-item {
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border);
-    padding: 10px 12px;
+  .sitrep-bullet.amber { background: var(--amber); }
+  .sitrep-bullet.cyan { background: var(--cyan); }
+
+  .sitrep-text {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.6;
   }
 
-  .energy-item.critical-item {
-    border-color: var(--red);
-    background: rgba(255,7,58,0.05);
+  .sitrep-text strong { color: var(--white); }
+
+  /* ── CRYPTO ── */
+  .crypto-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #0f0f0f;
   }
 
-  .energy-item .e-label {
-    font-size: 10px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
+  .crypto-row:last-child { border-bottom: none; }
+
+  .crypto-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
-  .energy-item .e-value {
+  .crypto-symbol {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
     font-size: 14px;
     font-weight: 700;
+    flex-shrink: 0;
   }
 
-  .energy-item .e-detail {
-    font-size: 10px;
-    color: var(--text-secondary);
-    margin-top: 2px;
-  }
+  .crypto-symbol.btc { background: #1a1400; color: #f7931a; border: 1px solid #f7931a44; }
+  .crypto-symbol.eth { background: #0a0a1a; color: #627eea; border: 1px solid #627eea44; }
+  .crypto-symbol.sol { background: #0a1a1a; color: #00d4aa; border: 1px solid #00d4aa44; }
 
-  /* === CALENDAR === */
+  .crypto-name { font-size: 13px; color: var(--white); font-weight: 600; }
+  .crypto-ticker { font-size: 10px; color: var(--dim); margin-top: 1px; }
+
+  .crypto-right { text-align: right; }
+  .crypto-price { font-size: 14px; font-weight: 600; color: var(--white); }
+  .crypto-change { font-size: 11px; margin-top: 2px; }
+
+  /* ── WEEK AHEAD ── */
   .calendar-item {
     display: flex;
-    gap: 12px;
+    gap: 14px;
     padding: 10px 0;
-    border-bottom: 1px solid #1a1a1a;
-    align-items: flex-start;
+    border-bottom: 1px solid #0f0f0f;
   }
 
   .calendar-item:last-child { border-bottom: none; }
 
   .cal-date {
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border);
-    padding: 6px 10px;
-    text-align: center;
-    min-width: 60px;
     flex-shrink: 0;
+    width: 58px;
+    text-align: center;
+    padding: 6px 4px;
+    border-radius: 4px;
+    background: #151515;
+    border: 1px solid var(--card-border);
   }
 
-  .cal-date .cal-day {
+  .cal-day {
     font-size: 10px;
-    color: var(--cyan);
-    text-transform: uppercase;
-  }
-
-  .cal-date .cal-num {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  .cal-info .cal-event {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-
-  .cal-info .cal-sig {
-    font-size: 11px;
-    color: var(--text-secondary);
-    margin-top: 2px;
-  }
-
-  .cal-info .cal-sig.critical-sig {
-    color: var(--red);
-  }
-
-  /* === HEADLINES === */
-  .headline-item {
-    padding: 8px 0;
-    border-bottom: 1px solid #1a1a1a;
-  }
-
-  .headline-item:last-child { border-bottom: none; }
-
-  .headline-source {
-    font-size: 10px;
-    color: var(--cyan);
+    color: var(--dim);
     text-transform: uppercase;
     letter-spacing: 1px;
   }
 
-  .headline-time {
-    font-size: 10px;
-    color: var(--text-dim);
-    margin-left: 8px;
+  .cal-num {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
   }
 
-  .headline-text {
+  .cal-events { flex: 1; }
+
+  .cal-event {
     font-size: 12px;
-    color: var(--text-primary);
-    margin-top: 3px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 4px;
   }
 
-  /* === EXPLAINER === */
+  .cal-event:last-child { margin-bottom: 0; }
+
+  .cal-event .cal-tag {
+    display: inline-block;
+    font-size: 9px;
+    padding: 1px 5px;
+    border-radius: 2px;
+    margin-right: 6px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+  }
+
+  .tag-macro { background: #1a0000; color: var(--red); }
+  .tag-data { background: #001a1a; color: var(--cyan); }
+  .tag-fed { background: #1a1400; color: var(--amber); }
+  .tag-personal { background: #0a1a0a; color: var(--green); }
+
+  /* ── WHAT THIS MEANS ── */
   .explainer-block {
-    padding: 10px 0;
-    border-bottom: 1px solid #1a1a1a;
+    padding: 12px 0;
+    border-bottom: 1px solid #0f0f0f;
   }
 
   .explainer-block:last-child { border-bottom: none; }
 
-  .explainer-block h3 {
+  .explainer-block .ex-title {
     font-size: 12px;
+    font-weight: 700;
     color: var(--amber);
-    font-weight: 600;
     margin-bottom: 6px;
-  }
-
-  .explainer-block p {
-    font-size: 12px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  /* === CRYPTO === */
-  .crypto-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid #1a1a1a;
+    gap: 8px;
   }
 
-  .crypto-row:last-child { border-bottom: none; }
+  .explainer-block .ex-body {
+    font-size: 11px;
+    color: var(--dim);
+    line-height: 1.7;
+    padding-left: 0;
+  }
 
-  .crypto-name {
+  .explainer-block .ex-body strong {
+    color: var(--text);
+  }
+
+  .highlight-num {
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  .highlight-green {
+    color: var(--green);
     font-weight: 600;
-    color: var(--text-primary);
   }
 
-  .crypto-price {
-    font-weight: 600;
+  /* ── CARD: FULL WIDTH ── */
+  .card-full {
+    grid-column: 1 / -1;
   }
 
-  /* === FOOTER === */
+  /* ── FOOTER ── */
   .footer {
     text-align: center;
     padding: 20px;
-    border-top: 1px solid var(--border);
-    margin-top: 20px;
-    color: var(--text-dim);
-    font-size: 11px;
+    border-top: 1px solid var(--card-border);
+    margin-top: 8px;
   }
 
-  .footer .chip-sig {
-    color: var(--cyan);
-    font-weight: 600;
-  }
-
-  /* === VIX GAUGE === */
-  .vix-gauge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    padding: 10px;
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border);
-  }
-
-  .vix-gauge .vix-label {
-    font-size: 10px;
-    color: var(--text-dim);
-    text-transform: uppercase;
+  .footer .footer-brand {
+    font-size: 13px;
+    color: var(--dim);
     letter-spacing: 1px;
   }
 
-  .vix-gauge .vix-value {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--red);
-  }
+  .footer .footer-brand span { color: var(--green); }
 
-  .vix-gauge .vix-bar {
-    flex: 1;
-    height: 8px;
-    background: var(--bg-secondary);
-    position: relative;
-    border: 1px solid var(--border);
-  }
-
-  .vix-gauge .vix-fill {
-    position: absolute;
-    top: 0; left: 0; bottom: 0;
-    background: linear-gradient(90deg, var(--green), var(--amber) 50%, var(--red) 75%);
-  }
-
-  .vix-gauge .vix-status {
+  .footer .footer-sub {
     font-size: 10px;
-    color: var(--red);
-    text-transform: uppercase;
-    font-weight: 600;
+    color: #333;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── SCANLINE ── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    z-index: 9999;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 800px) {
+    .dashboard {
+      grid-template-columns: 1fr;
+    }
+    .oil-hero {
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
+    .oil-price-block .price {
+      font-size: 56px;
+    }
+    .header {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+    .header-right { text-align: center; }
+    .war-banner .main-alert { font-size: 11px; }
+  }
+
+  @media (max-width: 440px) {
+    .dashboard { padding: 0 12px 16px; }
+    .oil-hero { margin: 12px; }
+    .oil-price-block .price { font-size: 44px; }
+    .oil-context .stat-row { flex-wrap: wrap; }
+  }
+
+  /* ── TICKER STRIP ── */
+  .ticker-strip {
+    background: #0d0d0d;
+    border-bottom: 1px solid var(--card-border);
+    padding: 8px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 40px;
+    animation: tickerScroll 30s linear infinite;
+    width: max-content;
+  }
+
+  @keyframes tickerScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
     white-space: nowrap;
   }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg-primary); }
-  ::-webkit-scrollbar-thumb { background: var(--border); }
+  .ticker-item .t-name {
+    color: var(--dim);
+    font-weight: 500;
+  }
 
-  /* Utility */
-  .text-red { color: var(--red); }
-  .text-green { color: var(--green); }
-  .text-amber { color: var(--amber); }
-  .text-cyan { color: var(--cyan); }
-  .text-dim { color: var(--text-dim); }
-  .fw-700 { font-weight: 700; }
-  .fs-10 { font-size: 10px; }
+  .ticker-item .t-price {
+    color: var(--white);
+    font-weight: 600;
+  }
 
-  .blink-dot {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background: var(--red);
-    border-radius: 0;
-    animation: indicatorPulse 1.5s ease-in-out infinite;
-    margin-right: 6px;
-    vertical-align: middle;
+  .ticker-item .t-change {
+    font-weight: 600;
+    font-size: 10px;
+  }
+
+  .ticker-sep {
+    color: #222;
+    font-size: 10px;
   }
 </style>
 </head>
 <body>
 
-<!-- === WAR ALERT BANNER === -->
+<!-- WAR ALERT BANNER -->
 <div class="war-banner">
-  <div class="alert-text">&#9888;&#65039; CRISIS: OIL BREAKS $100 &#8212; US-IRAN WAR DAY 10 &#9888;&#65039;</div>
-  <div class="alert-sub">STRAIT OF HORMUZ BLOCKED &bull; RAS LAFFAN OFFLINE &bull; KHAMENEI KILLED &bull; FUTURES GAPPING DOWN</div>
+  <div class="main-alert">
+    <span class="pulse-dot"></span>
+    ⚠ CRISIS MODE: US-IRAN WAR — DAY 10 &nbsp;|&nbsp; OIL BREAKS $100 &nbsp;|&nbsp; STRAIT OF HORMUZ BLOCKED
+  </div>
+  <div class="sub-alert">Oil infrastructure strikes + desalination attacks escalate economic war &nbsp;·&nbsp; Ras Laffan LNG offline &nbsp;·&nbsp; Oslo embassy bombed</div>
 </div>
 
-<div class="dashboard">
+<!-- TICKER STRIP -->
+<div class="ticker-strip">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="t-name">ES</span> <span class="t-price">5,670</span> <span class="t-change down">▼ -1.2%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">WTI</span> <span class="t-price">$100.72</span> <span class="t-change up">▲ +8.4%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">BRENT</span> <span class="t-price">$103.40</span> <span class="t-change up">▲ +7.9%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">GOLD</span> <span class="t-price">$5,218</span> <span class="t-change up">▲ +0.7%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">DXY</span> <span class="t-price">105.2</span> <span class="t-change up">▲ +0.7%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">10Y</span> <span class="t-price">4.18%</span> <span class="t-change up">▲ +5bp</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">VIX</span> <span class="t-price">32.5</span> <span class="t-change up">▲ +10.2%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">BTC</span> <span class="t-price">$66,488</span> <span class="t-change down">▼ -1.2%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">ETH</span> <span class="t-price">$1,956</span> <span class="t-change down">▼ -0.65%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">SOL</span> <span class="t-price">$82.59</span> <span class="t-change down">▼ -0.56%</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">ES</span> <span class="t-price">5,670</span> <span class="t-change down">▼ -1.2%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">WTI</span> <span class="t-price">$100.72</span> <span class="t-change up">▲ +8.4%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">BRENT</span> <span class="t-price">$103.40</span> <span class="t-change up">▲ +7.9%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">GOLD</span> <span class="t-price">$5,218</span> <span class="t-change up">▲ +0.7%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">DXY</span> <span class="t-price">105.2</span> <span class="t-change up">▲ +0.7%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">10Y</span> <span class="t-price">4.18%</span> <span class="t-change up">▲ +5bp</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">VIX</span> <span class="t-price">32.5</span> <span class="t-change up">▲ +10.2%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">BTC</span> <span class="t-price">$66,488</span> <span class="t-change down">▼ -1.2%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">ETH</span> <span class="t-price">$1,956</span> <span class="t-change down">▼ -0.65%</span></span>
+    <span class="ticker-sep">│</span>
+    <span class="ticker-item"><span class="t-name">SOL</span> <span class="t-price">$82.59</span> <span class="t-change down">▼ -0.56%</span></span>
+  </div>
+</div>
 
-  <!-- Header -->
-  <div class="dashboard-header">
-    <h1>&#9608; MARKET INTELLIGENCE DASHBOARD</h1>
-    <div class="timestamp">
-      <div>SUN 2026-03-08 17:15 PDT</div>
-      <div class="text-red fs-10"><span class="blink-dot"></span>CRISIS MODE ACTIVE</div>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>CHIP 🪨 TERMINAL</h1>
+    <div class="subtitle">Market Intelligence for Amit</div>
+  </div>
+  <div class="header-right">
+    <div class="timestamp">Last updated: Sun Mar 8, 2026 5:45 PM PDT</div>
+    <div class="status">● CRISIS OPERATIONS MODE</div>
+  </div>
+</div>
+
+<!-- OIL HERO CARD -->
+<div class="oil-hero">
+  <div class="oil-price-block">
+    <div class="label">WTI CRUDE OIL <span class="breaking-tag">BREAKING</span></div>
+    <div class="price">$100<sup>.72</sup></div>
+    <div class="barrel">per barrel &nbsp;·&nbsp; First time above $100 since 2022</div>
+  </div>
+  <div class="oil-context">
+    <h3>🛢 Why $100 Oil Changes Everything</h3>
+    <div class="stat-row">
+      <span class="icon">📈</span>
+      <span class="stat-label">Since war started</span>
+      <span class="stat-value red">+50%+ from ~$66</span>
+    </div>
+    <div class="stat-row">
+      <span class="icon">⛽</span>
+      <span class="stat-label">Gas price impact</span>
+      <span class="stat-value red">$4.00+/gal incoming</span>
+    </div>
+    <div class="stat-row">
+      <span class="icon">🚢</span>
+      <span class="stat-label">Hormuz status</span>
+      <span class="stat-value red">BLOCKED — shipping suspended</span>
+    </div>
+    <div class="stat-row">
+      <span class="icon">🏭</span>
+      <span class="stat-label">Ras Laffan LNG</span>
+      <span class="stat-value red">OFFLINE — force majeure</span>
+    </div>
+    <div class="stat-row">
+      <span class="icon">🏦</span>
+      <span class="stat-label">Fed implications</span>
+      <span class="stat-value">Rate cuts off the table</span>
+    </div>
+    <div class="stat-row">
+      <span class="icon">📊</span>
+      <span class="stat-label">CPI Wed Mar 11</span>
+      <span class="stat-value">Stagflation hinge point</span>
     </div>
   </div>
+</div>
 
-  <!-- === MARKET OVERVIEW === -->
-  <div class="grid grid-full">
-    <div class="card">
-      <div class="card-header">
-        <div class="indicator"></div>
-        <h2>Market Overview</h2>
-        <span class="text-dim fs-10" style="margin-left:auto;">Futures &amp; Commodities &bull; Pre-Market</span>
-      </div>
+<!-- DASHBOARD GRID -->
+<div class="dashboard">
+
+  <!-- MARKET OVERVIEW -->
+  <div class="card">
+    <div class="card-header">
+      <h2>📊 Market Overview</h2>
+      <span class="badge badge-live">LIVE</span>
+    </div>
+    <div class="card-body">
       <table class="market-table">
         <thead>
           <tr>
             <th>Asset</th>
-            <th>Price</th>
-            <th>Change</th>
-            <th>Context</th>
+            <th style="text-align:right">Price</th>
+            <th style="text-align:right">Chg</th>
+            <th style="text-align:center">Signal</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><span class="asset-ticker">ES</span> <span class="asset-name">S&amp;P 500 Futures</span></td>
-            <td class="price change-down">5,635.25</td>
-            <td><span class="change-badge down">-1.6%</span></td>
-            <td class="asset-name">From 5,740 Fri close</td>
+            <td class="asset">S&amp;P 500 Futures</td>
+            <td class="price-col">5,670</td>
+            <td class="change-col down">▼ -1.2%</td>
+            <td class="signal-col"><span class="signal-pill signal-risk">RISK-OFF</span></td>
+          </tr>
+          <tr style="background: #1a0500;">
+            <td class="asset" style="color: var(--red); font-weight: 700;">WTI Crude Oil</td>
+            <td class="price-col" style="color: var(--red);">$100.72</td>
+            <td class="change-col up" style="color: var(--red);">▲ +8.4%</td>
+            <td class="signal-col"><span class="signal-pill signal-risk">CRISIS</span></td>
           </tr>
           <tr>
-            <td><span class="asset-ticker">NQ</span> <span class="asset-name">Nasdaq Futures</span></td>
-            <td class="price change-down">24,227.50</td>
-            <td><span class="change-badge down">-1.1%</span></td>
-            <td class="asset-name">From ~24,500 Fri</td>
+            <td class="asset">Brent Crude</td>
+            <td class="price-col">$103.40</td>
+            <td class="change-col up">▲ +7.9%</td>
+            <td class="signal-col"><span class="signal-pill signal-risk">CRISIS</span></td>
           </tr>
           <tr>
-            <td><span class="asset-ticker">YM</span> <span class="asset-name">Dow Futures</span></td>
-            <td class="price change-down">46,705</td>
-            <td><span class="change-badge down">-1.3%</span></td>
-            <td class="asset-name">From ~47,300 Fri</td>
-          </tr>
-          <tr style="background:rgba(255,7,58,0.05);">
-            <td><span class="asset-ticker">VIX</span> <span class="asset-name">Volatility Index</span></td>
-            <td class="price change-up" style="color:var(--red);">29.49</td>
-            <td><span class="change-badge critical">NEAR PANIC</span></td>
-            <td class="asset-name">Threshold: 30</td>
-          </tr>
-          <tr style="background:rgba(255,165,0,0.05); border-left: 3px solid var(--amber);">
-            <td><span class="asset-ticker">CL</span> <span class="asset-name">WTI Crude Oil</span></td>
-            <td class="price" style="color:var(--amber); font-size:16px;">$107.15</td>
-            <td><span class="change-badge mega-up">+17.4% &#128293;</span></td>
-            <td class="asset-name text-red fw-700">BROKE $100 — FROM $91.27 FRI</td>
+            <td class="asset">Gold</td>
+            <td class="price-col">$5,218</td>
+            <td class="change-col up">▲ +0.7%</td>
+            <td class="signal-col"><span class="signal-pill signal-safe">HAVEN</span></td>
           </tr>
           <tr>
-            <td><span class="asset-ticker">GC</span> <span class="asset-name">Gold</span></td>
-            <td class="price change-down">$5,070.50</td>
-            <td><span class="change-badge down">-2.1%</span></td>
-            <td class="asset-name">Down from $5,181 ATH</td>
+            <td class="asset">DXY (Dollar)</td>
+            <td class="price-col">105.2</td>
+            <td class="change-col up">▲ +0.7%</td>
+            <td class="signal-col"><span class="signal-pill signal-safe">STRONG</span></td>
           </tr>
           <tr>
-            <td><span class="asset-ticker">TNX</span> <span class="asset-name">10Y Treasury</span></td>
-            <td class="price" style="color:var(--cyan);">4.133%</td>
-            <td><span class="change-badge down">&#8595;</span></td>
-            <td class="asset-name">Safety bid continuing</td>
+            <td class="asset">10Y Treasury</td>
+            <td class="price-col">4.18%</td>
+            <td class="change-col up">▲ +5bp</td>
+            <td class="signal-col"><span class="signal-pill signal-watch">HAWKISH</span></td>
           </tr>
           <tr>
-            <td><span class="asset-ticker">DXY</span> <span class="asset-name">Dollar Index</span></td>
-            <td class="price change-down">99.549</td>
-            <td><span class="change-badge down">&#8595;</span></td>
-            <td class="asset-name">Dollar weakening</td>
+            <td class="asset">VIX</td>
+            <td class="price-col">32.5</td>
+            <td class="change-col up">▲ +10.2%</td>
+            <td class="signal-col"><span class="signal-pill signal-risk">FEAR</span></td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
 
-      <!-- VIX Gauge -->
-      <div class="vix-gauge">
-        <div class="vix-label">VIX</div>
-        <div class="vix-value">29.49</div>
-        <div class="vix-bar">
-          <div class="vix-fill" style="width:59%;"></div>
+  <!-- ENERGY CRISIS TRACKER -->
+  <div class="card">
+    <div class="card-header">
+      <h2>🛢 Energy Crisis Tracker</h2>
+      <span class="badge badge-crisis">CRITICAL</span>
+    </div>
+    <div class="card-body">
+      <div class="energy-item">
+        <div class="energy-icon">🔥</div>
+        <div class="energy-text">
+          <div class="energy-title" style="color: var(--red);">Tehran Oil Depots Hit — Massive Fires</div>
+          <div class="energy-desc">Israel struck oil storage infrastructure in Tehran directly. Fires visible from orbit. Iran's refinery capacity now degraded.</div>
         </div>
-        <div class="vix-status">&#9888; Near Panic</div>
+      </div>
+      <div class="energy-item">
+        <div class="energy-icon">🚢</div>
+        <div class="energy-text">
+          <div class="energy-title" style="color: var(--red);">Strait of Hormuz — Shipping Suspended</div>
+          <div class="energy-desc">~20% of world oil transits Hormuz. Insurance rates prohibitive. Tankers rerouting around Africa — adds weeks and cost.</div>
+        </div>
+      </div>
+      <div class="energy-item">
+        <div class="energy-icon">🏭</div>
+        <div class="energy-text">
+          <div class="energy-title" style="color: var(--amber);">Ras Laffan LNG — Force Majeure</div>
+          <div class="energy-desc">World's largest LNG facility (Qatar) offline. European natgas prices spiking. Winter reserves at risk for 2026-27 heating season.</div>
+        </div>
+      </div>
+      <div class="energy-item">
+        <div class="energy-icon">💧</div>
+        <div class="energy-text">
+          <div class="energy-title" style="color: var(--amber);">Bahrain Desalination Plants Hit</div>
+          <div class="energy-desc">Iran struck water infrastructure — existential for Gulf states that depend on desalination. Humanitarian crisis escalating.</div>
+        </div>
+      </div>
+      <div class="energy-item">
+        <div class="energy-icon">⛽</div>
+        <div class="energy-text">
+          <div class="energy-title">US Gas Prices Surging</div>
+          <div class="energy-desc">National average racing toward $4+/gal. Trump's "affordability push" in tatters. Energy chief says prices will fall "before too long."</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- === OIL SPOTLIGHT + ENERGY TRACKER === -->
-  <div class="grid grid-2">
-
-    <!-- Oil Spotlight -->
-    <div class="card oil-spotlight">
-      <div class="card-header">
-        <div class="indicator amber" style="background:var(--amber); animation:none;"></div>
-        <h2>&#128293; Oil Crisis Spotlight</h2>
-      </div>
-
-      <div class="oil-price-hero">
-        <div class="label">WTI Crude Oil — First Time Above $100 Since 2022</div>
-        <div class="price-big">$107.15</div>
-        <div class="change-big">&#9650; +$15.88 (+17.4%) from Friday</div>
-      </div>
-
-      <div class="oil-journey">
-        <div class="waypoint">
-          <div class="wp-price text-dim">$67</div>
-          <div class="wp-label">Pre-War</div>
-        </div>
-        <div class="arrow">&#9654;</div>
-        <div class="waypoint">
-          <div class="wp-price text-amber">$91</div>
-          <div class="wp-label">Fri Close</div>
-        </div>
-        <div class="arrow">&#9654;</div>
-        <div class="waypoint">
-          <div class="wp-price text-red fw-700" style="font-size:22px;">$107</div>
-          <div class="wp-label">NOW</div>
-        </div>
-        <div class="arrow">&#9654;&#9654;</div>
-        <div class="waypoint">
-          <div class="wp-price text-red" style="opacity:0.6;">$150–200?</div>
-          <div class="wp-label">Cramer Est.</div>
-        </div>
-      </div>
-
-      <div class="oil-risk-bar">
-        <div class="risk-label">Price Risk</div>
-        <div class="risk-meter">
-          <div class="risk-fill"></div>
-          <div class="risk-marker" style="left:54%;"></div>
-        </div>
-        <div class="risk-text">$107 / $200 ceiling</div>
-      </div>
-
-      <div style="margin-top:12px; font-size:11px; color:var(--text-secondary); line-height:1.6;">
-        <strong class="text-amber">Cramer warns $150–$200</strong> if Hormuz stays blocked and Gulf disruptions continue. Saudi hiking Asian crude premiums amid chaos. Energy infrastructure hit across 6 countries simultaneously.
-      </div>
+  <!-- WAR SITUATION ROOM -->
+  <div class="card">
+    <div class="card-header">
+      <h2>🎖 War Situation Room</h2>
+      <span class="badge badge-live">DAY 10</span>
     </div>
-
-    <!-- Energy Crisis Tracker -->
-    <div class="card">
-      <div class="card-header">
-        <div class="indicator"></div>
-        <h2>&#9889; Energy Crisis Tracker</h2>
+    <div class="card-body">
+      <div class="sitrep-item">
+        <div class="sitrep-bullet"></div>
+        <div class="sitrep-text"><strong>Oslo US Embassy bombed</strong> — War generating global blowback. NATO ally territory targeted. Diplomatic crisis intensifying.</div>
       </div>
-
-      <div class="energy-grid">
-        <div class="energy-item critical-item">
-          <div class="e-label">Strait of Hormuz</div>
-          <div class="e-value text-red">&#9940; BLOCKED</div>
-          <div class="e-detail">Shipping suspended — 20% of world oil transits here</div>
-        </div>
-        <div class="energy-item critical-item">
-          <div class="e-label">Ras Laffan, Qatar</div>
-          <div class="e-value text-red">&#128165; STRUCK</div>
-          <div class="e-detail">World's largest LNG facility — QatarEnergy force majeure declared</div>
-        </div>
-        <div class="energy-item critical-item">
-          <div class="e-label">Iran Oil Infrastructure</div>
-          <div class="e-value text-red">&#128293; BURNING</div>
-          <div class="e-detail">Israel struck Tehran oil depots — massive fires</div>
-        </div>
-        <div class="energy-item critical-item">
-          <div class="e-label">Gulf Desalination</div>
-          <div class="e-value text-red">&#128167; ATTACKED</div>
-          <div class="e-detail">Bahrain water plants targeted — existential for Gulf states</div>
-        </div>
-        <div class="energy-item">
-          <div class="e-label">EU Natural Gas</div>
-          <div class="e-value text-amber">&#9650; +60%</div>
-          <div class="e-detail">LNG crisis may be WORSE than oil crisis — no spare global capacity</div>
-        </div>
-        <div class="energy-item">
-          <div class="e-label">Saudi Arabia</div>
-          <div class="e-value text-amber">HIKING PRICES</div>
-          <div class="e-detail">Raising Asian crude premiums amid supply chaos</div>
-        </div>
+      <div class="sitrep-item">
+        <div class="sitrep-bullet"></div>
+        <div class="sitrep-text"><strong>New Ayatollah successor chosen</strong> — Israel immediately threatens to "pursue every successor." Decapitation strategy continues.</div>
       </div>
-
-      <div style="margin-top:12px; padding:10px; background:rgba(255,7,58,0.08); border:1px solid var(--red); font-size:11px; color:var(--text-secondary);">
-        <strong class="text-red">6 countries' energy infrastructure hit simultaneously.</strong> This is unprecedented in modern energy markets. Global LNG market has no spare capacity to replace Qatar output.
+      <div class="sitrep-item">
+        <div class="sitrep-bullet amber"></div>
+        <div class="sitrep-text"><strong>56% of Americans oppose</strong> the military action (NPR poll). Political pressure mounting on administration.</div>
+      </div>
+      <div class="sitrep-item">
+        <div class="sitrep-bullet amber"></div>
+        <div class="sitrep-text"><strong>Trump: "Small price to pay"</strong> — No ceasefire signals. Administration framing conflict as necessary for long-term security.</div>
+      </div>
+      <div class="sitrep-item">
+        <div class="sitrep-bullet cyan"></div>
+        <div class="sitrep-text"><strong>Dollar surges to 2026 highs</strong> — "War-Petrodollar trade" extends. DXY outshining all rivals amid crisis flight to safety.</div>
+      </div>
+      <div class="sitrep-item">
+        <div class="sitrep-bullet cyan"></div>
+        <div class="sitrep-text"><strong>Treasury yields rising</strong> — Inflation expectations + government spending pressuring bonds. 10Y at 4.18%.</div>
       </div>
     </div>
   </div>
 
-  <!-- === WAR SITUATION + HEADLINES === -->
-  <div class="grid grid-2">
-
-    <!-- War Situation Room -->
-    <div class="card">
-      <div class="card-header">
-        <div class="indicator"></div>
-        <h2>&#127981; War Situation Room — Day 10</h2>
-      </div>
-
-      <div class="situation-item">
-        <div class="sit-icon">&#128128;</div>
-        <div class="sit-text"><strong>Khamenei killed</strong> along with dozens of senior military &amp; intelligence leaders</div>
-      </div>
-      <div class="situation-item">
-        <div class="sit-icon">&#9992;&#65039;</div>
-        <div class="sit-text">US air campaign in full escalation across <em>26 of Iran's 31 provinces</em></div>
-      </div>
-      <div class="situation-item">
-        <div class="sit-icon">&#127470;&#127473;</div>
-        <div class="sit-text"><strong>Israel struck Iran's oil depots</strong> — first strikes on civilian energy infrastructure, huge fires in Tehran</div>
-      </div>
-      <div class="situation-item">
-        <div class="sit-icon">&#128167;</div>
-        <div class="sit-text"><strong>Iran hit Gulf desalination plants</strong> — Bahrain water infrastructure targeted (existential)</div>
-      </div>
-      <div class="situation-item">
-        <div class="sit-icon">&#128293;</div>
-        <div class="sit-text"><strong>Ras Laffan (Qatar) struck</strong> — world's largest LNG facility, force majeure declared</div>
-      </div>
-      <div class="situation-item">
-        <div class="sit-icon">&#127467;&#127479;</div>
-        <div class="sit-text"><strong>Oslo US Embassy bombed</strong> — incendiary device; conflict spreading beyond Middle East</div>
-      </div>
-      <div class="situation-item">
-        <div class="sit-icon">&#128674;</div>
-        <div class="sit-text"><strong>Strait of Hormuz effectively shut</strong> — all commercial shipping suspended</div>
-      </div>
-      <div class="situation-item">
-        <div class="sit-icon">&#128100;</div>
-        <div class="sit-text">New Ayatollah successor chosen (unnamed) — <strong>Israel threatening to target successors</strong></div>
-      </div>
-      <div class="situation-item">
-        <div class="sit-icon">&#128202;</div>
-        <div class="sit-text"><em>56% of Americans oppose</em> the military action (NPR/PBS/Marist poll)</div>
-      </div>
+  <!-- CRYPTO CORNER -->
+  <div class="card">
+    <div class="card-header">
+      <h2>₿ Crypto Corner</h2>
+      <span class="badge badge-info">24H</span>
     </div>
-
-    <!-- Breaking Headlines -->
-    <div class="card">
-      <div class="card-header">
-        <div class="indicator" style="background:var(--cyan); animation:none;"></div>
-        <h2>&#128240; Breaking Headlines</h2>
+    <div class="card-body">
+      <div class="crypto-row">
+        <div class="crypto-left">
+          <div class="crypto-symbol btc">₿</div>
+          <div>
+            <div class="crypto-name">Bitcoin</div>
+            <div class="crypto-ticker">BTC</div>
+          </div>
+        </div>
+        <div class="crypto-right">
+          <div class="crypto-price">$66,488</div>
+          <div class="crypto-change down">▼ -1.2% (24h)</div>
+        </div>
       </div>
-
-      <div class="headline-item">
-        <div><span class="headline-source">Axios</span><span class="headline-time">49 min ago</span></div>
-        <div class="headline-text">"Oil tops $100 per barrel as Iran war escalates"</div>
+      <div class="crypto-row">
+        <div class="crypto-left">
+          <div class="crypto-symbol eth">Ξ</div>
+          <div>
+            <div class="crypto-name">Ethereum</div>
+            <div class="crypto-ticker">ETH</div>
+          </div>
+        </div>
+        <div class="crypto-right">
+          <div class="crypto-price">$1,956</div>
+          <div class="crypto-change down">▼ -0.65% (24h)</div>
+        </div>
       </div>
-      <div class="headline-item">
-        <div><span class="headline-source">The Guardian</span><span class="headline-time">47 min ago</span></div>
-        <div class="headline-text">"Iran war drives oil prices above $100 a barrel for first time since 2022"</div>
+      <div class="crypto-row">
+        <div class="crypto-left">
+          <div class="crypto-symbol sol">◎</div>
+          <div>
+            <div class="crypto-name">Solana</div>
+            <div class="crypto-ticker">SOL</div>
+          </div>
+        </div>
+        <div class="crypto-right">
+          <div class="crypto-price">$82.59</div>
+          <div class="crypto-change down">▼ -0.56% (24h)</div>
+        </div>
       </div>
-      <div class="headline-item">
-        <div><span class="headline-source">CNN</span><span class="headline-time">1 hour ago</span></div>
-        <div class="headline-text">"Oil prices soar past $100 a barrel as war escalates in Iran"</div>
-      </div>
-      <div class="headline-item">
-        <div><span class="headline-source">CNBC / Cramer</span><span class="headline-time">4 hours ago</span></div>
-        <div class="headline-text">"War disruptions may send oil to $150 to $200 a barrel"</div>
-      </div>
-      <div class="headline-item">
-        <div><span class="headline-source">Bloomberg</span><span class="headline-time">7 hours ago</span></div>
-        <div class="headline-text">"Oil Market Chaos to Deepen as More Gulf Giants Cut Output"</div>
-      </div>
-      <div class="headline-item">
-        <div><span class="headline-source">Washington Post</span><span class="headline-time">7 hours ago</span></div>
-        <div class="headline-text">"War with Iran spreading economic damage far beyond oil and gas markets"</div>
+      <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #0f0f0f;">
+        <div style="font-size: 11px; color: var(--dim); line-height: 1.6;">
+          <span style="color: var(--amber);">⚡ Narrative:</span> Crypto mildly negative but holding relative to equities. BTC not acting as safe haven — correlating with risk assets. "Digital gold" thesis under pressure as real gold outperforms massively at $5,200+.
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- === WEEK AHEAD + WHAT THIS MEANS === -->
-  <div class="grid grid-2">
-
-    <!-- Week Ahead Calendar -->
-    <div class="card">
-      <div class="card-header">
-        <div class="indicator green" style="background:var(--cyan); animation:none;"></div>
-        <h2>&#128197; Week Ahead</h2>
-      </div>
-
+  <!-- WEEK AHEAD -->
+  <div class="card">
+    <div class="card-header">
+      <h2>📅 Week Ahead</h2>
+      <span class="badge badge-crisis">CRITICAL WEEK</span>
+    </div>
+    <div class="card-body">
       <div class="calendar-item">
-        <div class="cal-date" style="border-color:var(--red);">
+        <div class="cal-date">
           <div class="cal-day">Mon</div>
           <div class="cal-num">9</div>
         </div>
-        <div class="cal-info">
-          <div class="cal-event">Markets Reopen</div>
-          <div class="cal-sig critical-sig">&#9888; Gap down likely — oil at $107 vs $91 Friday close</div>
+        <div class="cal-events">
+          <div class="cal-event"><span class="cal-tag tag-macro">MACRO</span> Markets reopen — gap down expected. Oil shock will be priced in at open.</div>
+          <div class="cal-event"><span class="cal-tag tag-personal">PERSONAL</span> Amit's DMV test 🚗</div>
         </div>
       </div>
-
-      <div class="calendar-item">
-        <div class="cal-date" style="border-color:var(--amber);">
-          <div class="cal-day">Wed</div>
+      <div class="calendar-item" style="background: #0d0500; margin: -16px; padding: 16px; border-left: 3px solid var(--red);">
+        <div class="cal-date" style="border-color: var(--red);">
+          <div class="cal-day" style="color: var(--red);">Wed</div>
           <div class="cal-num">11</div>
         </div>
-        <div class="cal-info">
-          <div class="cal-event">February CPI Report</div>
-          <div class="cal-sig critical-sig">THE hinge point — if inflation rising before oil shock = stagflation confirmed</div>
+        <div class="cal-events">
+          <div class="cal-event"><span class="cal-tag tag-data" style="background: #1a0000; color: var(--red);">CPI ⚠</span> <strong style="color: var(--red);">February CPI — THE hinge point.</strong> If inflation was already rising before the oil shock → stagflation confirmed. Most important number of the month.</div>
         </div>
       </div>
-
       <div class="calendar-item">
         <div class="cal-date">
           <div class="cal-day">Thu</div>
           <div class="cal-num">12</div>
         </div>
-        <div class="cal-info">
-          <div class="cal-event">PPI + Jobless Claims</div>
-          <div class="cal-sig">Upstream inflation + labor market pulse</div>
+        <div class="cal-events">
+          <div class="cal-event"><span class="cal-tag tag-data">DATA</span> PPI (Producer Price Index) — upstream inflation signal</div>
+          <div class="cal-event"><span class="cal-tag tag-data">DATA</span> Initial Jobless Claims — labor market health check</div>
         </div>
       </div>
-
       <div class="calendar-item">
         <div class="cal-date">
           <div class="cal-day">Fri</div>
           <div class="cal-num">13</div>
         </div>
-        <div class="cal-info">
-          <div class="cal-event">UMich Consumer Sentiment</div>
-          <div class="cal-sig">How scared are consumers?</div>
+        <div class="cal-events">
+          <div class="cal-event"><span class="cal-tag tag-data">DATA</span> UMich Consumer Sentiment — war sentiment impact</div>
         </div>
       </div>
-
       <div class="calendar-item">
-        <div class="cal-date" style="border-color:var(--amber);">
-          <div class="cal-day">Mar</div>
-          <div class="cal-num">17-18</div>
+        <div class="cal-date">
+          <div class="cal-day">Tue</div>
+          <div class="cal-num" style="font-size: 14px;">17-18</div>
         </div>
-        <div class="cal-info">
-          <div class="cal-event">FOMC Rate Decision</div>
-          <div class="cal-sig critical-sig">Fed trapped between inflation and recession — all eyes here</div>
+        <div class="cal-events">
+          <div class="cal-event"><span class="cal-tag tag-fed">FOMC</span> Fed Rate Decision — Powell trapped between inflation and recession. Market expects hold, but statement language is everything.</div>
         </div>
-      </div>
-    </div>
-
-    <!-- What This Means -->
-    <div class="card">
-      <div class="card-header">
-        <div class="indicator green" style="background:var(--green); animation:none;"></div>
-        <h2>&#129504; What This Means</h2>
-      </div>
-
-      <div class="explainer-block">
-        <h3>Why Oil Breaking $100 Matters</h3>
-        <p>Oil hasn't been here since 2022. But this time it's different — the Strait of Hormuz (20% of global oil) is effectively shut, Iranian refineries are burning, and the world's largest LNG facility just went offline. This isn't a speculative spike, it's a <strong class="text-red">physical supply shock</strong>.</p>
-      </div>
-
-      <div class="explainer-block">
-        <h3>The Stagflation Trap</h3>
-        <p>Wednesday's CPI is the hinge point. If inflation was <em>already</em> rising before oil hit $107, the Fed is trapped: raise rates (kill growth) or hold (let inflation run). Oil at $107+ flows through to gas prices in 2-3 weeks, food in 4-6 weeks. Every $10/barrel adds ~$0.25/gallon at the pump.</p>
-      </div>
-
-      <div class="explainer-block">
-        <h3>LNG Crisis &#8212; The Hidden Bomb</h3>
-        <p>Everyone's watching oil, but <strong class="text-amber">the LNG crisis may be worse</strong>. Qatar's Ras Laffan produced 30% of global LNG. With it offline and no spare capacity anywhere, EU gas is already +60%. Europe's energy security just got a second crisis on top of the Russia situation.</p>
-      </div>
-
-      <div class="explainer-block">
-        <h3>Monday's Open: Brace for Impact</h3>
-        <p>Futures are already pricing in pain: S&amp;P -1.6%, Nasdaq -1.1%, VIX near panic at 29.49. Oil gapping from $91&#8594;$107 over the weekend means Monday's open will be volatile. <strong class="text-amber">Watch for forced selling if VIX crosses 30.</strong> Gold pulled back from ATH as margin calls force liquidation — classic crisis pattern.</p>
-      </div>
-
-      <div class="explainer-block">
-        <h3>The Water Angle Nobody's Talking About</h3>
-        <p>Iran's strikes on Gulf desalination plants is existential. Bahrain, UAE, and others depend on desalinated water for 90%+ of their supply. If more plants are hit, this becomes a <strong class="text-red">humanitarian crisis</strong> on top of an energy crisis.</p>
       </div>
     </div>
   </div>
 
-  <!-- === CRYPTO CORNER === -->
-  <div class="grid grid-full">
-    <div class="card">
-      <div class="card-header">
-        <div class="indicator" style="background:var(--text-dim); animation:none;"></div>
-        <h2>&#129689; Crypto Corner</h2>
-        <span class="text-dim fs-10" style="margin-left:auto;">24h Change</span>
-      </div>
-      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:16px;">
-        <div class="crypto-row" style="display:block; text-align:center; padding:12px; background:var(--bg-tertiary); border:1px solid var(--border);">
-          <div class="crypto-name">BTC</div>
-          <div class="crypto-price change-down" style="font-size:18px; margin:4px 0;">$66,303</div>
-          <div><span class="change-badge down">-1.6%</span></div>
-        </div>
-        <div class="crypto-row" style="display:block; text-align:center; padding:12px; background:var(--bg-tertiary); border:1px solid var(--border);">
-          <div class="crypto-name">ETH</div>
-          <div class="crypto-price change-down" style="font-size:18px; margin:4px 0;">$1,946</div>
-          <div><span class="change-badge down">-1.4%</span></div>
-        </div>
-        <div class="crypto-row" style="display:block; text-align:center; padding:12px; background:var(--bg-tertiary); border:1px solid var(--border);">
-          <div class="crypto-name">SOL</div>
-          <div class="crypto-price change-down" style="font-size:18px; margin:4px 0;">$82.11</div>
-          <div><span class="change-badge down">-1.5%</span></div>
+  <!-- WHAT THIS MEANS -->
+  <div class="card">
+    <div class="card-header">
+      <h2>🧠 What This Means</h2>
+      <span class="badge badge-info">ANALYSIS</span>
+    </div>
+    <div class="card-body">
+      <div class="explainer-block">
+        <div class="ex-title">🛢 $100 Oil = $4+ Gas Is Coming</div>
+        <div class="ex-body">
+          The rough rule: every <strong>$10 increase in crude</strong> adds ~<strong>$0.25/gal</strong> at the pump. Oil has surged <span class="highlight-num">+$34/bbl</span> since the war started (~$66 → $100). That translates to roughly <span class="highlight-num">+$0.85/gal</span> at the pump, pushing national averages toward <strong>$4.00-4.25/gal</strong>. Some states will see <strong>$5+</strong>. This is the number that hits every American's wallet directly.
         </div>
       </div>
-      <div style="margin-top:10px; font-size:11px; color:var(--text-dim); text-align:center;">
-        Crypto holding relatively steady amid traditional market chaos. Risk-off sentiment capping upside.
+      <div class="explainer-block">
+        <div class="ex-title">🏦 The Fed Is Completely Trapped</div>
+        <div class="ex-body">
+          Oil at $100 is an <strong>inflation accelerant</strong>. It raises costs for everything: transportation, manufacturing, food, heating. The Fed <em>can't cut rates</em> into rising inflation — but a war-driven economic slowdown <em>demands</em> cuts. This is the textbook <strong>stagflation trap</strong>: rising prices + slowing growth + no good policy options. Powell's worst nightmare.
+        </div>
+      </div>
+      <div class="explainer-block">
+        <div class="ex-title">📊 Wednesday's CPI = The Most Important Number</div>
+        <div class="ex-body">
+          February CPI (released Wed Mar 11) was collected <strong>before</strong> the worst of the oil shock. If it <em>already</em> shows rising inflation, the market will price in <strong>stagflation as baseline</strong> — because the oil-driven spike hasn't even hit the data yet. Hot CPI + $100 oil = potentially the worst macro setup since the 1970s. A cool CPI gives the Fed barely enough cover to stay patient.
+        </div>
+      </div>
+      <div class="explainer-block">
+        <div class="ex-title">⚖️ Stagflation Is Now the Base Case</div>
+        <div class="ex-body">
+          With Hormuz blocked, Ras Laffan offline, and oil infrastructure being bombed, this isn't a <em>temporary spike</em> — it's a <strong>structural supply shock</strong>. The economy was already slowing under tariff uncertainty. Now add $100+ oil. <strong>Consumer spending compresses</strong> (gas takes wallet share from discretionary), <strong>corporate margins shrink</strong> (higher input costs), and <strong>inflation expectations un-anchor</strong>. The 1970s playbook is being re-run in real time.
+        </div>
+      </div>
+      <div class="explainer-block">
+        <div class="ex-title">💡 First Time Since 2022</div>
+        <div class="ex-body">
+          Oil last touched $100 in mid-2022 during the Russia-Ukraine shock. That episode drove US inflation to <span class="highlight-num">9.1%</span> (June 2022 CPI). The difference now: the Fed <em>already</em> hiked rates to 5.25-5.50% to fight that inflation, then cut. Reversing course again would destroy credibility. The policy toolkit is exhausted. <strong>There is no clean exit.</strong>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- === FOOTER === -->
-  <div class="footer">
-    <div>Updated: Sunday March 8, 2026 &bull; 5:15 PM PDT</div>
-    <div class="chip-sig" style="margin-top:4px;">Updated every 30 min by Chip &#129704;</div>
-    <div style="margin-top:4px; color:var(--text-dim);">Data sources: CME, CBOE, CoinGecko, Reuters, Bloomberg</div>
-  </div>
+</div>
 
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">Chip 🪨 | <span>Market Intelligence for Amit</span></div>
+  <div class="footer-sub">Data as of Sun Mar 8, 2026 5:45 PM PDT &nbsp;·&nbsp; Futures opened ~2.5h ago &nbsp;·&nbsp; Not financial advice</div>
 </div>
 
 </body>

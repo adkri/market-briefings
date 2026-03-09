@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="refresh" content="300">
-<title>Market Briefing — Mon Mar 9, 2026 (8:15 AM)</title>
+<title>Market Briefing — Mon Mar 9, 2026 (8:45 AM)</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -364,7 +364,7 @@
   .tl-tag.political { background: #1e1b4b; color: var(--purple); }
   .tl-tag.energy { background: var(--amber-dim); color: var(--amber); }
   .tl-tag.intl { background: #0c4a6e; color: var(--cyan); }
-  .tl-tag.poll { background: #1e3a5f; color: var(--blue); }
+  .tl-tag.domestic { background: #1e3a5f; color: var(--blue); }
   .timeline-text {
     font-size: 13px;
     color: var(--text-primary);
@@ -448,6 +448,53 @@
     color: var(--green);
     font-weight: 600;
     margin-top: 2px;
+  }
+
+  /* === STAGFLATION SIGNAL GRID === */
+  .signal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+  }
+  .signal-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .signal-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .signal-card.bearish::before { background: var(--red); }
+  .signal-card.warning::before { background: var(--amber); }
+  .signal-label {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+  }
+  .signal-card.bearish .signal-label { background: var(--red-dim); color: var(--red); }
+  .signal-card.warning .signal-label { background: var(--amber-dim); color: var(--amber); }
+  .signal-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .signal-detail {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
   }
 
   /* === ANALYSIS EXPLAINER === */
@@ -536,6 +583,7 @@
     .market-grid { grid-template-columns: 1fr 1fr; }
     .energy-grid { grid-template-columns: 1fr; }
     .crypto-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .signal-grid { grid-template-columns: 1fr; }
     .cal-table { font-size: 12px; }
     .war-headline { font-size: 11px; }
     .timeline { padding-left: 20px; }
@@ -553,9 +601,9 @@
 <!-- ██ WAR ALERT BANNER ██ -->
 <div class="war-banner">
   <div class="war-banner-inner">
-    <span class="war-badge">⚠ WAR — DAY 11</span>
+    <span class="war-badge">🔴 WAR — DAY 10</span>
     <span class="war-headline">
-      <strong>US-Iran War Intensifying</strong> — Oil ~$99 after spiking past $100 · G7 emergency meeting on oil · Nikkei crashed 5.2% · Stocks selling off globally · Wednesday CPI = most important number of the year
+      <strong>IRAN-US WAR — DAY 10</strong> — NATO Engages for First Time · Oil Past $100 · Nikkei -5.2% · KOSPI Circuit Breaker · New Supreme Leader Named · Israel Strikes Tehran
     </span>
     <span class="war-badge">MARKETS CRISIS</span>
   </div>
@@ -565,27 +613,35 @@
 
   <!-- ██ HEADER ██ -->
   <div class="header">
-    <h1>MARKET BRIEFING <span>// Monday March 9, 2026</span> <span class="pre-market-tag">Market Open</span></h1>
-    <div class="header-meta">08:15 PDT · MARKET OPEN 6:30 AM · TRADING SESSION ACTIVE</div>
+    <h1>MARKET BRIEFING <span>// Mon Mar 9, 2026 (8:45 AM)</span> <span class="pre-market-tag">Pre-Market</span></h1>
+    <div class="header-meta">08:45 PDT · PRE-MARKET · OPENS 9:30 AM ET</div>
   </div>
 
   <!-- ██ HEADLINES TICKER ██ -->
   <div class="ticker">
     <div class="ticker-label">▌ Breaking Headlines</div>
     <div class="ticker-scroll" id="ticker">
-      <span class="ticker-item">Oil pulls back to ~$99 after touching $100+ — G7 emergency meeting on supply response<span class="sep">◆</span></span>
-      <span class="ticker-item">Global stocks sink — Nikkei -5.2%, KOSPI circuit breaker triggered, S&P down ~0.5%<span class="sep">◆</span></span>
-      <span class="ticker-item">Mojtaba Khamenei named new Supreme Leader — Israel threatens to target him<span class="sep">◆</span></span>
+      <span class="ticker-item">Oil past $100 — WTI at $101.19, first time since 2022 · Trump rejects SPR release<span class="sep">◆</span></span>
+      <span class="ticker-item">S&P 500 futures -2.3% · Russell 2000 crushed -4-6% · VIX at 27.79 — fear territory<span class="sep">◆</span></span>
+      <span class="ticker-item">Nikkei crashed -5.2%, worst since Aug 2024 · KOSPI circuit breaker triggered at -7% to -8%<span class="sep">◆</span></span>
+      <span class="ticker-item">Mojtaba Khamenei named new Supreme Leader — Israel threatens to target him in Qom<span class="sep">◆</span></span>
       <span class="ticker-item">NATO shot down Iranian missile over Turkey — first NATO engagement in conflict<span class="sep">◆</span></span>
-      <span class="ticker-item">Iraq crude output down ~70% — regional supply collapsing<span class="sep">◆</span></span>
-      <span class="ticker-item">Wednesday CPI "most important print of the year" — Goldman Sachs<span class="sep">◆</span></span>
+      <span class="ticker-item">US sank Iranian warship in Gulf — 7 US service members killed<span class="sep">◆</span></span>
+      <span class="ticker-item">Israel launched "wide-scale" overnight strikes on Tehran and Isfahan<span class="sep">◆</span></span>
+      <span class="ticker-item">Iran FM rejects ceasefire: "We need to continue fighting" · Hegseth: "just getting started"<span class="sep">◆</span></span>
+      <span class="ticker-item">Iraq crude output down 60-70% · Tehran oil depots ablaze — acid rain over capital<span class="sep">◆</span></span>
+      <span class="ticker-item">Wednesday CPI "most important number of the year" — stagflation hinge point<span class="sep">◆</span></span>
       <!-- duplicate set for seamless loop -->
-      <span class="ticker-item">Oil pulls back to ~$99 after touching $100+ — G7 emergency meeting on supply response<span class="sep">◆</span></span>
-      <span class="ticker-item">Global stocks sink — Nikkei -5.2%, KOSPI circuit breaker triggered, S&P down ~0.5%<span class="sep">◆</span></span>
-      <span class="ticker-item">Mojtaba Khamenei named new Supreme Leader — Israel threatens to target him<span class="sep">◆</span></span>
+      <span class="ticker-item">Oil past $100 — WTI at $101.19, first time since 2022 · Trump rejects SPR release<span class="sep">◆</span></span>
+      <span class="ticker-item">S&P 500 futures -2.3% · Russell 2000 crushed -4-6% · VIX at 27.79 — fear territory<span class="sep">◆</span></span>
+      <span class="ticker-item">Nikkei crashed -5.2%, worst since Aug 2024 · KOSPI circuit breaker triggered at -7% to -8%<span class="sep">◆</span></span>
+      <span class="ticker-item">Mojtaba Khamenei named new Supreme Leader — Israel threatens to target him in Qom<span class="sep">◆</span></span>
       <span class="ticker-item">NATO shot down Iranian missile over Turkey — first NATO engagement in conflict<span class="sep">◆</span></span>
-      <span class="ticker-item">Iraq crude output down ~70% — regional supply collapsing<span class="sep">◆</span></span>
-      <span class="ticker-item">Wednesday CPI "most important print of the year" — Goldman Sachs<span class="sep">◆</span></span>
+      <span class="ticker-item">US sank Iranian warship in Gulf — 7 US service members killed<span class="sep">◆</span></span>
+      <span class="ticker-item">Israel launched "wide-scale" overnight strikes on Tehran and Isfahan<span class="sep">◆</span></span>
+      <span class="ticker-item">Iran FM rejects ceasefire: "We need to continue fighting" · Hegseth: "just getting started"<span class="sep">◆</span></span>
+      <span class="ticker-item">Iraq crude output down 60-70% · Tehran oil depots ablaze — acid rain over capital<span class="sep">◆</span></span>
+      <span class="ticker-item">Wednesday CPI "most important number of the year" — stagflation hinge point<span class="sep">◆</span></span>
     </div>
   </div>
 
@@ -601,115 +657,167 @@
       <div class="market-card down">
         <div>
           <div class="mc-name">S&P 500</div>
-          <div class="mc-value">6,704</div>
+          <div class="mc-value">6,697.57</div>
         </div>
         <div>
-          <div class="mc-change neg"><span class="arrow">▼</span> -0.54%</div>
-          <div class="mc-sub">From Fri close 6,740</div>
+          <div class="mc-change neg"><span class="arrow">▼</span> -2.3%</div>
+          <div class="mc-sub">Prior close 6,854</div>
         </div>
       </div>
       <div class="market-card down">
         <div>
           <div class="mc-name">Dow Jones</div>
-          <div class="mc-value">47,088</div>
+          <div class="mc-value">47,031.59</div>
         </div>
         <div>
-          <div class="mc-change neg"><span class="arrow">▼</span> -160 pts</div>
-          <div class="mc-sub">-0.34%</div>
+          <div class="mc-change neg"><span class="arrow">▼</span> ~-2.0%</div>
+          <div class="mc-sub">Prior close ~48,000</div>
         </div>
       </div>
       <div class="market-card down">
         <div>
-          <div class="mc-name">Nasdaq</div>
-          <div class="mc-value">22,319</div>
+          <div class="mc-name">Nasdaq / QQQ</div>
+          <div class="mc-value">598.46</div>
         </div>
         <div>
-          <div class="mc-change neg"><span class="arrow">▼</span> -0.30%</div>
-          <div class="mc-sub">Tech under pressure</div>
+          <div class="mc-change neg"><span class="arrow">▼</span> -2.5%</div>
+          <div class="mc-sub">Tech hammered</div>
         </div>
       </div>
       <div class="market-card down">
         <div>
           <div class="mc-name">Russell 2000</div>
-          <div class="mc-value">2,490</div>
+          <div class="mc-value">2,500.80</div>
         </div>
         <div>
-          <div class="mc-change neg"><span class="arrow">▼</span> -1.5%</div>
-          <div class="mc-sub">Small caps hit hardest</div>
+          <div class="mc-change neg"><span class="arrow">▼</span> -4% to -6%</div>
+          <div class="mc-sub">Small caps crushed</div>
         </div>
       </div>
       <!-- VIX -->
       <div class="market-card up">
         <div>
           <div class="mc-name">VIX (Fear Index)</div>
-          <div class="mc-value" style="color: var(--red);">28.74</div>
+          <div class="mc-value" style="color: var(--red);">27.79</div>
         </div>
         <div>
-          <div class="mc-change neg"><span class="arrow">▲</span> ELEVATED</div>
-          <div class="mc-sub">+21% from Fri</div>
+          <div class="mc-change neg"><span class="arrow">▲</span> FEAR</div>
+          <div class="mc-sub">Past 27 = institutional fear</div>
+        </div>
+      </div>
+      <!-- International -->
+      <div class="market-card down">
+        <div>
+          <div class="mc-name">Nikkei 225</div>
+          <div class="mc-value">52,728.72</div>
+        </div>
+        <div>
+          <div class="mc-change neg"><span class="arrow">▼</span> -5.2%</div>
+          <div class="mc-sub">Worst since Aug 2024</div>
         </div>
       </div>
       <!-- Commodities -->
       <div class="market-card up">
         <div>
           <div class="mc-name">Oil WTI</div>
-          <div class="mc-value" style="color: var(--amber);">$99.07</div>
+          <div class="mc-value" style="color: var(--amber);">$101.19</div>
         </div>
         <div>
-          <div class="mc-change pos"><span class="arrow">▲</span> +9.0%</div>
-          <div class="mc-sub">From $90.90 Fri · Spiked past $100</div>
+          <div class="mc-change pos"><span class="arrow">▲</span> PAST $100</div>
+          <div class="mc-sub">First time since 2022</div>
         </div>
       </div>
       <div class="market-card up">
         <div>
-          <div class="mc-name">Brent Crude</div>
-          <div class="mc-value" style="color: var(--amber);">$102+</div>
-        </div>
-        <div>
-          <div class="mc-change pos"><span class="arrow">▲</span> SURGING</div>
-          <div class="mc-sub">War premium</div>
-        </div>
-      </div>
-      <div class="market-card down">
-        <div>
           <div class="mc-name">Natural Gas</div>
-          <div class="mc-value" style="color: var(--amber);">$3.18</div>
+          <div class="mc-value" style="color: var(--amber);">$3.34</div>
         </div>
         <div>
-          <div class="mc-change neg"><span class="arrow">▼</span> -0.3%</div>
-          <div class="mc-sub">Ras Laffan offline</div>
+          <div class="mc-change pos"><span class="arrow">▲</span> +4.9%</div>
+          <div class="mc-sub">Supply disruption</div>
         </div>
       </div>
-      <!-- Gold / Dollar / Yields -->
+      <!-- Gold / Copper / Dollar / Yields -->
       <div class="market-card down">
         <div>
           <div class="mc-name">Gold</div>
           <div class="mc-value" style="color: var(--gold);">$5,093</div>
         </div>
         <div>
-          <div class="mc-change neg"><span class="arrow">▼</span> -1.3%</div>
-          <div class="mc-sub">Margin call selling</div>
+          <div class="mc-change neg"><span class="arrow">▼</span> Pullback</div>
+          <div class="mc-sub">ATH $5,181 · Margin call selling</div>
+        </div>
+      </div>
+      <div class="market-card down">
+        <div>
+          <div class="mc-name">Copper</div>
+          <div class="mc-value">$5.77</div>
+        </div>
+        <div>
+          <div class="mc-change neg"><span class="arrow">▼</span> -0.6%</div>
+          <div class="mc-sub">Demand destruction signal</div>
         </div>
       </div>
       <div class="market-card up">
         <div>
           <div class="mc-name">10Y Treasury Yield</div>
-          <div class="mc-value">4.158%</div>
+          <div class="mc-value">4.136%</div>
         </div>
         <div>
-          <div class="mc-change neg"><span class="arrow">▲</span> +2.8bps</div>
-          <div class="mc-sub">Inflation fears</div>
+          <div class="mc-change neg"><span class="arrow">▲</span> Rising</div>
+          <div class="mc-sub">Inflation > recession fears</div>
         </div>
       </div>
       <div class="market-card up">
         <div>
           <div class="mc-name">DXY (Dollar Index)</div>
-          <div class="mc-value">99.11</div>
+          <div class="mc-value">99.3</div>
         </div>
         <div>
-          <div class="mc-change pos"><span class="arrow">▲</span> +0.1%</div>
+          <div class="mc-change pos"><span class="arrow">▲</span> +0.3%</div>
           <div class="mc-sub">Safe haven bid</div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ██ STAGFLATION SIGNALS ██ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">⚡</span>
+      <h2>Stagflation Signals</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-card bearish">
+        <div class="signal-label">Bearish</div>
+        <div class="signal-title">Gold Falling During War</div>
+        <div class="signal-detail">Gold DOWN while oil surges = institutions selling gold to cover equity margin calls. <strong>Liquidity stress indicator.</strong> When safe havens fall during crises, financial plumbing is strained.</div>
+      </div>
+      <div class="signal-card bearish">
+        <div class="signal-label">Stagflation</div>
+        <div class="signal-title">Copper Down + Oil Up</div>
+        <div class="signal-detail">Copper falling while oil surging = classic stagflation signal. Copper measures real economic demand; oil is cost-push inflation. <strong>Demand destruction + rising costs.</strong></div>
+      </div>
+      <div class="signal-card bearish">
+        <div class="signal-label">Fed Trapped</div>
+        <div class="signal-title">Yields Rising During Selloff</div>
+        <div class="signal-detail">Bond yields RISING during stock selloff = market pricing inflation over recession. <strong>The Fed cannot cut rates to save the economy without fueling inflation.</strong> No good options.</div>
+      </div>
+      <div class="signal-card warning">
+        <div class="signal-label">Recession</div>
+        <div class="signal-title">Russell -6% vs S&P -2.3%</div>
+        <div class="signal-detail">Small caps being destroyed by oil shock — pricing in a domestic recession. Small businesses can't absorb energy cost spikes. <strong>Main Street pain is coming.</strong></div>
+      </div>
+      <div class="signal-card warning">
+        <div class="signal-label">Fear</div>
+        <div class="signal-title">VIX Past 27</div>
+        <div class="signal-detail">VIX above 27-30 = genuine institutional fear, not just retail panic. Options market pricing significant downside. <strong>Hedging costs are surging.</strong></div>
+      </div>
+      <div class="signal-card warning">
+        <div class="signal-label">Hinge Point</div>
+        <div class="signal-title">Wednesday CPI</div>
+        <div class="signal-detail">February CPI measures inflation BEFORE oil doubled. If inflation was already rising from tariffs, adding 50%+ oil spike = <strong>stagflation confirmed, not just feared.</strong></div>
       </div>
     </div>
   </div>
@@ -723,34 +831,34 @@
     </div>
     <div class="energy-grid">
       <div class="energy-item critical">
-        <div class="energy-status">SHUTDOWN</div>
-        <div class="energy-name">Strait of Hormuz</div>
-        <div class="energy-detail">Effectively shut — all shipping suspended. 20% of world oil transits this chokepoint. No timeline for reopening.</div>
-      </div>
-      <div class="energy-item critical">
-        <div class="energy-status">OFFLINE</div>
-        <div class="energy-name">Ras Laffan, Qatar</div>
-        <div class="energy-detail">World's largest LNG facility — force majeure declared. Global LNG spot prices surging. Europe and Asia scrambling.</div>
+        <div class="energy-status">PAST $100</div>
+        <div class="energy-name">Oil WTI — $101.19</div>
+        <div class="energy-detail">First time past $100 since 2022. Trump rejected SPR release. Gas heading to $4+/gallon nationally, CA could hit $7. No relief in sight.</div>
       </div>
       <div class="energy-item critical">
         <div class="energy-status">ABLAZE</div>
-        <div class="energy-name">Iran Refineries</div>
-        <div class="energy-detail">Multiple storage facilities burning in Tehran and Alborz province. Israel struck oil depots — first civilian energy infrastructure targeted.</div>
+        <div class="energy-name">Tehran Oil Depots</div>
+        <div class="energy-detail">Israel struck oil storage depots in Tehran — acid rain falling over the capital. Isfahan refineries also hit in overnight "wide-scale" strikes. Civilian energy infrastructure targeted.</div>
       </div>
       <div class="energy-item critical">
-        <div class="energy-status">-70% OUTPUT</div>
+        <div class="energy-status">-60-70% OUTPUT</div>
         <div class="energy-name">Iraq Crude Production</div>
-        <div class="energy-detail">Output collapsed ~70% as conflict spreads. Southern export terminals operating sporadically. Major supply disruption.</div>
+        <div class="energy-detail">Output collapsed 60-70% as conflict zone expands. Southern export terminals operating sporadically. Millions of barrels per day offline.</div>
+      </div>
+      <div class="energy-item critical">
+        <div class="energy-status">STRUCK</div>
+        <div class="energy-name">Bahrain Desalination</div>
+        <div class="energy-detail">Iran hit desalination plants in Bahrain — water infrastructure now a target. Tit-for-tat civilian infrastructure strikes widening conflict scope.</div>
       </div>
       <div class="energy-item warning">
-        <div class="energy-status">+60%</div>
-        <div class="energy-name">EU Natural Gas Prices</div>
-        <div class="energy-detail">European gas prices up 60% since war began. Winter reserves adequate but markets pricing in extended disruption.</div>
+        <div class="energy-status">EVACUATING</div>
+        <div class="energy-name">US Diplomats — Saudi Arabia</div>
+        <div class="energy-detail">US evacuating diplomats from Saudi Arabia. Signals assessment that conflict could spill into Gulf states. Saudi oil infrastructure at risk.</div>
       </div>
       <div class="energy-item warning">
-        <div class="energy-status">+40%</div>
-        <div class="energy-name">Asian Gas Prices</div>
-        <div class="energy-detail">Asian spot LNG prices up 40% since war began. Japan and South Korea activating strategic reserves.</div>
+        <div class="energy-status">$4-$7/GAL</div>
+        <div class="energy-name">US Gas Prices</div>
+        <div class="energy-detail">National average heading to $4+/gallon. California could hit $7. Trump rejected SPR release — no immediate domestic price relief.</div>
       </div>
     </div>
   </div>
@@ -759,49 +867,49 @@
   <div class="section">
     <div class="section-header">
       <span class="section-icon">🎯</span>
-      <h2>War Situation Room — Day 11 Key Developments</h2>
+      <h2>War Situation Room — Day 10 Key Developments</h2>
       <div class="section-line"></div>
     </div>
     <div class="timeline">
       <div class="timeline-item escalation">
-        <span class="tl-tag military">Military</span>
-        <div class="timeline-text"><strong>NATO shot down Iranian missile over Turkey</strong> — First direct NATO engagement in the conflict. Rutte says no Article 5 for now, but another incident could change calculus.</div>
-      </div>
-      <div class="timeline-item escalation">
         <span class="tl-tag political">Political</span>
-        <div class="timeline-text"><strong>Mojtaba Khamenei named new Supreme Leader</strong> — Israel immediately threatened to target him and the Assembly of Experts in Qom. Hardliner chosen — worst case for de-escalation.</div>
+        <div class="timeline-text"><strong>Mojtaba Khamenei named new Supreme Leader</strong> — Ayatollah's son, hardliner. Worst case for de-escalation. Israel immediately threatened to target him and the Assembly of Experts in Qom.</div>
+      </div>
+      <div class="timeline-item escalation">
+        <span class="tl-tag intl">NATO</span>
+        <div class="timeline-text"><strong>NATO shot down Iranian missile over Turkey</strong> — First direct NATO engagement in the conflict. If another missile enters NATO airspace and causes casualties, Article 5 pressure transforms this into a potential global war.</div>
       </div>
       <div class="timeline-item escalation">
         <span class="tl-tag military">Military</span>
-        <div class="timeline-text"><strong>US sank Iranian warship; 7th US service member killed</strong> — Naval engagement in the Gulf. American casualties mounting. Domestic opposition growing (56% oppose).</div>
+        <div class="timeline-text"><strong>US sank Iranian warship in the Gulf</strong> — Naval engagement escalating. 7 US service members killed total. Hegseth says US is "just getting started."</div>
+      </div>
+      <div class="timeline-item escalation">
+        <span class="tl-tag military">Military</span>
+        <div class="timeline-text"><strong>Israel launched "wide-scale" overnight strikes on Tehran and Isfahan</strong> — Major Iranian cities under sustained bombardment. Civilian areas affected. Acid rain from burning oil depots.</div>
       </div>
       <div class="timeline-item escalation">
         <span class="tl-tag energy">Energy</span>
-        <div class="timeline-text"><strong>Israel struck oil storage depots in Tehran</strong> — First civilian energy infrastructure targeted. Multiple fires raging. Crosses a major escalation threshold.</div>
+        <div class="timeline-text"><strong>Tehran oil depots struck — acid rain over capital</strong> — First civilian energy infrastructure targeted. Multiple storage facilities burning. Environmental catastrophe unfolding.</div>
       </div>
       <div class="timeline-item">
         <span class="tl-tag military">Military</span>
-        <div class="timeline-text"><strong>Iran hit desalination plant in Bahrain</strong> — Water infrastructure now a target. Tit-for-tat civilian infrastructure strikes widening the conflict scope.</div>
+        <div class="timeline-text"><strong>Iran hit desalination plants in Bahrain</strong> — Water infrastructure now a target. Tit-for-tat civilian infrastructure strikes widening the conflict scope across the Gulf.</div>
+      </div>
+      <div class="timeline-item">
+        <span class="tl-tag political">Political</span>
+        <div class="timeline-text"><strong>Iran's FM rejected ceasefire: "We need to continue fighting"</strong> — No diplomatic off-ramp. Both sides doubling down. Hegseth: "just getting started."</div>
       </div>
       <div class="timeline-item escalation">
-        <span class="tl-tag energy">Energy</span>
-        <div class="timeline-text"><strong>Iraq crude output down ~70%</strong> — Regional production collapsing as conflict zone expands. Global supply deficit widening by millions of barrels per day.</div>
+        <span class="tl-tag military">Military</span>
+        <div class="timeline-text"><strong>Trump considering ground forces inside Iran</strong> — Special forces deployment under consideration. Would represent massive escalation from air/naval campaign to ground invasion.</div>
+      </div>
+      <div class="timeline-item">
+        <span class="tl-tag domestic">Domestic</span>
+        <div class="timeline-text"><strong>US evacuating diplomats from Saudi Arabia</strong> — Signals expectation of wider regional conflict. Saudi oil infrastructure potentially at risk. Markets watching closely.</div>
       </div>
       <div class="timeline-item">
         <span class="tl-tag intl">International</span>
-        <div class="timeline-text"><strong>Oslo US Embassy bombed</strong> — War blowback reaching Europe. First significant terror incident outside the Middle East. Security elevated at US embassies worldwide.</div>
-      </div>
-      <div class="timeline-item">
-        <span class="tl-tag military">Military</span>
-        <div class="timeline-text"><strong>Israel bombed Ramada Plaza hotel in central Beirut</strong> — Targeted IRGC commanders meeting at civilian hotel. Lebanon drawn deeper into conflict.</div>
-      </div>
-      <div class="timeline-item">
-        <span class="tl-tag poll">Domestic</span>
-        <div class="timeline-text"><strong>56% of Americans oppose the military action</strong> — NPR/PBS/Marist poll. Public opinion shifting against involvement as costs mount and no clear exit strategy.</div>
-      </div>
-      <div class="timeline-item">
-        <span class="tl-tag intl">Diplomatic</span>
-        <div class="timeline-text"><strong>China demands immediate ceasefire, offers to mediate</strong> — Beijing positioning itself as peacemaker. Diplomatic off-ramp emerging but neither side engaging yet.</div>
+        <div class="timeline-text"><strong>KOSPI triggered circuit breaker at -7% to -8%</strong> — South Korean market halted. Nikkei down -5.2%, worst since Aug 2024. Asian markets in freefall. Global contagion spreading.</div>
       </div>
     </div>
   </div>
@@ -825,27 +933,27 @@
         <tbody>
           <tr>
             <td class="cal-day">Mon Mar 9</td>
-            <td class="cal-event">Markets reopen — first reaction to weekend escalation. All eyes on opening bell.</td>
-            <td><span class="cal-importance imp-high">HIGH</span></td>
+            <td class="cal-event">Markets open to crisis — first reaction to weekend escalation. Opening bell 9:30 AM ET. Expect volatility, possible circuit breakers.</td>
+            <td><span class="cal-importance imp-critical">CRITICAL</span></td>
           </tr>
           <tr>
             <td class="cal-day">Wed Mar 11</td>
-            <td class="cal-event">February CPI — Goldman calls it "most important print of the year." If inflation rising before oil shock = stagflation confirmed.</td>
+            <td class="cal-event">February CPI — "most important number of the year." Measures inflation BEFORE oil doubled. If rising from tariffs alone → stagflation confirmed.</td>
             <td><span class="cal-importance imp-critical">CRITICAL</span></td>
           </tr>
           <tr>
             <td class="cal-day">Thu Mar 12</td>
-            <td class="cal-event">PPI + Jobless Claims — More inflation data + labor market health check.</td>
+            <td class="cal-event">PPI + Jobless Claims — Producer prices + labor market health. More inflation pipeline data.</td>
             <td><span class="cal-importance imp-high">HIGH</span></td>
           </tr>
           <tr>
             <td class="cal-day">Fri Mar 13</td>
-            <td class="cal-event">UMich Consumer Sentiment — Measures consumer confidence amid oil shock and war fears.</td>
+            <td class="cal-event">UMich Consumer Sentiment — Consumer confidence amid oil shock, war fears, and rising prices.</td>
             <td><span class="cal-importance imp-medium">MEDIUM</span></td>
           </tr>
           <tr>
             <td class="cal-day">Mar 17-18</td>
-            <td class="cal-event">FOMC Rate Decision — Fed trapped between inflation and recession. Statement & press conference critical.</td>
+            <td class="cal-event">FOMC Rate Decision — Fed trapped between inflation and recession. Can't cut (inflation), can't hike (recession). Statement & press conference critical.</td>
             <td><span class="cal-importance imp-critical">CRITICAL</span></td>
           </tr>
         </tbody>
@@ -863,22 +971,17 @@
     <div class="crypto-grid">
       <div class="crypto-card">
         <div class="crypto-symbol">BTC / USD</div>
-        <div class="crypto-price">$69,099</div>
-        <div class="crypto-change">▲ +2.6%</div>
+        <div class="crypto-price">$68,765</div>
+        <div class="crypto-change">▲ +2.3%</div>
       </div>
       <div class="crypto-card">
         <div class="crypto-symbol">ETH / USD</div>
-        <div class="crypto-price">$2,024</div>
+        <div class="crypto-price">$2,020</div>
         <div class="crypto-change">▲ +4.1%</div>
-      </div>
-      <div class="crypto-card">
-        <div class="crypto-symbol">SOL / USD</div>
-        <div class="crypto-price">$85.46</div>
-        <div class="crypto-change">▲ +3.9%</div>
       </div>
     </div>
     <div style="margin-top: 10px; font-size: 12px; color: var(--text-muted); font-style: italic;">
-      Crypto catching a bid as alternative store of value amid geopolitical chaos. BTC acting as digital gold narrative intact.
+      Crypto catching a bid as alternative store of value amid geopolitical chaos. BTC digital gold narrative intact — outperforming actual gold today.
     </div>
   </div>
 
@@ -891,14 +994,16 @@
     </div>
     <div class="analysis-box">
       <ul>
-        <li><strong>Oil pulled back from $100+ to ~$99 but damage is done.</strong> The psychological $100 barrier was breached. G7 emergency meeting on oil supply underway — potential coordinated SPR release is the only bearish catalyst. Goldman warns it could hit $147 all-time record if Hormuz stays closed.</li>
-        <li><strong>Markets selling off but NOT panicking — yet.</strong> S&P -0.54%, Dow -160 pts. Much calmer than the -3% futures panic Sunday night. The market is finding a floor. But if oil re-breaks $100 or CPI comes in hot Wednesday, the floor falls out.</li>
-        <li><strong>Gold DOWN during a war is the red flag.</strong> Gold -1.3% while oil surges = institutions selling gold to cover equity margin calls. Liquidity stress signal. When safe havens fall during crises, the financial plumbing is strained.</li>
-        <li><strong>NATO shooting down an Iranian missile over Turkey is the biggest escalation risk.</strong> If another missile enters NATO airspace and causes casualties, Article 5 pressure transforms this from a regional war to a potential global conflict.</li>
-        <li><strong>Wednesday's CPI is now the most important number of the year.</strong> February data measures BEFORE the oil shock. If inflation was already rising from tariffs alone, adding a 50%+ oil spike = stagflation confirmed. The Fed has no good options.</li>
+        <li><strong>Oil past $100 and Trump rejected SPR release.</strong> No domestic price relief coming. Gas heading to $4+ nationally, California to $7. With Iraq output down 60-70% and Tehran refineries burning, supply destruction is real and accelerating. This isn't a speculative spike — it's physical supply disappearing.</li>
+        <li><strong>Gold DOWN during a war is THE red flag.</strong> Gold -1.7% off ATH while oil surges = institutions selling gold to cover equity margin calls. Liquidity stress signal. When safe havens fall during crises, the financial plumbing is strained. This is how 2008-style liquidity cascades start.</li>
+        <li><strong>Copper down + Oil up = textbook stagflation.</strong> Copper measures real industrial demand (falling = recession); oil is cost-push inflation (rising = prices going up). Both happening simultaneously means the economy is slowing while prices surge. Classic 1970s pattern.</li>
+        <li><strong>Bond yields RISING during a stock selloff means the Fed is trapped.</strong> Normally yields fall when stocks crash (flight to safety). Yields rising means the market is pricing inflation as a bigger threat than recession. The Fed can't cut rates to save the economy without pouring gasoline on inflation.</li>
+        <li><strong>Russell -6% vs S&P -2.3% = small caps pricing in domestic recession.</strong> Small businesses can't absorb energy cost spikes or pass them to consumers. The divergence is telling you Main Street is about to get hammered harder than Wall Street.</li>
+        <li><strong>New Supreme Leader is worst case for de-escalation.</strong> Mojtaba Khamenei is a hardliner. Iran FM rejected ceasefire. Hegseth says "just getting started." Trump considering ground forces. There is no off-ramp. Both sides are escalating.</li>
+        <li><strong>NATO engagement is the tail risk nobody is fully pricing.</strong> One Iranian missile shot down over Turkey. If another one causes casualties in NATO territory, Article 5 pressure transforms a regional war into a global one. Markets are not pricing this.</li>
       </ul>
       <div class="analysis-callout">
-        <strong>⚠ Bottom Line:</strong> The initial panic is calming — oil pulled back from $119 to $99, stocks from -3% to -0.5%. But the structural damage is real: Hormuz shut, Iraq -70%, refineries burning. G7 SPR release could cap oil temporarily but doesn't fix supply destruction. Wednesday's CPI is the hinge point. If February inflation was already rising before oil doubled, stagflation moves from risk to diagnosis. Watch for NATO Article 5 headlines — that's the tail risk nobody is pricing.
+        <strong>⚠ Bottom Line:</strong> This is a Day 10 crisis with no off-ramp in sight. Oil past $100 with supply physically destroyed (not just threatened). Asian markets in freefall — Nikkei worst day since Aug 2024, KOSPI circuit breaker. Every stagflation signal is flashing: gold down, copper down, oil up, yields up, small caps crushed. <strong>Wednesday's CPI is THE hinge point</strong> — if February inflation was already rising from tariffs before oil doubled, stagflation moves from risk to confirmed diagnosis. The Fed meets Mar 17-18 with no good options. Watch for NATO Article 5 headlines — that's the black swan nobody is pricing.
       </div>
     </div>
   </div>
@@ -906,7 +1011,7 @@
   <!-- ██ FOOTER ██ -->
   <div class="footer">
     <div class="footer-text">
-      Last updated: Mon Mar 9, 2026 8:15 AM PDT &nbsp;·&nbsp; Market open &nbsp;·&nbsp; Auto-refreshes every 5 minutes
+      Last updated: Mon Mar 9, 2026 8:45 AM PDT &nbsp;·&nbsp; Pre-market &nbsp;·&nbsp; Auto-refreshes every 5 minutes
     </div>
     <div class="footer-live">
       <span class="live-dot"></span>

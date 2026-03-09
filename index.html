@@ -89,7 +89,7 @@
 
   .war-banner-inner {
     display: inline-block;
-    animation: scroll-left 30s linear infinite;
+    animation: scroll-left 45s linear infinite;
     font-size: 0.85rem;
     font-weight: 700;
     color: #ff4444;
@@ -226,6 +226,7 @@
     background: linear-gradient(135deg, #1a1400, #0f0f18 60%);
     box-shadow: 0 0 30px var(--gold-dim), inset 0 0 20px #ffd70011;
     animation: oil-glow 3s ease-in-out infinite;
+    position: relative;
   }
   @keyframes oil-glow {
     0%, 100% { box-shadow: 0 0 30px var(--gold-dim), inset 0 0 20px #ffd70011; }
@@ -259,6 +260,26 @@
   @keyframes blink-tag {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.6; }
+  }
+
+  /* OIL EXPLOSION PARTICLE EFFECT */
+  .oil-hero .explosion-container {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  .oil-hero .explosion-container .particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: particle-float 4s ease-in-out infinite;
+    opacity: 0;
+  }
+  @keyframes particle-float {
+    0% { opacity: 0; transform: translateY(0) scale(0.5); }
+    20% { opacity: 0.8; }
+    100% { opacity: 0; transform: translateY(-120px) scale(0); }
   }
 
   /* VIX CARD — AMBER */
@@ -301,6 +322,7 @@
   }
   .crisis-item .status-dot.red { background: var(--red); color: var(--red); }
   .crisis-item .status-dot.amber { background: var(--amber); color: var(--amber); }
+  .crisis-item .status-dot.green { background: var(--green); color: var(--green); }
   .crisis-item .crisis-label {
     font-size: 0.75rem;
     color: var(--text-dim);
@@ -314,6 +336,7 @@
   }
   .crisis-item .crisis-value.red { color: var(--red); }
   .crisis-item .crisis-value.amber { color: var(--amber); }
+  .crisis-item .crisis-value.green { color: var(--green); }
 
   /* ── FEAR & GREED ── */
   .fear-greed {
@@ -467,6 +490,50 @@
   }
 
   /* ── WHAT THIS MEANS ── */
+  .explainer {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .explainer h3 {
+    font-size: 0.95rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-shadow: 0 0 10px var(--gold-dim);
+  }
+  .explainer p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .explainer p:last-child { margin-bottom: 0; }
+  .explainer strong { color: var(--text); }
+  .explainer em { color: var(--amber); font-style: italic; }
+  .explainer .stat-highlight {
+    display: inline-block;
+    background: #ff224418;
+    border: 1px solid #ff224433;
+    color: var(--red);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.75rem;
+  }
+  .explainer .stat-amber {
+    display: inline-block;
+    background: #ffaa0018;
+    border: 1px solid #ffaa0033;
+    color: var(--amber);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.75rem;
+  }
+
   .explainer-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -560,7 +627,7 @@
 <!-- ═══════════ WAR BANNER ═══════════ -->
 <div class="war-banner">
   <div class="war-banner-inner">
-    ⚠ OPERATION IRON FORGE — DAY 10 &nbsp;•&nbsp; IRAN OIL INFRASTRUCTURE UNDER ATTACK &nbsp;•&nbsp; MOJTABA KHAMENEI NAMED SUPREME LEADER &nbsp;•&nbsp; US/ISRAEL SPECIAL FORCES INSIDE IRAN &nbsp;•&nbsp; OSLO US EMBASSY BOMBED &nbsp;•&nbsp; IRAQ CRUDE OUTPUT DOWN 70% &nbsp;•&nbsp; OIL $116 — HISTORIC GAP &nbsp;•&nbsp; BAHRAIN DESALINATION PLANT HIT BY IRANIAN DRONES &nbsp;•&nbsp; ISRAEL STRIKES IRAN OIL DEPOTS FOR FIRST TIME &nbsp;•&nbsp; ⚠ OPERATION IRON FORGE — DAY 10 &nbsp;•&nbsp; IRAN OIL INFRASTRUCTURE UNDER ATTACK &nbsp;•&nbsp; MOJTABA KHAMENEI NAMED SUPREME LEADER &nbsp;•&nbsp; US/ISRAEL SPECIAL FORCES INSIDE IRAN &nbsp;•&nbsp; OSLO US EMBASSY BOMBED &nbsp;•&nbsp; IRAQ CRUDE OUTPUT DOWN 70% &nbsp;•&nbsp; OIL $116 — HISTORIC GAP &nbsp;•&nbsp; BAHRAIN DESALINATION PLANT HIT BY IRANIAN DRONES &nbsp;•&nbsp; ISRAEL STRIKES IRAN OIL DEPOTS FOR FIRST TIME
+    🔴 IRAN WAR DAY 10 — MOJTABA KHAMENEI NAMED NEW SUPREME LEADER &nbsp;•&nbsp; 🛢️ OIL EXPLODES PAST $115 — LARGEST SINGLE-SESSION MOVE IN CRUDE FUTURES HISTORY &nbsp;•&nbsp; 📉 DOW FUTURES -1,000 POINTS — WORST SUNDAY OPENING SINCE COVID &nbsp;•&nbsp; 🔥 ISRAEL STRIKES IRAN OIL DEPOTS — TEHRAN REFINERIES BURNING &nbsp;•&nbsp; 💧 IRAN HITS BAHRAIN DESALINATION PLANT — WATER INFRASTRUCTURE TARGETED &nbsp;•&nbsp; 🏨 ISRAEL BOMBS BEIRUT RAMADA HOTEL — 4+ KILLED INCLUDING IRGC COMMANDERS &nbsp;•&nbsp; 💣 US EMBASSY IN OSLO BOMBED — CONFLICT GENERATING GLOBAL BLOWBACK &nbsp;•&nbsp; 🇮🇶 IRAQ OUTPUT DOWN 70% — KUWAIT CUTTING, SAUDI CASUALTIES REPORTED &nbsp;•&nbsp; ⚠️ GOLDMAN: OIL AT $115 FEEDS DIRECTLY INTO WEDNESDAY CPI — "MOST IMPORTANT PRINT OF YEAR" &nbsp;•&nbsp; 📊 RUSSELL 2000 -3.72% — SMALL CAPS SIGNAL RECESSION FEARS &nbsp;•&nbsp; 🌍 CHINA DEMANDS IMMEDIATE CEASEFIRE — XI-TRUMP MEETING POSSIBLE &nbsp;•&nbsp; ⛽ US GASOLINE SURGES TO HIGHEST UNDER TRUMP &nbsp;•&nbsp; 🔴 IRAN WAR DAY 10 — MOJTABA KHAMENEI NAMED NEW SUPREME LEADER &nbsp;•&nbsp; 🛢️ OIL EXPLODES PAST $115 — LARGEST SINGLE-SESSION MOVE IN CRUDE FUTURES HISTORY &nbsp;•&nbsp; 📉 DOW FUTURES -1,000 POINTS — WORST SUNDAY OPENING SINCE COVID &nbsp;•&nbsp; 🔥 ISRAEL STRIKES IRAN OIL DEPOTS — TEHRAN REFINERIES BURNING &nbsp;•&nbsp; 💧 IRAN HITS BAHRAIN DESALINATION PLANT &nbsp;•&nbsp; 💣 US EMBASSY IN OSLO BOMBED
   </div>
 </div>
 
@@ -579,95 +646,139 @@
 
     <!-- OIL — HERO CARD -->
     <div class="market-card oil-hero">
-      <div class="label">🛢 Crude Oil WTI</div>
-      <div class="price">$116.09</div>
-      <div class="change up">▲ +27.7%</div>
-      <div class="historic-tag">⚡ HISTORIC SUNDAY GAP</div>
+      <div class="explosion-container">
+        <div class="particle" style="width:6px;height:6px;background:#ffd700;left:20%;bottom:10%;animation-delay:0s;"></div>
+        <div class="particle" style="width:4px;height:4px;background:#ffaa00;left:40%;bottom:15%;animation-delay:0.8s;"></div>
+        <div class="particle" style="width:5px;height:5px;background:#ff8800;left:60%;bottom:8%;animation-delay:1.6s;"></div>
+        <div class="particle" style="width:3px;height:3px;background:#ffd700;left:75%;bottom:12%;animation-delay:2.4s;"></div>
+        <div class="particle" style="width:5px;height:5px;background:#ffcc00;left:35%;bottom:20%;animation-delay:3.2s;"></div>
+        <div class="particle" style="width:4px;height:4px;background:#ff9900;left:85%;bottom:5%;animation-delay:1.2s;"></div>
+        <div class="particle" style="width:6px;height:6px;background:#ffd700;left:50%;bottom:18%;animation-delay:2.0s;"></div>
+        <div class="particle" style="width:3px;height:3px;background:#ffaa00;left:10%;bottom:25%;animation-delay:0.4s;"></div>
+      </div>
+      <div class="label">🛢 Crude Oil WTI (CL)</div>
+      <div class="price">$115.45</div>
+      <div class="change up">▲ +27.01%</div>
+      <div class="historic-tag">⚡ LARGEST SINGLE-SESSION MOVE IN HISTORY</div>
+      <div style="margin-top:12px; font-size:0.72rem; color:var(--text-dim); line-height:1.5;">
+        From $67 pre-war → $115.45 in 10 days<br>
+        Strait of Hormuz shut • Iraq output -70% • Iran refineries burning
+      </div>
     </div>
 
     <div class="market-card">
-      <div class="label">S&P 500 Futures</div>
-      <div class="price" style="color: var(--red);">6,604</div>
-      <div class="change down">▼ -2.1%</div>
+      <div class="label">S&P 500 Futures (ES)</div>
+      <div class="price" style="color: var(--red);">6,619.75</div>
+      <div class="change down">▼ -1.84%</div>
     </div>
 
     <div class="market-card">
-      <div class="label">Nasdaq Futures</div>
-      <div class="price" style="color: var(--red);">24,084</div>
-      <div class="change down">▼ -2.4%</div>
+      <div class="label">Nasdaq Futures (NQ)</div>
+      <div class="price" style="color: var(--red);">24,130.00</div>
+      <div class="change down">▼ -2.19%</div>
     </div>
 
     <div class="market-card">
-      <div class="label">Dow Futures</div>
-      <div class="price" style="color: var(--red);">~38,700</div>
-      <div class="change down">▼ -1,026 pts</div>
+      <div class="label">Dow Futures (YM)</div>
+      <div class="price" style="color: var(--red);">46,565</div>
+      <div class="change down">▼ -2.00%</div>
     </div>
 
     <div class="market-card">
-      <div class="label">Russell 2000</div>
-      <div class="price" style="color: var(--red);">2,431</div>
-      <div class="change down">▼ -3.8%</div>
+      <div class="label">Russell 2000 (RTY)</div>
+      <div class="price" style="color: var(--red);">2,432.60</div>
+      <div class="change down">▼ -3.72%</div>
     </div>
 
     <div class="market-card">
-      <div class="label">Natural Gas</div>
-      <div class="price" style="color: var(--green);">$3.46</div>
-      <div class="change up">▲ +8.7%</div>
-    </div>
-
-    <div class="market-card">
-      <div class="label">Gold</div>
-      <div class="price" style="color: var(--red);">$5,098</div>
-      <div class="change down">▼ -1.2%</div>
-    </div>
-
-    <div class="market-card">
-      <div class="label">10Y Treasury Yield</div>
-      <div class="price" style="color: var(--amber);">4.204%</div>
-      <div class="change" style="color: var(--amber);">▲ +7.2 bps</div>
-    </div>
-
-    <div class="market-card">
-      <div class="label">DXY (Dollar Index)</div>
-      <div class="price">~104.5</div>
-      <div class="change up">▲ +0.3%</div>
+      <div class="label">S&P 500 (Fri Close)</div>
+      <div class="price" style="color: var(--red);">6,740.02</div>
+      <div class="change down">▼ -1.33%</div>
     </div>
 
     <div class="market-card vix-card">
       <div class="label">⚡ VIX (Fear Index)</div>
-      <div class="price">~32</div>
-      <div class="change" style="color: var(--amber);">ELEVATED</div>
+      <div class="price">29.49</div>
+      <div class="change" style="color: var(--amber);">▲ +24.17%</div>
+    </div>
+
+    <div class="market-card">
+      <div class="label">Natural Gas (NG)</div>
+      <div class="price" style="color: var(--green);">$3.47</div>
+      <div class="change up">▲ +8.98%</div>
+    </div>
+
+    <div class="market-card">
+      <div class="label">Gold (GC)</div>
+      <div class="price" style="color: var(--red);">$5,098.20</div>
+      <div class="change down">▼ -1.17%</div>
+    </div>
+
+    <div class="market-card">
+      <div class="label">Silver (SI)</div>
+      <div class="price" style="color: var(--red);">$83.06</div>
+      <div class="change down">▼ -1.48%</div>
+    </div>
+
+    <div class="market-card">
+      <div class="label">Copper (HG)</div>
+      <div class="price" style="color: var(--red);">$5.75</div>
+      <div class="change down">▼ -0.91%</div>
+    </div>
+
+    <div class="market-card">
+      <div class="label">10Y Treasury Yield</div>
+      <div class="price" style="color: var(--text);">4.13%</div>
+      <div class="change down">▼ -0.31%</div>
+    </div>
+
+    <div class="market-card">
+      <div class="label">DXY (Dollar Index)</div>
+      <div class="price">99.53</div>
+      <div class="change up">▲ +0.55%</div>
+    </div>
+
+    <div class="market-card">
+      <div class="label">EUR/USD</div>
+      <div class="price" style="color: var(--red);">1.1500</div>
+      <div class="change down">▼ -0.76%</div>
+    </div>
+
+    <div class="market-card">
+      <div class="label">USD/JPY</div>
+      <div class="price" style="color: var(--green);">158.72</div>
+      <div class="change up">▲ +0.61%</div>
     </div>
 
     <div class="market-card">
       <div class="label">₿ Bitcoin</div>
-      <div class="price" style="color: var(--green);">$67,188</div>
-      <div class="change up">▲ +0.3%</div>
+      <div class="price" style="color: var(--green);">$67,440</div>
+      <div class="change up">▲ +2.22%</div>
     </div>
 
     <div class="market-card">
       <div class="label">Ξ Ethereum</div>
-      <div class="price" style="color: var(--green);">$1,976</div>
-      <div class="change up">▲ +1.4%</div>
+      <div class="price" style="color: var(--green);">$1,984</div>
+      <div class="change up">▲ +2.42%</div>
     </div>
 
     <div class="market-card">
       <div class="label">◎ Solana</div>
-      <div class="price" style="color: var(--green);">$83.21</div>
-      <div class="change up">▲ +0.9%</div>
+      <div class="price" style="color: var(--green);">$83.57</div>
+      <div class="change up">▲ +2.36%</div>
     </div>
 
   </div>
 
-  <!-- ═══════════ OIL CRISIS TRACKER ═══════════ -->
-  <div class="section-title"><span class="icon">🔥</span> Oil Crisis Tracker — Energy Infrastructure Status</div>
+  <!-- ═══════════ ENERGY CRISIS TRACKER ═══════════ -->
+  <div class="section-title"><span class="icon">🔥</span> Energy Crisis Tracker — Infrastructure Status</div>
   <div class="crisis-grid">
 
     <div class="crisis-item">
       <div class="status-dot red"></div>
       <div>
         <div class="crisis-label">Strait of Hormuz</div>
-        <div class="crisis-value red">BLOCKED — Shipping Suspended</div>
+        <div class="crisis-value red">EFFECTIVELY SHUT — Shipping Suspended</div>
       </div>
     </div>
 
@@ -682,16 +793,8 @@
     <div class="crisis-item">
       <div class="status-dot red"></div>
       <div>
-        <div class="crisis-label">Iran Refineries</div>
-        <div class="crisis-value red">BURNING — 4 Storage Facilities Hit by Israel</div>
-      </div>
-    </div>
-
-    <div class="crisis-item">
-      <div class="status-dot red"></div>
-      <div>
-        <div class="crisis-label">Bahrain Desalination</div>
-        <div class="crisis-value red">HIT BY IRANIAN DRONES</div>
+        <div class="crisis-label">Iran Oil Infrastructure</div>
+        <div class="crisis-value red">BURNING — Storage Depots &amp; Refineries Hit by Israel</div>
       </div>
     </div>
 
@@ -699,14 +802,14 @@
       <div class="status-dot red"></div>
       <div>
         <div class="crisis-label">Iraq Crude Output</div>
-        <div class="crisis-value red">DOWN 70%</div>
+        <div class="crisis-value red">DOWN 70% From Pre-War Levels</div>
       </div>
     </div>
 
     <div class="crisis-item">
       <div class="status-dot amber"></div>
       <div>
-        <div class="crisis-label">EU Natural Gas</div>
+        <div class="crisis-label">European Natural Gas</div>
         <div class="crisis-value amber">+60% Since War Began</div>
       </div>
     </div>
@@ -714,8 +817,16 @@
     <div class="crisis-item">
       <div class="status-dot amber"></div>
       <div>
-        <div class="crisis-label">Asian Gas Prices</div>
+        <div class="crisis-label">Asian Natural Gas</div>
         <div class="crisis-value amber">+40% Since War Began</div>
+      </div>
+    </div>
+
+    <div class="crisis-item">
+      <div class="status-dot green"></div>
+      <div>
+        <div class="crisis-label">US LNG Stocks</div>
+        <div class="crisis-value green">SURGING — Cheniere +8%, Venture Global +27%</div>
       </div>
     </div>
 
@@ -744,17 +855,17 @@
 
     <div class="week-item critical">
       <div class="week-date">Mon Mar 9</div>
-      <div class="week-event"><span class="highlight">MARKETS REOPEN</span> — Massive gap expected. Sunday futures already signaling bloodbath. Expect circuit breaker watch at open.</div>
+      <div class="week-event"><span class="highlight">MARKETS REOPEN</span> — Pricing in full weekend escalation. Gap down expected across all indices.</div>
     </div>
 
     <div class="week-item critical">
       <div class="week-date">Wed Mar 11</div>
-      <div class="week-event"><span class="highlight">February CPI</span> — "Most important print of the year" (Goldman). Pre-war inflation data meets wartime oil shock. Stagflation verdict.</div>
+      <div class="week-event"><span class="highlight">🔥🔥🔥 FEBRUARY CPI</span> — THE most important data point. If inflation rising BEFORE oil shock = stagflation confirmed. Goldman: "Most important print of the year."</div>
     </div>
 
     <div class="week-item">
       <div class="week-date">Thu Mar 12</div>
-      <div class="week-event">PPI + Jobless Claims — Producer prices will confirm CPI direction. Claims watched for early labor market cracks.</div>
+      <div class="week-event">PPI + Weekly Jobless Claims — Upstream inflation data + labor market health. Will confirm or deny CPI direction.</div>
     </div>
 
     <div class="week-item">
@@ -775,67 +886,91 @@
 
     <div class="timeline-item">
       <div class="timeline-day">Day 1 — Feb 28</div>
-      <div class="timeline-text">US launches <strong>Operation Iron Forge</strong>. First strikes on Iranian military targets. War officially begins.</div>
+      <div class="timeline-text">US launches <strong>Operation Iron Forge</strong> — airstrikes across 26 of 31 Iranian provinces.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-day">Day 2 — Mar 1</div>
+      <div class="timeline-text"><strong>Khamenei killed</strong> in leadership decapitation strike. Iranian regime thrown into chaos.</div>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-day">Day 3 — Mar 2</div>
-      <div class="timeline-text">Supreme Leader <strong>Khamenei killed</strong>. Iranian leadership decapitated in precision strike. Regime in chaos.</div>
+      <div class="timeline-text">Iran retaliates with <strong>missiles at Gulf bases</strong>. Strait of Hormuz effectively shut down.</div>
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-day">Day 5 — Mar 4</div>
-      <div class="timeline-text"><strong>Strait of Hormuz shipping suspended.</strong> 21% of global oil transit choked off. Tanker companies halt operations.</div>
+      <div class="timeline-day">Days 4–5 — Mar 3–4</div>
+      <div class="timeline-text"><strong>Escalation spiral</strong> — Iran hits Saudi, UAE, Bahrain infrastructure. Regional war expanding.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-day">Day 6 — Mar 5</div>
+      <div class="timeline-text">Oil breaks <strong>$90</strong> for first time since 2022. Global energy markets in crisis mode.</div>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-day">Day 7 — Mar 6</div>
-      <div class="timeline-text">Oil passes <strong>$90</strong> — largest weekly gain in history. Global energy markets in crisis mode. SPR releases announced.</div>
+      <div class="timeline-text">US/Israel expand target list — <strong>IRGC facilities, nuclear sites</strong> hit in expanded campaign.</div>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-day">Day 8 — Mar 7</div>
-      <div class="timeline-text">Israel strikes Lebanon. <strong>300+ killed</strong> in expanded theater. Hezbollah retaliates with rocket barrages into northern Israel.</div>
+      <div class="timeline-text">Israel strikes <strong>Iran oil depots</strong> — first strikes on civilian energy infrastructure. Tehran refineries burning.</div>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-day">Day 9 — Mar 7</div>
-      <div class="timeline-text">Iran hits <strong>Gulf desalination plants</strong> with drones. Israel strikes <strong>Iranian oil storage depots</strong> for first time. Tit-for-tat infrastructure war.</div>
+      <div class="timeline-text">Iran hits <strong>Bahrain desalination plant</strong> — water infrastructure targeted. <strong>US Embassy in Oslo bombed</strong> — war reaches Europe.</div>
     </div>
 
     <div class="timeline-item today">
       <div class="timeline-day">Day 10 — Mar 8 (Today)</div>
       <div class="timeline-text">
-        <strong>Mojtaba Khamenei</strong> named new Supreme Leader. US/Israel special forces reportedly <strong>operating inside Iran</strong>. 
-        <strong>Oslo US Embassy bombed</strong> — war reaches Europe. Iraq crude output <strong>down 70%</strong>. 
-        Oil opens Sunday session at <strong>$116.09</strong> — historic gap. Israel hits 4 Iranian oil storage facilities.
+        <strong>Mojtaba Khamenei</strong> named Supreme Leader successor.
+        Oil <strong>explodes past $115</strong> — largest single-session move in crude futures history.
+        <strong>Dow futures -1,000 pts.</strong> Israel bombs Beirut Ramada Hotel — 4+ killed including IRGC commanders.
+        Iraq output <strong>down 70%</strong>. Kuwait cutting. Saudi casualties reported. China demands immediate ceasefire.
       </div>
     </div>
 
   </div>
 
   <!-- ═══════════ WHAT THIS MEANS ═══════════ -->
-  <div class="section-title"><span class="icon">🧠</span> What This Means — Analysis &amp; Scenarios</div>
+  <div class="section-title"><span class="icon">🧠</span> Why $115 Oil Changes Everything</div>
+
+  <div class="explainer" style="margin-bottom: 24px;">
+    <h3>🛢 The Oil Price Isn't Just a Commodity Number — It's a Tax on the Entire Economy</h3>
+    <p>Every <strong>$10 increase in oil</strong> adds roughly <span class="stat-highlight">+0.3% to headline CPI</span> and subtracts <span class="stat-amber">~0.1% from GDP growth</span>. Oil went from $67 to $115 in 10 days — that's a <strong>~$48 increase</strong>, implying:</p>
+    <p style="padding-left: 16px;">
+      <span class="stat-highlight">+1.4% added to inflation</span> (on top of whatever February CPI shows)<br>
+      <span class="stat-amber">-0.5% drag on GDP growth</span><br>
+      Average US gas price heading toward <strong>$5+/gallon</strong> (from ~$3.20 pre-war)
+    </p>
+    <p>Wednesday's CPI is the <strong>hinge point</strong>: it measures FEBRUARY — <em>before the oil shock</em>. If inflation was ALREADY rising, the Fed is trapped. They can't cut rates (inflation too high) and can't raise rates (economy weakening). <strong>That's stagflation — the worst macro scenario.</strong></p>
+    <p>The <strong>Russell 2000 (-3.72%, worst performer)</strong> tells the real story. Small caps are domestic-focused companies that can't hedge oil costs or pass them through like megacaps. They're the canary in the coal mine for a US recession.</p>
+  </div>
+
   <div class="explainer-grid">
 
     <div class="explainer-card">
       <h4>🛢 Oil → CPI Pipeline</h4>
-      <p>Oil at $116 feeds <strong>directly</strong> into Wednesday's CPI print. If inflation was <em>already</em> rising before this shock, stagflation is confirmed. Every $10 rise in oil adds ~0.3% to headline CPI within 2 months. This is the worst possible setup for the Fed.</p>
+      <p>Oil at $115 feeds <strong>directly</strong> into Wednesday's CPI print. Goldman calls it "the most important print of the year." If inflation was <em>already</em> rising before this shock, stagflation is confirmed. Every $10 rise in oil adds ~0.3% to headline CPI within 2 months.</p>
     </div>
 
     <div class="explainer-card">
       <h4>🏭 Refinery Damage = Months</h4>
-      <p>Destroyed refineries and storage facilities take <strong>months</strong> to repair — even a ceasefire tomorrow won't bring oil prices back quickly. The supply destruction is physical and real. Insurance markets for Gulf shipping are in freefall.</p>
+      <p>Destroyed refineries and storage facilities take <strong>months</strong> to repair — even a ceasefire tomorrow won't bring oil prices back quickly. The supply destruction is physical and real. Iran oil infrastructure is actively burning.</p>
     </div>
 
     <div class="explainer-card">
       <h4>📉 Small Caps Crushed</h4>
-      <p>Russell 2000 down <strong>-3.8%</strong> — hardest hit index. Small caps are the most vulnerable to the recession fears + oil shock combination. These companies can't hedge energy costs like megacaps. Expect more pain ahead.</p>
+      <p>Russell 2000 down <strong>-3.72%</strong> — hardest hit index by far. Small caps are the most vulnerable to the recession + oil shock combination. These companies can't hedge energy costs like megacaps. The canary is choking.</p>
     </div>
 
     <div class="explainer-card">
       <h4>🏦 The Fed Trap</h4>
-      <p>Powell faces an impossible choice: <strong>cut rates</strong> (inflation surges higher) or <strong>hold rates</strong> (economy weakens into recession). Classic stagflation trap. Market pricing emergency cuts — but inflation data may force the Fed's hand the other way.</p>
+      <p>Powell faces an impossible choice: <strong>cut rates</strong> (inflation surges higher) or <strong>hold rates</strong> (economy weakens into recession). Classic stagflation trap. The FOMC decision on Mar 17-18 will define the next quarter.</p>
     </div>
 
     <div class="explainer-card" style="grid-column: 1 / -1;">
@@ -860,7 +995,7 @@
 
   <!-- ═══════════ FOOTER ═══════════ -->
   <footer class="footer">
-    <div class="timestamp">UPDATED: SUN MARCH 8, 2026 — 9:15 PM PDT</div>
+    <div class="timestamp">LAST UPDATED: SUNDAY MARCH 8, 2026 — 9:45 PM PDT</div>
     <div class="credit">Data sources: Futures exchanges, wire services • Dashboard by Chip 🪨</div>
   </footer>
 

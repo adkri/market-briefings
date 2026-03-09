@@ -3,500 +3,689 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chip Intelligence Terminal — Market Briefing</title>
+<title>MARKET BRIEFING — Mar 9, 2026</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
 tailwind.config = {
   theme: {
     extend: {
       colors: {
-        bg: '#0a0a0f', card: '#12121a', border: '#1e1e2e',
-        pos: '#00ff88', neg: '#ff3b5c', warn: '#ffb800', info: '#00d4ff',
-        muted: '#6b7280', dim: '#2a2a3a'
+        bg: '#0a0a0f',
+        card: '#12121a',
+        border: '#1e1e2e',
+        pos: '#00ff88',
+        neg: '#ff3b5c',
+        warn: '#ffb800',
+        info: '#00d4ff',
+        muted: '#6b7280',
       },
-      fontFamily: { mono: ['JetBrains Mono', 'monospace'] }
+      fontFamily: {
+        mono: ['JetBrains Mono', 'monospace'],
+      }
     }
   }
 }
 </script>
 <style>
-  * { font-family: 'JetBrains Mono', monospace; }
-  body { background: #0a0a0f; }
-  .scanline { pointer-events: none; position: fixed; inset: 0; z-index: 50;
-    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 2px);
-  }
-  .glow-green { box-shadow: 0 0 15px rgba(0,255,136,0.08), inset 0 1px 0 rgba(0,255,136,0.05); }
-  .glow-red { box-shadow: 0 0 20px rgba(255,59,92,0.12), inset 0 1px 0 rgba(255,59,92,0.08); }
-  .glow-amber { box-shadow: 0 0 15px rgba(255,184,0,0.1), inset 0 1px 0 rgba(255,184,0,0.05); }
-  .glow-cyan { box-shadow: 0 0 15px rgba(0,212,255,0.08), inset 0 1px 0 rgba(0,212,255,0.05); }
-  @keyframes pulse-red { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-  @keyframes slide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  .pulse-dot { animation: pulse-red 1.2s ease-in-out infinite; }
-  .ticker-scroll { animation: slide 30s linear infinite; }
-  .card { background: #12121a; border: 1px solid #1e1e2e; border-radius: 8px; transition: border-color 0.2s; }
-  .card:hover { border-color: #2e2e4e; }
-  .threat-gradient {
-    background: linear-gradient(90deg, #00ff88 0%, #ffb800 40%, #ff6b35 65%, #ff3b5c 85%, #ff0040 100%);
-  }
-  .oil-range-bar {
-    background: linear-gradient(90deg, #00ff88, #ffb800, #ff3b5c);
-    border-radius: 4px; height: 6px;
-  }
-  @keyframes banner-glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(255,59,92,0.2); }
-    50% { box-shadow: 0 0 40px rgba(255,59,92,0.4); }
-  }
-  .crisis-banner { animation: banner-glow 2s ease-in-out infinite; }
-  .heatmap-cell { border-radius: 4px; padding: 6px 10px; font-size: 0.7rem; text-align: center; }
+* { font-family: 'JetBrains Mono', monospace; }
+body { background: #0a0a0f; color: #e0e0e0; }
+
+/* Scanline overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Pulsing red dot */
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,59,92,0.7); }
+  50% { box-shadow: 0 0 0 8px rgba(255,59,92,0); }
+}
+.pulse-red { animation: pulse-red 1.5s infinite; }
+
+@keyframes pulse-amber {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,184,0,0.7); }
+  50% { box-shadow: 0 0 0 8px rgba(255,184,0,0); }
+}
+.pulse-amber { animation: pulse-amber 1.5s infinite; }
+
+/* Glow effects */
+.glow-red { text-shadow: 0 0 10px rgba(255,59,92,0.5); }
+.glow-green { text-shadow: 0 0 10px rgba(0,255,136,0.5); }
+.glow-amber { text-shadow: 0 0 10px rgba(255,184,0,0.5); }
+.glow-cyan { text-shadow: 0 0 10px rgba(0,212,255,0.5); }
+
+/* Ticker scroll */
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-track { animation: ticker-scroll 40s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
+
+/* Card hover */
+.metric-card {
+  transition: all 0.2s ease;
+  border: 1px solid #1e1e2e;
+}
+.metric-card:hover {
+  border-color: #2a2a3e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Crisis banner flash */
+@keyframes flash-border {
+  0%, 100% { border-color: rgba(255,59,92,0.3); }
+  50% { border-color: rgba(255,59,92,0.8); }
+}
+.flash-border { animation: flash-border 2s ease-in-out infinite; }
+
+/* Oil range bar gradient */
+.oil-range-bar {
+  background: linear-gradient(90deg, #00ff88 0%, #ffb800 40%, #ff3b5c 70%, #ff3b5c 100%);
+}
+
+/* Timeline line */
+.timeline-line {
+  background: linear-gradient(180deg, #ff3b5c, #ffb800, #00d4ff);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0a0f; }
+::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #2a2a3e; }
+
+/* Critical badge pulse */
+@keyframes crit-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.crit-pulse { animation: crit-pulse 0.8s ease-in-out infinite; }
+
+/* Flicker for reversal label */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.3; }
+  94% { opacity: 1; }
+  96% { opacity: 0.3; }
+  97% { opacity: 1; }
+}
+.flicker { animation: flicker 4s linear infinite; }
 </style>
 </head>
-<body class="text-gray-200 min-h-screen">
-<div class="scanline"></div>
+<body class="min-h-screen">
 
-<div class="max-w-7xl mx-auto px-3 sm:px-4 py-3">
-
-  <!-- CRISIS BANNER -->
-  <div class="crisis-banner bg-gradient-to-r from-red-950/60 via-red-900/40 to-red-950/60 border border-neg/30 rounded-lg px-4 py-2.5 mb-4 flex items-center justify-between flex-wrap gap-2">
+<!-- ==================== CRISIS BANNER ==================== -->
+<div class="flash-border border-b-2 bg-gradient-to-r from-[#1a0a0a] via-[#0a0a0f] to-[#1a1000]">
+  <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between flex-wrap gap-2">
     <div class="flex items-center gap-3">
-      <span class="pulse-dot inline-block w-2.5 h-2.5 rounded-full bg-neg"></span>
-      <span class="text-neg font-bold text-sm tracking-wider uppercase">⚠ ACTIVE CONFLICT — IRAN WAR DAY 10</span>
+      <span class="relative flex h-3 w-3">
+        <span class="pulse-red absolute inline-flex h-full w-full rounded-full bg-neg"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-neg"></span>
+      </span>
+      <span class="text-neg font-bold text-sm tracking-widest glow-red">⚠ IRAN WAR — DAY 10</span>
     </div>
-    <div class="flex items-center gap-4 text-xs text-muted">
-      <span>THREAT: <span class="text-warn font-semibold">HIGH</span></span>
-      <span class="text-dim">│</span>
-      <span>OIL: <span class="text-neg font-semibold">VOLATILE</span></span>
-      <span class="text-dim">│</span>
-      <span>CPI WED: <span class="text-warn font-semibold">CRITICAL</span></span>
+    <div class="flex items-center gap-3">
+      <span class="relative flex h-3 w-3">
+        <span class="pulse-amber absolute inline-flex h-full w-full rounded-full bg-warn"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-warn"></span>
+      </span>
+      <span class="text-warn font-bold text-sm tracking-widest glow-amber flicker">▼ OIL REVERSAL — WTI $119→$85</span>
     </div>
+    <div class="text-xs text-muted tracking-wider">LIVE SESSION</div>
   </div>
+</div>
 
-  <!-- HEADER -->
-  <div class="flex items-end justify-between mb-4 flex-wrap gap-2">
-    <div>
-      <h1 class="text-lg sm:text-xl font-bold text-info tracking-tight">MARKET BRIEFING</h1>
-      <p class="text-xs text-muted mt-0.5">Mar 9, 2026 12:15 PM PDT — Day 10 — Iran War</p>
-    </div>
-    <div class="text-right text-xs text-muted">
-      <div>SESSION: <span class="text-pos">LIVE</span></div>
-      <div class="text-[10px]">US MARKETS OPEN</div>
-    </div>
-  </div>
-
-  <!-- HEADLINE TICKER -->
-  <div class="overflow-hidden mb-4 border-y border-border py-1.5 bg-card/50 rounded">
-    <div class="ticker-scroll whitespace-nowrap text-xs text-muted flex gap-8" style="width: max-content;">
-      <span>📉 <span class="text-warn">Stocks pare losses as oil falls back below $100; Dow is down 350 points</span> — CNBC</span>
-      <span>🛢️ <span class="text-neg">Oil Tops $110 as Iran War Forces More Gulf Giants to Cut Output</span> — Bloomberg</span>
-      <span>🌍 <span class="text-info">G7 to take 'necessary measures' to support energy supplies</span> — BBC</span>
-      <span>📊 <span class="text-warn">Why has the Iran war sparked fears of stagflation?</span> — The Guardian</span>
-      <span>🇮🇷 <span class="text-neg">Mojtaba Khamenei named new Supreme Leader — hardliner, IRGC-connected</span></span>
-      <span>🛡️ <span class="text-info">NATO shot down an Iranian missile over Turkey</span></span>
-      <span>⚔️ <span class="text-neg">7 US service members killed — Trump considering special forces inside Iran</span></span>
-      <span>📉 <span class="text-warn">Stocks pare losses as oil falls back below $100</span> — CNBC</span>
-      <span>🛢️ <span class="text-neg">Oil Tops $110 as Iran War Forces More Gulf Giants to Cut Output</span> — Bloomberg</span>
-    </div>
-  </div>
-
-  <!-- US MARKETS GRID -->
-  <div class="mb-4">
-    <div class="text-[10px] text-muted uppercase tracking-widest mb-2 flex items-center gap-2">
-      <span class="w-1.5 h-1.5 bg-info rounded-full"></span> US Indices — Live Session
-    </div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-      <!-- S&P 500 -->
-      <div class="card p-3 glow-green">
-        <div class="text-[10px] text-muted mb-1">S&P 500</div>
-        <div class="text-lg font-bold text-white">6,716.15</div>
-        <div class="text-sm font-semibold text-pos">▲ +0.93%</div>
-        <div class="text-[9px] text-muted mt-1">L: 6,636 · H: 6,735</div>
-      </div>
-      <!-- Nasdaq -->
-      <div class="card p-3 glow-green">
-        <div class="text-[10px] text-muted mb-1">NASDAQ 100</div>
-        <div class="text-lg font-bold text-white">24,638.86</div>
-        <div class="text-sm font-semibold text-pos">▲ +1.0%</div>
-        <div class="text-[9px] text-muted mt-1">Tech leading recovery</div>
-      </div>
-      <!-- Dow -->
-      <div class="card p-3 glow-green">
-        <div class="text-[10px] text-muted mb-1">DOW JONES</div>
-        <div class="text-lg font-bold text-white">47,230</div>
-        <div class="text-sm font-semibold text-pos">▲ +0.15%</div>
-        <div class="text-[9px] text-muted mt-1">Paring losses</div>
-      </div>
-      <!-- VIX -->
-      <div class="card p-3 glow-amber">
-        <div class="text-[10px] text-muted mb-1">VIX</div>
-        <div class="text-lg font-bold text-warn">27.22</div>
-        <div class="text-sm font-semibold text-pos">▼ -7.5%</div>
-        <div class="text-[9px] text-muted mt-1">H: 31.84 · L: 26.39</div>
-      </div>
-      <!-- Russell -->
-      <div class="card p-3 glow-green">
-        <div class="text-[10px] text-muted mb-1">RUSSELL 2000</div>
-        <div class="text-lg font-bold text-white">2,495</div>
-        <div class="text-sm font-semibold text-neg">▼ -0.14%</div>
-        <div class="text-[9px] text-muted mt-1">Small caps lagging</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- OIL SPOTLIGHT -->
-  <div class="card glow-red border-neg/30 p-4 mb-4">
-    <div class="flex items-start justify-between flex-wrap gap-3">
+<!-- ==================== HEADER ==================== -->
+<header class="border-b border-border">
+  <div class="max-w-7xl mx-auto px-4 py-4">
+    <div class="flex items-center justify-between flex-wrap gap-2">
       <div>
-        <div class="text-[10px] text-neg uppercase tracking-widest mb-1 flex items-center gap-2">
-          <span class="pulse-dot inline-block w-1.5 h-1.5 rounded-full bg-neg"></span> OIL SPOTLIGHT — WTI CRUDE
-        </div>
-        <div class="flex items-baseline gap-3">
-          <span class="text-3xl font-bold text-white">~$98</span>
-          <span class="text-lg font-semibold text-pos">▼ from $117 high</span>
-        </div>
-        <p class="text-xs text-muted mt-1">Still +44% from pre-war $68 — <span class="text-warn font-medium">massive reversal from overnight panic</span></p>
+        <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-white">MARKET <span class="text-info glow-cyan">BRIEFING</span></h1>
+        <p class="text-xs text-muted mt-1 tracking-wider">Mar 9, 2026 12:45 PM PDT — Day 10 — Iran-US/Israel Conflict</p>
       </div>
       <div class="text-right">
-        <div class="text-[10px] text-muted mb-1">INTRADAY RANGE</div>
-        <div class="flex items-center gap-2 text-xs">
-          <span class="text-pos font-medium">~$92</span>
-          <div class="w-32 sm:w-48"><div class="oil-range-bar w-full relative">
-            <div class="absolute -top-4 text-[9px] text-warn font-bold" style="left:25%">▼ ~$98</div>
-          </div></div>
-          <span class="text-neg font-medium">$117</span>
-        </div>
-        <div class="text-[9px] text-muted mt-2">$25+ intraday swing</div>
-      </div>
-    </div>
-    <div class="mt-3 pt-3 border-t border-border text-xs text-muted leading-relaxed">
-      <span class="text-warn">WHY THE PULLBACK:</span> (1) G7 SPR release speculation (2) Profit-taking after overnight $117 panic spike (3) Hope that extreme prices force diplomatic channels open
-    </div>
-  </div>
-
-  <!-- THREE COLUMN: COMMODITIES / BONDS & FX / CRYPTO -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
-    <!-- Commodities -->
-    <div class="card p-3">
-      <div class="text-[10px] text-warn uppercase tracking-widest mb-2 flex items-center gap-2">
-        <span class="w-1.5 h-1.5 bg-warn rounded-full"></span> Commodities
-      </div>
-      <div class="space-y-2">
-        <div class="flex justify-between items-center">
-          <span class="text-xs text-muted">Oil WTI</span>
-          <div class="text-right"><span class="text-sm font-semibold text-white">~$98</span> <span class="text-xs text-neg ml-1">+44% from pre-war</span></div>
-        </div>
-        <div class="flex justify-between items-center">
-          <span class="text-xs text-muted">Gold</span>
-          <div class="text-right"><span class="text-sm font-semibold text-white">$5,107</span> <span class="text-xs text-neg ml-1">-0.1%</span></div>
-        </div>
-        <div class="flex justify-between items-center">
-          <span class="text-xs text-muted">Natural Gas</span>
-          <div class="text-right"><span class="text-sm font-semibold text-white">$3.25</span> <span class="text-xs text-pos ml-1">+2.1%</span></div>
-        </div>
-      </div>
-    </div>
-    <!-- Bonds & FX -->
-    <div class="card p-3">
-      <div class="text-[10px] text-info uppercase tracking-widest mb-2 flex items-center gap-2">
-        <span class="w-1.5 h-1.5 bg-info rounded-full"></span> Bonds & FX
-      </div>
-      <div class="space-y-2">
-        <div class="flex justify-between items-center">
-          <span class="text-xs text-muted">10Y Yield</span>
-          <div class="text-right"><span class="text-sm font-semibold text-white">4.136%</span> <span class="text-xs text-neg ml-1">+0.6 bps</span></div>
-        </div>
-        <div class="flex justify-between items-center">
-          <span class="text-xs text-muted">DXY</span>
-          <div class="text-right"><span class="text-sm font-semibold text-white">99.30</span> <span class="text-xs text-pos ml-1">+0.3%</span></div>
-        </div>
-        <div class="flex justify-between items-center">
-          <span class="text-xs text-muted">USD/JPY</span>
-          <div class="text-right"><span class="text-sm font-semibold text-white">158.38</span> <span class="text-xs text-pos ml-1">+0.39%</span></div>
-        </div>
-        <div class="flex justify-between items-center">
-          <span class="text-xs text-muted">EUR/USD</span>
-          <div class="text-right"><span class="text-sm font-semibold text-white">1.16</span> <span class="text-xs text-neg ml-1">-0.34%</span></div>
-        </div>
-      </div>
-    </div>
-    <!-- Crypto -->
-    <div class="card p-3">
-      <div class="text-[10px] text-purple-400 uppercase tracking-widest mb-2 flex items-center gap-2">
-        <span class="w-1.5 h-1.5 bg-purple-400 rounded-full"></span> Crypto
-      </div>
-      <div class="space-y-2">
-        <div class="flex justify-between items-center">
-          <span class="text-xs text-muted">BTC</span>
-          <div class="text-right"><span class="text-sm font-semibold text-white">$68,508</span> <span class="text-xs text-pos ml-1">+1.7%</span></div>
-        </div>
-        <div class="flex justify-between items-center">
-          <span class="text-xs text-muted">ETH</span>
-          <div class="text-right"><span class="text-sm font-semibold text-white">$2,013.80</span> <span class="text-xs text-pos ml-1">+3.5%</span></div>
-        </div>
-        <div class="mt-2 pt-2 border-t border-border text-[10px] text-muted">Crypto steady — outperforming equities today</div>
+        <div class="text-xs text-muted">UPDATED</div>
+        <div class="text-sm text-info font-semibold">19:45 UTC</div>
       </div>
     </div>
   </div>
+</header>
 
-  <!-- SECTOR HEATMAP + GLOBAL MARKETS -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-4">
-    <!-- Sector Heatmap -->
-    <div class="card p-3">
-      <div class="text-[10px] text-info uppercase tracking-widest mb-3 flex items-center gap-2">
-        <span class="w-1.5 h-1.5 bg-info rounded-full"></span> Sector Heatmap
-      </div>
-      <div class="grid grid-cols-3 gap-1.5">
-        <div class="heatmap-cell bg-green-900/30 border border-green-800/30">
-          <div class="text-[10px] text-muted">Energy</div>
-          <div class="text-xs font-bold text-pos">XLE +0.5%</div>
-        </div>
-        <div class="heatmap-cell bg-red-900/30 border border-red-800/30">
-          <div class="text-[10px] text-muted">Defense</div>
-          <div class="text-xs font-bold text-neg">ITA -1.0%</div>
-        </div>
-        <div class="heatmap-cell bg-red-900/40 border border-red-800/30">
-          <div class="text-[10px] text-muted">Airlines</div>
-          <div class="text-xs font-bold text-neg">JETS -2.1%</div>
-        </div>
-        <div class="heatmap-cell bg-red-900/20 border border-red-800/20">
-          <div class="text-[10px] text-muted">Cons. Disc.</div>
-          <div class="text-xs font-bold text-neg">XLY -0.8%</div>
-        </div>
-        <div class="heatmap-cell bg-green-900/20 border border-green-800/20">
-          <div class="text-[10px] text-muted">Utilities</div>
-          <div class="text-xs font-bold text-pos">XLU +0.3%</div>
-        </div>
-        <div class="heatmap-cell bg-green-900/30 border border-green-800/30">
-          <div class="text-[10px] text-muted">Tech</div>
-          <div class="text-xs font-bold text-pos">NDX +1.0%</div>
-        </div>
-      </div>
-      <div class="text-[9px] text-muted mt-2">Markets recovering — tech & energy green, airlines still hit hardest by oil.</div>
-    </div>
-    <!-- Global Markets -->
-    <div class="card p-3">
-      <div class="text-[10px] text-warn uppercase tracking-widest mb-3 flex items-center gap-2">
-        <span class="w-1.5 h-1.5 bg-warn rounded-full"></span> Global Markets
-      </div>
-      <div class="space-y-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <span class="text-xs text-white">🇯🇵 Nikkei 225</span>
-          </div>
-          <div class="text-right">
-            <span class="text-sm font-bold text-neg">-5% to -7%</span>
-            <div class="text-[9px] text-neg">Crashed overnight</div>
-          </div>
-        </div>
-        <div class="flex justify-between items-center">
-          <div>
-            <span class="text-xs text-white">🇰🇷 KOSPI</span>
-          </div>
-          <div class="text-right">
-            <span class="text-sm font-bold text-neg">-8%</span>
-            <div class="text-[9px] text-neg">⚠ CIRCUIT BREAKER</div>
-          </div>
-        </div>
-        <div class="flex justify-between items-center">
-          <div>
-            <span class="text-xs text-white">🇪🇺 Europe</span>
-          </div>
-          <div class="text-right">
-            <span class="text-sm font-bold text-warn">-2% to -3%</span>
-            <div class="text-[9px] text-muted">Now stabilizing</div>
-          </div>
-        </div>
-      </div>
-      <div class="mt-2 pt-2 border-t border-border text-[9px] text-muted">Asia took the worst of it. KOSPI circuit breakers at -8% — first since COVID crash.</div>
-    </div>
+<!-- ==================== TICKER STRIP ==================== -->
+<div class="border-b border-border overflow-hidden bg-[#0d0d14]">
+  <div class="ticker-track flex whitespace-nowrap py-2 text-xs font-medium" style="width: max-content;">
+    <!-- Repeat twice for seamless loop -->
+    <span class="mx-6">S&P 500 <span class="text-pos">6,793.84</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">NASDAQ <span class="text-pos">22,665.73</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">DOW <span class="text-pos">47,746.90</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">VIX <span class="text-warn">25.35</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">WTI <span class="text-neg">$84.86 ▼10.46%</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">GOLD <span class="text-neg">$5,095.90 ▼0.98%</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">BTC <span class="text-pos">$68,902 ▲2.28%</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">10Y <span class="text-info">4.136%</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">EUR/USD <span class="text-neg">1.16 ▼0.31%</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">BRENT <span class="text-neg">$88.35 ▼4.68%</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">NIKKEI <span class="text-neg">52,728</span></span>
+    <span class="text-border">│</span>
+    <!-- Duplicate for seamless -->
+    <span class="mx-6">S&P 500 <span class="text-pos">6,793.84</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">NASDAQ <span class="text-pos">22,665.73</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">DOW <span class="text-pos">47,746.90</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">VIX <span class="text-warn">25.35</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">WTI <span class="text-neg">$84.86 ▼10.46%</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">GOLD <span class="text-neg">$5,095.90 ▼0.98%</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">BTC <span class="text-pos">$68,902 ▲2.28%</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">10Y <span class="text-info">4.136%</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">EUR/USD <span class="text-neg">1.16 ▼0.31%</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">BRENT <span class="text-neg">$88.35 ▼4.68%</span></span>
+    <span class="text-border">│</span>
+    <span class="mx-6">NIKKEI <span class="text-neg">52,728</span></span>
+    <span class="text-border">│</span>
   </div>
-
-  <!-- THREAT METER -->
-  <div class="card p-3 mb-4 glow-amber">
-    <div class="text-[10px] text-warn uppercase tracking-widest mb-2 flex items-center gap-2">
-      <span class="w-1.5 h-1.5 bg-warn rounded-full"></span> Crisis Threat Level
-    </div>
-    <div class="relative">
-      <div class="threat-gradient w-full h-3 rounded-full opacity-80"></div>
-      <div class="absolute top-0 h-3 flex items-center" style="left: 68%;">
-        <div class="w-0.5 h-5 bg-white rounded -mt-1 shadow-lg shadow-white/30"></div>
-      </div>
-      <div class="absolute -top-5 text-[9px] font-bold text-warn" style="left: 65%;">← HIGH</div>
-    </div>
-    <div class="flex justify-between text-[9px] text-muted mt-1">
-      <span>LOW</span>
-      <span>MODERATE</span>
-      <span>ELEVATED</span>
-      <span class="text-warn font-bold">HIGH</span>
-      <span>EXTREME</span>
-    </div>
-    <div class="text-[10px] text-muted mt-2">US equities recovering from overnight panic. VIX easing below 28. Oil still +44% from pre-war but well off $117 highs. Wed CPI remains the key risk.</div>
-  </div>
-
-  <!-- WAR TIMELINE + WEEK AHEAD -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-4">
-    <!-- War Timeline -->
-    <div class="card p-3">
-      <div class="text-[10px] text-neg uppercase tracking-widest mb-3 flex items-center gap-2">
-        <span class="pulse-dot inline-block w-1.5 h-1.5 rounded-full bg-neg"></span> War Timeline — Day 10 Key Events
-      </div>
-      <div class="space-y-3 relative pl-4 border-l border-neg/30">
-        <div class="relative">
-          <div class="absolute -left-[21px] w-2.5 h-2.5 rounded-full bg-neg border-2 border-bg"></div>
-          <div class="text-[10px] text-neg font-medium">OVERNIGHT</div>
-          <div class="text-xs text-gray-300">Mojtaba Khamenei named new Supreme Leader — hardliner with deep IRGC connections</div>
-        </div>
-        <div class="relative">
-          <div class="absolute -left-[21px] w-2.5 h-2.5 rounded-full bg-neg border-2 border-bg"></div>
-          <div class="text-[10px] text-neg font-medium">OVERNIGHT</div>
-          <div class="text-xs text-gray-300">NATO intercepts Iranian missile over Turkish airspace</div>
-        </div>
-        <div class="relative">
-          <div class="absolute -left-[21px] w-2.5 h-2.5 rounded-full bg-warn border-2 border-bg"></div>
-          <div class="text-[10px] text-warn font-medium">MORNING</div>
-          <div class="text-xs text-gray-300">7 US service members confirmed killed — Trump considering spec ops inside Iran</div>
-        </div>
-        <div class="relative">
-          <div class="absolute -left-[21px] w-2.5 h-2.5 rounded-full bg-pos border-2 border-bg"></div>
-          <div class="text-[10px] text-pos font-medium">MIDDAY</div>
-          <div class="text-xs text-gray-300">Oil reverses from $117 → ~$98 — biggest intraday swing in years. S&P turns positive +0.9%. G7 SPR release expected.</div>
-        </div>
-        <div class="relative">
-          <div class="absolute -left-[21px] w-2.5 h-2.5 rounded-full bg-info border-2 border-bg"></div>
-          <div class="text-[10px] text-info font-medium">MIDDAY</div>
-          <div class="text-xs text-gray-300">G7 announces emergency energy meeting for tomorrow. "Necessary measures" pledged.</div>
-        </div>
-      </div>
-    </div>
-    <!-- Week Ahead -->
-    <div class="card p-3">
-      <div class="text-[10px] text-info uppercase tracking-widest mb-3 flex items-center gap-2">
-        <span class="w-1.5 h-1.5 bg-info rounded-full"></span> Week Ahead — Critical Calendar
-      </div>
-      <div class="space-y-2">
-        <div class="flex items-start gap-3 p-2 rounded bg-card border border-border">
-          <div class="text-[10px] text-muted w-16 shrink-0 pt-0.5">TUE 3/10</div>
-          <div>
-            <div class="text-xs text-warn font-medium">G7 Emergency Energy Meeting</div>
-            <div class="text-[10px] text-muted">SPR release coordination, energy supply measures</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3 p-2 rounded bg-red-950/30 border border-neg/40 glow-red">
-          <div class="text-[10px] text-neg w-16 shrink-0 pt-0.5 font-bold">WED 3/11</div>
-          <div>
-            <div class="text-xs text-neg font-bold flex items-center gap-1">
-              <span class="pulse-dot inline-block w-1.5 h-1.5 rounded-full bg-neg"></span>
-              February CPI — MOST IMPORTANT NUMBER OF 2026
-            </div>
-            <div class="text-[10px] text-muted">Stagflation verdict. If hot → market panic. If cool → massive relief rally.</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3 p-2 rounded bg-card border border-border">
-          <div class="text-[10px] text-muted w-16 shrink-0 pt-0.5">THU 3/12</div>
-          <div>
-            <div class="text-xs text-gray-300 font-medium">PPI + Jobless Claims</div>
-            <div class="text-[10px] text-muted">Producer prices & employment data</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3 p-2 rounded bg-card border border-border">
-          <div class="text-[10px] text-muted w-16 shrink-0 pt-0.5">FRI 3/13</div>
-          <div>
-            <div class="text-xs text-gray-300 font-medium">UMich Consumer Sentiment</div>
-            <div class="text-[10px] text-muted">Consumer confidence amid crisis</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3 p-2 rounded bg-card border border-warn/20">
-          <div class="text-[10px] text-warn w-16 shrink-0 pt-0.5">3/17-18</div>
-          <div>
-            <div class="text-xs text-warn font-medium">FOMC Rate Decision</div>
-            <div class="text-[10px] text-muted">Fed trapped between inflation & growth slowdown</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ENERGY CRISIS TRACKER -->
-  <div class="card p-3 mb-4">
-    <div class="text-[10px] text-warn uppercase tracking-widest mb-3 flex items-center gap-2">
-      <span class="w-1.5 h-1.5 bg-warn rounded-full"></span> Energy Crisis Tracker — Oil Price Trajectory
-    </div>
-    <div class="flex items-end gap-1 h-24 px-2">
-      <div class="flex flex-col items-center flex-1">
-        <div class="text-[8px] text-muted mb-1">PRE-WAR</div>
-        <div class="w-full bg-pos/30 rounded-t" style="height: 30px;"></div>
-        <div class="text-[9px] text-pos mt-1">~$68</div>
-      </div>
-      <div class="flex flex-col items-center flex-1">
-        <div class="text-[8px] text-muted mb-1">DAY 1</div>
-        <div class="w-full bg-warn/40 rounded-t" style="height: 44px;"></div>
-        <div class="text-[9px] text-warn mt-1">~$82</div>
-      </div>
-      <div class="flex flex-col items-center flex-1">
-        <div class="text-[8px] text-muted mb-1">DAY 3</div>
-        <div class="w-full bg-warn/50 rounded-t" style="height: 52px;"></div>
-        <div class="text-[9px] text-warn mt-1">~$90</div>
-      </div>
-      <div class="flex flex-col items-center flex-1">
-        <div class="text-[8px] text-muted mb-1">DAY 7</div>
-        <div class="w-full bg-neg/40 rounded-t" style="height: 62px;"></div>
-        <div class="text-[9px] text-neg mt-1">~$105</div>
-      </div>
-      <div class="flex flex-col items-center flex-1">
-        <div class="text-[8px] text-neg font-bold mb-1">FRI CLOSE</div>
-        <div class="w-full bg-neg/60 rounded-t" style="height: 72px;"></div>
-        <div class="text-[9px] text-neg mt-1">~$116</div>
-      </div>
-      <div class="flex flex-col items-center flex-1">
-        <div class="text-[8px] text-warn font-bold mb-1">TODAY HI</div>
-        <div class="w-full bg-neg/70 rounded-t" style="height: 74px;"></div>
-        <div class="text-[9px] text-neg mt-1">$116.77</div>
-      </div>
-      <div class="flex flex-col items-center flex-1 relative">
-        <div class="text-[8px] text-pos font-bold mb-1">NOW</div>
-        <div class="w-full bg-pos/40 rounded-t border-2 border-pos/60" style="height: 55px;"></div>
-        <div class="text-[9px] text-pos font-bold mt-1">~$98</div>
-      </div>
-    </div>
-    <div class="text-[9px] text-muted mt-2 text-center">+44% from pre-war levels — pulled back sharply from $117 overnight high</div>
-  </div>
-
-  <!-- WHAT THIS MEANS -->
-  <div class="card p-4 mb-4 glow-cyan">
-    <div class="text-[10px] text-info uppercase tracking-widest mb-3 flex items-center gap-2">
-      <span class="w-1.5 h-1.5 bg-info rounded-full"></span> Analysis — What This Means
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <div class="p-3 rounded bg-bg/50 border border-border">
-        <div class="text-xs font-bold text-warn mb-1">🛢️ Oil Pullback Is a Relief, Not Resolution</div>
-        <div class="text-[11px] text-gray-400 leading-relaxed">The $117→$98 reversal is dramatic but oil is still +44% from pre-war. No ceasefire, new hardline Supreme Leader, Gulf output still disrupted. SPR releases buy weeks, not months.</div>
-      </div>
-      <div class="p-3 rounded bg-bg/50 border border-border">
-        <div class="text-xs font-bold text-neg mb-1">📊 Wednesday CPI Is Make-or-Break</div>
-        <div class="text-[11px] text-gray-400 leading-relaxed">February CPI was measured before the war — so it's the last "clean" read. If inflation is already hot, stagflation fears become a reality. If tame, markets get breathing room.</div>
-      </div>
-      <div class="p-3 rounded bg-bg/50 border border-border">
-        <div class="text-xs font-bold text-info mb-1">🌏 Asia Panic Was the Canary</div>
-        <div class="text-[11px] text-gray-400 leading-relaxed">Nikkei -5%+ and KOSPI circuit breakers show what happens when oil hits $115+. US session has recovered but the damage template is set — next oil spike = repeat.</div>
-      </div>
-      <div class="p-3 rounded bg-bg/50 border border-border">
-        <div class="text-xs font-bold text-pos mb-1">💡 G7 Response Is the Key Variable</div>
-        <div class="text-[11px] text-gray-400 leading-relaxed">Tomorrow's G7 emergency energy meeting is crucial. Coordinated SPR release + diplomatic pressure could cap oil below $100. Failure to act → $120+ by end of week.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="border-t border-border pt-3 pb-6 flex items-center justify-between text-[10px] text-muted">
-    <div class="flex items-center gap-2">
-      <span class="text-base">🪨</span>
-      <span class="font-bold text-info tracking-wider">CHIP INTELLIGENCE TERMINAL</span>
-    </div>
-    <div class="text-right">
-      <div>LAST UPDATE: Mar 9, 2026 12:15 PM PDT</div>
-      <div class="text-[9px]">Data for informational purposes only. Not financial advice.</div>
-    </div>
-  </div>
-
 </div>
+
+<main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
+
+<!-- ==================== PRIMARY METRICS GRID ==================== -->
+<section>
+  <div class="flex items-center gap-2 mb-4">
+    <div class="h-px flex-1 bg-border"></div>
+    <span class="text-xs text-muted tracking-widest">US EQUITIES & KEY ASSETS</span>
+    <div class="h-px flex-1 bg-border"></div>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+    <!-- S&P 500 -->
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">S&P 500</div>
+      <div class="text-xl font-bold text-pos glow-green">6,793.84</div>
+      <div class="text-xs text-pos mt-1">▲ Recovering</div>
+      <div class="text-[10px] text-muted mt-1">Was -3% pre-mkt</div>
+    </div>
+    <!-- Nasdaq -->
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">NASDAQ</div>
+      <div class="text-xl font-bold text-pos glow-green">22,665.73</div>
+      <div class="text-xs text-pos mt-1">▲ Recovering</div>
+      <div class="text-[10px] text-muted mt-1">Bounced off lows</div>
+    </div>
+    <!-- Dow -->
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">DOW 30</div>
+      <div class="text-xl font-bold text-pos glow-green">47,746.90</div>
+      <div class="text-xs text-pos mt-1">▲ Recovering</div>
+      <div class="text-[10px] text-muted mt-1">Industrials lead</div>
+    </div>
+    <!-- VIX -->
+    <div class="metric-card bg-card rounded-lg p-4 border-warn/30">
+      <div class="text-xs text-muted mb-1">VIX</div>
+      <div class="text-xl font-bold text-warn glow-amber">25.35</div>
+      <div class="text-xs text-pos mt-1">▼ from 31+ pre-mkt</div>
+      <div class="text-[10px] text-muted mt-1">Fear receding</div>
+    </div>
+    <!-- WTI -->
+    <div class="metric-card bg-card rounded-lg p-4 border-neg/30">
+      <div class="text-xs text-muted mb-1">WTI CRUDE</div>
+      <div class="text-xl font-bold text-neg glow-red">$84.86</div>
+      <div class="text-xs text-neg mt-1">▼ 10.46%</div>
+      <div class="text-[10px] text-warn mt-1">From $119.48 high</div>
+    </div>
+    <!-- Gold -->
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">GOLD</div>
+      <div class="text-xl font-bold text-neg">$5,095.90</div>
+      <div class="text-xs text-neg mt-1">▼ 0.98%</div>
+      <div class="text-[10px] text-muted mt-1">COMEX futures</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== OIL CRISIS TRACKER ==================== -->
+<section>
+  <div class="flex items-center gap-2 mb-4">
+    <div class="h-px flex-1 bg-border"></div>
+    <span class="text-xs text-warn tracking-widest font-bold">⚡ OIL CRISIS TRACKER — HISTORIC REVERSAL</span>
+    <div class="h-px flex-1 bg-border"></div>
+  </div>
+  <div class="bg-card rounded-lg border border-warn/30 p-5">
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Range visualization -->
+      <div>
+        <div class="text-sm text-warn font-semibold mb-3 glow-amber">WTI CRUDE — INTRADAY RANGE</div>
+        <!-- Labels -->
+        <div class="flex justify-between text-[10px] text-muted mb-1">
+          <span>52-WK LOW</span>
+          <span>PRE-WAR (Feb 20)</span>
+          <span>TODAY HIGH</span>
+        </div>
+        <div class="flex justify-between text-xs font-bold mb-2">
+          <span class="text-pos">$54.98</span>
+          <span class="text-info">$67.00</span>
+          <span class="text-neg">$119.48</span>
+        </div>
+        <!-- Range bar -->
+        <div class="relative h-8 rounded-full overflow-hidden bg-[#1a1a2e]">
+          <div class="oil-range-bar absolute inset-0 opacity-30 rounded-full"></div>
+          <!-- 52wk low marker -->
+          <div class="absolute top-0 bottom-0 left-0 w-0.5 bg-pos"></div>
+          <!-- Pre-war marker at ~19% ((67-54.98)/(119.48-54.98)) -->
+          <div class="absolute top-0 bottom-0 bg-info/60 w-0.5" style="left: 18.6%"></div>
+          <!-- Current price marker at ~46% ((84.86-54.98)/(119.48-54.98)) -->
+          <div class="absolute top-1 bottom-1 w-1 rounded-full bg-warn shadow-lg shadow-warn/50" style="left: 46.3%">
+            <div class="absolute -top-5 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-bold text-warn bg-card px-1.5 py-0.5 rounded border border-warn/30">$84.86 NOW</div>
+          </div>
+          <!-- High marker -->
+          <div class="absolute top-0 bottom-0 right-0 w-0.5 bg-neg"></div>
+        </div>
+        <!-- Bottom labels for current -->
+        <div class="mt-3 flex items-center gap-4 flex-wrap">
+          <div class="flex items-center gap-1.5">
+            <div class="w-2 h-2 rounded-full bg-pos"></div>
+            <span class="text-[10px] text-muted">52-wk Low $54.98</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <div class="w-2 h-2 rounded-full bg-info"></div>
+            <span class="text-[10px] text-muted">Pre-war $67</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <div class="w-2 h-2 rounded-full bg-warn"></div>
+            <span class="text-[10px] text-muted">Current $84.86</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <div class="w-2 h-2 rounded-full bg-neg"></div>
+            <span class="text-[10px] text-muted">High $119.48</span>
+          </div>
+        </div>
+      </div>
+      <!-- Reversal story -->
+      <div>
+        <div class="text-sm text-warn font-semibold mb-3 glow-amber">THE REVERSAL</div>
+        <div class="space-y-2 text-xs">
+          <div class="flex items-start gap-2">
+            <span class="text-neg mt-0.5">▲</span>
+            <span>Oil spiked to <span class="text-neg font-bold">$119.48</span> overnight on escalation fears — biggest intraday spike since 1990 Gulf War</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-pos mt-0.5">▼</span>
+            <span><span class="text-pos font-bold">G7 announced coordinated SPR release</span> — signaling willingness to flood market with strategic reserves</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-info mt-0.5">◆</span>
+            <span><span class="text-info font-bold">Kharg Island left untouched</span> — Trump deliberately spared Iran's main oil export terminal, limiting supply disruption</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-warn mt-0.5">◆</span>
+            <span>Current $84.86 still <span class="text-warn font-bold">+27% above pre-war</span> — geopolitical risk premium persists</span>
+          </div>
+          <div class="mt-3 p-2 bg-[#1a1a10] rounded border border-warn/20 text-[11px] text-warn/80">
+            ⚡ Biggest single-session range in WTI history: $34.62 spread ($84.86→$119.48)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GLOBAL MARKETS HEATMAP ==================== -->
+<section>
+  <div class="flex items-center gap-2 mb-4">
+    <div class="h-px flex-1 bg-border"></div>
+    <span class="text-xs text-muted tracking-widest">GLOBAL MARKETS</span>
+    <div class="h-px flex-1 bg-border"></div>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="text-[10px] px-1.5 py-0.5 bg-neg/10 text-neg rounded">ASIA</span>
+        <span class="text-xs text-muted">NIKKEI 225</span>
+      </div>
+      <div class="text-lg font-bold text-neg">52,728.72</div>
+      <div class="text-xs text-neg">▼ 5-7% overnight</div>
+      <div class="text-[10px] text-muted mt-1">Partial recovery</div>
+    </div>
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="text-[10px] px-1.5 py-0.5 bg-neg/10 text-neg rounded">EU</span>
+        <span class="text-xs text-muted">FTSE 100</span>
+      </div>
+      <div class="text-lg font-bold text-neg">10,249.52</div>
+      <div class="text-xs text-neg">▼ 0.34%</div>
+      <div class="text-[10px] text-muted mt-1">Modest decline</div>
+    </div>
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="text-[10px] px-1.5 py-0.5 bg-warn/10 text-warn rounded">ASIA</span>
+        <span class="text-xs text-muted">HANG SENG</span>
+      </div>
+      <div class="text-lg font-bold text-warn">Mixed</div>
+      <div class="text-xs text-warn">◆ Choppy session</div>
+      <div class="text-[10px] text-muted mt-1">China mediation hopes</div>
+    </div>
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="text-[10px] px-1.5 py-0.5 bg-neg/10 text-neg rounded">EU</span>
+        <span class="text-xs text-muted">EURO STOXX</span>
+      </div>
+      <div class="text-lg font-bold text-neg">—</div>
+      <div class="text-xs text-neg">▼ Under pressure</div>
+      <div class="text-[10px] text-muted mt-1">Energy weighting</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== COMMODITIES ==================== -->
+<section>
+  <div class="flex items-center gap-2 mb-4">
+    <div class="h-px flex-1 bg-border"></div>
+    <span class="text-xs text-muted tracking-widest">COMMODITIES</span>
+    <div class="h-px flex-1 bg-border"></div>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+    <div class="metric-card bg-card rounded-lg p-4 border-neg/20">
+      <div class="text-xs text-muted mb-1">WTI CRUDE</div>
+      <div class="text-lg font-bold text-neg glow-red">$84.86</div>
+      <div class="text-xs text-neg">▼ 10.46%</div>
+      <div class="w-full bg-[#1a1a2e] rounded-full h-1 mt-2">
+        <div class="bg-neg h-1 rounded-full" style="width: 46%"></div>
+      </div>
+      <div class="flex justify-between text-[9px] text-muted mt-1"><span>$54.98</span><span>$119.48</span></div>
+    </div>
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">BRENT CRUDE</div>
+      <div class="text-lg font-bold text-neg">$88.35</div>
+      <div class="text-xs text-neg">▼ 4.68%</div>
+    </div>
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">GOLD (COMEX)</div>
+      <div class="text-lg font-bold text-neg">$5,095.90</div>
+      <div class="text-xs text-neg">▼ 0.98%</div>
+    </div>
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">NATURAL GAS</div>
+      <div class="text-lg font-bold text-neg">$3.05</div>
+      <div class="text-xs text-neg">▼ 2.24%</div>
+    </div>
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">COPPER</div>
+      <div class="text-lg font-bold text-pos">$5.83</div>
+      <div class="text-xs text-pos">▲ 1.32%</div>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mt-3">
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">SILVER</div>
+      <div class="text-lg font-bold text-pos">$86.51</div>
+      <div class="text-xs text-pos">▲ 3.21%</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BONDS & CURRENCIES ==================== -->
+<section>
+  <div class="flex items-center gap-2 mb-4">
+    <div class="h-px flex-1 bg-border"></div>
+    <span class="text-xs text-muted tracking-widest">BONDS · CURRENCIES · CRYPTO</span>
+    <div class="h-px flex-1 bg-border"></div>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">10Y TREASURY</div>
+      <div class="text-lg font-bold text-info glow-cyan">4.136%</div>
+      <div class="text-xs text-muted mt-1">Yield holding</div>
+    </div>
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">EUR/USD</div>
+      <div class="text-lg font-bold text-neg">1.1600</div>
+      <div class="text-xs text-neg">▼ 0.31%</div>
+    </div>
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">GBP/USD</div>
+      <div class="text-lg font-bold text-neg">1.3400</div>
+      <div class="text-xs text-neg">▼ 0.14%</div>
+    </div>
+    <div class="metric-card bg-card rounded-lg p-4">
+      <div class="text-xs text-muted mb-1">USD/JPY</div>
+      <div class="text-lg font-bold text-info">~158.00</div>
+      <div class="text-xs text-muted mt-1">Yen weakening</div>
+    </div>
+    <div class="metric-card bg-card rounded-lg p-4 border-pos/20">
+      <div class="text-xs text-muted mb-1">BITCOIN</div>
+      <div class="text-lg font-bold text-pos glow-green">$68,902</div>
+      <div class="text-xs text-pos">▲ 2.28%</div>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mt-3">
+    <div class="metric-card bg-card rounded-lg p-4 border-pos/20">
+      <div class="text-xs text-muted mb-1">ETHEREUM</div>
+      <div class="text-lg font-bold text-pos glow-green">$2,029</div>
+      <div class="text-xs text-pos">▲ 3.25%</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WAR TIMELINE ==================== -->
+<section>
+  <div class="flex items-center gap-2 mb-4">
+    <div class="h-px flex-1 bg-border"></div>
+    <span class="text-xs text-neg tracking-widest font-bold">🔴 WAR TIMELINE — DAY 10 KEY EVENTS</span>
+    <div class="h-px flex-1 bg-border"></div>
+  </div>
+  <div class="bg-card rounded-lg border border-neg/20 p-5">
+    <div class="relative pl-6 space-y-4">
+      <!-- Timeline line -->
+      <div class="absolute left-2 top-1 bottom-1 w-0.5 timeline-line rounded-full"></div>
+
+      <div class="relative">
+        <div class="absolute -left-[18px] top-1 w-3 h-3 rounded-full bg-neg border-2 border-card"></div>
+        <div class="text-[10px] text-neg/60 mb-0.5 tracking-wider">OVERNIGHT</div>
+        <div class="text-xs"><span class="text-neg font-semibold">Mojtaba Khamenei named new Supreme Leader</span> — hardliner son of Ali Khamenei takes power. Signals no de-escalation from Iran side.</div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -left-[18px] top-1 w-3 h-3 rounded-full bg-neg border-2 border-card"></div>
+        <div class="text-[10px] text-neg/60 mb-0.5 tracking-wider">EARLY AM</div>
+        <div class="text-xs"><span class="text-neg font-semibold">NATO intercepts Iranian missile over Turkey</span> — first direct NATO engagement. Article 5 discussions intensify.</div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -left-[18px] top-1 w-3 h-3 rounded-full bg-neg border-2 border-card"></div>
+        <div class="text-[10px] text-neg/60 mb-0.5 tracking-wider">AM SESSION</div>
+        <div class="text-xs"><span class="text-neg font-semibold">US Navy sinks Iranian warship</span> — 7 US service members killed in related engagements. Oil hits $119.48.</div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -left-[18px] top-1 w-3 h-3 rounded-full bg-warn border-2 border-card pulse-amber"></div>
+        <div class="text-[10px] text-warn/60 mb-0.5 tracking-wider">⚡ TURNING POINT — MIDDAY</div>
+        <div class="text-xs"><span class="text-warn font-semibold">G7 announces joint SPR release discussion</span> — strategic petroleum reserve coordination to cap oil prices. WTI crashes from $119 to $85 in hours.</div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -left-[18px] top-1 w-3 h-3 rounded-full bg-info border-2 border-card"></div>
+        <div class="text-[10px] text-info/60 mb-0.5 tracking-wider">STRATEGIC</div>
+        <div class="text-xs"><span class="text-info font-semibold">Kharg Island deliberately left untouched</span> — Trump chose not to strike Iran's main oil terminal. Market reads this as conflict being contained to military targets.</div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -left-[18px] top-1 w-3 h-3 rounded-full bg-info border-2 border-card"></div>
+        <div class="text-[10px] text-info/60 mb-0.5 tracking-wider">DIPLOMATIC</div>
+        <div class="text-xs"><span class="text-info font-semibold">China signals mediation interest</span> — potential off-ramp. Markets respond positively.</div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -left-[18px] top-1 w-3 h-3 rounded-full bg-pos border-2 border-card"></div>
+        <div class="text-[10px] text-pos/60 mb-0.5 tracking-wider">AFTERNOON</div>
+        <div class="text-xs"><span class="text-pos font-semibold">US equities recover to near flat</span> — S&P was -3% pre-market, now recovering. VIX drops from 31+ to 25.35. FT: "About those inflation fears…"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WEEK AHEAD CALENDAR ==================== -->
+<section>
+  <div class="flex items-center gap-2 mb-4">
+    <div class="h-px flex-1 bg-border"></div>
+    <span class="text-xs text-muted tracking-widest">WEEK AHEAD</span>
+    <div class="h-px flex-1 bg-border"></div>
+  </div>
+  <div class="grid grid-cols-5 gap-2">
+    <!-- Monday -->
+    <div class="bg-card rounded-lg p-3 border border-border">
+      <div class="text-[10px] text-muted tracking-wider">MON</div>
+      <div class="text-xs font-bold text-white">Mar 9</div>
+      <div class="h-px bg-border my-2"></div>
+      <div class="text-[10px] text-info leading-relaxed">
+        <div class="text-warn font-semibold">● TODAY</div>
+        <div class="mt-1">Markets digest oil reversal</div>
+        <div>War Day 10 developments</div>
+      </div>
+    </div>
+    <!-- Tuesday -->
+    <div class="bg-card rounded-lg p-3 border border-border">
+      <div class="text-[10px] text-muted tracking-wider">TUE</div>
+      <div class="text-xs font-bold text-white">Mar 10</div>
+      <div class="h-px bg-border my-2"></div>
+      <div class="text-[10px] text-muted leading-relaxed">
+        <div>G7 SPR details expected</div>
+        <div class="mt-1">Pre-CPI positioning</div>
+      </div>
+    </div>
+    <!-- Wednesday -->
+    <div class="bg-card rounded-lg p-3 border border-neg/50 flash-border relative overflow-hidden">
+      <div class="absolute top-0 right-0 px-1.5 py-0.5 bg-neg text-[8px] font-bold text-white rounded-bl crit-pulse">CRITICAL</div>
+      <div class="text-[10px] text-muted tracking-wider">WED</div>
+      <div class="text-xs font-bold text-neg">Mar 11</div>
+      <div class="h-px bg-neg/30 my-2"></div>
+      <div class="text-[10px] text-neg leading-relaxed font-semibold">
+        <div>🔴 FEBRUARY CPI</div>
+        <div class="mt-1 text-neg/80 font-normal">Most important data of 2026</div>
+        <div class="text-neg/80 font-normal">Stagflation test</div>
+      </div>
+    </div>
+    <!-- Thursday -->
+    <div class="bg-card rounded-lg p-3 border border-border">
+      <div class="text-[10px] text-muted tracking-wider">THU</div>
+      <div class="text-xs font-bold text-white">Mar 12</div>
+      <div class="h-px bg-border my-2"></div>
+      <div class="text-[10px] text-muted leading-relaxed">
+        <div>CPI digestion</div>
+        <div class="mt-1">FOMC rate path repricing</div>
+      </div>
+    </div>
+    <!-- Friday -->
+    <div class="bg-card rounded-lg p-3 border border-border">
+      <div class="text-[10px] text-muted tracking-wider">FRI</div>
+      <div class="text-xs font-bold text-white">Mar 13</div>
+      <div class="h-px bg-border my-2"></div>
+      <div class="text-[10px] text-muted leading-relaxed">
+        <div>Options expiry prep</div>
+        <div class="mt-1">FOMC Mar 17-18 week</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHAT THIS MEANS ==================== -->
+<section>
+  <div class="flex items-center gap-2 mb-4">
+    <div class="h-px flex-1 bg-border"></div>
+    <span class="text-xs text-info tracking-widest font-bold">💡 WHAT THIS MEANS</span>
+    <div class="h-px flex-1 bg-border"></div>
+  </div>
+  <div class="bg-card rounded-lg border border-info/20 p-5">
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <div class="text-sm font-bold text-info mb-3 glow-cyan">THE OIL STORY</div>
+        <div class="space-y-3 text-xs leading-relaxed">
+          <p>Today's crude crash from <span class="text-neg font-bold">$119.48</span> to <span class="text-warn font-bold">$84.86</span> is one of the most dramatic single-session reversals in oil history. Two forces are driving it:</p>
+          <div class="p-3 bg-[#0a1a0a] rounded border border-pos/20">
+            <span class="text-pos font-semibold">BEARISH:</span> G7 coordinated SPR release signals that the world's largest economies will actively intervene to cap oil prices. This removes the "uncapped upside" fear that was driving panic buying.
+          </div>
+          <div class="p-3 bg-[#0a1a0a] rounded border border-pos/20">
+            <span class="text-pos font-semibold">BEARISH:</span> Kharg Island — Iran's main oil export terminal — was deliberately left untouched by US strikes. This suggests the conflict is being contained to military targets, not energy infrastructure.
+          </div>
+          <div class="p-3 bg-[#1a1a0a] rounded border border-warn/20">
+            <span class="text-warn font-semibold">STILL ELEVATED:</span> At $84.86, oil is still +27% above pre-war levels ($67). The geopolitical risk premium hasn't fully unwound. Escalation could re-ignite the spike.
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="text-sm font-bold text-neg mb-3 glow-red">THE REAL RISK: WEDNESDAY CPI</div>
+        <div class="space-y-3 text-xs leading-relaxed">
+          <p>Markets are fixated on oil today, but the <span class="text-neg font-bold">February CPI print on Wednesday</span> is the most important economic data release of 2026. Here's why:</p>
+          <div class="p-3 bg-[#1a0a0a] rounded border border-neg/20">
+            <span class="text-neg font-semibold">STAGFLATION TEST:</span> If CPI comes in hot while the economy is slowing under war pressure, it confirms the nightmare scenario — rising prices + falling growth. The Fed would be trapped.
+          </div>
+          <div class="p-3 bg-[#0a0a1a] rounded border border-info/20">
+            <span class="text-info font-semibold">FOMC MAR 17-18:</span> The CPI reading directly feeds into the Fed's next rate decision. A hot print means no rate cuts despite the geopolitical shock. A cool print could open the door to emergency easing.
+          </div>
+          <div class="p-3 bg-[#0a0a1a] rounded border border-info/20">
+            <span class="text-info font-semibold">THE BULL CASE:</span> If oil stays down near $85 and CPI is benign, markets could rally hard — the worst-case scenario (war + inflation + $120 oil) would be off the table.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom line -->
+    <div class="mt-5 p-3 bg-[#0a0a14] rounded border border-info/20">
+      <div class="text-xs text-info font-semibold mb-1">BOTTOM LINE</div>
+      <p class="text-xs text-muted leading-relaxed">The panic from this morning is fading. Oil's reversal + G7 SPR coordination + China mediation signals have pulled markets back from the brink. But we're not out of the woods. The real test is <span class="text-neg font-bold">Wednesday's CPI</span>. If inflation is running hot, the Fed can't ride to the rescue even if war escalates. Watch oil for re-acceleration — any strike on Kharg Island or Strait of Hormuz disruption would reset the clock to panic mode.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="border-t border-border mt-8">
+  <div class="max-w-7xl mx-auto px-4 py-6">
+    <div class="flex items-center justify-between flex-wrap gap-4">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🪨</span>
+        <div>
+          <div class="text-sm font-bold text-white">Chip</div>
+          <div class="text-[10px] text-muted">Market Intelligence — Hatch Platform</div>
+        </div>
+      </div>
+      <div class="text-right">
+        <div class="text-[10px] text-muted">Data sourced from live market feeds</div>
+        <div class="text-[10px] text-muted">Not financial advice • Generated Mar 9, 2026 12:45 PM PDT</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>

@@ -264,3 +264,661 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
 
   <div class="divider"></div>
 
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- GLOBAL MARKETS -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section>
+    <div class="flex items-center gap-2 mb-3">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Global Markets</h2>
+      <span class="tag tag-critical">Asia Carnage</span>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div class="card p-3 glow-red">
+        <div class="text-[10px] text-gray-500">🇯🇵 Nikkei 225</div>
+        <div class="text-lg font-bold mono down">52,728.72</div>
+        <div class="text-sm mono down">-5.20%</div>
+        <div class="ann">Down 2,892 pts — 3rd-largest point drop in history (Kyodo). Fell as much as 7% before recovering. Japan imports 90%+ of oil; weak yen (158.45) makes it even worse.</div>
+        <div class="src">Kyodo News, Xinhua, AFP</div>
+      </div>
+      <div class="card p-3 glow-red">
+        <div class="text-[10px] text-gray-500">🇰🇷 KOSPI</div>
+        <div class="text-lg font-bold mono down">-5.96%</div>
+        <div class="text-[10px] text-red-400 font-bold pulse">Circuit breaker at -8.1%!</div>
+        <div class="ann">Trading halted for 20 mins at 10:31 AM KST when index plunged &gt;8.1%. Second circuit breaker this month. Korea imports 100% of energy. Recovered after Saudi offered ~4.6M bbl via Red Sea pipeline (Bloomberg).</div>
+        <div class="src">Korea JoongAng Daily, Chosun Ilbo, CNBC</div>
+      </div>
+      <div class="card p-3 glow-red">
+        <div class="text-[10px] text-gray-500">🇭🇰 Hang Seng</div>
+        <div class="text-lg font-bold mono down">-1.35%</div>
+        <div class="ann">Relatively resilient — China positioning as mediator. Chinese energy companies benefit from discounted Iranian crude.</div>
+        <div class="src">Al Jazeera</div>
+      </div>
+      <div class="card p-3 glow-red">
+        <div class="text-[10px] text-gray-500">🇬🇧 FTSE 100</div>
+        <div class="text-lg font-bold mono down">10,285</div>
+        <div class="text-sm mono down">-1.2%</div>
+        <div class="ann">Less severe than feared. CNBC noted "Stoxx 600 provisionally closed down ~0.7%" — Europe recovered intraday like US.</div>
+        <div class="src">Investing.com, CNBC</div>
+      </div>
+      <div class="card p-3 glow-red">
+        <div class="text-[10px] text-gray-500">🇪🇺 Euro Stoxx 50</div>
+        <div class="text-lg font-bold mono down">~5,667</div>
+        <div class="text-sm mono down">-0.9%</div>
+        <div class="ann">Europe's gas crisis is the bigger story — EU nat gas +60% last week from Qatar/Ras Laffan shutdown. Industrial output at risk.</div>
+        <div class="src">Trading Economics</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- WAR TIMELINE + ENERGY CRISIS -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- War Timeline -->
+    <section>
+      <div class="flex items-center gap-2 mb-3">
+        <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">⚔️ Iran War Timeline — Day 10</h2>
+      </div>
+      <div class="card p-4 space-y-3">
+        <div class="flex items-start gap-3">
+          <div class="timeline-dot bg-red-500 mt-1.5 flex-shrink-0"></div>
+          <div>
+            <div class="text-[10px] text-gray-500 mono">FEB 28</div>
+            <div class="text-xs">US/Israel strikes begin on Iranian nuclear &amp; military sites</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="timeline-dot bg-red-500 mt-1.5 flex-shrink-0"></div>
+          <div>
+            <div class="text-[10px] text-gray-500 mono">MAR 1-2</div>
+            <div class="text-xs">Iran retaliates — vows to "attack any ship trying to pass through Strait of Hormuz" (Reuters). Missiles hit Saudi/Bahrain.</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="timeline-dot bg-orange-500 mt-1.5 flex-shrink-0"></div>
+          <div>
+            <div class="text-[10px] text-gray-500 mono">MAR 3</div>
+            <div class="text-xs">Qatar Ras Laffan (world's largest LNG facility) goes offline</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="timeline-dot bg-orange-500 mt-1.5 flex-shrink-0"></div>
+          <div>
+            <div class="text-[10px] text-gray-500 mono">MAR 5</div>
+            <div class="text-xs">Iraq output collapses ~60% (Bloomberg: 4.3M → 1.7-1.8M bpd). Kuwait &amp; UAE begin cuts.</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="timeline-dot bg-red-600 mt-1.5 flex-shrink-0"></div>
+          <div>
+            <div class="text-[10px] text-gray-500 mono">MAR 7</div>
+            <div class="text-xs">Oslo embassy bombed. Iran hits Gulf desalination plants.</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="timeline-dot bg-red-700 mt-1.5 flex-shrink-0"></div>
+          <div>
+            <div class="text-[10px] text-gray-500 mono">MAR 8</div>
+            <div class="text-xs">Israel hits Shahran oil depot in Tehran — oil rain over the city (CNN/Al Jazeera). Mojtaba Khamenei named Supreme Leader.</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="timeline-dot bg-green-500 mt-1.5 flex-shrink-0 pulse"></div>
+          <div>
+            <div class="text-[10px] text-gray-500 mono">MAR 9 — TODAY</div>
+            <div class="text-xs"><span class="up font-semibold">Trump: war "very complete, pretty much"</span> (CBS/Weijia Jiang). Also spoke to Putin — Kremlin says Putin shared "proposals about quickly ending the war." Oil crashes $119→$85. 7 US killed total.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Energy Crisis Tracker -->
+    <section>
+      <div class="flex items-center gap-2 mb-3">
+        <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">🛢️ Energy Crisis Tracker</h2>
+      </div>
+      <div class="card p-4 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-500 pulse"></span>
+            <span class="text-xs">Strait of Hormuz</span>
+          </div>
+          <span class="tag tag-critical">Effectively Shut</span>
+        </div>
+        <div class="ann" style="margin-top:2px">Iran vowed Mar 2 to attack any transiting ship. Maersk suspended all crossings "until further notice" (Fox News). Some ships running with AIS transponders off (shipping analysts). Carries ~20% of world's waterborne crude.</div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-500 pulse"></span>
+            <span class="text-xs">Qatar Ras Laffan (LNG)</span>
+          </div>
+          <span class="tag tag-critical">Offline</span>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-500"></span>
+            <span class="text-xs">Iraq Crude Output</span>
+          </div>
+          <span class="tag tag-critical">Down ~60%</span>
+        </div>
+        <div class="ann" style="margin-top:2px">Bloomberg: "Iraq Oil Output Plunges About 60% as Iran War Blocks Tankers." From 4.3M bpd to ~1.7-1.8M bpd. Caused by tanker unavailability + Hormuz blockage, not direct attacks on Iraqi infrastructure.</div>
+        <div class="src">Bloomberg, Reuters</div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+            <span class="text-xs">Iran Oil Infrastructure</span>
+          </div>
+          <span class="tag tag-warn">4 Depots Hit</span>
+        </div>
+        <div class="ann" style="margin-top:2px">Israel struck Shahran oil depot in Tehran + 3 more in Alborz province. 4 employees killed. CNN: "thick black smoke rises" over Tehran. Oil-saturated rain falling on the capital.</div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+            <span class="text-xs">US Response</span>
+          </div>
+          <span class="tag tag-info">$20B Insurance</span>
+        </div>
+        <div class="ann" style="margin-top:2px">DFC (Development Finance Corp) launched $20B reinsurance program for oil tankers. Multiple major insurers (Gard, Skuld, NorthStandard, London P&I Club) have already canceled war-risk coverage. Lloyd's of London still covering vessels with &gt;$25B combined hull value. Kpler analyst: "You simply cannot pass through Hormuz without insurance."</div>
+        <div class="src">Globe &amp; Mail, MarketWatch, Fox News</div>
+
+        <div class="divider my-3"></div>
+
+        <!-- Oil Price Journey -->
+        <div class="p-3 rounded bg-[#1a1a1a]">
+          <div class="text-[10px] text-gray-500 font-semibold uppercase mb-2">Oil Price Journey (WTI)</div>
+          <div class="flex items-center gap-1 text-[10px] mono flex-wrap">
+            <span class="text-gray-500">Pre-war $67</span>
+            <span class="text-gray-600">→</span>
+            <span class="text-amber-400">$81 Fri</span>
+            <span class="text-gray-600">→</span>
+            <span class="text-red-400 font-bold">$119 overnight</span>
+            <span class="text-gray-600">→</span>
+            <span class="text-green-400 font-bold">$84.91 close</span>
+          </div>
+          <div class="text-[10px] text-gray-500 mt-2">Rapidan Energy comparison: 1973 embargo disrupted 7% of supply with 8% spare capacity. 2026 Iran war has disrupted <span class="text-white font-semibold">20% of supply with 0% spare capacity</span>. Wolfe Research: every $20 oil hike = -0.1% GDP, +0.4% CPI.</div>
+          <div class="text-[10px] text-gray-500 mt-1">SPR level: <span class="text-white">415.44M barrels</span> (EIA, Feb 27). G7 "not there yet" on coordinated release (The Guardian). White House: "On the table, but fierce opposition to tapping SPR — it's a half measure at best."</div>
+          <div class="src mt-1">CNBC/Rapidan, Wolfe Research via CNBC, EIA/ycharts, The Guardian, Politico</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- WEEK AHEAD -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section>
+    <div class="flex items-center gap-2 mb-3">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">📅 Critical Week Ahead</h2>
+    </div>
+    <div class="card overflow-hidden">
+      <div class="grid grid-cols-1 md:grid-cols-4">
+        <div class="p-4 border-b md:border-b-0 md:border-r border-[#1e1e1e]">
+          <div class="text-[10px] text-gray-500 mono">MON MAR 9</div>
+          <div class="text-xs font-semibold up mt-1">✅ Reversal Day</div>
+          <div class="text-[10px] text-gray-400 mt-1">S&P: -2% → +0.83%. Oil: $119 → $85. Trump signals wind-down. Markets latched onto first ceasefire hint in 10 days.</div>
+        </div>
+        <div class="p-4 border-b md:border-b-0 md:border-r border-[#1e1e1e] bg-[#1a0a0a]">
+          <div class="text-[10px] text-gray-500 mono">WED MAR 11</div>
+          <div class="text-xs font-semibold text-red-400 mt-1">🔥 FEBRUARY CPI</div>
+          <span class="tag tag-critical mt-2">MOST IMPORTANT</span>
+          <div class="text-[10px] text-gray-400 mt-2">Consensus: <span class="text-white font-semibold">2.4% YoY</span> headline (FactSet). Cleveland Fed nowcast: 2.41%. Jan actual: 2.4% headline, 2.5% core. Measures prices <em>before</em> oil doubled. If hot → stagflation. March nowcast already 2.61% — that's the oil shock month.</div>
+          <div class="src">FactSet/CNBC, Cleveland Fed, BLS</div>
+        </div>
+        <div class="p-4 border-b md:border-b-0 md:border-r border-[#1e1e1e]">
+          <div class="text-[10px] text-gray-500 mono">THU MAR 12</div>
+          <div class="text-xs font-semibold warn mt-1">📊 PPI + Jobless Claims</div>
+          <div class="text-[10px] text-gray-400 mt-1">Upstream inflation + labor. Feb payrolls: US lost 92,000 jobs (BLS) — third contraction in five months. Unemployment rose to 4.4%.</div>
+          <div class="text-[10px] text-gray-500 mono mt-2">Also: Atlanta Fed GDPNow update</div>
+          <div class="text-[10px] text-gray-400">Currently 2.1% — dropped from 3.0% in just 4 days.</div>
+          <div class="src">BLS, Atlanta Fed, CNN</div>
+        </div>
+        <div class="p-4">
+          <div class="text-[10px] text-gray-500 mono">FRI MAR 13</div>
+          <div class="text-xs font-semibold warn mt-1">📊 UMich Sentiment + Core PCE</div>
+          <div class="text-[10px] text-gray-400 mt-1">Core PCE expected to hold at 3.0% — well above Fed's 2% target.</div>
+          <div class="divider my-2"></div>
+          <div class="text-[10px] text-gray-500 mono">MAR 17-18</div>
+          <div class="text-xs font-semibold text-red-400 mt-1">🏛️ FOMC Rate Decision</div>
+          <div class="text-[10px] text-gray-400 mt-1">Expected to HOLD at 3.50-3.75%. Next cut pulled to July. Kevin Warsh takes over as Fed Chair in May — historically hawkish on inflation.</div>
+          <div class="src">Reuters, CNBC</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- WHAT THIS MEANS -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section>
+    <div class="flex items-center gap-2 mb-3">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">🧠 What This Means</h2>
+    </div>
+    <div class="card p-5 space-y-4">
+      <div class="flex items-start gap-3">
+        <span class="text-green-400 text-lg mt-0.5">📈</span>
+        <div>
+          <div class="text-sm font-semibold text-green-400">The Reversal Is Real — But Built on One Man's Words</div>
+          <div class="text-xs text-gray-400 mt-1 leading-relaxed">Oil's 25% intraday swing ($119 → $85) and the S&P's -2% to +0.83% comeback were driven by <span class="text-white font-medium">a single Trump interview on CBS</span>. His exact words: <span class="text-white">"I think the war is very complete, pretty much"</span> and <span class="text-white">"They have no navy, no communications, they've got no Air Force"</span> (via CBS's Weijia Jiang on X). No ceasefire. No treaty. He also spoke to Putin — the Kremlin says Putin shared "proposals about quickly ending the war." Markets are desperate for an off-ramp and latched onto the first hint. If follow-through comes, this was the bottom. If it was bluster, $119 wasn't the top.</div>
+          <div class="src">CNBC, Yahoo Finance, CBS/Weijia Jiang</div>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="text-amber-400 text-lg mt-0.5">⚠️</span>
+        <div>
+          <div class="text-sm font-semibold text-amber-400">Physical Damage Can't Be Walked Back</div>
+          <div class="text-xs text-gray-400 mt-1 leading-relaxed">This is the <span class="text-white font-medium">largest oil supply disruption in history</span> (Rapidan Energy via CNBC) — 20% of world supply disrupted with 0% spare capacity. Three times the 1973 embargo. Iraq output down ~60% (Bloomberg: 4.3M → 1.7-1.8M bpd). Qatar's Energy Minister Saad al-Kaabi warned: <span class="text-white">"Everybody that has not called for force majeure we expect will do so in the next few days. All exporters in the Gulf region will have to call force majeure."</span> He warned oil could hit $150/bbl. Even an immediate ceasefire can't undo destroyed refineries — the Shahran oil depot is burning, four storage facilities hit, and the physical infrastructure damage takes months to repair.</div>
+          <div class="src">CNBC/Rapidan Energy, Bloomberg, Al Jazeera/FT (al-Kaabi quote), CNN (Shahran)</div>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="text-red-400 text-lg mt-0.5">🎯</span>
+        <div>
+          <div class="text-sm font-semibold text-red-400">Goldman Says Markets Haven't Priced This In Yet</div>
+          <div class="text-xs text-gray-400 mt-1 leading-relaxed">Goldman Sachs CEO David Solomon (Mar 4): <span class="text-white">"I look at the market reaction, and I'm actually surprised that the market reaction has been more benign given the magnitude of this."</span> He expects <span class="text-white">"a couple of weeks for markets to really digest the implications."</span> The IMF's Kristalina Georgieva confirmed: every sustained 10% oil rise = +0.4% inflation, -0.15% growth. Oil is up ~28% from pre-war. That's roughly <span class="text-white font-semibold">+1.1% to inflation and -0.42% to global growth</span> per IMF formula. Goldman models headline CPI rising to 2.7% by May, before retreating to 2.0% by December — but that assumes no further escalation.</div>
+          <div class="src">Reuters (Solomon), OilPrice.com/Bloomberg (IMF/Georgieva), MSN/Goldman (CPI model)</div>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="text-blue-400 text-lg mt-0.5">🌐</span>
+        <div>
+          <div class="text-sm font-semibold text-blue-400">Wednesday CPI Is Still The Main Event</div>
+          <div class="text-xs text-gray-400 mt-1 leading-relaxed">February CPI (consensus: 2.4% headline per FactSet, Cleveland Fed nowcast: 2.41%) measures prices <em>before</em> oil went from $67 to $119. If it's already hot → oil shock is gasoline on a fire. <span class="text-white">Cleveland Fed already nowcasting March CPI at 2.61%</span> — that's the oil shock month, and it would be the largest monthly jump in years. JonesTrading's Mike O'Rourke: <span class="text-white">"If oil remains at these levels for several weeks, it will be a major global headwind. Thus far, markets have underestimated the risks."</span></div>
+          <div class="src">FactSet/CNBC, Cleveland Fed, Al Jazeera (O'Rourke)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- TRADE IDEAS -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section>
+    <div class="flex items-center gap-2 mb-3">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">🎯 Trade Ideas — Tuesday Mar 10</h2>
+      <span class="tag tag-info">ANALYST-SOURCED</span>
+    </div>
+
+    <!-- Analyst Quotes Box -->
+    <div class="card p-4 mb-4" style="border-left: 3px solid #42a5f5;">
+      <div class="text-xs font-semibold text-blue-400 mb-3">📢 What Wall Street Is Saying</div>
+      <div class="space-y-3">
+        <div>
+          <div class="text-[10px] text-gray-300"><span class="text-white font-semibold">Goldman Sachs CEO Solomon</span> (Mar 4): "I'm surprised the market reaction has been more benign. There's a cumulative effect... I think it's gonna take a couple of weeks for markets to really digest the implications."</div>
+          <div class="src">Reuters</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-gray-300"><span class="text-white font-semibold">Morgan Stanley's Ellen Zentner</span>: "Significant weakening in the labor market would support a rate cut, but given the risk that higher-for-longer oil prices could trigger another inflation surge, the Fed may feel compelled to remain on the sidelines."</div>
+          <div class="src">CNBC, Mar 6</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-gray-300"><span class="text-white font-semibold">Wolfe Research (Stephanie Roth)</span>: Every $20 oil hike = <span class="text-amber-400 font-semibold">-0.1% GDP, +0.4% headline CPI</span>. Oil is up ~$18 from pre-war → roughly -0.09% GDP hit, +0.36% inflation already baked in.</div>
+          <div class="src">CNBC, Mar 6</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-gray-300"><span class="text-white font-semibold">JPMorgan Private Bank</span>: "It's not about oil supply risk. It's about price risk... the risk premium is embedded in the price, driven less by lost production and more by transit route uncertainty." US sources only 4% of oil from Saudi — relatively insulated.</div>
+          <div class="src">JPMorgan Private Bank, Mar 6</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-gray-300"><span class="text-white font-semibold">Catalyst Funds (Charlie Ashley)</span>: "It all really depends on how long that conflict lasts. If it's a prolonged war... that's certainly going to have some wider implications."</div>
+          <div class="src">CNBC, Mar 6</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Three Scenario Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+      <!-- Scenario 1 -->
+      <div class="card p-4 glow-green" style="border-left: 3px solid #00e676;">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-xs font-semibold up">Scenario 1: War Ending</div>
+          <span class="tag tag-ok">40%</span>
+        </div>
+        <div class="text-[10px] text-gray-400 leading-relaxed">Trump follows through on "very complete." G7 SPR release. Hormuz reopens. JPMorgan thesis: "transit route uncertainty" resolves → oil drops to $70s fast.</div>
+        <div class="mt-3 space-y-1.5">
+          <div class="text-[10px]"><span class="up font-semibold mono">JETS</span> <span class="text-gray-500">— Airlines bounce hardest from oil relief</span></div>
+          <div class="text-[10px]"><span class="up font-semibold mono">IWM</span> <span class="text-gray-500">— Small caps recover (hammered by oil costs)</span></div>
+          <div class="text-[10px]"><span class="up font-semibold mono">XLY</span> <span class="text-gray-500">— Consumer discretionary rebounds</span></div>
+          <div class="text-[10px]"><span class="down font-semibold mono">SCO</span> <span class="text-gray-500">— 2x inverse oil ETF (ProShares). ⚠️ Daily rebalancing decay — hold days, not weeks</span></div>
+        </div>
+        <div class="mt-3 p-2 rounded bg-[#1a1a1a]">
+          <div class="text-[10px] text-red-400">⚠️ Risk: IRGC threatened $200 oil. New Supreme Leader is a hardliner. One missile undoes everything.</div>
+        </div>
+      </div>
+      <!-- Scenario 2 -->
+      <div class="card p-4 glow-amber" style="border-left: 3px solid #ffab00;">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-xs font-semibold warn">Scenario 2: Grind Continues</div>
+          <span class="tag tag-warn">40%</span>
+        </div>
+        <div class="text-[10px] text-gray-400 leading-relaxed">No resolution, no major escalation. Oil oscillates $80-100. Goldman's Solomon: markets need "a couple of weeks" to digest. Positioning for sustained elevated oil.</div>
+        <div class="mt-3 space-y-1.5">
+          <div class="text-[10px]"><span class="up font-semibold mono">XLE</span> <span class="text-gray-500">— Energy sector prints money at $85+ oil</span></div>
+          <div class="text-[10px]"><span class="up font-semibold mono">OXY, DVN</span> <span class="text-gray-500">— Oil producers with direct revenue upside</span></div>
+          <div class="text-[10px]"><span class="up font-semibold mono">RTX, LMT, NOC</span> <span class="text-gray-500">— Defense spending trajectory is up regardless</span></div>
+          <div class="text-[10px]"><span class="up font-semibold mono">XLP, VDC</span> <span class="text-gray-500">— Consumer staples for defensive rotation</span></div>
+        </div>
+        <div class="mt-3 p-2 rounded bg-[#1a1a1a]">
+          <div class="text-[10px] text-amber-400">⚠️ Risk: Soft CPI Wednesday triggers massive relief rally in growth — you'd be underexposed.</div>
+        </div>
+      </div>
+      <!-- Scenario 3 -->
+      <div class="card p-4 glow-red" style="border-left: 3px solid #ff1744;">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-xs font-semibold down">Scenario 3: Escalation</div>
+          <span class="tag tag-critical">20%</span>
+        </div>
+        <div class="text-[10px] text-gray-400 leading-relaxed">IRGC hits more Gulf energy. Ground troops enter Iran. Hormuz stays closed. Qatar FM al-Kaabi's $150 scenario. IRGC's $200 scenario.</div>
+        <div class="mt-3 space-y-1.5">
+          <div class="text-[10px]"><span class="up font-semibold mono">XLE + RTX</span> <span class="text-gray-500">— Heavy energy + defense</span></div>
+          <div class="text-[10px]"><span class="up font-semibold mono">GLD</span> <span class="text-gray-500">— Gold (SPDR) as safe haven — if selling pressure eases</span></div>
+          <div class="text-[10px]"><span class="up font-semibold mono">TIP</span> <span class="text-gray-500">— TIPS (inflation-protected treasuries) per etf.com stagflation playbook</span></div>
+          <div class="text-[10px]"><span class="down font-semibold mono">SH</span> <span class="text-gray-500">— 1x inverse S&P 500 (ProShares)</span></div>
+        </div>
+        <div class="mt-3 p-2 rounded bg-[#1a1a1a]">
+          <div class="text-[10px] text-red-400">⚠️ Risk: Miss massive relief rally. 1990 Gulf War parallel: oil doubled, then unwound within months once coalition succeeded.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Trade: CPI -->
+    <div class="card p-4" style="border: 1px solid rgba(255,171,0,0.3); background: linear-gradient(135deg, #141414, #1a1408);">
+      <div class="flex items-start gap-3">
+        <span class="text-amber-400 text-lg">💡</span>
+        <div>
+          <div class="text-sm font-semibold text-amber-400">The Real Trade Is Wednesday's CPI</div>
+          <div class="text-xs text-gray-400 mt-1 leading-relaxed">February CPI (est. 2.4% headline per FactSet, Cleveland Fed nowcast 2.41%) measures prices <em>before</em> oil doubled. Tuesday is positioning day — expect choppy, directionless trading ahead of the print.</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+            <div class="p-2 rounded bg-[#1a1a1a]">
+              <div class="text-[10px] font-semibold down">🔴 Hot CPI (≥2.5% headline)</div>
+              <div class="text-[10px] text-gray-400 mt-1">Inflation already rising before oil shock → stagflation confirmed with data. Fed can't cut. Short SPY, buy puts. Yields spike past 4.25%. Goldman's model: CPI heads to 2.7% by May. <span class="text-white">Cleveland Fed already nowcasting March at 2.61%.</span></div>
+            </div>
+            <div class="p-2 rounded bg-[#1a1a1a]">
+              <div class="text-[10px] font-semibold up">🟢 Soft CPI (≤2.3% headline)</div>
+              <div class="text-[10px] text-gray-400 mt-1">Oil shock is supply-driven, not structural inflation. Fed has room to cut if economy weakens further. Relief rally — go long SPY/QQQ. Futures currently price next cut in July.</div>
+            </div>
+          </div>
+          <div class="text-[10px] text-gray-500 mt-3">
+            <span class="text-white font-semibold">Key S&P levels:</span> Support at 6,550-6,470 (Fibonacci .618 retracement per Four Dimension Trading). Today's close 6,796 is well above. If we break 6,550 on hot CPI → next support ~6,400. S&P circuit breaker at -7% (~6,320) — last triggered March 9, 2020.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-[9px] text-gray-600 mt-2 text-right mono">⚠️ Analysis only — not financial advice. Size positions small in this volatility.</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- ACTIVE THREADS -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section>
+    <div class="flex items-center gap-2 mb-3">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">🔗 Active Threads</h2>
+      <span class="tag tag-info">5 NARRATIVES</span>
+    </div>
+    <div class="card overflow-hidden">
+      <!-- Thread 1: Oil Supply -->
+      <div class="p-4 border-b border-[#1e1e1e]">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-500 pulse flex-shrink-0"></span>
+          <div class="text-xs font-semibold text-red-400">Oil Supply Crisis</div>
+          <span class="tag tag-critical">CRITICAL</span>
+        </div>
+        <div class="text-[10px] text-gray-400 leading-relaxed">This is the <span class="text-white">largest oil supply disruption in history</span> — "nearly three times the size of the shock caused by the Arab oil embargo of 1973" (Rapidan Energy via CNBC). Iraq output down ~60%, not 70% — Bloomberg confirms 4.3M bpd to ~1.7-1.8M bpd, caused by tanker unavailability from Hormuz blockage. Kuwait and UAE have followed with their own cuts. Qatar FM al-Kaabi told the FT: <span class="text-white">"All exporters in the Gulf region will have to call force majeure."</span> US launched a $20B DFC reinsurance program for oil tankers, but the Kpler analyst is blunt: even with insurance, <span class="text-white">"it's little comfort for those on the ship if there's a chance the vessel is going to be attacked."</span></div>
+        <div class="text-[10px] text-gray-500 mt-1.5">📌 <span class="text-amber-400">Next trigger:</span> G7 coordinated SPR release (Guardian: "not there yet"). SPR at 415M barrels (EIA). Tuesday G7 meeting is the key catalyst.</div>
+        <div class="src mt-1">Bloomberg, CNBC/Rapidan, Al Jazeera/FT (al-Kaabi), Fox News (Kpler/Maersk), Globe &amp; Mail ($20B DFC)</div>
+      </div>
+
+      <!-- Thread 2: Stagflation Watch -->
+      <div class="p-4 border-b border-[#1e1e1e]">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-500 flex-shrink-0"></span>
+          <div class="text-xs font-semibold text-amber-400">Stagflation Watch</div>
+          <span class="tag tag-warn">VERDICT WEDNESDAY</span>
+        </div>
+        <div class="text-[10px] text-gray-400 leading-relaxed">The stag: US lost 92,000 jobs in February (BLS) — unemployment at 4.4%, third contraction in five months. Atlanta Fed GDPNow crashed from 3.0% to 2.1% in just 4 days. The flation: CPI at 2.4%, core at 2.5%, both above Fed's 2% target — and that's <em>before</em> oil doubled. Wolfe Research: a $20 oil hike adds +0.4% to headline CPI. Morgan Stanley's Zentner is explicit: <span class="text-white">"The Fed may feel compelled to remain on the sidelines"</span> — can't cut (inflation) and can't hike (jobs). SF Fed's Mary Daly: <span class="text-white">"This jobs market report has got my attention... it's really hard to hike right now."</span></div>
+        <div class="text-[10px] text-gray-500 mt-1.5">📌 <span class="text-amber-400">Verdict:</span> Wednesday 5:30 AM PDT. Feb CPI consensus 2.4% (FactSet). Cleveland Fed nowcasting March at 2.61% — the oil shock month.</div>
+        <div class="src mt-1">BLS, Atlanta Fed, CNBC (Zentner, Daly, Wolfe/Roth), Cleveland Fed</div>
+      </div>
+
+      <!-- Thread 3: Ceasefire -->
+      <div class="p-4 border-b border-[#1e1e1e]">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-500 flex-shrink-0"></span>
+          <div class="text-xs font-semibold text-amber-400">Ceasefire Prospects</div>
+          <span class="tag tag-warn">MIXED SIGNALS</span>
+        </div>
+        <div class="text-[10px] text-gray-400 leading-relaxed">Trump told CBS (via senior WH correspondent Weijia Jiang): <span class="text-white">"I think the war is very complete, pretty much"</span> and said Iran has lost its navy, comms, and air force. He also spoke to Putin, who per the Kremlin shared "proposals about quickly ending the war." Markets jumped immediately — "the Dow and S&P 500 rose after the president's comments were posted on X" (CNBC). BUT: IRGC spokesperson Ebrahim Zolfighari said the US has "opened a new chapter in the war" and warned regional allies to <span class="text-white">"stop the US or risk further reprisals."</span> The IRGC threatened oil could hit $200 if strikes continue. Mojtaba Khamenei — the late Ayatollah's son, a hardliner — was named new Supreme Leader.</div>
+        <div class="text-[10px] text-gray-500 mt-1.5">📌 <span class="text-amber-400">Bull case:</span> Putin mediates, war wraps in days, oil → $70s. <span class="text-red-400">Bear case:</span> new Supreme Leader doubles down, IRGC escalates, $200 threat materializes.</div>
+        <div class="src mt-1">CNBC (Trump/Putin), CBS/Weijia Jiang, Al Jazeera (IRGC/Zolfighari, Khamenei)</div>
+      </div>
+
+      <!-- Thread 4: Energy War -->
+      <div class="p-4 border-b border-[#1e1e1e]">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-500 pulse flex-shrink-0"></span>
+          <div class="text-xs font-semibold text-red-400">Energy War</div>
+          <span class="tag tag-critical">INFRASTRUCTURE DAMAGE</span>
+        </div>
+        <div class="text-[10px] text-gray-400 leading-relaxed">Saturday's Israeli strikes were the first targeting Iran's oil infrastructure. Fars news agency (via Al Jazeera): strikes hit four oil storage facilities and an oil transfer/production center in Tehran and Alborz province. CNN's Frederik Pleitgen reported from Tehran's Shahran oil depot: <span class="text-white">"thick black smoke rises behind him."</span> Oil-saturated rain is falling on the capital. Al Jazeera: "a dark haze hung over the city on Sunday and the smell of burning oil lingered in the air." This is physical destruction that takes months to rebuild regardless of any ceasefire — refineries aren't like stock prices, they don't snap back on a headline.</div>
+        <div class="text-[10px] text-gray-500 mt-1.5">📌 <span class="text-amber-400">Key question:</span> Will Israel target Kharg Island — Iran's main oil export terminal? Trump has so far left it untouched (FT headline). That's the $150+ oil trigger.</div>
+        <div class="src mt-1">Al Jazeera (Fars, oil rain), CNN (Pleitgen/Shahran), FT (Kharg Island)</div>
+      </div>
+
+      <!-- Thread 5: Crypto Hedge -->
+      <div class="p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-green-500 flex-shrink-0"></span>
+          <div class="text-xs font-semibold text-green-400">Crypto as Hedge</div>
+          <span class="tag tag-ok">CONTESTED</span>
+        </div>
+        <div class="text-[10px] text-gray-400 leading-relaxed">BTC at ~$68K, up 1.2% while equities plunged in the AM — but the "digital gold" narrative is mixed. Investing.com literally titled an article <span class="text-white">"Bitcoin Fails the Safe-Haven Test"</span> (BTC dropped to $66.5K on Mar 3, down 47% from Oct 2025 ATH of $126K). However, BTC ETFs saw a <span class="text-white">$458M single-day inflow</span> (Yahoo/99Bitcoins) — BlackRock's IBIT alone absorbed $263M. CoinDesk: "one of the quarter's biggest inflow days amid Iran volatility." This was the first positive day after 5 consecutive weeks of outflows totaling &gt;$1.8B. Rachael Lucas (BTC Markets analyst): concentration in IBIT suggests <span class="text-white">"coordinated buying among large allocators such as pension funds."</span></div>
+        <div class="text-[10px] text-gray-500 mt-1.5">📌 <span class="text-amber-400">Watch:</span> Does BTC hold $65K+ through CPI Wednesday? If yes, institutional allocation thesis strengthens.</div>
+        <div class="src mt-1">Investing.com, Yahoo/99Bitcoins, CoinDesk, BTC Markets</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- DEEP DIVE -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section>
+    <div class="flex items-center gap-2 mb-3">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">🧠 Deep Dive — Why Is the Fed Trapped?</h2>
+      <span class="tag tag-info">EDUCATIONAL</span>
+    </div>
+    <div class="card p-5" style="border-left: 3px solid #42a5f5;">
+      <div class="text-xs text-gray-300 leading-relaxed space-y-3">
+        <p>The Federal Reserve has two jobs — its <span class="text-white font-semibold">"dual mandate"</span>: keep inflation near 2% <em>and</em> maximize employment. Normally these pull in the same direction. When the economy weakens, cut rates to boost hiring. When it overheats, raise rates to cool inflation.</p>
+
+        <p><span class="text-amber-400 font-semibold">Stagflation breaks this.</span> Right now: oil has surged from $67 to $119 in two weeks — a supply shock that raises the price of everything that moves on a truck (i.e., everything). Meanwhile, February payrolls showed the US <span class="down font-semibold">lost 92,000 jobs</span> (BLS) — unemployment at 4.4%, the third contraction in five months. Atlanta Fed GDPNow plunged from 3.0% to 2.1% in just four days. Inflation is expected at <span class="warn font-semibold">2.4%</span> (already above target) <em>before</em> the oil spike hits the data.</p>
+
+        <p>So the Fed faces an impossible choice:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-3">
+          <div class="p-3 rounded bg-[#1a1a1a]">
+            <div class="text-[10px] font-semibold down mb-1">❌ Cut rates to save jobs</div>
+            <div class="text-[10px] text-gray-400">Cheaper money = more spending = inflation accelerates. With oil already spiking, this is gasoline on a fire. Morgan Stanley's Zentner: "higher-for-longer oil prices could trigger another inflation surge."</div>
+          </div>
+          <div class="p-3 rounded bg-[#1a1a1a]">
+            <div class="text-[10px] font-semibold down mb-1">❌ Raise rates to fight inflation</div>
+            <div class="text-[10px] text-gray-400">More expensive money = less hiring = recession deepens. You're punishing an economy that just lost 92K jobs. SF Fed's Daly: "It's really hard to hike right now in a world where we don't have evidence that [the labor market is] quite steady."</div>
+          </div>
+        </div>
+
+        <div class="p-3 rounded bg-[#0f0f1a] border border-[#1e1e2e] my-3">
+          <div class="text-[10px] font-semibold text-blue-400 mb-2">📜 The 1970s Parallel</div>
+          <div class="text-[10px] text-gray-400 leading-relaxed">The last time this happened: the <span class="text-white">Great Inflation of 1965-1982</span> (Federal Reserve History). Key facts:
+            <ul class="list-disc list-inside mt-1 space-y-1 text-[10px] text-gray-400">
+              <li>Inflation exceeded 7% <span class="text-white">even before</span> the first oil crisis in October 1973 (Dallas Fed) — root causes were deeper than oil</li>
+              <li>1973 OPEC embargo disrupted <span class="text-white">7% of world supply with 8% spare capacity</span>. Today: 20% disrupted with 0% spare (Rapidan)</li>
+              <li>Oil quadrupled from ~$3 to $12 (1973), then again to ~$40 by 1980 (~$150 in 2024 dollars)</li>
+              <li>Fed Chair Arthur Burns kept rates too low, tried wage/price controls instead. NPR: "History remembers Burns as the Fed chair who let inflation run rampant"</li>
+              <li>Paul Volcker replaced him in 1979. Raised rates to <span class="text-white font-semibold">20%</span> by June 1981. Triggered brutal recession — unemployment hit 10.8%</li>
+              <li><span class="text-green-400">But it worked:</span> inflation fell from ~15% to 3.5% by mid-1980s. The cure was worse than the disease, but it was the only cure</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="p-3 rounded bg-[#0f0f1a] border border-[#1e1e2e] my-3">
+          <div class="text-[10px] font-semibold text-blue-400 mb-2">🔮 The 2008 Parallel (and why this is different)</div>
+          <div class="text-[10px] text-gray-400 leading-relaxed">Oil hit $147 in July 2008 (Brookings/James Hamilton). But that was <span class="text-white">demand-driven</span> — China's boom, speculation, weak dollar. It unwound because the recession destroyed demand: $147 → $32 in 5 months, an 80% collapse. Today's shock is <span class="text-white">supply-driven</span> — physical infrastructure destroyed, Hormuz closed. A recession won't reopen the Strait or rebuild the Shahran oil depot. 2008's oil spike contributed materially to the Great Recession (Hamilton argues it was a necessary cause). Bear Stearns collapsed March 2008. Lehman in September. S&P fell 57% peak to trough.</div>
+        </div>
+
+        <div class="p-3 rounded bg-[#0f0f1a] border border-[#1e1e2e] my-3">
+          <div class="text-[10px] font-semibold text-blue-400 mb-2">👤 The People Who Decide</div>
+          <div class="text-[10px] text-gray-400 leading-relaxed">
+            <span class="text-white font-semibold">Mary Daly</span> (SF Fed President, non-voting 2026): <span class="text-white">"This jobs market report has got my attention. I don't think you can look through this report."</span> But also: <span class="text-white">"We have inflation printing above target for some time, so it's really a balance of risks."</span> She's caught in the middle — sees both sides and can't commit. (CNBC, Mar 6)
+            <br><br>
+            <span class="text-white font-semibold">Kevin Warsh</span> (incoming Fed Chair, replaces Powell May 15): A former Fed Governor during the 2008 crisis. CNN analysis of his FOMC transcripts reveals a persistent hawk — even in spring 2009, months after Lehman: <span class="text-white">"I continue to be more worried about upside risks to inflation than downside risks."</span> He's argued against Fed market interventions and called the balance sheet "bloated." Mohamed El-Erian (Politico): Warsh "could be faster to respond to market conditions." The tension: Trump wants lower rates. Warsh historically hates inflation more than recession. (CNN Feb 2, Politico Jan 30)
+            <br><br>
+            <span class="text-white font-semibold">Current Fed rate:</span> 3.50-3.75%. Cut 3 times in late 2025 (75 bps total). <span class="text-white">Expected to HOLD at March 17-18 meeting.</span> Next cut pulled to July per futures. Median FOMC projection: one 25bp cut by end of 2026.
+          </div>
+        </div>
+
+        <p class="text-gray-500">Wednesday's CPI tells us how trapped they are. If inflation is already running hot <em>before</em> oil doubled, the Fed has no good options — only less-bad ones. Goldman models CPI rising to 2.7% by May. Cleveland Fed nowcasts March at 2.61%. The oil-to-CPI transmission takes 1-4 weeks for gasoline (direct) and 3-6 months for everything else (indirect). We're in the gasoline phase right now — the broader hit comes in Q2.</p>
+        <div class="src mt-1">BLS, Atlanta Fed, CNBC (Daly, Zentner), CNN (Warsh transcripts), Politico (El-Erian), Reuters (rate expectations), Federal Reserve History, Dallas Fed, Brookings (Hamilton), Rapidan Energy/CNBC, SF Fed Economic Letter</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- HISTORICAL COMPARISON TABLE -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section>
+    <div class="flex items-center gap-2 mb-3">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">📊 Oil Crisis Comparison — Rapidan Energy</h2>
+    </div>
+    <div class="card overflow-x-auto">
+      <table class="w-full text-[10px]">
+        <thead>
+          <tr class="border-b border-[#1e1e1e] text-gray-500">
+            <th class="p-3 text-left font-semibold">Crisis</th>
+            <th class="p-3 text-center font-semibold">Supply Disrupted</th>
+            <th class="p-3 text-center font-semibold">Spare Capacity</th>
+            <th class="p-3 text-center font-semibold">Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-[#1e1e1e]">
+            <td class="p-3 text-gray-400">Suez Crisis (1956)</td>
+            <td class="p-3 text-center text-gray-300">10%</td>
+            <td class="p-3 text-center text-green-400">35%</td>
+            <td class="p-3 text-center text-gray-400">Resolved quickly</td>
+          </tr>
+          <tr class="border-b border-[#1e1e1e]">
+            <td class="p-3 text-gray-400">Arab Embargo (1973)</td>
+            <td class="p-3 text-center text-gray-300">7%</td>
+            <td class="p-3 text-center text-amber-400">8%</td>
+            <td class="p-3 text-center text-gray-400">Stagflation, decade of pain</td>
+          </tr>
+          <tr class="border-b border-[#1e1e1e]">
+            <td class="p-3 text-gray-400">Iran Revolution (1979)</td>
+            <td class="p-3 text-center text-gray-300">5%</td>
+            <td class="p-3 text-center text-amber-400">5%</td>
+            <td class="p-3 text-center text-gray-400">Volcker's 20% rates</td>
+          </tr>
+          <tr class="border-b border-[#1e1e1e]">
+            <td class="p-3 text-gray-400">Gulf War (1990)</td>
+            <td class="p-3 text-center text-gray-300">9%</td>
+            <td class="p-3 text-center text-amber-400">4%</td>
+            <td class="p-3 text-center text-gray-400">Oil doubled then unwound in 9 months</td>
+          </tr>
+          <tr class="bg-[#1a0a0a]">
+            <td class="p-3 text-red-400 font-semibold">Iran War (2026) 🔴</td>
+            <td class="p-3 text-center text-red-400 font-bold">20%</td>
+            <td class="p-3 text-center text-red-400 font-bold">0%</td>
+            <td class="p-3 text-center text-red-400 font-semibold">Largest disruption in history. TBD.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-[10px] text-gray-600 mt-2">Paul Krugman (Mar 8): "World oil production only fell about 5% after the 1973 Yom Kippur War." The 2026 disruption at 20% is <span class="text-white">4x larger</span>. TIME: "One of the big differences between now and then is that before the 1970s, very few countries had security stocks of oil." IEA now recommends 90 days of reserves.</div>
+    <div class="src">CNBC/Rapidan Energy, paulkrugman.substack.com, TIME</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SOURCES -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section>
+    <div class="flex items-center gap-2 mb-3">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">📚 Sources</h2>
+    </div>
+    <div class="card p-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+        <div class="text-[9px] text-gray-500 leading-relaxed space-y-1">
+          <div><span class="text-gray-400 font-semibold">Market Data</span></div>
+          <div>• <a href="https://www.usatoday.com/story/money/markets/2026/03/09/oil-prices-rise-hammering-stocks/89062143007/" class="text-blue-500 hover:underline">USA Today — S&P, Dow, Nasdaq closes</a></div>
+          <div>• <a href="https://fortune.com/2026/03/09/stock-market-today-massive-upside-reversal-oil-prices-trump-iran-war-over-soon/" class="text-blue-500 hover:underline">Fortune — Market reversal, WTI details</a></div>
+          <div>• <a href="https://finance.yahoo.com/news/oil-prices-fall-25-after-soaring-to-4-year-highs-as-trump-says-war-is-very-complete-224917378.html" class="text-blue-500 hover:underline">Yahoo Finance — Oil 25% swing, largest gain since 1985</a></div>
+          <div>• <a href="https://tradingeconomics.com/united-states/government-bond-yield" class="text-blue-500 hover:underline">Trading Economics — 10Y yield 4.18%</a></div>
+          <div>• <a href="https://english.kyodonews.net/articles/-/71879" class="text-blue-500 hover:underline">Kyodo News — Nikkei 52,728.72 (-5.20%)</a></div>
+          <div>• <a href="https://koreajoongangdaily.joins.com/news/2026-03-09/business/finance/Circuit-breaker-triggered-on-Kospi-as-index-plunges-8/2539978" class="text-blue-500 hover:underline">Korea JoongAng Daily — KOSPI circuit breaker</a></div>
+
+          <div class="mt-2"><span class="text-gray-400 font-semibold">War / Geopolitical</span></div>
+          <div>• <a href="https://www.cnbc.com/2026/03/09/trump-iran-war-end.html" class="text-blue-500 hover:underline">CNBC — Trump "very complete" + Putin call</a></div>
+          <div>• <a href="https://www.aljazeera.com/economy/2026/3/9/oil-soars-past-100-a-barrel-amid-iran-war" class="text-blue-500 hover:underline">Al Jazeera — IRGC $200 oil threat, al-Kaabi quotes</a></div>
+          <div>• <a href="https://www.aljazeera.com/gallery/2026/3/8/dark-haze-over-tehran-as-us-israeli-forces-bomb-oil-storage-facilities" class="text-blue-500 hover:underline">Al Jazeera — Shahran oil depot, Tehran oil rain</a></div>
+          <div>• <a href="https://www.foxnews.com/politics/unlikely-tool-trump-eyeing-tackle-rising-oil-prices-amid-iran-conflict" class="text-blue-500 hover:underline">Fox News — Maersk, insurance, shipping crisis</a></div>
+          <div>• <a href="https://www.theglobeandmail.com/investing/markets/stocks/CVX/pressreleases/619235/" class="text-blue-500 hover:underline">Globe &amp; Mail — $20B DFC reinsurance program</a></div>
+        </div>
+        <div class="text-[9px] text-gray-500 leading-relaxed space-y-1">
+          <div><span class="text-gray-400 font-semibold">Analysis / Analyst Views</span></div>
+          <div>• <a href="https://www.reuters.com/business/finance/goldman-ceo-says-markets-may-take-couple-weeks-digest-iran-war-impacts-2026-03-04/" class="text-blue-500 hover:underline">Reuters — Goldman CEO Solomon quotes</a></div>
+          <div>• <a href="https://www.cnbc.com/2026/03/06/stock-market-next-week-outlook-for-march-9-13-2026.html" class="text-blue-500 hover:underline">CNBC — Week ahead: Zentner, Daly, Wolfe, Ashley</a></div>
+          <div>• <a href="https://privatebank.jpmorgan.com/nam/en/insights/markets-and-investing/tmt/oil-shock-jolts-american-stocks-into-drivers-seat-for-now" class="text-blue-500 hover:underline">JPMorgan Private Bank — US insulation thesis</a></div>
+          <div>• <a href="https://www.cnbc.com/2026/03/09/the-us-iran-war-is-the-biggest-oil-supply-disruption-in-history.html" class="text-blue-500 hover:underline">CNBC/Rapidan — Largest disruption in history</a></div>
+          <div>• <a href="https://www.clevelandfed.org/indicators-and-data/inflation-nowcasting" class="text-blue-500 hover:underline">Cleveland Fed — CPI nowcast (Feb 2.41%, Mar 2.61%)</a></div>
+          <div>• <a href="https://www.atlantafed.org/research-and-data/data/gdpnow" class="text-blue-500 hover:underline">Atlanta Fed — GDPNow 2.1%</a></div>
+
+          <div class="mt-2"><span class="text-gray-400 font-semibold">Historical / Deep Dive</span></div>
+          <div>• <a href="https://www.federalreservehistory.org/essays/great-inflation" class="text-blue-500 hover:underline">Federal Reserve History — Great Inflation 1965-1982</a></div>
+          <div>• <a href="https://www.dallasfed.org/research/economics/2026/0217" class="text-blue-500 hover:underline">Dallas Fed — Oil &amp; inflation causes</a></div>
+          <div>• <a href="https://www.cnn.com/2026/02/02/economy/kevin-warsh-fed-trump-inflation" class="text-blue-500 hover:underline">CNN — Kevin Warsh FOMC transcripts</a></div>
+          <div>• <a href="https://www.cnbc.com/2026/03/06/san-francisco-feds-daly-says-jobs-report-complicates-interest-rate-call.html" class="text-blue-500 hover:underline">CNBC — Mary Daly quotes</a></div>
+          <div>• <a href="https://paulkrugman.substack.com/p/oil-crises-past-and-possibly-future" class="text-blue-500 hover:underline">Paul Krugman — Oil crises comparison</a></div>
+          <div>• <a href="https://www.bls.gov/news.release/pdf/empsit.pdf" class="text-blue-500 hover:underline">BLS — February 2026 Employment Situation</a></div>
+
+          <div class="mt-2"><span class="text-gray-400 font-semibold">Crypto</span></div>
+          <div>• <a href="https://finance.yahoo.com/news/bitcoin-etfs-see-458m-inflow-131748445.html" class="text-blue-500 hover:underline">Yahoo/99Bitcoins — BTC ETF $458M inflow</a></div>
+          <div>• <a href="https://www.coindesk.com/markets/2026/03/03/bitcoin-climbs-as-btc-etfs-post-one-of-the-quarter-s-biggest-inflow-days-amid-iran-volatility" class="text-blue-500 hover:underline">CoinDesk — IBIT biggest inflow day of quarter</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="status-bar px-4 py-3 md:px-8 mt-8">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+    <div class="text-[10px] text-gray-600 mono">
+      CHIP MARKET INTELLIGENCE • Updated Mon Mar 9, 2026 4:30 PM PDT • Research via Parallel Systems Search API
+    </div>
+    <div class="text-[10px] text-gray-600 mono">
+      Next critical event: <span class="text-red-400 font-semibold">WED MAR 11 — FEBRUARY CPI (est. 2.4%)</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

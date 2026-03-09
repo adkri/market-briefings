@@ -48,7 +48,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
     <div class="flex items-center gap-4 text-xs text-gray-500 mono">
       <span>Monday, March 9, 2026</span>
       <span>•</span>
-      <span>5:00 PM PDT</span>
+      <span>4:48 PM PDT</span>
       <span>•</span>
       <span class="up">Markets Closed — Green Close</span>
     </div>
@@ -129,7 +129,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
         <div class="text-xs text-gray-500 mb-1">VIX (Fear Index)</div>
         <div class="text-xl font-bold mono warn">~27.0</div>
         <div class="flex items-center gap-2 mt-1">
-          <span class="text-sm mono warn">+29%</span>
+          <span class="text-sm mono warn">Down from 31+</span>
         </div>
         <div class="ann">Above 25 = institutional hedging. Above 30 = near panic. Last sustained above 30: banking crisis 2023. COVID crash (Mar 9, 2020 — exactly 6 years ago today) triggered first circuit breaker since 1997. VIX at 12-15 = complacent; 20-25 = elevated; 30+ = fear.</div>
         <div class="src">SEC/Investor.gov, CNBC</div>
@@ -155,7 +155,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           <div class="flex items-center justify-between">
             <div>
               <div class="text-xs text-gray-500">🛢️ Oil (WTI Crude)</div>
-              <div class="text-2xl font-bold mono down mt-1">$86.00</div>
+              <div class="text-2xl font-bold mono down mt-1">$85.00</div>
             </div>
             <div class="text-right">
               <div class="text-sm mono down">-6.59%</div>
@@ -208,10 +208,10 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           <div class="flex items-center justify-between">
             <div>
               <div class="text-xs text-gray-500">🏛️ 10Y Treasury Yield</div>
-              <div class="text-lg font-bold mono warn mt-1">4.16%</div>
+              <div class="text-lg font-bold mono warn mt-1">4.15%</div>
             </div>
             <div class="text-right">
-              <span class="text-sm mono warn">+5 bps</span>
+              <span class="text-sm mono warn">+3 bps</span>
             </div>
           </div>
           <div class="ann"><span class="text-amber-400 font-semibold">⚠️ Key signal:</span> Yields RISING during a stock selloff is abnormal. Normally treasuries rally (yields fall) when equities crash. Yields going UP means the bond market is pricing <span class="text-white">inflation fears over recession fears</span> — a clear stagflation signal. Fed rate: 3.50-3.75%. Next cut pulled to July per futures.</div>
@@ -369,7 +369,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           <div class="timeline-dot bg-green-500 mt-1.5 flex-shrink-0 pulse"></div>
           <div>
             <div class="text-[10px] text-gray-500 mono">MAR 9 — TODAY</div>
-            <div class="text-xs"><span class="up font-semibold">Trump: war "very complete, pretty much"</span> (CBS/Weijia Jiang). Also spoke to Putin — Kremlin says Putin shared "proposals about quickly ending the war." Oil crashes $119→$85. 7 US killed total.</div>
+            <div class="text-xs"><span class="up font-semibold">Trump: war "very complete, pretty much"</span> (CBS/Weijia Jiang). At Doral press conference: <span class="up">"I think soon"</span> when asked if operations end this week — but also <span class="warn">"we haven't won enough."</span> Spoke to Putin — Kremlin says Putin shared "proposals about quickly ending the war." Oil crashes $119→$85. 7 US killed total. <span class="down font-semibold">Israel resumed strikes on Iran tonight</span> despite ceasefire rhetoric.</div>
           </div>
         </div>
       </div>
@@ -439,7 +439,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
             <span class="text-gray-600">→</span>
             <span class="text-red-400 font-bold">$119 overnight</span>
             <span class="text-gray-600">→</span>
-            <span class="text-green-400 font-bold">$84.91 close</span>
+            <span class="text-green-400 font-bold">$85 close</span>
           </div>
           <div class="text-[10px] text-gray-500 mt-2">Rapidan Energy comparison: 1973 embargo disrupted 7% of supply with 8% spare capacity. 2026 Iran war has disrupted <span class="text-white font-semibold">20% of supply with 0% spare capacity</span>. Wolfe Research: every $20 oil hike = -0.1% GDP, +0.4% CPI.</div>
           <div class="text-[10px] text-gray-500 mt-1">SPR level: <span class="text-white">415.44M barrels</span> (EIA, Feb 27). G7 "not there yet" on coordinated release (The Guardian). White House: "On the table, but fierce opposition to tapping SPR — it's a half measure at best."</div>
@@ -740,45 +740,58 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
   <!-- ═══════════════════════════════════════════════ -->
   <section>
     <div class="flex items-center gap-2 mb-3">
-      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">🧠 Deep Dive — What Are Circuit Breakers?</h2>
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">🧠 Deep Dive — What Is the SPR (Strategic Petroleum Reserve)?</h2>
       <span class="tag tag-info">EDUCATIONAL</span>
     </div>
     <div class="card p-5" style="border-left: 3px solid #42a5f5;">
       <div class="text-xs text-gray-300 leading-relaxed space-y-3">
-        <p><span class="text-white font-semibold">Today Korea's KOSPI triggered a circuit breaker at -8.1%</span> — an automatic trading halt designed to prevent panic cascades. Circuit breakers force a pause so traders can think instead of panic-selling.</p>
+        <p><span class="text-white font-semibold">The G7 is discussing a coordinated SPR release this week</span> — so what exactly is the SPR and how does it work?</p>
+
+        <p>The <span class="text-white font-semibold">Strategic Petroleum Reserve</span> is America's emergency oil stash — roughly <span class="text-white font-semibold">375 million barrels</span> of crude stored in massive underground <span class="text-white">salt caverns</span> along the Gulf Coast in Louisiana and Texas. Created after the 1973 Arab oil embargo by the Energy Policy and Conservation Act of 1975, it's the <span class="text-white">world's largest government-owned emergency oil supply</span>.</p>
 
         <div class="p-3 rounded bg-[#0f0f1a] border border-[#1e1e2e] my-3">
-          <div class="text-[10px] font-semibold text-blue-400 mb-2">🇺🇸 US Circuit Breaker Levels (NYSE)</div>
+          <div class="text-[10px] font-semibold text-blue-400 mb-2">📊 SPR by the Numbers</div>
           <div class="text-[10px] text-gray-400 leading-relaxed">
             <ul class="list-disc list-inside space-y-1">
-              <li><span class="text-amber-400 font-semibold">Level 1 — S&P drops 7%:</span> 15-minute halt (if before 3:25 PM ET). Today that would be ~6,320.</li>
-              <li><span class="text-amber-400 font-semibold">Level 2 — S&P drops 13%:</span> Another 15-minute halt. (~5,912 today.)</li>
-              <li><span class="text-red-400 font-semibold">Level 3 — S&P drops 20%:</span> Trading halted for the rest of the day. (~5,437 today.)</li>
+              <li><span class="text-white font-semibold">Current level:</span> ~375 million barrels (EIA, Feb 2026) — down from 638M before Biden's 2022 release during Russia/Ukraine</li>
+              <li><span class="text-white font-semibold">Max drawdown rate:</span> ~4.4 million barrels/day — it takes ~2 weeks from order to oil reaching refineries</li>
+              <li><span class="text-white font-semibold">Storage:</span> 4 sites in underground salt caverns (Bryan Mound TX, Big Hill TX, West Hackberry LA, Bayou Choctaw LA)</li>
+              <li><span class="text-white font-semibold">Capacity:</span> 714 million barrels total — currently ~53% full</li>
+              <li><span class="text-amber-400 font-semibold">At current levels:</span> ~375M barrels ÷ ~20M bpd US consumption = roughly 19 days of total supply</li>
             </ul>
           </div>
         </div>
 
         <div class="p-3 rounded bg-[#0f0f1a] border border-[#1e1e2e] my-3">
-          <div class="text-[10px] font-semibold text-blue-400 mb-2">🇰🇷 What Happened in Korea Today</div>
-          <div class="text-[10px] text-gray-400 leading-relaxed">KOSPI plunged over 8.1% at 10:31 AM KST, triggering a <span class="text-white">20-minute automatic halt</span> (Korea calls it "sidecar" for futures, "circuit breaker" for the full market). This is the <span class="text-white">2nd circuit breaker this month</span> and 3rd this year. Korea imports 100% of its energy — $120 oil is existential for margins. After the halt, the market partially recovered to close -6%, aided by Saudi Arabia offering ~4.6M barrels via Red Sea pipeline (Bloomberg).</div>
+          <div class="text-[10px] font-semibold text-blue-400 mb-2">🔧 How a Release Works</div>
+          <div class="text-[10px] text-gray-400 leading-relaxed">
+            <p>The President can order a release <span class="text-white">without Congressional approval</span> — it's one of the few direct economic tools the executive branch controls. Oil is pumped from salt caverns through pipelines to nearby refineries. The salt cavern design is clever: you pump water in, it dissolves salt to create a cavity, then pump crude in. To withdraw, you pump water back in and the oil floats out. The geology acts as a natural, nearly indestructible storage container.</p>
+          </div>
         </div>
 
         <div class="p-3 rounded bg-[#0f0f1a] border border-[#1e1e2e] my-3">
-          <div class="text-[10px] font-semibold text-blue-400 mb-2">📜 History of US Circuit Breakers</div>
+          <div class="text-[10px] font-semibold text-blue-400 mb-2">📜 Past SPR Releases</div>
           <div class="text-[10px] text-gray-400 leading-relaxed">
             <ul class="list-disc list-inside space-y-1">
-              <li><span class="text-white font-semibold">Black Monday, Oct 19, 1987:</span> Dow dropped 22.6% in one day — no circuit breakers existed. This crash led to their creation.</li>
-              <li><span class="text-white font-semibold">Oct 27, 1997:</span> First time a circuit breaker triggered. Dow fell 7.2% on Asian financial crisis fears. Trading halted twice.</li>
-              <li><span class="text-white font-semibold">March 9, 2020:</span> Exactly 6 years ago today. COVID panic triggered Level 1 (-7%). It triggered 4 times in 2 weeks. S&P eventually fell 34% from peak.</li>
-              <li><span class="text-white font-semibold">March 9, 2026 (today):</span> S&P opened -2%+ but never approached the 7% threshold. Korea hit -8.1%. If S&P had broken -7%, it would have been the first halt since COVID.</li>
+              <li><span class="text-white font-semibold">1991 Gulf War:</span> 17M barrels released. Oil dropped from $40 → $20 within weeks.</li>
+              <li><span class="text-white font-semibold">2005 Hurricane Katrina:</span> 11M barrels released after Gulf Coast refinery damage.</li>
+              <li><span class="text-white font-semibold">2011 Libya:</span> 30M barrels in coordination with IEA (60M total globally).</li>
+              <li><span class="text-white font-semibold">2022 Russia/Ukraine:</span> Biden ordered 180M barrels released over 6 months — the <span class="text-white">largest release in SPR history</span>. Oil dropped ~$40 from peak, though it was already falling. Drained SPR to lowest level since 1984.</li>
             </ul>
           </div>
         </div>
 
-        <p><span class="text-amber-400 font-semibold">The "Magnet Effect" paradox:</span> Sometimes circuit breakers <em>increase</em> panic. Traders see the threshold approaching and rush to sell before the halt — being stuck unable to sell during a freeze is worse than selling at a loss. The threshold itself attracts selling pressure as the index approaches it. This is why Korea's -8.1% trigger saw the market overshoot before recovering.</p>
+        <div class="p-3 rounded bg-[#0f0f1a] border border-[#1e1e2e] my-3">
+          <div class="text-[10px] font-semibold text-blue-400 mb-2">🌐 Why the G7 Coordinated Release Matters</div>
+          <div class="text-[10px] text-gray-400 leading-relaxed">
+            <p>A coordinated release from <span class="text-white">US + Europe + Japan</span> could put 2-3 million barrels/day on the market temporarily. The IEA recommends member countries hold 90 days of reserves. Japan holds ~500M barrels, Europe collectively ~400M+. A joint release would offset roughly <span class="text-white">15-20% of the Hormuz disruption</span>.</p>
+            <p class="mt-2"><span class="text-amber-400 font-semibold">The catch:</span> SPR releases are temporary — markets know the oil eventually needs to be replenished. It's a <span class="text-white">band-aid, not a cure</span>. It buys time but doesn't fix destroyed refineries or reopen shipping lanes. The <em>signal</em> matters more than the barrels: <span class="text-white">"the government is willing to intervene."</span></p>
+            <p class="mt-2"><span class="text-amber-400 font-semibold">Current status:</span> The Guardian reports G7 is "not there yet" on a coordinated release. Politico says there's "fierce opposition to tapping SPR — it's a half measure at best." Trump has so far refused to release. Watch for a G7 announcement this week — if they announce, oil drops $5-10 on the headline. If they punt, the war premium stays.</p>
+          </div>
+        </div>
 
-        <p class="text-gray-500"><span class="text-white font-semibold">Why it matters today:</span> The US opened -2%+ and recovered to green. Korea hit -8% and triggered the breaker. Japan fell -5.2% but didn't breach its -7% threshold. These different reactions tell you which economies are most vulnerable to the oil shock — the ones that import everything (Korea, Japan) vs. the ones that produce their own energy (US). The US circuit breaker levels (6,320 for Level 1) remain the ultimate "panic line" to watch if things escalate further.</p>
-        <div class="src mt-1">Korea JoongAng Daily, Chosun Ilbo, NYSE/SEC (circuit breaker rules), Bloomberg (Saudi offer)</div>
+        <p class="text-gray-500"><span class="text-white font-semibold">Why it matters today:</span> With the SPR at 375M barrels (roughly half of 2020 levels), the US has less ammunition than it did during the Russia/Ukraine crisis. A coordinated release is the only near-term bearish catalyst for oil beyond a ceasefire. The G7 meeting this week will determine whether governments intervene or let the market absorb a 20% supply disruption on its own.</p>
+        <div class="src mt-1">EIA, The Guardian, Politico, IEA (90-day reserve requirement), Department of Energy (salt cavern design)</div>
       </div>
     </div>
   </section>
@@ -898,7 +911,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
 <footer class="status-bar px-4 py-3 md:px-8 mt-8">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-2">
     <div class="text-[10px] text-gray-600 mono">
-      CHIP MARKET INTELLIGENCE • Updated Mon Mar 9, 2026 5:00 PM PDT • Research via Parallel Systems Search API
+      CHIP MARKET INTELLIGENCE • Updated Mon Mar 9, 2026 4:48 PM PDT • Research via Parallel Systems Search API
     </div>
     <div class="text-[10px] text-gray-600 mono">
       Next critical event: <span class="text-red-400 font-semibold">WED MAR 11 — FEBRUARY CPI (est. 2.4%)</span>

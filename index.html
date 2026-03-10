@@ -33,9 +33,52 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #0a0a0a; }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+/* Scrolling Ticker */
+.ticker-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 34px; background: #06060a; border-bottom: 1px solid #1a1a1a; z-index: 9999; overflow: hidden; display: flex; align-items: center; }
+.ticker-track { display: flex; white-space: nowrap; animation: ticker-scroll 40s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.ticker-item { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 0 18px; display: inline-flex; align-items: center; gap: 5px; color: #888; }
+.ticker-item .sym { color: #ccc; font-weight: 600; }
+.ticker-item .val { color: #e0e0e0; }
+.ticker-item .chg-up { color: #22c55e; }
+.ticker-item .chg-down { color: #ef4444; }
+.ticker-sep { color: #333; padding: 0 4px; font-size: 10px; }
 </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen" style="padding-top: 36px;">
+
+<!-- SCROLLING TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="sym">S&P 500</span> <span class="val">6,795.95</span> <span class="chg-up">▲+0.83%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">DOW</span> <span class="val">47,982</span> <span class="chg-up">▲+0.29%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">NASDAQ</span> <span class="val">22,696</span> <span class="chg-up">▲+1.38%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">RUSSELL 2000</span> <span class="val">2,466</span> <span class="chg-down">▼-1.2%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">VIX</span> <span class="val">27.0</span> <span class="chg-up">▲+13.5%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">WTI OIL</span> <span class="val">$85.03</span> <span class="chg-up">▲+12.8%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">BRENT</span> <span class="val">$89.00</span> <span class="chg-up">▲+10.2%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">GOLD</span> <span class="val">$5,086</span> <span class="chg-down">▼-0.9%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">BTC</span> <span class="val">$68,740</span> <span class="chg-up">▲+2.6%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">10Y YIELD</span> <span class="val">4.17%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">DXY</span> <span class="val">99.34</span> <span class="chg-up">▲+0.6%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">NIKKEI</span> <span class="val">52,729</span> <span class="chg-down">▼-5.2%</span></span><span class="ticker-sep">•</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item"><span class="sym">S&P 500</span> <span class="val">6,795.95</span> <span class="chg-up">▲+0.83%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">DOW</span> <span class="val">47,982</span> <span class="chg-up">▲+0.29%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">NASDAQ</span> <span class="val">22,696</span> <span class="chg-up">▲+1.38%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">RUSSELL 2000</span> <span class="val">2,466</span> <span class="chg-down">▼-1.2%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">VIX</span> <span class="val">27.0</span> <span class="chg-up">▲+13.5%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">WTI OIL</span> <span class="val">$85.03</span> <span class="chg-up">▲+12.8%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">BRENT</span> <span class="val">$89.00</span> <span class="chg-up">▲+10.2%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">GOLD</span> <span class="val">$5,086</span> <span class="chg-down">▼-0.9%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">BTC</span> <span class="val">$68,740</span> <span class="chg-up">▲+2.6%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">10Y YIELD</span> <span class="val">4.17%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">DXY</span> <span class="val">99.34</span> <span class="chg-up">▲+0.6%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">NIKKEI</span> <span class="val">52,729</span> <span class="chg-down">▼-5.2%</span></span><span class="ticker-sep">•</span>
+  </div>
+</div>
 
 <!-- HEADER -->
 <header class="border-b border-[#1e1e1e] px-4 py-3 md:px-8">
@@ -48,7 +91,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
     <div class="flex items-center gap-4 text-xs text-gray-500 mono">
       <span>Monday, March 9, 2026</span>
       <span>•</span>
-      <span>9:30 PM PDT (Evening Update)</span>
+      <span>5:55 PM PDT — After Hours</span>
       <span>•</span>
       <span class="up">Markets Closed — Green Close</span>
     </div>
@@ -81,7 +124,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
       <!-- S&P 500 -->
       <div class="card p-4 glow-green">
         <div class="text-xs text-gray-500 mb-1">S&P 500</div>
-        <div class="text-xl font-bold mono up">6,795.95</div>
+        <div class="text-xl font-bold mono up">6,795.99</div>
         <div class="flex items-center gap-2 mt-1">
           <span class="text-sm mono up">+0.83%</span>
           <span class="text-xs text-gray-600">+56.01</span>
@@ -95,7 +138,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
       <!-- Dow -->
       <div class="card p-4 glow-green">
         <div class="text-xs text-gray-500 mb-1">Dow Jones</div>
-        <div class="text-xl font-bold mono up">47,982</div>
+        <div class="text-xl font-bold mono up">47,740.80</div>
         <div class="flex items-center gap-2 mt-1">
           <span class="text-sm mono up">+0.50%</span>
           <span class="text-xs text-gray-600">+239 pts</span>
@@ -110,7 +153,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
         <div class="text-xs text-gray-500 mb-1">Nasdaq</div>
         <div class="text-xl font-bold mono up">22,695.95</div>
         <div class="flex items-center gap-2 mt-1">
-          <span class="text-sm mono up">+1.38%</span>
+          <span class="text-sm mono up">+1.40%</span>
           <span class="text-xs text-gray-600">+308.27</span>
         </div>
         <div class="ann">Led the reversal — tech rebounded hardest. Growth stocks benefit most from potential ceasefire reducing inflation pressure.</div>
@@ -131,7 +174,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
         <div class="text-xs text-gray-500 mb-1">VIX (Fear Index)</div>
         <div class="text-xl font-bold mono warn">27.0</div>
         <div class="flex items-center gap-2 mt-1">
-          <span class="text-sm mono warn">Spiked 35+ intraday, settled at 27</span>
+          <span class="text-sm mono warn">Spiked 31+ at open, settled at 27</span>
         </div>
         <div class="ann">Closed at 27 — opened above 31, spiked past 35 intraday. Pulled back sharply after Trump's "very complete" comments. Still elevated (normal ~18) but fear receding. Below 25 = normalizing. Above 30 = near panic.</div>
         <div class="src">SEC/Investor.gov, CNBC</div>
@@ -157,10 +200,10 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           <div class="flex items-center justify-between">
             <div>
               <div class="text-xs text-gray-500">🛢️ Oil (WTI Crude)</div>
-              <div class="text-2xl font-bold mono warn mt-1">$96.00</div>
+              <div class="text-2xl font-bold mono warn mt-1">$85.00</div>
             </div>
             <div class="text-right">
-              <div class="text-sm mono down">Spiked $119-120, crashed to $96</div>
+              <div class="text-sm mono down">Spiked $119, crashed to $85</div>
               <div class="text-[10px] text-gray-500">Brent: ~$89</div>
             </div>
           </div>
@@ -176,9 +219,9 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           <div class="flex items-center justify-between">
             <div>
               <div class="text-xs text-gray-500">🥇 Gold (COMEX)</div>
-              <div class="text-xl font-bold mono up">$5,375</div>
-        <div class="text-sm mono up">+2.4% after hours</div>
-        <div class="ann">Gold bouncing back after hours — during the day, gold was DOWN despite active war (institutions selling to cover equity margin calls = liquidity stress). Recovery signals panic liquidation phase is over. Safe-haven bid returning.</div>
+              <div class="text-xl font-bold mono down">$5,085</div>
+        <div class="text-sm mono down">-2% from ATH</div>
+        <div class="ann">Gold DOWN despite active war — institutions selling to cover equity margin calls = liquidity stress. This happened in March 2020 and early 2022. If gold keeps falling, the financial system is straining.</div>
         </div>
         <!-- Natural Gas -->
         <div class="p-4">
@@ -205,10 +248,10 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           <div class="flex items-center justify-between">
             <div>
               <div class="text-xs text-gray-500">🏛️ 10Y Treasury Yield</div>
-              <div class="text-lg font-bold mono up mt-1">4.17%</div>
+              <div class="text-lg font-bold mono warn mt-1">4.15%</div>
             </div>
             <div class="text-right">
-              <span class="text-sm mono up">+8 bps (3 days)</span>
+              <span class="text-sm mono warn">+5 bps (3 days)</span>
             </div>
           </div>
           <div class="ann"><span class="text-amber-400 font-semibold">🔑 Key signal:</span> Yields at 4.17%, up 8 bps over 3 days — rising during a stock selloff is unusual. Normally bonds rally when stocks crash. Rising yields = bond market pricing <span class="text-white">inflation over recession</span> — stagflation signal. NY Fed's John Williams: <span class="text-white">"The Iran war is something that would obviously affect the nearer-term inflation outlook."</span> Fed rate: 3.50-3.75%. Next cut pulled to July per futures.</div>
@@ -233,10 +276,10 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           <div class="flex items-center justify-between">
             <div>
               <div class="text-xs text-gray-500">₿ Bitcoin</div>
-              <div class="text-lg font-bold mono down mt-1">$66,000</div>
+              <div class="text-lg font-bold mono up mt-1">$68,136</div>
             </div>
             <div class="text-right">
-              <span class="text-sm mono down">-3.2%</span>
+              <span class="text-sm mono up">+1.2%</span>
             </div>
           </div>
           <div class="ann">BTC gave back today's gains as actual gold bounced back after hours. "Digital gold" narrative fading — Investing.com titled article "Bitcoin Fails the Safe-Haven Test." BUT: BTC ETFs saw <span class="text-white font-semibold">$458M inflow</span> on a single day (BlackRock IBIT absorbed $263M). First positive inflow day after 5 weeks of outflows totaling &gt;$1.8B. BTC still down 47% from Oct 2025 ATH of $126K.</div>
@@ -446,9 +489,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
             <span class="text-gray-600">→</span>
             <span class="text-red-400 font-bold">$119.43 overnight</span>
             <span class="text-gray-600">→</span>
-            <span class="text-amber-400">$96.45 intraday low</span>
-            <span class="text-gray-600">→</span>
-            <span class="text-amber-400 font-bold">$96.00 settle</span>
+            <span class="text-green-400">$85 close</span>
           </div>
           <div class="text-[10px] text-gray-500 mt-2">Rapidan Energy comparison: 1973 embargo disrupted 7% of supply with 8% spare capacity. 2026 Iran war has disrupted <span class="text-white font-semibold">20% of supply with 0% spare capacity</span>. Wolfe Research: every $20 oil hike = -0.1% GDP, +0.4% CPI.</div>
           <div class="text-[10px] text-gray-500 mt-1">SPR level: <span class="text-white">415.44M barrels</span> (EIA, Feb 27). G7 met today — <span class="text-red-400 font-bold">decided AGAINST coordinated SPR release</span>; France says "not there yet" (BBC). Keeping that card for later — either they believe war ends soon, or saving for bigger crisis. Trump also considering US "takeover" of Strait of Hormuz (CNBC) — would be massive escalation.</div>
@@ -796,10 +837,10 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           </tr>
           <tr class="border-b border-[#1e1e1e]">
             <td class="p-3 text-gray-300 font-semibold">Oil (WTI)</td>
-            <td class="p-3 text-center text-white mono">$96</td>
-            <td class="p-3 text-center text-green-400 mono font-semibold">Below $90</td>
-            <td class="p-3 text-center text-red-400 mono font-semibold">Above $110</td>
-            <td class="p-3 text-gray-400">Sub-$90 = ceasefire priced in. Above $110 = market doesn't believe Trump's "excursion" framing.</td>
+            <td class="p-3 text-center text-white mono">$85</td>
+            <td class="p-3 text-center text-green-400 mono font-semibold">Below $80</td>
+            <td class="p-3 text-center text-red-400 mono font-semibold">Above $95</td>
+            <td class="p-3 text-gray-400">Sub-$80 = war premium gone. Above $95 = ceasefire narrative failing.</td>
           </tr>
           <tr class="border-b border-[#1e1e1e]">
             <td class="p-3 text-gray-300 font-semibold">VIX</td>
@@ -810,7 +851,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           </tr>
           <tr>
             <td class="p-3 text-gray-300 font-semibold">10Y Yield</td>
-            <td class="p-3 text-center text-white mono">4.17%</td>
+            <td class="p-3 text-center text-white mono">4.15%</td>
             <td class="p-3 text-center text-green-400 mono font-semibold">Below 4.00%</td>
             <td class="p-3 text-center text-red-400 mono font-semibold">Above 4.20%</td>
             <td class="p-3 text-gray-400">Yields rising during selloff = stagflation signal — market pricing inflation over safety. Watch if yields break above 4.25% on hot CPI.</td>
@@ -995,7 +1036,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
 <footer class="status-bar px-4 py-3 md:px-8 mt-8">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-2">
     <div class="text-[10px] text-gray-600 mono">
-      CHIP MARKET INTELLIGENCE • Updated Mon Mar 9, 2026 9:30 PM PDT (Evening Update) • Research via Parallel Systems Search API
+      CHIP MARKET INTELLIGENCE • Updated Mon Mar 9, 2026 5:55 PM PDT — After Hours • Research via Parallel Systems Search API
     </div>
     <div class="text-[10px] text-gray-600 mono">
       Next critical event: <span class="text-red-400 font-semibold">WED MAR 11 — FEBRUARY CPI (est. 2.4%)</span>

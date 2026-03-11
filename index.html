@@ -52,32 +52,35 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
 <!-- SCROLLING TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-track">
-    <span class="ticker-item"><span class="sym">S&P 500</span> <span class="val">6,775</span> <span class="chg-down">▼-0.2% futures</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">DOW</span> <span class="val">47,650</span> <span class="chg-down">▼-0.1% futures</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">NASDAQ</span> <span class="val">25,010</span> <span class="chg-up">▲+0.1% futures</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">VIX</span> <span class="val">24.60</span> <span class="chg-down">▼-2% easing</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">WTI OIL</span> <span class="val">$83.05</span> <span class="chg-down">▼-0.5% IEA largest ever reserve release</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">BRENT</span> <span class="val">$86.92</span> <span class="chg-down">▼-1%</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">GOLD</span> <span class="val">$5,197</span> <span class="chg-down">▼-0.9%</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">BTC</span> <span class="val">$69,500</span> <span class="chg-down">▼ dipping below $70K</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">10Y YIELD</span> <span class="val">4.18%</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">CPI</span> <span class="val">5:30 AM</span> <span class="chg-down">▼ T-MINUS 1 HOUR</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">NIKKEI</span> <span class="val">54,590</span> <span class="chg-down">▼-0.1%</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">FTSE</span> <span class="val">9,614</span> <span class="chg-down">▼-0.9%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">CPI</span> <span class="val">2.5% YoY</span> <span class="chg-down">🔴 SLIGHTLY HOT (exp 2.4%)</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">S&P 500</span> <span class="val">6,775</span> <span class="chg-down">▼-0.2% futures — CPI hot</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">DOW</span> <span class="val">47,700</span> <span class="chg-down">▼-0.1% futures</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">NASDAQ</span> <span class="val">24,900</span> <span class="chg-down">▼-0.1% futures</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">VIX</span> <span class="val">~27</span> <span class="chg-down">rising — CPI disappointment</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">WTI OIL</span> <span class="val">$88.04</span> <span class="chg-up">▲+5.5% war premium back</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">BRENT</span> <span class="val">$92.22</span> <span class="chg-up">▲+5.0% back above $90</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">GOLD</span> <span class="val">$5,191</span> <span class="chg-down">flat — stagflation hedge</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">BTC</span> <span class="val">$69,478</span> <span class="chg-down">▼-0.6%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">10Y YIELD</span> <span class="val">4.17%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">NAT GAS</span> <span class="val">$3.09</span> <span class="chg-up">▲+2.3% Qatar LNG shutdown</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">DXY</span> <span class="val">98.98</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">FTSE</span> <span class="val">10,330</span> <span class="chg-down">▼-0.8%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">DAX</span> <span class="val">23,659</span> <span class="chg-down">▼-1.3%</span></span><span class="ticker-sep">•</span>
     <!-- Duplicate for seamless loop -->
-    <span class="ticker-item"><span class="sym">S&P 500</span> <span class="val">6,775</span> <span class="chg-down">▼-0.2% futures</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">DOW</span> <span class="val">47,650</span> <span class="chg-down">▼-0.1% futures</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">NASDAQ</span> <span class="val">25,010</span> <span class="chg-up">▲+0.1% futures</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">VIX</span> <span class="val">24.60</span> <span class="chg-down">▼-2% easing</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">WTI OIL</span> <span class="val">$83.05</span> <span class="chg-down">▼-0.5% IEA largest ever reserve release</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">BRENT</span> <span class="val">$86.92</span> <span class="chg-down">▼-1%</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">GOLD</span> <span class="val">$5,197</span> <span class="chg-down">▼-0.9%</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">BTC</span> <span class="val">$69,500</span> <span class="chg-down">▼ dipping below $70K</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">10Y YIELD</span> <span class="val">4.18%</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">CPI</span> <span class="val">5:30 AM</span> <span class="chg-down">▼ T-MINUS 1 HOUR</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">NIKKEI</span> <span class="val">54,590</span> <span class="chg-down">▼-0.1%</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">FTSE</span> <span class="val">9,614</span> <span class="chg-down">▼-0.9%</span></span><span class="ticker-sep">•</span>
-    <span class="ticker-item"><span class="sym">NIKKEI</span> <span class="val">+2.88%</span> <span class="chg-up">▲</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">CPI</span> <span class="val">2.5% YoY</span> <span class="chg-down">🔴 SLIGHTLY HOT (exp 2.4%)</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">S&P 500</span> <span class="val">6,775</span> <span class="chg-down">▼-0.2% futures — CPI hot</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">DOW</span> <span class="val">47,700</span> <span class="chg-down">▼-0.1% futures</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">NASDAQ</span> <span class="val">24,900</span> <span class="chg-down">▼-0.1% futures</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">VIX</span> <span class="val">~27</span> <span class="chg-down">rising — CPI disappointment</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">WTI OIL</span> <span class="val">$88.04</span> <span class="chg-up">▲+5.5% war premium back</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">BRENT</span> <span class="val">$92.22</span> <span class="chg-up">▲+5.0% back above $90</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">GOLD</span> <span class="val">$5,191</span> <span class="chg-down">flat — stagflation hedge</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">BTC</span> <span class="val">$69,478</span> <span class="chg-down">▼-0.6%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">10Y YIELD</span> <span class="val">4.17%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">NAT GAS</span> <span class="val">$3.09</span> <span class="chg-up">▲+2.3% Qatar LNG shutdown</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">DXY</span> <span class="val">98.98</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">FTSE</span> <span class="val">10,330</span> <span class="chg-down">▼-0.8%</span></span><span class="ticker-sep">•</span>
+    <span class="ticker-item"><span class="sym">DAX</span> <span class="val">23,659</span> <span class="chg-down">▼-1.3%</span></span><span class="ticker-sep">•</span>
   </div>
 </div>
 
@@ -87,15 +90,15 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
     <div class="flex items-center gap-3">
       <div class="text-lg font-bold tracking-tight">📊 MARKET BRIEFING</div>
       <span class="tag tag-critical pulse">WAR DAY 12</span>
-      <span class="tag tag-warn">⏰ CPI IN 1 HOUR — 5:30AM PDT</span>
-      <span class="tag tag-warn">S&P ~6,775 | OIL $83 | VIX ~24.6 | IEA LARGEST EVER RELEASE</span>
+      <span class="tag tag-critical">🔴 CPI ACTUAL: 2.5% — SLIGHTLY HOT</span>
+      <span class="tag tag-warn">S&P 6,775 ▼ | OIL $88 ▲ | VIX ~27 | 14 SHIPS HIT IN HORMUZ</span>
     </div>
     <div class="flex items-center gap-4 text-xs text-gray-500 mono">
-      <span>Wed Mar 11, 2026 (4:30 AM PDT)</span>
+      <span>Wed Mar 11, 2026 (5:40 AM PDT)</span>
       <span>•</span>
-      <span>PRE-MARKET — CPI DAY — S&P futures ~6,775 (-0.2%) — OIL $83.05 WTI — BRENT $86.92 — GOLD $5,197 — BTC ~$69.5K — CPI AT 5:30 AM</span>
+      <span>POST-CPI — CPI 2.5% ACTUAL (exp 2.4%) — S&P futures 6,775 (-0.2%) — OIL $88.04 WTI ▲+5.5% — BRENT $92.22 — GOLD $5,191 — BTC $69,478 — STAGFLATION CASE STRENGTHENING</span>
       <span>•</span>
-      <span class="warn">OVERNIGHT: Both sides launched "most intense" operations. Iran hit Israel + US assets in "heaviest operation" of war. Israeli strikes on Tehran most intense since Feb 28. Cargo ship hit in Strait of Hormuz. US destroyed 16 Iranian minelaying vessels. White House demands "unconditional surrender." IEA planning LARGEST EVER oil reserve release (WSJ). 1,300+ killed in Iran. 7 US dead, 140 wounded. Lebanon offers direct talks. CPI consensus 2.4% headline, ~3.0% core — DAY 12</span>
+      <span class="warn">🔴 CPI SLIGHTLY HOT: 2.5% vs 2.4% expected — inflation ACCELERATING pre-war. 14 ships hit in Hormuz total. IEA proposes 400M barrel reserve release (largest ever). Iran threatening bank attacks across Middle East. 3 more ships hit overnight. Oil bounced 5.5% to $88 WTI. Both sides "most intense" operations. March CPI (April 10) will include oil spike — could hit 3.5-4%. — DAY 12</span>
     </div>
   </div>
 </header>
@@ -105,8 +108,8 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
   <div class="max-w-7xl mx-auto flex items-start gap-3">
     <span class="text-red-500 text-lg">🚨</span>
     <div>
-      <div class="text-sm font-semibold text-red-400">🚨 CPI DAY — T-MINUS 1 HOUR — Both sides launched "most intense" overnight operations. Iran: "most intense and heaviest operation" targeting Israel + US assets. Israeli strikes on Tehran most intense since war began. Cargo ship hit in Strait of Hormuz. US destroyed 16 minelayers. White House demands "unconditional surrender" — ground troops "not ruled out." IEA planning LARGEST EVER reserve release (WSJ). Oil at $83 WTI / $87 Brent DESPITE escalation. Gold $5,197. BTC dipping below $70K. CPI consensus: 2.4% headline, ~3.0% core.</div>
-      <div class="text-xs text-gray-400 mt-1">Oil is falling despite Iran's biggest night because the IEA is planning its largest ever emergency oil reserve release — potentially 300-400M barrels from 1.2B total across 31 member countries (WSJ). Hormuz ship traffic plummeted from 138/day to just 2. But CPI is the real catalyst: February data measures prices BEFORE oil doubled. Soft (≤2.3%) = massive relief rally, Fed can cut. Hot (≥2.5%) = stagflation confirmed, Fed trapped. In-line (2.4%) = muted, war stays in focus. The deep fear: Cleveland Fed already nowcasting March CPI at 2.61% — that's when the oil shock hits the data. If February is already hot AND March jumps, the Fed is completely frozen.</div>
+      <div class="text-sm font-semibold text-red-400">🚨 CPI SLIGHTLY HOT: 2.5% vs 2.4% EXPECTED — Inflation accelerating BEFORE oil doubled — 14 ships hit in Hormuz total — IEA proposes 400M barrel reserve release (largest ever) — Iran threatening to target all banks doing business with US/Israel — Oil bounced +5.5% to $88 WTI / $92 Brent — S&P futures turning red — Stagflation case strengthening — 3 more ships hit overnight — Both sides "most intense" operations</div>
+      <div class="text-xs text-gray-400 mt-1">February CPI came in at 2.5% headline YoY — up from 2.4% in January and above the 2.4% consensus. Core held at 2.5%. This is the WRONG direction: inflation is accelerating before oil doubled from $67 to $119. March CPI (April 10) will include the oil spike and could hit 3.5-4.0%. Fed is now truly trapped — can't cut (inflation rising) and can't hold (economy weakening with -92K payrolls). The stagflation nightmare just got more real. Meanwhile, 3 more ships hit in Hormuz overnight (14 total since war began), Iran threatening bank attacks across the Middle East, and IEA proposing the largest ever reserve release (400M barrels) — but no G7 commitment yet. Oil bounced 5.5% back to $88 despite the IEA proposal.</div>
       <div class="src mt-1">Sources: ADNOC/Reuters, Al Jazeera, IIR Energy, Aramco, CNBC, MarketWatch, White House/@realDonaldTrump</div>
     </div>
   </div>
@@ -119,42 +122,42 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
   <!-- ═══════════════════════════════════════════════ -->
   <section>
     <div class="flex items-center gap-2 mb-3">
-      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">US Equities — Pre-Market (CPI Day)</h2>
-      <span class="tag tag-critical">CPI IN 1 HOUR — S&P ~6,775 — OIL $83 — BOTH SIDES "MOST INTENSE" OVERNIGHT</span>
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">US Equities — Post-CPI Reaction</h2>
+      <span class="tag tag-critical">CPI 2.5% HOT — S&P 6,775 ▼-0.2% — OIL $88 ▲+5.5% — 14 SHIPS HIT IN HORMUZ</span>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
       <!-- S&P 500 -->
-      <div class="card p-4 glow-green">
+      <div class="card p-4 glow-red">
         <div class="text-xs text-gray-500 mb-1">S&P 500</div>
-        <div class="text-xl font-bold mono down">~6,775</div>
+        <div class="text-xl font-bold mono down">6,775</div>
         <div class="flex items-center gap-2 mt-1">
-          <span class="text-sm mono down">▼ -0.2% futures (pre-market)</span>
+          <span class="text-sm mono down">▼ -0.2% futures (post-CPI)</span>
         </div>
-        <div class="text-[10px] text-gray-600 mt-2 mono">Pre-market flat, waiting for CPI at 5:30 AM</div>
-        <div class="text-[10px] text-green-400 mt-1">Futures barely moved despite Iran's "most intense and heaviest operation" overnight. Both sides escalated massively but markets are laser-focused on CPI. IEA largest ever reserve release plan is capping oil despite war escalation. Everything hinges on 5:30 AM.</div>
-        <div class="ann">S&P closed at 6,781.48 — down 0.2% as markets consolidated after Monday's wild reversal. The market's message is clear: it believes Trump's "war ending" narrative over Iran's actions. Oil fell ~11% to ~$84 DESPITE Iran hitting ADNOC Ruwais — the biggest single-facility strike of the war. Semis ripped: Micron +6%, Intel +4%, Applied Materials +3%, Lam Research +3%. Oil stocks fell: OXY -3%, COP -0.8%. Existing home sales beat: +1.7% to 4.09M (expected 3.88M). BTC reclaimed $70K (+3%) on "war ending" narrative. CPI tomorrow at 5:30 AM is the next catalyst — soft print + falling oil = massive rally scenario.</div>
-        <div class="src">Investing.com, CME, Yahoo Finance</div>
+        <div class="text-[10px] text-gray-600 mt-2 mono">CPI slightly hot — pre-market bid evaporated</div>
+        <div class="text-[10px] text-red-400 mt-1">CPI came in at 2.5% vs 2.4% expected — slightly hot. Pre-market gains wiped out. Futures turned red on the headline miss. Inflation accelerating BEFORE oil doubled = stagflation case strengthening. March CPI (April 10) will include the $119 oil spike — could print 3.5-4.0%. Fed trapped: can't cut (inflation rising) and can't hold (economy weakening).</div>
+        <div class="ann">S&P closed at 6,781 Tuesday — down 0.2%. Overnight: both sides "most intense" ops, 3 more vessels hit in Hormuz (14 total), drones near Dubai. CPI disappointment + oil bouncing 5.5% to $88 = double bearish catalyst for equities. Defense (RTX, LMT) still winning. Tech giving back pre-market gains.</div>
+        <div class="src">CME, Investing.com, Yahoo Finance</div>
       </div>
       <!-- Dow -->
       <div class="card p-4 glow-red">
         <div class="text-xs text-gray-500 mb-1">Dow Jones</div>
-        <div class="text-xl font-bold mono down">~47,650</div>
+        <div class="text-xl font-bold mono down">47,700</div>
         <div class="flex items-center gap-2 mt-1">
           <span class="text-sm mono down">▼ -0.1% futures</span>
         </div>
-        <div class="text-[10px] text-gray-600 mt-2 mono">Flat pre-market — CPI is the trigger</div>
-        <div class="text-[10px] text-green-400 mt-1">Dow futures barely budged overnight despite both sides launching their heaviest operations. Markets in full "wait for CPI" mode. Defense names still bid.</div>
-        <div class="ann">Dow essentially flat — down 34 points. Consolidation day after Monday's epic reversal. Falling oil helping industrials and transports. Defense sector remains the all-weather winner. CPI tomorrow determines if the recovery has legs or if hot inflation data kills it.</div>
+        <div class="text-[10px] text-gray-600 mt-2 mono">CPI hot — morning bid fading</div>
+        <div class="text-[10px] text-red-400 mt-1">Dow futures giving back pre-market gains after CPI miss. Hot CPI + oil at $88 = double headwind. Defense stocks (RTX, LMT) still green — only sector unaffected by CPI.</div>
+        <div class="ann">Dow closed 47,707 Tuesday (-0.07%). Monday's 1,125-pt intraday swing was one of the largest in history. Oil bounce overnight (+5.5%) not derailing Dow — industrials and defense offsetting energy drag.</div>
         <div class="src">CME, CNBC</div>
       </div>
       <!-- Nasdaq -->
-      <div class="card p-4">
+      <div class="card p-4 glow-red">
         <div class="text-xs text-gray-500 mb-1">Nasdaq Composite</div>
-        <div class="text-xl font-bold mono up">~25,010</div>
+        <div class="text-xl font-bold mono down">24,900</div>
         <div class="flex items-center gap-2 mt-1">
-          <span class="text-sm mono up">▲ +0.1% futures</span>
+          <span class="text-sm mono down">▼ -0.1% futures — tech giving back pre-CPI gains</span>
         </div>
-        <div class="ann">Nasdaq futures slightly green — tech getting a bid from lower oil. Soft CPI = Nasdaq rips hardest. Hot CPI = growth gets crushed. This is THE bifurcation point.</div>
+        <div class="ann">Nasdaq pre-market bid evaporated after hot CPI. Growth stocks most sensitive to inflation — hot CPI = no rate cuts = higher discount rates = lower valuations. Tech was leading pre-CPI at +1.2% but now turning red.</div>
         <div class="src">CME</div>
       </div>
       <!-- Russell -->
@@ -168,13 +171,13 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
         <div class="ann">Russell 2000 still the weakest link — down 0.22% while semis ripped. Small caps can't catch a bid. Most oil-sensitive sector because small businesses can't hedge energy costs. Needs both oil below $80 AND soft CPI to sustain any recovery. If G7 announces coordinated SPR release, IWM is the biggest snap-back play.</div>
       </div>
       <!-- VIX -->
-      <div class="card p-4 glow-green">
+      <div class="card p-4 glow-red">
         <div class="text-xs text-gray-500 mb-1">VIX (Fear Index)</div>
-        <div class="text-xl font-bold mono warn">~24.6</div>
+        <div class="text-xl font-bold mono warn">~27</div>
         <div class="flex items-center gap-2 mt-1">
           <span class="text-sm mono warn">▼ -2% — easing ahead of CPI despite overnight escalation</span>
         </div>
-        <div class="ann">VIX at ~24.6, down from Tuesday's 25.25. Fear easing DESPITE both sides launching "most intense" operations overnight. The market has either correctly priced in resolution or is dangerously complacent before CPI. Hot CPI → VIX spikes above 30. Soft CPI → VIX drops to ~20-22. This is the VIX inflection point.</div>
+        <div class="ann">VIX rising toward 27 on CPI miss + oil bounce. Hot CPI + war escalation = vol expanding. If VIX breaks above 30, panic is back. The pre-CPI complacency (VIX ~24-26) was premature — market now repricing inflation risk.</div>
         <div class="src">CBOE, CNBC</div>
       </div>
     </div>
@@ -190,7 +193,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
     <section>
       <div class="flex items-center gap-2 mb-3">
         <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Commodities</h2>
-        <span class="tag tag-critical">OIL $83 WTI — IEA LARGEST EVER RELEASE — BOTH SIDES "MOST INTENSE" — SHIP HIT IN HORMUZ — 2 SHIPS/DAY FROM 138</span>
+        <span class="tag tag-critical">OIL $88 WTI ▲+5.5% — 14 SHIPS HIT TOTAL — IEA 400M BARREL RELEASE — CPI HOT 2.5%</span>
       </div>
       <div class="card overflow-hidden">
         <!-- Oil WTI -->
@@ -198,17 +201,17 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           <div class="flex items-center justify-between">
             <div>
               <div class="text-xs text-gray-500">🛢️ Oil (WTI Crude)</div>
-              <div class="text-2xl font-bold mono down mt-1">$83.05</div>
+              <div class="text-2xl font-bold mono up mt-1">$88.04</div>
             </div>
             <div class="text-right">
-              <div class="text-sm mono down">▼ -0.5% — Oil FALLING despite Iran's "most intense" night + cargo ship hit in Hormuz</div>
-              <div class="text-[10px] text-gray-500">Brent: $86.92 (-1%) | IEA planning LARGEST EVER reserve release (WSJ) | Hormuz: 2 ships/day from 138</div>
+              <div class="text-sm mono up">▲ +5.5% — Oil BOUNCED hard overnight after 12% crash. 3 ships hit in Hormuz today</div>
+              <div class="text-[10px] text-gray-500">Brent: $92.22 (+5.0%) | G7 punted on SPR release — IEA proposed largest ever but NO action | 6M+ bpd offline</div>
             </div>
           </div>
           <div class="mt-2 p-2 rounded bg-[#1a1a1a]">
-            <div class="text-xs text-gray-400 mt-1">Oil crashed ~11% to ~$84 WTI — continuing the massive slide from $119. The main catalysts: <span class="text-white font-semibold">Trump's repeated "war ending" rhetoric</span> + G7 energy ministers meeting virtually to discuss coordinated SPR release. Saudi Aramco CEO Amin Nasser warned of <span class="text-white">"catastrophic consequences"</span> if Hormuz stays shut. IIR Energy reports <span class="text-white font-semibold">1.9M bpd of Gulf refining capacity now offline</span> across Saudi, Iraq, UAE, Bahrain, Kuwait, and Qatar. Despite this, oil crashed because markets believe Trump's "war ending" rhetoric + G7 SPR coordination will cap prices. Meanwhile, Saudi's Ras Tanura refinery (attacked last week) is being restarted — a small positive signal. <span class="text-white font-bold">The paradox:</span> Physical supply keeps getting WORSE but prices keep falling. Markets pricing in resolution before it arrives. <span class="text-white font-bold">Iran hit ADNOC Ruwais (922K bpd capacity, UAE's largest) with a drone strike today</span> — fire erupted, ADNOC forced shutdown. First direct hit on UAE infrastructure. But even this didn't reverse oil's slide. <span class="text-white font-bold">The full Gulf cascade:</span> 🇶🇦 Qatar LNG shut (20% global exports) · 🇧🇭 Bahrain Bapco — force majeure (380K bpd) · 🇰🇼 Kuwait KPC — force majeure + output cuts · 🇸🇦 Saudi Ras Tanura hit (restarting) · 🇦🇪 UAE ADNOC Ruwais SHUT (922K bpd) · 🇮🇶 Iraq output -60% (Bloomberg: 4.3M→1.7M bpd). <span class="text-white font-bold">Total disrupted: 3.5M+ bpd — largest in history.</span></div>
-            <div class="text-[10px] text-gray-400 mt-1">Key tension: oil crashed ~11% on NARRATIVE (Trump de-escalation + G7 SPR talk) not REALITY (supply restored). Iraq still -60%, Hormuz still restricted, ADNOC Ruwais now offline, 1.9M bpd refining dark. If G7 announces coordinated SPR release, oil could drop to $75. If Iran escalates further or hits another major facility, oil snaps back to $100+. Tuesday's close at ~$84 is the lowest since the war started — we're approaching pre-war levels ($67) but not there yet. <span class="text-amber-400 font-semibold">BACKWARDATION</span> in futures curve — front-month premium signals physical tightness despite the price drop.</div>
-            <div class="text-[10px] text-gray-500 mt-1">⛽ Gas: <span class="text-amber-300">$2.65/gal wholesale</span> (-5.6%). Responding to oil's crash from $119.</div>
+            <div class="text-xs text-gray-400 mt-1">Oil whipsaw tells the whole story: yesterday crashed 12% to $83 on Trump "very complete" + IEA reserve proposal. Overnight bounced 5.5% to $88 as REALITY hit: <span class="text-white font-semibold">3 vessels hit by projectiles in Strait of Hormuz today</span> (one caught fire, crew evacuated). Drones fell near Dubai airport (4 injured). G7 "supports in principle" but NO concrete action on SPR release. Hegseth: "most intense day of strikes." <span class="text-white font-bold">6M+ bpd collectively offline</span> — the largest supply disruption in history. Iran still sending 1.2M bpd to China through Hormuz (CNBC/TankerTrackers) — Tehran controls who passes. <span class="text-white font-bold">The full Gulf cascade:</span> 🇶🇦 Qatar LNG shut (20% global LNG) · 🇧🇭 Bahrain Bapco — force majeure · 🇰🇼 Kuwait KPC — force majeure · 🇸🇦 Saudi cut output · 🇦🇪 UAE ADNOC Ruwais SHUT (922K bpd) · 🇮🇶 Iraq output -70%. OPEC monthly report due today. IEA monthly tomorrow.</div>
+            <div class="text-[10px] text-gray-400 mt-1">Key: Oil is trading on headlines, not fundamentals. Yesterday's crash was NARRATIVE (war ending). Today's bounce is REALITY (ships being hit). If G7 announces actual SPR release, oil drops $10-15 immediately. If Hormuz stays shut and IEA is all talk, oil goes back above $100. <span class="text-amber-400 font-semibold">BACKWARDATION</span> steep — April $88 but Dec 2026 just $70. Market believes this is temporary. But the longer Hormuz stays shut, the more that bet looks wrong.</div>
+            <div class="text-[10px] text-gray-500 mt-1">⛽ Gas: <span class="text-amber-300">$2.74/gal wholesale</span> (+3.4%). Bouncing with crude.</div>
             <div class="src mt-1">Yahoo Finance, WSJ, CNBC/Rapidan Energy</div>
           </div>
         </div>
@@ -217,22 +220,22 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           <div class="flex items-center justify-between">
             <div>
               <div class="text-xs text-gray-500">🥇 Gold (COMEX)</div>
-              <div class="text-xl font-bold mono down">$5,197</div>
-        <div class="text-sm mono down">▼ -0.9% — pulling back from highs ahead of CPI</div>
-        <div class="ann">Gold at $5,197, down 0.9% — slight pullback as markets digest mixed signals. War escalated overnight but IEA reserve release is capping risk premiums. If CPI comes in hot, gold could spike back above $5,300 as stagflation fears intensify. If soft, gold may dip toward $5,100 but war premium holds the floor.</div>
+              <div class="text-xl font-bold mono neutral">$5,191</div>
+        <div class="text-sm mono neutral">flat — holding near highs, waiting for CPI</div>
+        <div class="ann">Gold flat at $5,191 — consolidating near all-time highs. War premium sustaining the floor. Hot CPI → gold spikes above $5,300 as stagflation fears intensify. Soft CPI → may dip toward $5,100 but war floor holds. Silver at $87, copper $5.82.</div>
         </div>
         <!-- Natural Gas -->
         <div class="p-4">
           <div class="flex items-center justify-between">
             <div>
               <div class="text-xs text-gray-500">🔥 Natural Gas</div>
-              <div class="text-lg font-bold mono down mt-1">$3.05</div>
+              <div class="text-lg font-bold mono up mt-1">$3.09</div>
             </div>
             <div class="text-right">
-              <span class="text-sm mono down">-2.13%</span>
+              <span class="text-sm mono up">+2.3% — Qatar LNG shutdown sending shockwaves</span>
             </div>
           </div>
-          <div class="ann">Qatar's Ras Laffan (world's largest LNG facility) still offline. Europe imports most LNG from Qatar — EU nat gas already +60% last week.</div>
+          <div class="ann">Qatar's LNG shutdown sending shockwaves through global gas markets (OilPrice.com). Europe TTF gas at €48.73 (+2.8%). Qatar supplies 20% of global LNG — this disruption is rippling through Asia and Europe. India's restaurants under threat from LPG supply crunch (CNBC).</div>
         </div>
       </div>
     </section>
@@ -246,13 +249,13 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           <div class="flex items-center justify-between">
             <div>
               <div class="text-xs text-gray-500">🏛️ 10Y Treasury Yield</div>
-              <div class="text-lg font-bold mono neutral mt-1">4.18%</div>
+              <div class="text-lg font-bold mono neutral mt-1">4.17%</div>
             </div>
             <div class="text-right">
-              <span class="text-sm mono neutral">+2bp overnight — CPI anxiety building</span>
+              <span class="text-sm mono neutral">flat — frozen ahead of CPI</span>
             </div>
           </div>
-          <div class="ann"><span class="text-amber-400 font-semibold">🔑 Key signal:</span> 10Y at 4.15% — creeping higher as CPI anxiety builds. Bond market positioning for a potentially hot print. Can't decide if bigger risk is inflation (hold/raise rates) or recession (cut rates). 0% chance of rate cut priced for March 17-18 FOMC. Hot CPI → yields spike above 4.3% → growth stocks crushed. Soft CPI → yields drop toward 4.0% → everything rallies. The bond market is the smart money — and it's starting to lean slightly hawkish ahead of tomorrow's number.</div>
+          <div class="ann"><span class="text-amber-400 font-semibold">🔑 Key signal:</span> 10Y at 4.17% — completely frozen. Bond market can't decide if the bigger risk is inflation or recession. CPI breaks this stalemate. Hot CPI → yields spike above 4.3% → growth crushed. Soft CPI → yields drop toward 4.0% → everything rallies. Fed funds futures: 0% chance of March cut. June cut odds depend entirely on this number.</div>
           <div class="src">Trading Economics, Yahoo Finance (Williams quote), CNBC</div>
         </div>
         <!-- DXY -->
@@ -260,13 +263,13 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           <div class="flex items-center justify-between">
             <div>
               <div class="text-xs text-gray-500">💵 DXY (Dollar Index)</div>
-              <div class="text-lg font-bold mono neutral mt-1">DXY 98.91</div>
+              <div class="text-lg font-bold mono neutral mt-1">DXY 98.98</div>
             </div>
             <div class="text-right">
-              <span class="text-sm mono neutral">EUR/USD 1.1650 | USD/JPY 157.50 | DXY 98.91 (-0.26%)</span>
+              <span class="text-sm mono neutral">EUR/USD 1.1603 | USD/JPY 158.40 | DXY 98.98 (+0.15%)</span>
             </div>
           </div>
-          <div class="ann">EUR/USD at 1.1650, USD/JPY at 157.50, DXY at 98.91 — dollar weakening 0.26%. Oil sliding takes pressure off dollar demand. Softer dollar is boosting gold prices. Yen stable as risk sentiment mixed.</div>
+          <div class="ann">Dollar slightly bid (+0.15%) ahead of CPI. EUR/USD at 1.1603, USD/JPY at 158.40. Dollar stable — not panic levels, not relief levels. CPI determines direction.</div>
           <div class="src">Kyodo News, Trading Economics</div>
         </div>
         <!-- BTC -->
@@ -274,13 +277,13 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
           <div class="flex items-center justify-between">
             <div>
               <div class="text-xs text-gray-500">₿ Bitcoin</div>
-              <div class="text-lg font-bold mono down mt-1">~$69,500</div>
+              <div class="text-lg font-bold mono down mt-1">$69,478</div>
             </div>
             <div class="text-right">
-              <span class="text-sm mono down">▼ dipping below $70K ahead of CPI</span>
+              <span class="text-sm mono down">▼ -0.6% — quiet ahead of CPI</span>
             </div>
           </div>
-          <div class="ann">BTC slipped below $70K overnight — traders reducing risk ahead of CPI. If CPI is soft → BTC pushes back above $70K toward $73K. If hot → could pull back to $67K. The $70K level is now a key battleground.</div>
+          <div class="ann">BTC at $69,478, ETH $2,021. Crypto quiet ahead of CPI. Soft CPI → BTC pushes back above $70K toward $73K. Hot CPI → pullback to $67K. BTC has been outperforming equities during the crisis but giving back some gains as risk reduces ahead of the data.</div>
           <div class="src">Yahoo Finance/99Bitcoins, CoinDesk, Investing.com</div>
         </div>
         <!-- ETH -->
@@ -309,14 +312,14 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
   <section>
     <div class="flex items-center gap-2 mb-3">
       <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Global Markets</h2>
-      <span class="tag tag-warn">Asia Cautious — Europe Selling — CPI Day</span>
+      <span class="tag tag-warn">Asia Mixed — Europe RED — India -1.7% on LPG Crisis — CPI Day</span>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
       <div class="card p-3">
         <div class="text-[10px] text-gray-500">🇯🇵 Nikkei 225</div>
-        <div class="text-lg font-bold mono down">54,590</div>
-        <div class="text-sm mono down">-0.1% — cautious</div>
-        <div class="ann">Nikkei flat-to-slightly-down — waiting for CPI like everyone else. Japan imports 90%+ of energy so oil at $83 is a relief, but overnight war escalation keeps a lid on gains.</div>
+        <div class="text-lg font-bold mono up">54,586</div>
+        <div class="text-sm mono up">+0.6% — recovering</div>
+        <div class="ann">Nikkei +0.6% — recovering from Monday's crash. Japan imports 90%+ of energy so oil bounce to $88 is a concern, but CPI focus is overriding.</div>
         <div class="src">Kyodo News, Nikkei</div>
       </div>
       <div class="card p-3">
@@ -336,15 +339,15 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
       </div>
       <div class="card p-3 glow-red">
         <div class="text-[10px] text-gray-500">🇩🇪 DAX</div>
-        <div class="text-lg font-bold mono down">23,727</div>
-        <div class="text-sm mono down">-0.9%</div>
-        <div class="ann">Europe selling off on overnight war escalation — DAX -0.9%. Defense stocks the exception. Both sides launched "most intense" operations overnight. Markets waiting for CPI to set direction.</div>
+        <div class="text-lg font-bold mono down">23,659</div>
+        <div class="text-sm mono down">-1.3% — Germany CPI + war fears</div>
+        <div class="ann">DAX down 1.3% — oil rebound + Germany CPI data weighing on European markets. Defense stocks only gainers. Italy -0.9%, France -0.8%, Spain -0.3%. Oil at $92 Brent hurting consumer sentiment across Europe.</div>
         <div class="src">Investing.com, CNBC</div>
       </div>
       <div class="card p-3 glow-red">
         <div class="text-[10px] text-gray-500">🇬🇧 FTSE 100</div>
-        <div class="text-lg font-bold mono down">9,614</div>
-        <div class="text-sm mono down">-0.9%</div>
+        <div class="text-lg font-bold mono down">10,330</div>
+        <div class="text-sm mono down">-0.8%</div>
         <div class="ann">FTSE selling off -0.9% on overnight war escalation. European markets broadly risk-off ahead of CPI. Energy stocks holding but everything else selling.</div>
         <div class="src">Trading Economics</div>
       </div>
@@ -467,16 +470,16 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
       <div class="flex items-start gap-3">
         <span class="text-green-400 text-lg mt-0.5">📈</span>
         <div>
-          <div class="text-sm font-semibold text-green-400">Oil's 11% Crash Paradox — Trump Narrative Beats Physical Reality</div>
-          <div class="text-xs text-gray-400 mt-1 leading-relaxed">Wall Street closed flat-to-slightly-red — S&P 6,781.48 (-0.2%), Dow 47,706.51 (-0.1%), Nasdaq 22,697.10 (flat). The real story is oil: WTI crashed ~11% to ~$84 despite Iran hitting UAE's largest refinery. This is remarkable — the market is telling you it believes Trump's "war ending" narrative over Iran's escalation. The catalysts: Trump's repeated de-escalation rhetoric, G7 energy ministers meeting on coordinated SPR release, and Saudi Ras Tanura being restarted. Meanwhile, IIR Energy reports 1.9M bpd of Gulf refining capacity now offline — the physical story keeps getting WORSE. But financial markets don't care about current reality; they price in the future. And the future they're pricing is: war ends soon, oil drops, SPR backstops the rest. BTC reclaiming $70K (+3%) confirms risk appetite returning. CPI tomorrow at 5:30 AM PDT determines the next leg — soft CPI + falling oil = the best-case scenario for markets.</div>
+          <div class="text-sm font-semibold text-green-400">Oil Whipsaw: 12% Crash Then 5.5% Bounce — Nobody Knows What's Next</div>
+          <div class="text-xs text-gray-400 mt-1 leading-relaxed">The oil chart over 48 hours tells the whole story of this war. Monday: oil spiked to $119 on Hormuz closure fears. Trump said "very complete" → crashed to $84. Tuesday overnight: bounced to $88 as 3 ships were hit in Hormuz, G7 punted on SPR, Hegseth said "most intense day." Oil is trading on HEADLINES, not fundamentals. Physical supply: 6M+ bpd offline (largest disruption in history), Hormuz nearly shut, force majeure everywhere. But financial markets are pricing resolution before it arrives. Iran still sending 1.2M bpd to China through Hormuz (TankerTrackers) — Tehran literally controls who passes. If G7 announces actual SPR release → oil drops $10-15 immediately. If ceasefire fails and Hormuz stays shut → oil goes back above $100. Both outcomes remain plausible. S&P futures up 0.7% ahead of CPI, Nasdaq +1.2%. CPI is the tiebreaker.</div>
           <div class="src">CNBC, Yahoo Finance, CBS/Weijia Jiang</div>
         </div>
       </div>
       <div class="flex items-start gap-3">
         <span class="text-amber-400 text-lg mt-0.5">⚠️</span>
         <div>
-          <div class="text-sm font-semibold text-amber-400">UAE Ruwais Strike — First Direct Hit on UAE + Aramco Warning</div>
-          <div class="text-xs text-gray-400 mt-1 leading-relaxed">Iranian drone struck ADNOC's Ruwais refinery complex in Abu Dhabi — 922K bpd capacity, ADNOC forced shutdown. This is the <span class="text-white font-medium">first direct hit on UAE infrastructure</span> — Iran widening the war beyond combatants to target energy allies. Saudi Aramco CEO Amin Nasser warned of <span class="text-white">"catastrophic consequences"</span> if Hormuz stays shut — notable because Aramco usually stays diplomatically neutral. IIR Energy now counts 1.9M bpd of Gulf refining capacity offline across all six producer states. Despite this, oil crashed ~11% because the market believes Trump's de-escalation + G7 SPR response will cap prices. The one positive: Saudi's Ras Tanura refinery (attacked last week) is being restarted — the first facility to come back online since the war started.</div>
+          <div class="text-sm font-semibold text-amber-400">3 Ships Hit in Hormuz Today — War Widening to Commercial Targets</div>
+          <div class="text-xs text-gray-400 mt-1 leading-relaxed">Three vessels hit by projectiles in the Strait of Hormuz today — one caught fire and crew evacuated, another damaged near Dubai. Drones fell near Dubai International Airport injuring 4. This is no longer just a military conflict — it's an active attack on global commerce. Iran called on regional countries to reveal <span class="text-white">"American-Zionist hiding places"</span> to improve targeting. Iran's police chief warned protesters will be treated as <span class="text-white">"enemies"</span> — "all security forces have their fingers on the trigger." Mojtaba Khamenei reportedly "safe" despite war injuries (hasn't been seen publicly). Tankers avoiding Emirati ports. Australia closed 2 embassies in the Gulf. South Korea rattled by US redeployment of missiles to Middle East. Lebanon death toll: 570 (84 killed yesterday alone). Italian PM Meloni: "Italy is not at war and will not enter one."</div>
           <div class="src">CNBC/Rapidan Energy, Bloomberg, Al Jazeera/FT (al-Kaabi quote), CNN (Shahran)</div>
         </div>
       </div>
@@ -491,8 +494,8 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
       <div class="flex items-start gap-3">
         <span class="text-blue-400 text-lg mt-0.5">🌐</span>
         <div>
-          <div class="text-sm font-semibold text-blue-400">CPI Tomorrow Is THE Event — 5:30 AM PDT — Consensus 2.4% Headline / 2.9% Core</div>
-          <div class="text-xs text-gray-400 mt-1 leading-relaxed">February CPI (consensus: 2.4% headline per FactSet, core at 2.9%, Cleveland Fed nowcast: 2.41%) measures prices <em>before</em> oil went from $67 to $119. This is FEBRUARY data — the oil shock hasn't hit yet. If it's already hot → oil shock is gasoline on a fire. <span class="text-white">Cleveland Fed already nowcasting March CPI at 2.61%</span> — that's the oil shock month, and it would be the largest monthly jump in years. 0% chance of rate cut at March 17-18 FOMC — Fed is completely frozen. The VIX crashing to ~23-24 from Monday's 27+ while war escalates is either the market correctly pricing ceasefire or dangerous complacency before CPI. Oil's 11% crash is actually GOOD for future CPI readings, but tomorrow's number measures February — before any of this.</div>
+          <div class="text-sm font-semibold text-blue-400">CPI Is THE Event — 5:30 AM PDT — Consensus 2.4% Headline / 2.5% Core</div>
+          <div class="text-xs text-gray-400 mt-1 leading-relaxed">February CPI (consensus: 2.4% headline, core 2.5% per HFM/FactSet) measures prices <em>before</em> oil went from $67 to $119. This is the clean read. If core stays at 2.5% (matching January), no new inflation from tariffs yet — bullish. If core jumps to 3.0%+, tariffs already biting before oil even shows up — stagflation confirmed. Soft (≤2.3%) → massive rally, Fed can cut in June. Hot (≥2.5%) → stagflation, S&P drops 1-2%. In-line (2.4%) → muted, war stays dominant. The deep fear: <span class="text-white">March CPI (April 10) will include the oil shock</span> — that print could be 3-4%. Today's number tells us how much runway the Fed has before the oil shock hits.</div>
           <div class="src">FactSet/CNBC, Cleveland Fed, Al Jazeera (O'Rourke)</div>
         </div>
       </div>
@@ -671,7 +674,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
         <div class="flex items-center gap-2 mb-2">
           <span class="w-2.5 h-2.5 rounded-full bg-amber-500 flex-shrink-0"></span>
           <div class="text-xs font-semibold text-amber-400">Stagflation Watch</div>
-          <span class="tag tag-critical">CPI TOMORROW 5:30 AM — CONSENSUS 2.4% — EVERYTHING HINGES ON THIS</span>
+          <span class="tag tag-critical">CPI ACTUAL 2.5% — HOT — STAGFLATION CASE STRENGTHENING — FED TRAPPED</span>
         </div>
         <div class="text-[10px] text-gray-400 leading-relaxed">The stag: US lost 92,000 jobs in February (BLS) — unemployment at 4.4%, third contraction in five months. Atlanta Fed GDPNow crashed from 3.0% to 2.1% in just 4 days — growth deteriorating fast. The flation: CPI at 2.4%, core at 2.5%, both above Fed's 2% target — and that's <em>before</em> oil doubled. Core PCE expected to hold at 3.0%. Wolfe Research: a $20 oil hike adds +0.4% to headline CPI. Morgan Stanley's Zentner: <span class="text-white">"The Fed may feel compelled to remain on the sidelines"</span> — can't cut (inflation) and can't hike (jobs). The silver lining: oil crashing from $119 to $84 over 48 hours means FUTURE CPI prints will be lower. But tomorrow's February data is backward-looking — pre-oil-shock.</div>
         <div class="text-[10px] text-gray-500 mt-1.5">📌 <span class="text-amber-400">Verdict:</span> Wednesday 5:30 AM PDT. Feb CPI consensus 2.4% headline, 2.9% core (FactSet). Cleveland Fed nowcasting March at 2.61% — the oil shock month. But if oil stays at $84, March CPI won't be as bad as feared. Soft Feb CPI + falling oil = the setup for a massive relief rally.</div>
@@ -975,7 +978,7 @@ body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
 <footer class="status-bar px-4 py-3 md:px-8 mt-8">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-2">
     <div class="text-[10px] text-gray-600 mono">
-      CHIP MARKET INTELLIGENCE • Updated Wed Mar 11, 2026 4:30 AM PDT — PRE-MARKET / CPI DAY — Oil $83.05 WTI / $86.92 Brent — S&P futures ~6,775 — Gold $5,197 — BTC ~$69.5K — VIX ~24.6 — Both sides "most intense" overnight — IEA largest ever reserve release — CPI at 5:30 AM (est 2.4% / ~3.0% core) • Research via Parallel Systems Search API
+      CHIP MARKET INTELLIGENCE • Updated Wed Mar 11, 2026 5:30 AM PDT — CPI DAY — Oil $88.04 WTI (+5.5%) / $92.22 Brent (+5.0%) — S&P futures 6,794 (+0.7%) — Gold $5,191 — BTC $69,478 — VIX ~26 — 3 ships hit in Hormuz — 6M+ bpd offline — CPI DROPPING NOW (est 2.4% / 2.5% core) • Research via Parallel Systems Search API
     </div>
     <div class="text-[10px] text-gray-600 mono">
       Next critical event: <span class="text-red-400 font-semibold">TODAY — WED MAR 11 5:30 AM PDT — FEBRUARY CPI (est. 2.4% headline / ~3.0% core) — T-MINUS 1 HOUR</span>

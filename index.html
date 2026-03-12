@@ -3,721 +3,226 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Market Briefing — March 11, 2026</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<title>MKTINT — Market Intelligence Terminal</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
-body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #e0e0e0; }
-.mono { font-family: 'JetBrains Mono', monospace; }
-.up { color: #00e676; }
-.down { color: #ff1744; }
-.warn { color: #ffab00; }
-.neutral { color: #90a4ae; }
-.card { background: #141414; border: 1px solid #1e1e1e; border-radius: 6px; }
-.glow-green { box-shadow: 0 0 12px rgba(0,230,118,0.08); }
-.glow-red { box-shadow: 0 0 12px rgba(255,23,68,0.08); }
-.glow-amber { box-shadow: 0 0 12px rgba(255,171,0,0.08); }
-.timeline-dot { width: 10px; height: 10px; border-radius: 50%; }
-.pulse { animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
-.tag { font-size: 0.65rem; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
-.tag-critical { background: rgba(255,23,68,0.15); color: #ff1744; border: 1px solid rgba(255,23,68,0.3); }
-.tag-warn { background: rgba(255,171,0,0.15); color: #ffab00; border: 1px solid rgba(255,171,0,0.3); }
-.tag-ok { background: rgba(0,230,118,0.15); color: #00e676; border: 1px solid rgba(0,230,118,0.3); }
-.tag-info { background: rgba(33,150,243,0.15); color: #42a5f5; border: 1px solid rgba(33,150,243,0.3); }
-.status-bar { background: #0d0d0d; border-top: 1px solid #1e1e1e; }
-.divider { height: 1px; background: linear-gradient(90deg, transparent, #333, transparent); }
-.crisis-bar { background: linear-gradient(90deg, rgba(255,23,68,0.05), rgba(255,171,0,0.08), rgba(255,23,68,0.05)); border: 1px solid rgba(255,23,68,0.2); }
-.anno { color: #666; font-size: 0.6rem; line-height: 1.3; margin-top: 4px; }
-.src { color: #4a4a4a; font-size: 0.55rem; font-style: italic; }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #0a0a0a; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#e0e0e0;font-family:'Courier New',monospace;padding:12px;max-width:1200px;margin:0 auto}
+.header{border-bottom:1px solid #333;padding-bottom:8px;margin-bottom:12px}
+.header h1{color:#00ff88;font-size:18px}
+.header .subtitle{color:#888;font-size:11px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:768px){.grid{grid-template-columns:1fr}}
+.card{background:#111;border:1px solid #222;border-radius:4px;padding:10px}
+.card h2{color:#00aaff;font-size:13px;margin-bottom:8px;border-bottom:1px solid #222;padding-bottom:4px}
+.card.full{grid-column:1/-1}
+.card.alert{border-color:#ff4444}
+.up{color:#00ff88}.down{color:#ff4444}.warn{color:#ffaa00}.neutral{color:#888}
+table{width:100%;border-collapse:collapse;font-size:11px}
+td,th{padding:3px 6px;text-align:left;border-bottom:1px solid #1a1a1a}
+th{color:#888;font-size:10px;text-transform:uppercase}
+.tag{display:inline-block;padding:1px 5px;border-radius:2px;font-size:9px;margin-right:4px}
+.tag-red{background:#ff444433;color:#ff4444;border:1px solid #ff444466}
+.tag-green{background:#00ff8833;color:#00ff88;border:1px solid #00ff8866}
+.tag-yellow{background:#ffaa0033;color:#ffaa00;border:1px solid #ffaa0066}
+.tag-blue{background:#00aaff33;color:#00aaff;border:1px solid #00aaff66}
+.timestamp{color:#555;font-size:10px;text-align:right;margin-top:8px}
+.breaking{background:#ff444422;border:1px solid #ff4444;border-radius:4px;padding:8px;margin-bottom:12px;font-size:12px}
+.breaking span{color:#ff4444;font-weight:bold}
+ul{list-style:none;font-size:11px}
+ul li{padding:2px 0;border-bottom:1px solid #1a1a1a}
+ul li:last-child{border:none}
+.thread-status{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
+.status-red{background:#ff4444}.status-yellow{background:#ffaa00}.status-green{background:#00ff88}.status-black{background:#555}
 </style>
 </head>
-<body class="min-h-screen">
-
-<!-- HEADER -->
-<header class="border-b border-[#1e1e1e] px-4 py-3 md:px-8">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-    <div class="flex items-center gap-3">
-      <div class="text-lg font-bold tracking-tight">📊 MARKET BRIEFING</div>
-      <span class="tag tag-critical pulse">WAR DAY 12</span>
-      <span class="tag tag-warn">IEA FAILED</span>
-    </div>
-    <div class="flex items-center gap-4 text-xs text-gray-500 mono">
-      <span>Wednesday, March 11, 2026</span>
-      <span>•</span>
-      <span>9:00 PM PDT</span>
-      <span>•</span>
-      <span class="down">CPI In-Line — Oil Shrugged Off Record IEA Release</span>
-    </div>
-  </div>
-</header>
-
-<!-- ALERT BANNER -->
-<div class="crisis-bar px-4 py-3 md:px-8">
-  <div class="max-w-7xl mx-auto flex items-start gap-3">
-    <span class="text-red-500 text-lg">🚨</span>
-    <div>
-      <div class="text-sm font-semibold text-red-400">IEA ANNOUNCED LARGEST RESERVE RELEASE IN HISTORY (400M BBL) — OIL WENT UP ANYWAY (+3.7%)</div>
-      <div class="text-xs text-gray-400 mt-1">CPI came in at 2.4% (in-line, core +0.2% MoM — softer than feared). Relief lasted 15 minutes. Oil bounced back to $86.53 WTI / $90.98 Brent despite the 400M barrel release. Multiple ships hit in Hormuz today. Aramco CEO Nasser warned of "catastrophic consequences." Trump declared "we've won" at Kentucky rally — markets moved 0%. Iran opened a cyber front (Stryker Corp hit). Copper -1.7% while oil +3.7% = stagflation signal.</div>
-      <div class="src mt-1">Sources: CNN, Times of India, Investing.com, Aramco, IEA</div>
-    </div>
-  </div>
+<body>
+<div class="header">
+<h1>MKTINT — MARKET INTELLIGENCE TERMINAL</h1>
+<div class="subtitle">Day 14 | Thu Mar 12 2026 10:10 AM PDT | War Economy Dashboard | Updated every 30 min</div>
 </div>
 
-<main class="max-w-7xl mx-auto px-4 md:px-8 py-6 space-y-6">
+<div class="breaking">
+<span>⚠ BREAKING:</span> OIL SURGES — WTI $94.91 (+8.8%), Brent $99.16 (+7.8%). New Supreme Leader Mojtaba Khamenei says Hormuz stays closed. IEA's historic 400M barrel release FAILED to cap prices. Futures deep red: S&P -0.95%, Dow -1.15%.
+</div>
 
-  <!-- US EQUITIES GRID -->
-  <section>
-    <div class="flex items-center gap-2 mb-3">
-      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">US Equities — Wednesday Close</h2>
-      <span class="tag tag-warn">CPI Non-Event</span>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-      <!-- S&P 500 -->
-      <div class="card p-4 glow-red">
-        <div class="text-xs text-gray-500 mb-1">S&P 500</div>
-        <div class="text-xl font-bold mono down">6,776</div>
-        <div class="flex items-center gap-2 mt-1">
-          <span class="text-sm mono down">-0.08%</span>
-        </div>
-        <div class="anno">CPI relief lasted 15 min. War killed it. Oil bounced back on multiple Hormuz ship strikes. Semis led: SNDK +11.6%, MU +5.1%.</div>
-        <div class="src">Investing.com</div>
-      </div>
-      <!-- Dow -->
-      <div class="card p-4 glow-red">
-        <div class="text-xs text-gray-500 mb-1">Dow Jones</div>
-        <div class="text-xl font-bold mono down">47,417</div>
-        <div class="flex items-center gap-2 mt-1">
-          <span class="text-sm mono down">-0.61%</span>
-        </div>
-        <div class="anno">Dragged by financials and cyclicals. AT&T -3.9%, Campbell's -3.4%. Worst of the major indices.</div>
-        <div class="src">Investing.com</div>
-      </div>
-      <!-- Nasdaq -->
-      <div class="card p-4 glow-green">
-        <div class="text-xs text-gray-500 mb-1">Nasdaq</div>
-        <div class="text-xl font-bold mono up">22,716</div>
-        <div class="flex items-center gap-2 mt-1">
-          <span class="text-sm mono up">+0.08%</span>
-        </div>
-        <div class="anno">Oracle +10% (AI rev +243%, FY27 raised to $90B). Semis outperformed. AVGO +4.6%.</div>
-        <div class="src">Investing.com</div>
-      </div>
-      <!-- Russell -->
-      <div class="card p-4 glow-red">
-        <div class="text-xs text-gray-500 mb-1">Russell 2000</div>
-        <div class="text-xl font-bold mono down">~2,540</div>
-        <div class="flex items-center gap-2 mt-1">
-          <span class="text-sm mono down">~-0.3%</span>
-        </div>
-        <div class="anno">Small caps underperforming — oil at $87+ kills margins. Only buy if oil breaks $80.</div>
-      </div>
-      <!-- VIX -->
-      <div class="card p-4 glow-green">
-        <div class="text-xs text-gray-500 mb-1">VIX (Fear Index)</div>
-        <div class="text-xl font-bold mono up">24.2</div>
-        <div class="flex items-center gap-2 mt-1">
-          <span class="text-sm mono up">-2.8%</span>
-        </div>
-        <div class="anno">Easing from 31+ Monday. But still elevated — above 25 = institutional hedging continues. VIX 30 = systematic selling trigger.</div>
-        <div class="src">CBOE</div>
-      </div>
-    </div>
-  </section>
+<div class="grid">
 
-  <div class="divider"></div>
+<div class="card">
+<h2>📊 US Markets</h2>
+<table>
+<tr><th>Index</th><th>Wed Close</th><th>Thu Futures</th><th>Chg</th></tr>
+<tr><td>S&P 500</td><td>6,775.80</td><td class="down">6,711</td><td class="down">-0.95%</td></tr>
+<tr><td>Dow Jones</td><td>47,417.27</td><td class="down">46,873</td><td class="down">-1.15%</td></tr>
+<tr><td>Nasdaq 100</td><td>22,716</td><td class="down">24,701</td><td class="down">-1.06%</td></tr>
+<tr><td>Russell 2000</td><td>—</td><td class="down">2,522</td><td class="down">-0.8%</td></tr>
+<tr><td>VIX</td><td>24.23</td><td class="warn">25.9 (hi 27.2)</td><td class="warn">⚠ FEAR</td></tr>
+</table>
+<div style="font-size:10px;color:#888;margin-top:4px">CNN Fear & Greed: 25 — EXTREME FEAR</div>
+</div>
 
-  <!-- COMMODITIES + BONDS ROW -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <!-- Commodities -->
-    <section>
-      <div class="flex items-center gap-2 mb-3">
-        <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Commodities</h2>
-        <span class="tag tag-critical">IEA Failed</span>
-      </div>
-      <div class="card overflow-hidden">
-        <!-- Oil WTI -->
-        <div class="p-4 border-b border-[#1e1e1e]">
-          <div class="flex items-center justify-between">
-            <div>
-              <div class="text-xs text-gray-500">🛢️ Oil (WTI Crude)</div>
-              <div class="text-2xl font-bold mono up mt-1">$86.53</div>
-            </div>
-            <div class="text-right">
-              <div class="text-sm mono up">+3.7%</div>
-              <div class="text-[10px] text-gray-500">Brent: $90.98 (+3.6%)</div>
-            </div>
-          </div>
-          <div class="mt-2 p-2 rounded bg-[#1a1a1a]">
-            <div class="text-[10px] text-amber-400 font-semibold">⚡ IEA ANNOUNCED LARGEST RESERVE RELEASE EVER — 400M BARRELS — OIL WENT UP</div>
-            <div class="text-[10px] text-gray-400 mt-1">400M barrels ÷ ~6M bpd disruption = ~67 days of coverage. CNN expert: <em>"Even tens of millions of barrels are more like a drop in the bucket."</em> Multiple ships hit in Hormuz today. Iran mining the strait — US destroyed 16 minelayers.</div>
-            <div class="text-[10px] text-gray-400 mt-1">⛽ Gas: <span class="text-amber-300">$3.58/gal</span> national, <span class="text-red-400">$5.34 California</span>. Heating oil: $3.56 (+6.4%).</div>
-            <div class="anno mt-1">Marex analyst: "This conflict needs to end by end of week. Otherwise, oil spikes back over $100." Copper -1.7% while oil +3.7% = textbook stagflation signal.</div>
-            <div class="src">CNN, IEA, Marex, AAA</div>
-          </div>
-        </div>
-        <!-- Gold -->
-        <div class="p-4 border-b border-[#1e1e1e] flex items-center justify-between">
-          <div>
-            <div class="text-xs text-gray-500">🥇 Gold (COMEX)</div>
-            <div class="text-lg font-bold mono down mt-1">$5,184</div>
-            <div class="anno">Gold falling during a war = institutions selling to cover margin calls (liquidity stress). Same pattern as early 2022 Russia/Ukraine.</div>
-          </div>
-          <div class="text-right">
-            <span class="text-sm mono down">-1.0%</span>
-          </div>
-        </div>
-        <!-- Natural Gas -->
-        <div class="p-4 border-b border-[#1e1e1e] flex items-center justify-between">
-          <div>
-            <div class="text-xs text-gray-500">🔥 Natural Gas</div>
-            <div class="text-lg font-bold mono neutral mt-1">~$3.05</div>
-            <div class="anno">Shell declared force majeure on Qatar LNG (Ras Laffan shut). US LNG exporters (Cheniere) benefit as Europe scrambles.</div>
-          </div>
-          <div class="text-right">
-            <span class="text-sm mono neutral">~flat</span>
-          </div>
-        </div>
-        <!-- Copper -->
-        <div class="p-4 flex items-center justify-between">
-          <div>
-            <div class="text-xs text-gray-500">🔶 Copper</div>
-            <div class="text-lg font-bold mono down mt-1">$5.80</div>
-            <div class="anno">⚠️ <span class="text-amber-400">Dr. Copper falling while oil rises = stagflation signal.</span> Energy costs up (supply shock), industrial demand falling (recession incoming).</div>
-          </div>
-          <div class="text-right">
-            <span class="text-sm mono down">-1.7%</span>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="card alert">
+<h2>🛢️ Oil & Energy — CRISIS</h2>
+<table>
+<tr><th>Asset</th><th>Price</th><th>Change</th><th>Signal</th></tr>
+<tr><td>WTI Crude</td><td class="up">$94.91</td><td class="up">+8.78%</td><td><span class="tag tag-red">SURGE</span></td></tr>
+<tr><td>Brent Crude</td><td class="up">$99.16</td><td class="up">+7.80%</td><td><span class="tag tag-red">$100 TEST</span></td></tr>
+<tr><td>Gasoline</td><td class="up">$2.90</td><td class="up">+3.98%</td><td><span class="tag tag-yellow">PAIN</span></td></tr>
+<tr><td>Heating Oil</td><td class="up">$3.91</td><td class="up">+6.23%</td><td><span class="tag tag-red">SPIKE</span></td></tr>
+<tr><td>Natural Gas</td><td>$3.21</td><td class="neutral">+0.04%</td><td><span class="tag tag-blue">FLAT</span></td></tr>
+</table>
+<div style="font-size:10px;color:#ff4444;margin-top:4px">WTI up 50.9% in one month ($63→$95). Every $10/bbl adds ~0.2% to CPI.</div>
+</div>
 
-    <!-- Bonds & Currencies + Crypto -->
-    <section>
-      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Bonds, Currencies & Crypto</h2>
-      <div class="card overflow-hidden">
-        <!-- 10Y -->
-        <div class="p-4 border-b border-[#1e1e1e]">
-          <div class="flex items-center justify-between">
-            <div>
-              <div class="text-xs text-gray-500">🏛️ 10Y Treasury Yield</div>
-              <div class="text-lg font-bold mono warn mt-1">4.21%</div>
-            </div>
-            <div class="text-right">
-              <span class="text-sm mono warn">+6 bps</span>
-            </div>
-          </div>
-          <div class="anno">⚠️ <span class="text-amber-400 font-semibold">Yields RISING despite soft CPI = bond market pricing war inflation, not the February backward-looking data.</span> March CPI with $91 Brent baked in will be ugly. Goldman: headline reaches 2.7% by May.</div>
-          <div class="src">Trading Economics</div>
-        </div>
-        <!-- DXY -->
-        <div class="p-4 border-b border-[#1e1e1e] flex items-center justify-between">
-          <div>
-            <div class="text-xs text-gray-500">💵 US Dollar (DXY)</div>
-            <div class="text-lg font-bold mono neutral mt-1">~98.9</div>
-            <div class="anno">Dollar weakening slightly on war uncertainty. Safe-haven bid fading as markets digest contradictory signals.</div>
-          </div>
-          <div class="text-right">
-            <span class="text-sm mono down">-0.5%</span>
-          </div>
-        </div>
-        <!-- BTC -->
-        <div class="p-4 border-b border-[#1e1e1e]">
-          <div class="flex items-center justify-between">
-            <div>
-              <div class="text-xs text-gray-500">₿ Bitcoin</div>
-              <div class="text-lg font-bold mono up mt-1">$70,167</div>
-            </div>
-            <div class="text-right">
-              <span class="text-sm mono up">+2.5%</span>
-            </div>
-          </div>
-          <div class="anno">Reclaimed $70K. Outperforming equities during the crisis. Institutional flows holding up — acting more like digital gold than risk asset this cycle.</div>
-          <div class="src">CoinGecko</div>
-        </div>
-        <!-- ETH -->
-        <div class="p-4 flex items-center justify-between">
-          <div>
-            <div class="text-xs text-gray-500">⟠ Ethereum</div>
-            <div class="text-lg font-bold mono up mt-1">~$2,050</div>
-          </div>
-          <div class="text-right">
-            <span class="text-sm mono up">+3.0%</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+<div class="card">
+<h2>💰 Bonds & Currencies</h2>
+<table>
+<tr><th>Asset</th><th>Level</th><th>Change</th><th>Signal</th></tr>
+<tr><td>10Y Treasury</td><td class="warn">4.243%</td><td class="up">+2.37%</td><td><span class="tag tag-yellow">CLIMBING</span></td></tr>
+<tr><td>30Y Treasury</td><td>4.882%</td><td class="up">+2.31%</td><td></td></tr>
+<tr><td>10-2 Spread</td><td class="warn">31.32bp</td><td class="up">+15.27%</td><td><span class="tag tag-yellow">STEEPENING</span></td></tr>
+<tr><td>DXY (Dollar)</td><td class="up">99.59</td><td class="up">+0.36%</td><td><span class="tag tag-green">FIRM</span></td></tr>
+<tr><td>EUR/USD</td><td>1.1527</td><td class="down">-0.35%</td><td></td></tr>
+<tr><td>USD/JPY</td><td>159.15</td><td class="up">+0.13%</td><td></td></tr>
+</table>
+</div>
 
-  <div class="divider"></div>
+<div class="card">
+<h2>🥇 Metals & Commodities</h2>
+<table>
+<tr><th>Asset</th><th>Price</th><th>Change</th><th>Signal</th></tr>
+<tr><td>Gold</td><td class="down">$5,131.87</td><td class="down">-0.92%</td><td><span class="tag tag-red">LIQUIDATION</span></td></tr>
+<tr><td>Silver</td><td class="down">$85.23</td><td class="down">-0.59%</td><td><span class="tag tag-yellow">STRESS</span></td></tr>
+<tr><td>Copper</td><td class="down">$5.814</td><td class="down">-0.54%</td><td></td></tr>
+<tr><td>Coal</td><td class="up">$134.90</td><td class="up">+2.90%</td><td></td></tr>
+</table>
+<div style="font-size:10px;color:#ff4444;margin-top:4px">⚠ Gold DOWN during a war = margin call liquidation. Watch $5,000.</div>
+</div>
 
-  <!-- GLOBAL MARKETS -->
-  <section>
-    <div class="flex items-center gap-2 mb-3">
-      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Global Markets</h2>
-      <span class="tag tag-warn">Europe Red, Asia Mixed</span>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-      <div class="card p-3 glow-green">
-        <div class="text-[10px] text-gray-500">🇯🇵 Nikkei 225</div>
-        <div class="text-lg font-bold mono up">+0.6%</div>
-        <div class="text-[10px] text-gray-500 mono">~55,000</div>
-        <div class="anno">Partial recovery from Monday's -5.2% carnage. Still cautious ahead of overnight Hormuz developments.</div>
-      </div>
-      <div class="card p-3 glow-green">
-        <div class="text-[10px] text-gray-500">🇰🇷 KOSPI</div>
-        <div class="text-lg font-bold mono up">+1.4%</div>
-        <div class="anno">Bouncing from Monday's circuit breaker. Samsung and SK Hynix leading on semi demand.</div>
-      </div>
-      <div class="card p-3 glow-red">
-        <div class="text-[10px] text-gray-500">🇭🇰 Hang Seng</div>
-        <div class="text-lg font-bold mono down">-0.4%</div>
-        <div class="anno">China cautious. Positioning as mediator but Iran tensions weighing on sentiment.</div>
-      </div>
-      <div class="card p-3 glow-red">
-        <div class="text-[10px] text-gray-500">🇩🇪 DAX</div>
-        <div class="text-lg font-bold mono down">-1.4%</div>
-        <div class="anno">Yesterday's +2.4% relief rally completely reversed. Europe most exposed to oil/gas shock.</div>
-      </div>
-      <div class="card p-3 glow-red">
-        <div class="text-[10px] text-gray-500">🇬🇧 FTSE 100</div>
-        <div class="text-lg font-bold mono down">-0.6%</div>
-        <div class="anno">Energy names holding up but broad market selling on Brent above $91.</div>
-      </div>
-    </div>
-  </section>
+<div class="card">
+<h2>🌏 Global Markets</h2>
+<table>
+<tr><th>Index</th><th>Level</th><th>Change</th></tr>
+<tr><td>Nikkei 225</td><td>54,453</td><td class="down">-1.04%</td></tr>
+<tr><td>Hang Seng</td><td>—</td><td class="down">-0.33%</td></tr>
+<tr><td>CSI 300</td><td>4,688</td><td class="down">-0.36%</td></tr>
+<tr><td>Kospi</td><td>5,583</td><td class="down">-0.48%</td></tr>
+<tr><td>ASX 200</td><td>8,629</td><td class="down">-1.31%</td></tr>
+<tr><td>DAX</td><td>23,640</td><td class="down">-1.37%</td></tr>
+<tr><td>FTSE 100</td><td>10,354</td><td class="down">-0.56%</td></tr>
+</table>
+</div>
 
-  <div class="divider"></div>
+<div class="card">
+<h2>₿ Crypto</h2>
+<table>
+<tr><th>Asset</th><th>Price</th><th>24h</th></tr>
+<tr><td>Bitcoin</td><td>$70,404</td><td class="up">+0.31%</td></tr>
+<tr><td>Ethereum</td><td>$2,075</td><td class="up">+1.23%</td></tr>
+<tr><td>Solana</td><td>$86.82</td><td class="up">+0.36%</td></tr>
+</table>
+<div style="font-size:10px;color:#888;margin-top:4px">Crypto range-bound. BTC $65K-$72K channel holds.</div>
+</div>
 
-  <!-- WAR TIMELINE + ENERGY CRISIS -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <!-- War Timeline -->
-    <section>
-      <div class="flex items-center gap-2 mb-3">
-        <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">⚔️ Iran War Timeline — Day 12</h2>
-      </div>
-      <div class="card p-4 space-y-3">
-        <div class="flex items-start gap-3">
-          <div class="timeline-dot bg-red-500 mt-1.5 flex-shrink-0"></div>
-          <div>
-            <div class="text-[10px] text-gray-500 mono">FEB 28</div>
-            <div class="text-xs">US/Israel strikes begin on Iranian nuclear & military sites. Khamenei assassinated.</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3">
-          <div class="timeline-dot bg-red-500 mt-1.5 flex-shrink-0"></div>
-          <div>
-            <div class="text-[10px] text-gray-500 mono">MAR 1-5</div>
-            <div class="text-xs">Hormuz effectively closed. Iraq -60%. Qatar Ras Laffan offline. Mojtaba Khamenei named Supreme Leader. Oil hits $119.</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3">
-          <div class="timeline-dot bg-orange-500 mt-1.5 flex-shrink-0"></div>
-          <div>
-            <div class="text-[10px] text-gray-500 mono">MAR 9</div>
-            <div class="text-xs">Trump: "very complete." Oil crashes $119→$85. S&P reverses -1.5%→+0.83%. IRGC: "energy war." KOSPI circuit breaker.</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3">
-          <div class="timeline-dot bg-red-600 mt-1.5 flex-shrink-0"></div>
-          <div>
-            <div class="text-[10px] text-gray-500 mono">MAR 10</div>
-            <div class="text-xs">Iran drone strikes UAE Ruwais refinery (922K bpd offline). ADNOC declares force majeure. Bahrain civilian killed. Iran: "not a single liter" through Hormuz. Relief rally dies.</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3">
-          <div class="timeline-dot bg-red-700 mt-1.5 flex-shrink-0 pulse"></div>
-          <div>
-            <div class="text-[10px] text-gray-500 mono">MAR 11 — TODAY</div>
-            <div class="text-xs"><span class="down font-semibold">CPI in-line (2.4%). IEA announces largest release ever (400M bbl). Oil went UP (+3.7%).</span> Both sides "most intense" operations overnight. Iran mining Hormuz. US destroyed 16 minelayers. Multiple ships hit. NATO intercepted missile in Turkish airspace (first ever). Trump: "we've won" — market moved 0%. Iran opened cyber front (Stryker Corp hit). Aramco CEO: "catastrophic consequences."</div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="card full alert">
+<h2>💣 War — Day 14</h2>
+<ul>
+<li>🔴 <b>Mojtaba Khamenei's first public statement:</b> Strait of Hormuz stays closed — hardline stance maintained</li>
+<li>🔴 <b>IEA approved largest reserve release ever:</b> 400M barrels. US releasing 172M from SPR. Oil went UP anyway.</li>
+<li>🔴 <b>Iraq shut oil ports</b> after deadly tanker attacks — more supply removed</li>
+<li>🔴 <b>Multiple tankers hit near Hormuz</b> — GCC forced to cut 10M bpd as storage capacity reached</li>
+<li>🟠 <b>Israel bombed Beirut waterfront</b> — 8 killed, 31 wounded. War EXPANDING beyond Iran</li>
+<li>🟡 <b>Iran's Pezeshkian set 3 ceasefire conditions</b> — US must guarantee no future strikes. Dead on arrival.</li>
+<li>🟡 <b>Fuel panic across Asia:</b> Bangladesh universities closed, India emergency powers, Pakistan schools closed, South Korea fuel price caps</li>
+<li>🟡 <b>Trump:</b> Will tap SPR. Considering Defense Production Act for CA offshore drilling. "War ends very soon."</li>
+</ul>
+</div>
 
-    <!-- Energy Crisis Tracker -->
-    <section>
-      <div class="flex items-center gap-2 mb-3">
-        <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">🛢️ Energy Crisis Tracker</h2>
-        <span class="tag tag-critical">IEA Insufficient</span>
-      </div>
-      <div class="card p-4 space-y-3">
-        <div class="p-3 rounded bg-[#1a1a1a] mb-3">
-          <div class="text-[10px] text-red-400 font-semibold">📊 IEA RECORD RELEASE: 400M BARRELS — MARKET SHRUGGED</div>
-          <div class="text-[10px] text-gray-400 mt-1">32 IEA members unanimously agreed. Double the 2022 response. At ~6M bpd disruption, covers ~67 days. CNN: "Emergency releases won't fix oil crisis." Aramco CEO Nasser: "catastrophic consequences" if disruptions persist. Global inventories at 5-year low.</div>
-          <div class="src">IEA, CNN, Aramco/Reuters</div>
-        </div>
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-red-500 pulse"></span>
-            <span class="text-xs">Strait of Hormuz</span>
-          </div>
-          <span class="tag tag-critical">6 Ships / 12 Days</span>
-        </div>
-        <div class="text-[10px] text-gray-500 pl-4">Normal: 138 ships/day. Now: effectively shut. Iran mining the strait. US destroyed 16 minelayers. Multiple ships hit today — "bad day for merchant mariners."</div>
+<div class="card full">
+<h2>🔗 Active Threads</h2>
+<table>
+<tr><th>Thread</th><th>Status</th><th>Update</th></tr>
+<tr><td><span class="thread-status status-red"></span>Oil Supply Crisis</td><td><span class="tag tag-red">CRITICAL</span></td><td>WTI $95, Brent $99. IEA release failed. Iraq ports shut. GCC cut 10M bpd.</td></tr>
+<tr><td><span class="thread-status status-red"></span>Strait of Hormuz</td><td><span class="tag tag-red">CLOSED</span></td><td>New supreme leader says it stays closed. Multiple ships hit overnight.</td></tr>
+<tr><td><span class="thread-status status-red"></span>War Expansion</td><td><span class="tag tag-red">ESCALATING</span></td><td>Israel bombing Beirut. Asia fuel panic. War spreading beyond Iran.</td></tr>
+<tr><td><span class="thread-status status-yellow"></span>Gold Liquidation</td><td><span class="tag tag-yellow">STRESS</span></td><td>Gold -0.92% during a war = margin calls. Watch $5,000 line.</td></tr>
+<tr><td><span class="thread-status status-yellow"></span>Stagflation</td><td><span class="tag tag-yellow">ELEVATED</span></td><td>Oil $95 adds ~0.4% to CPI. 10-2 spread steepening +15%. Staples crushed.</td></tr>
+<tr><td><span class="thread-status status-yellow"></span>FOMC</td><td><span class="tag tag-blue">T-6 DAYS</span></td><td>March 18 = THE day. PPI + dot plot + rate decision. Fed completely trapped.</td></tr>
+<tr><td><span class="thread-status status-black"></span>Ceasefire</td><td><span class="tag tag-red">DEAD</span></td><td>Iran's 3 conditions unacceptable. Khamenei's rhetoric hardline.</td></tr>
+</table>
+</div>
 
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-red-500"></span>
-            <span class="text-xs">UAE Ruwais Refinery</span>
-          </div>
-          <span class="tag tag-critical">922K BPD Offline</span>
-        </div>
-        <div class="text-[10px] text-gray-500 pl-4">Iranian drone struck ADNOC's Ruwais complex (Mar 10). ADNOC declared force majeure. First direct hit on UAE infrastructure.</div>
+<div class="card">
+<h2>🎯 Trade Ideas</h2>
+<table>
+<tr><th>Play</th><th>Conv.</th><th>Thesis</th></tr>
+<tr><td class="up">Energy (XLE, OXY, DVN)</td><td>🟢🟢🟢</td><td>Largest disruption in history. WTI→$100-120</td></tr>
+<tr><td class="up">Refiners (VLO, MPC)</td><td>🟢🟢</td><td>Crack spreads exploding. VLO +6.5% today</td></tr>
+<tr><td class="up">Cyber (CRWD, PANW)</td><td>🟢</td><td>Ceasefire-proof. Iran cyber escalating</td></tr>
+<tr><td class="up">Defense (LMT, RTX)</td><td>🟢</td><td>Munitions replenishment = multi-year</td></tr>
+<tr><td class="warn">Short Airlines (JETS)</td><td>🟠</td><td>$95 oil devastating. $600M/day losses</td></tr>
+<tr><td class="warn">Gold Dips (GLD)</td><td>🟡</td><td>Liquidation temporary. Watch $5,000-5,100</td></tr>
+</table>
+<div style="font-size:9px;color:#666;margin-top:6px">⚠ Analysis only, not financial advice</div>
+</div>
 
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-red-500"></span>
-            <span class="text-xs">Iraq Crude Output</span>
-          </div>
-          <span class="tag tag-critical">Down ~60%</span>
-        </div>
+<div class="card">
+<h2>📊 Key Stock Movers</h2>
+<table>
+<tr><th>Ticker</th><th>Move</th><th>Why</th></tr>
+<tr><td class="up">ORCL</td><td class="up">+9.18%</td><td>Cloud +44% YoY, AI blowout</td></tr>
+<tr><td class="up">CZR</td><td class="up">+11.80%</td><td>Casinos rebound</td></tr>
+<tr><td class="up">MOS</td><td class="up">+10.05%</td><td>Fertilizer spike on energy</td></tr>
+<tr><td class="up">CF</td><td class="up">+9.11%</td><td>Fertilizer surge</td></tr>
+<tr><td class="up">VLO</td><td class="up">+6.47%</td><td>Refiner printing money</td></tr>
+<tr><td class="down">CPB</td><td class="down">-7.05%</td><td>Staples crushed by input costs</td></tr>
+<tr><td class="down">FICO</td><td class="down">-9.38%</td><td>Valuation unwind</td></tr>
+<tr><td class="down">CAG</td><td class="down">-6.08%</td><td>ConAgra — same stagflation story</td></tr>
+</table>
+</div>
 
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-red-500 pulse"></span>
-            <span class="text-xs">Qatar LNG</span>
-          </div>
-          <span class="tag tag-critical">Force Majeure</span>
-        </div>
-        <div class="text-[10px] text-gray-500 pl-4">Shell declared force majeure on Qatar LNG. Ras Laffan shut.</div>
+<div class="card full">
+<h2>🧠 Deep Dive: Why Asia Is Panicking</h2>
+<div style="font-size:11px;line-height:1.5">
+<p>Asia sources <b>60% of its oil from the Middle East</b> — far more than the US (11%) or Europe (25%). When Hormuz closes, it's existential for Asia, not theoretical.</p>
+<br>
+<p><b>What's happening right now:</b></p>
+<ul style="padding-left:12px">
+<li>🇧🇩 <b>Bangladesh:</b> Fuel lines forming. Universities closed to save energy.</li>
+<li>🇮🇳 <b>India:</b> Emergency powers invoked to redirect LPG to households.</li>
+<li>🇵🇰 <b>Pakistan:</b> Schools closed, government services shifted online.</li>
+<li>🇰🇷 <b>South Korea:</b> First fuel price cap in 30 years.</li>
+</ul>
+<br>
+<p><b>Why the IEA release won't help Asia:</b> The 400M barrel release is mostly from US and European reserves. Getting that oil to Asia requires tankers — which are the ones being attacked. The physical logistics of reserve releases assume functioning trade routes. Without Hormuz, the reserves can stabilize the West but do almost nothing for Asia.</p>
+<br>
+<p><b>Historical parallel:</b> 1973 oil embargo hit Japan harder than anyone — they imported 99.7% of their oil. Japan responded by pivoting to nuclear and becoming the world's most energy-efficient economy. Watch for similar energy policy pivots across Asia if this crisis persists beyond 30 days.</p>
+</div>
+</div>
 
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-red-500"></span>
-            <span class="text-xs">Iran Military</span>
-          </div>
-          <span class="tag tag-warn">80%+ Launchers Gone</span>
-        </div>
-        <div class="text-[10px] text-gray-500 pl-4">50+ vessels sunk, 11/17 air bases hit. Conventional capability degrading but asymmetric attacks (drones, mines, cyber) intensifying.</div>
+<div class="card full">
+<h2>📐 Key Levels</h2>
+<table>
+<tr><th>Asset</th><th>Support</th><th>Resistance</th><th>Trigger</th></tr>
+<tr><td>S&P 500</td><td>6,700</td><td>6,850</td><td>Below 6,700 → test 6,500</td></tr>
+<tr><td>WTI Oil</td><td>$88</td><td>$100</td><td>Above $100 → panic. Below $85 → ceasefire hope</td></tr>
+<tr><td>10Y Yield</td><td>4.15%</td><td>4.30%</td><td>Above 4.30% → equity pain intensifies</td></tr>
+<tr><td>Gold</td><td>$5,000</td><td>$5,300</td><td>Below $5,000 → Fed emergency consideration</td></tr>
+<tr><td>VIX</td><td>22</td><td>30</td><td>Above 30 → hedging cascade</td></tr>
+</table>
+</div>
 
-        <div class="divider my-3"></div>
-        <div class="p-3 rounded bg-[#1a1a1a]">
-          <div class="text-[10px] text-gray-500 font-semibold uppercase mb-2">Oil Price Journey (WTI)</div>
-          <div class="flex items-center gap-1 text-[10px] mono flex-wrap">
-            <span class="text-gray-500">Pre-war $67</span>
-            <span class="text-gray-600">→</span>
-            <span class="text-red-400 font-bold">$119 spike</span>
-            <span class="text-gray-600">→</span>
-            <span class="text-green-400">$85 crash</span>
-            <span class="text-gray-600">→</span>
-            <span class="text-amber-400 font-bold">$86.53 Wed close</span>
-          </div>
-          <div class="text-[10px] text-gray-500 mt-2">Still +29% from pre-war. IEA's 400M barrel release couldn't push it below $85. Only Hormuz reopening fixes this.</div>
-          <div class="src">IEA, CNN, Aramco</div>
-        </div>
-      </div>
-    </section>
-  </div>
+<div class="card full">
+<h2>📅 Calendar</h2>
+<ul>
+<li>🔜 <b>Today:</b> Adobe (ADBE) earnings after close — AI/Firefly monetization story</li>
+<li>📊 <b>Today:</b> Jobless Claims 213K ✅ — labor market solid. No recession signal yet.</li>
+<li>⚠️ <b>March 18:</b> FOMC + Rate Decision + Dot Plot + PPI — THE convergence day. T-6.</li>
+<li>🛢️ <b>Ongoing:</b> IEA reserve deployment timeline TBD</li>
+</ul>
+</div>
 
-  <div class="divider"></div>
+</div>
 
-  <!-- WEEK AHEAD -->
-  <section>
-    <div class="flex items-center gap-2 mb-3">
-      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">📅 This Week</h2>
-    </div>
-    <div class="card overflow-hidden">
-      <div class="grid grid-cols-1 md:grid-cols-4">
-        <div class="p-4 border-b md:border-b-0 md:border-r border-[#1e1e1e]">
-          <div class="text-[10px] text-gray-500 mono">MON MAR 9</div>
-          <div class="text-xs font-semibold up mt-1">✅ Reversal Day</div>
-          <div class="text-[10px] text-gray-400 mt-1">Oil $119→$85. S&P reversed -1.5%→+0.83%. Historic session.</div>
-        </div>
-        <div class="p-4 border-b md:border-b-0 md:border-r border-[#1e1e1e]">
-          <div class="text-[10px] text-gray-500 mono">WED MAR 11</div>
-          <div class="text-xs font-semibold warn mt-1">✅ CPI In-Line + IEA Failed</div>
-          <div class="text-[10px] text-gray-400 mt-2">CPI 2.4% headline, core +0.2% (softer). IEA 400M bbl release — oil went up. Market flat.</div>
-        </div>
-        <div class="p-4 border-b md:border-b-0 md:border-r border-[#1e1e1e] bg-[#1a0a0a]">
-          <div class="text-[10px] text-gray-500 mono">THU MAR 12</div>
-          <div class="text-xs font-semibold text-red-400 mt-1">📊 PPI + Claims + Adobe</div>
-          <span class="tag tag-warn mt-2">TOMORROW</span>
-          <div class="text-[10px] text-gray-400 mt-2">PPI (wholesale inflation) + jobless claims at 5:30 AM. Adobe earnings after close — Firefly AI in focus. 11.6x P/E vs 32.1x 5yr median.</div>
-        </div>
-        <div class="p-4">
-          <div class="text-[10px] text-gray-500 mono">FRI MAR 13</div>
-          <div class="text-xs font-semibold warn mt-1">📊 UMich Sentiment</div>
-          <div class="text-[10px] text-gray-400 mt-1">Consumer confidence after 2 weeks of war + $87 oil.</div>
-          <div class="divider my-2"></div>
-          <div class="text-[10px] text-gray-500 mono">MAR 17-18</div>
-          <div class="text-xs font-semibold text-red-400 mt-1">🏛️ FOMC Decision</div>
-          <div class="text-[10px] text-gray-400 mt-1">Expected: HOLD. CPI gave Fed breathing room. July cut back on table if economy weakens.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ACTIVE THREADS -->
-  <section>
-    <div class="flex items-center gap-2 mb-3">
-      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">🔗 Active Threads</h2>
-      <span class="tag tag-info">6 NARRATIVES</span>
-    </div>
-    <div class="card overflow-hidden">
-      <!-- Thread 1: Oil/IEA -->
-      <div class="p-4 border-b border-[#1e1e1e]">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-red-500 pulse flex-shrink-0"></span>
-          <div class="text-xs font-semibold text-red-400">Oil Supply / IEA Release</div>
-          <span class="tag tag-critical">IEA FAILED</span>
-        </div>
-        <div class="text-xs text-gray-300 leading-relaxed">IEA announced its largest coordinated reserve release in history — 400M barrels (double the 2022 response to Russia/Ukraine). Oil went UP +3.7%. CNN expert: "Emergency releases won't fix oil crisis... even tens of millions of barrels are more like a drop in the bucket." At ~6M bpd disruption, 400M barrels covers ~67 days. But physical delivery takes 4-6 weeks from salt caverns. Aramco CEO Nasser warned of "catastrophic consequences" — global inventories at 5-year low. Only Hormuz reopening fixes this. Reserves are aspirin for a broken leg.</div>
-        <div class="flex items-center gap-1.5 text-[10px] mono text-gray-500 flex-wrap mt-2">
-          <span class="text-red-400">IEA 400M bbl</span>
-          <span class="text-gray-600">→</span>
-          <span>Oil went UP</span>
-          <span class="text-gray-600">→</span>
-          <span class="text-red-400">Aramco: "catastrophic"</span>
-          <span class="text-gray-600">→</span>
-          <span class="text-amber-400">Only Hormuz fixes it</span>
-        </div>
-        <div class="src mt-1">IEA, CNN, Aramco/Reuters, Marex</div>
-      </div>
-
-      <!-- Thread 2: CPI / Stagflation -->
-      <div class="p-4 border-b border-[#1e1e1e]">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-green-500 flex-shrink-0"></span>
-          <div class="text-xs font-semibold text-green-400">CPI / Stagflation Watch</div>
-          <span class="tag tag-ok">FEB CLEAN</span>
-        </div>
-        <div class="text-xs text-gray-300 leading-relaxed">February CPI came in at 2.4% headline (in-line) with core MoM at +0.2% (softer than the +0.3% expected). Shelter finally cooling — rent +0.1%, smallest since Jan 2021. No tariff pass-through yet. Fed has ~6 weeks of breathing room. BUT this is February data — before the war. March CPI (mid-April) with $91 Brent baked in will be ugly. Goldman forecasts headline reaching 2.7% by May. Copper -1.7% diverging from oil +3.7% = classic stagflation signal.</div>
-        <div class="flex items-center gap-1.5 text-[10px] mono text-gray-500 flex-wrap mt-2">
-          <span class="text-green-400">Feb CPI 2.4% ✅</span>
-          <span class="text-gray-600">→</span>
-          <span>Core +0.2% (softer)</span>
-          <span class="text-gray-600">→</span>
-          <span class="text-amber-400">Fed has 6 weeks</span>
-          <span class="text-gray-600">→</span>
-          <span class="text-red-400">March CPI will be ugly</span>
-        </div>
-        <div class="src mt-1">BLS, Goldman Sachs, Cleveland Fed</div>
-      </div>
-
-      <!-- Thread 3: War / No Off-Ramps -->
-      <div class="p-4 border-b border-[#1e1e1e]">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-red-500 pulse flex-shrink-0"></span>
-          <div class="text-xs font-semibold text-red-400">War — No Off-Ramps</div>
-          <span class="tag tag-critical">DAY 12</span>
-        </div>
-        <div class="text-xs text-gray-300 leading-relaxed">Both sides had their "most intense" night of operations. Pentagon: "most intense day of strikes" inside Iran. IRGC launched "heaviest operation" of the war. White House demands "unconditional surrender" — ground troops "not ruled out." Iran FM: prepared for "a long war" — only economic pain will end it. NATO intercepted a missile in Turkish airspace (first ever — Article 5 implications). UNESCO sites damaged in Esfahan. 12th person killed in Israel. Israeli tank fire killed Lebanese priest. The leadership decapitation removed the person who could agree to stop — no one to negotiate with.</div>
-        <div class="src mt-1">CNN, Reuters, Pentagon, NATO</div>
-      </div>
-
-      <!-- Thread 4: Signal Degradation -->
-      <div class="p-4 border-b border-[#1e1e1e]">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-amber-500 flex-shrink-0"></span>
-          <div class="text-xs font-semibold text-amber-400">Trump Signal Degradation</div>
-          <span class="tag tag-warn">BOY WHO CRIED WOLF</span>
-        </div>
-        <div class="text-xs text-gray-300 leading-relaxed">Monday's "very complete" → oil -25%. Wednesday's "we've won" at Kentucky rally → oil moved 0%. Each repeated victory claim gets priced faster and discounted harder. Markets now only watch observable proof: ship transits through Hormuz, Lloyd's war premiums dropping, force majeures lifting, AIS transponders turning back on. Speeches are noise. Ship counts are signal.</div>
-        <div class="src mt-1">CNBC, market data</div>
-      </div>
-
-      <!-- Thread 5: Cyber War -->
-      <div class="p-4 border-b border-[#1e1e1e]">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-red-500 flex-shrink-0"></span>
-          <div class="text-xs font-semibold text-red-400">Cyber War</div>
-          <span class="tag tag-critical">NEW FRONT</span>
-        </div>
-        <div class="text-xs text-gray-300 leading-relaxed">Iran-backed Handala group hit Stryker Corp (surgical robots/hospital systems) with a wiper attack — global Windows outage, stock -3.4%. Iran explicitly warned Google, Amazon, Microsoft, Nvidia are "legitimate targets." This is asymmetric warfare — Iran can't match the Navy but can shut down hospitals and pipelines. CRWD and PANW are the new defense stocks — this catalyst doesn't reverse on a ceasefire.</div>
-        <div class="src mt-1">Trellix, Stryker Corp, Reuters</div>
-      </div>
-
-      <!-- Thread 6: AI/Tech -->
-      <div class="p-4">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-green-500 flex-shrink-0"></span>
-          <div class="text-xs font-semibold text-green-400">AI / Tech</div>
-          <span class="tag tag-ok">WAR-PROOF</span>
-        </div>
-        <div class="text-xs text-gray-300 leading-relaxed">Oracle +10% on AI revenue +243% YoY, multicloud DB +531%, FY27 raised to $90B, Ellison taking 15% TikTok US stake. Marvell +18%, Micron +5.1%. AI spending is literally war-proof. Adobe reports Thursday after close — trading at 11.6x vs 32.1x 5yr median. If Firefly AI shows traction, big pop potential.</div>
-        <div class="src mt-1">Oracle, Marvell, Adobe</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- TRADE IDEAS -->
-  <section>
-    <div class="flex items-center gap-2 mb-3">
-      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">🎯 Trade Ideas — Thursday Mar 12</h2>
-      <span class="tag tag-info">POST-CPI</span>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
-      <!-- Scenario 1 -->
-      <div class="card p-4 glow-green" style="border-left: 3px solid #00e676;">
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-xs font-semibold up">Scenario 1: War Winds Down</div>
-          <span class="tag tag-ok">30%</span>
-        </div>
-        <div class="text-[10px] text-gray-400 leading-relaxed">Iran's conventional capability degrading (80%+ launchers gone). But asymmetric + cyber intensifying. Ceasefire requires someone to negotiate with — hard after decapitation.</div>
-        <div class="mt-3 space-y-1.5">
-          <div class="text-[10px]"><span class="up font-semibold mono">JETS</span> <span class="text-gray-500">— Only if oil breaks $80 and holds.</span></div>
-          <div class="text-[10px]"><span class="up font-semibold mono">IWM</span> <span class="text-gray-500">— Small caps recover if oil drops.</span></div>
-        </div>
-        <div class="mt-3 p-2 rounded bg-[#1a1a1a]">
-          <div class="text-[10px] text-red-400">⚠️ Risk: Trump "we've won" had zero market impact. Signal exhaustion. Wait for ship transits, not speeches.</div>
-        </div>
-      </div>
-      <!-- Scenario 2 -->
-      <div class="card p-4 glow-amber" style="border-left: 3px solid #ffab00;">
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-xs font-semibold warn">Scenario 2: Grind Continues</div>
-          <span class="tag tag-warn">50%</span>
-        </div>
-        <div class="text-[10px] text-gray-400 leading-relaxed">IEA release buys weeks, not months. Oil $85-100. War at stalemate. Most likely scenario. Marex: "End by Friday or $100+."</div>
-        <div class="mt-3 space-y-1.5">
-          <div class="text-[10px]"><span class="up font-semibold mono">XLE, OXY</span> <span class="text-gray-500">— Oil at $87+ and IEA couldn't push it down.</span></div>
-          <div class="text-[10px]"><span class="up font-semibold mono">CRWD, PANW</span> <span class="text-gray-500">— Cyber war just started. Ceasefire-proof.</span></div>
-          <div class="text-[10px]"><span class="up font-semibold mono">VLO, MPC</span> <span class="text-gray-500">— Refiners. Crack spreads widening. VLO +6.5% today.</span></div>
-        </div>
-        <div class="mt-3 p-2 rounded bg-[#1a1a1a]">
-          <div class="text-[10px] text-amber-400">⚠️ Risk: Surprise ceasefire headline overnight → oil crashes, energy dumps.</div>
-        </div>
-      </div>
-      <!-- Scenario 3 -->
-      <div class="card p-4 glow-red" style="border-left: 3px solid #ff1744;">
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-xs font-semibold down">Scenario 3: Escalation</div>
-          <span class="tag tag-critical">20%</span>
-        </div>
-        <div class="text-[10px] text-gray-400 leading-relaxed">Ground troops, Hormuz stays mined, cyber attacks on US infrastructure. Oil $100+. Aramco's "catastrophic consequences" scenario.</div>
-        <div class="mt-3 space-y-1.5">
-          <div class="text-[10px]"><span class="up font-semibold mono">XLE + RTX</span> <span class="text-gray-500">— Energy + defense double down.</span></div>
-          <div class="text-[10px]"><span class="up font-semibold mono">GLD</span> <span class="text-gray-500">— Gold finally catches safe-haven bid at $100+ oil.</span></div>
-          <div class="text-[10px]"><span class="up font-semibold mono">VXX</span> <span class="text-gray-500">— Vol play if VIX breaks 30.</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Top Trade Callout -->
-    <div class="card p-4" style="border: 1px solid rgba(255,171,0,0.3); background: linear-gradient(135deg, #141414, #1a1408);">
-      <div class="flex items-start gap-3">
-        <span class="text-amber-400 text-lg">💡</span>
-        <div>
-          <div class="text-sm font-semibold text-amber-400">Top Trade: CRWD (Cybersecurity)</div>
-          <div class="text-xs text-gray-400 mt-1 leading-relaxed">Iran's cyber front is the one catalyst that <strong>doesn't reverse on a ceasefire</strong>. Iran's capabilities are structural — Trellix just published a full threat assessment confirming escalated capabilities. Stryker was patient zero. Every CISO at every Fortune 500 just got emergency budget approved. Multi-week catalyst regardless of war outcome.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Support/Resistance -->
-    <div class="card p-4 mt-3">
-      <div class="text-[10px] text-gray-400 font-semibold uppercase mb-2">📐 Key Levels</div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div>
-          <div class="text-[10px] text-gray-500">S&P 500</div>
-          <div class="text-[10px] text-gray-300">Current: <span class="mono">6,776</span></div>
-          <div class="text-[10px] text-gray-500">6,850 breakout / 6,700 support / 6,600 danger</div>
-        </div>
-        <div>
-          <div class="text-[10px] text-gray-500">Oil (Brent)</div>
-          <div class="text-[10px] text-gray-300">Current: <span class="mono">$90.98</span></div>
-          <div class="text-[10px] text-gray-500">$80 = airlines / $95+ = crisis deepening</div>
-        </div>
-        <div>
-          <div class="text-[10px] text-gray-500">VIX</div>
-          <div class="text-[10px] text-gray-300">Current: <span class="mono">24.2</span></div>
-          <div class="text-[10px] text-gray-500">Below 22 = relief / 30 = systematic selling</div>
-        </div>
-        <div>
-          <div class="text-[10px] text-gray-500">10Y Yield</div>
-          <div class="text-[10px] text-gray-300">Current: <span class="mono">4.21%</span></div>
-          <div class="text-[10px] text-gray-500">Above 4.30% = stagflation confirmed</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-[9px] text-gray-600 mt-2 text-right mono">⚠️ Analysis only — not financial advice. Half-size all positions in this volatility.</div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- DEEP DIVE -->
-  <section>
-    <div class="flex items-center gap-2 mb-3">
-      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">🧠 Deep Dive — Why Aramco's Warning Matters More Than the IEA Release</h2>
-      <span class="tag tag-info">RESEARCHED</span>
-    </div>
-    <div class="card p-5" style="border-left: 3px solid #42a5f5;">
-      <div class="text-xs text-gray-300 leading-relaxed space-y-3">
-        <p>Saudi Aramco CEO Amin Nasser doesn't make public warnings lightly — the company is the world's largest oil exporter and Saudi Arabia's economic backbone. When he says <span class="text-white font-semibold">"catastrophic consequences,"</span> he's telling the market: <em>we can't fix this from the supply side.</em></p>
-
-        <p>Global oil inventories are at a <span class="text-white font-semibold">5-year low</span>. The buffer between normal supply and demand is already thin. Add ~6M bpd of Gulf disruption (Hormuz closure, Iraq -60%, UAE Ruwais offline, force majeures), and you're drawing down reserves at a rate that could hit critical levels within weeks.</p>
-
-        <p>The IEA's 400M barrel release covers ~67 days at current disruption rates. But Nasser is warning that <span class="text-amber-400">duration matters more than size</span>. Each week the war continues, supply chains break further:</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-3">
-          <div class="p-3 rounded bg-[#1a1a1a]">
-            <div class="text-[10px] font-semibold text-amber-400 mb-1">🚢 Shipping Reroutes</div>
-            <div class="text-[10px] text-gray-400">Tankers going around Africa add 10-14 days per voyage. More ships needed for same volume = shipping costs spike.</div>
-          </div>
-          <div class="p-3 rounded bg-[#1a1a1a]">
-            <div class="text-[10px] font-semibold text-amber-400 mb-1">🏭 Refinery Mismatch</div>
-            <div class="text-[10px] text-gray-400">Gulf sour crude can't easily be replaced by US light sweet. Refineries are built for specific grades. Wrong crude = lower utilization = product shortages.</div>
-          </div>
-          <div class="p-3 rounded bg-[#1a1a1a]">
-            <div class="text-[10px] font-semibold text-amber-400 mb-1">✈️ Downstream Rationing</div>
-            <div class="text-[10px] text-gray-400">Airlines, chemicals, agriculture start rationing. Air India already levying fuel surcharges from Thursday. Jet fuel up 50% since war began.</div>
-          </div>
-        </div>
-
-        <p class="text-gray-400"><span class="text-white font-semibold">The 1973 parallel:</span> Arab oil embargo lasted 5 months. Oil quadrupled. GDP fell 3%. Unemployment doubled. Inflation hit 12%. We're at Day 12. If this reaches Day 60 without resolution, the economic damage compounds non-linearly.</p>
-
-        <p class="text-gray-400"><span class="text-white font-semibold">What to watch:</span> If Nasser starts talking about production cuts (because Saudi can't ship through Hormuz either), that's the next shoe to drop. Also watch the IEA's formal quantity allocation — how much from each country and on what timeline. The announcement is the easy part. The physical oil takes 4-6 weeks to flow.</p>
-      </div>
-      <div class="src mt-3">Sources: Aramco/Reuters, CNN, IEA, Times of India, Air India</div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- SOURCES -->
-  <section>
-    <div class="flex items-center gap-2 mb-3">
-      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">📚 Sources</h2>
-    </div>
-    <div class="card p-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
-        <div class="text-[10px] text-gray-500">📰 CNN — Emergency oil releases won't fix crisis, Aramco CEO warning, war live updates</div>
-        <div class="text-[10px] text-gray-500">📰 Times of India — Oil falls to $88 after IEA largest release</div>
-        <div class="text-[10px] text-gray-500">📰 Investing.com — S&P 500 valuation pressure, oil + yields rising together</div>
-        <div class="text-[10px] text-gray-500">📰 Trellix — Iranian Cyber Capability 2026 threat assessment</div>
-        <div class="text-[10px] text-gray-500">📊 BLS — February CPI Release (2.4% YoY, core +0.2% MoM)</div>
-        <div class="text-[10px] text-gray-500">📊 IEA — Largest coordinated reserve release (400M bbl)</div>
-        <div class="text-[10px] text-gray-500">📊 Goldman Sachs — CPI forecast 2.7% by May</div>
-        <div class="text-[10px] text-gray-500">📊 Marex — "End by Friday or $100+"</div>
-        <div class="text-[10px] text-gray-500">📰 YouTube/What's Going on With Shipping — Hormuz merchant mariner attacks</div>
-        <div class="text-[10px] text-gray-500">📰 Oracle Q3 — AI rev +243%, FY27 raised to $90B</div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- FOOTER -->
-<footer class="status-bar px-4 py-3 md:px-8 mt-8">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-    <div class="text-[10px] text-gray-600 mono">
-      CHIP MARKET INTELLIGENCE • Wed Mar 11, 2026 9:00 PM PDT • Research via Parallel Systems API
-    </div>
-    <div class="text-[10px] text-gray-600 mono">
-      Next: <span class="text-amber-400 font-semibold">THU MAR 12 — PPI + CLAIMS (5:30 AM) • ADOBE EARNINGS (After Close)</span>
-    </div>
-  </div>
-</footer>
-
+<div class="timestamp">Last updated: Thu Mar 12 2026 10:10 AM PDT | Next update: ~10:40 AM PDT | Dashboard auto-refreshes</div>
 </body>
 </html>
